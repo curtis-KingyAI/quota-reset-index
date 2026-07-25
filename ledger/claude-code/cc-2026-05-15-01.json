@@ -1,0 +1,43 @@
+{
+  "id": "cc-2026-05-15-01",
+  "vendor": "claude-code",
+  "kind": "global_reset",
+  "effective_at": "2026-05-15T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-25T18:45:00Z",
+  "scope": {
+    "windows": [
+      "5h",
+      "weekly"
+    ],
+    "plans": [
+      "Pro",
+      "Max",
+      "Team",
+      "Enterprise (seat-based)"
+    ],
+    "partial": false,
+    "notes": "Described as a one-off, server-side flush of BOTH consumption counters to zero, applied without user action and with no expiry — i.e. a counter reset, not a ceiling change. Reported as a courtesy 'release valve' two days after the May 13 temporary +50% weekly increase, so users could actually feel the new ceiling rather than remain capped by consumption already banked earlier that week. One source reports the announcement at 2:47 p.m. Italian time (approx. 12:47 UTC) on Friday May 15, but I set precision to 'day' rather than 'hour' because that timestamp comes from a single low-authority aggregator and I could not anchor it against any second source or vendor record."
+  },
+  "trigger": "courtesy",
+  "confidence": "probable",
+  "evidence": [
+    {
+      "type": "press",
+      "url": "https://pasqualepillitteri.it/en/news/2614/claude-resets-rate-limits-5-hour-weekly-may-15-2026",
+      "author": "Pasquale Pillitteri (news aggregator), quoting the @ClaudeDevs account",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://www.verdent.ai/guides/claude-code-limits-doubled-may-2026",
+      "author": "Verdent Guides (published 2026-05-21)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: SURVIVES, but it is the weakest-sourced of the three and the lead's own hedging is what saves it. Both cited urls load and both genuinely contain their quotes: pasqualepillitteri carries 'Happy Friday! We've reset everyone's 5-hour and weekly rate limits.' (the claimed quote is an exact substring, not a paraphrase) and verdent carries 'Two days after the weekly bump, on May 15, Anthropic flushed…"
+}

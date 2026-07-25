@@ -1,0 +1,46 @@
+{
+  "id": "cx-2026-07-09-01",
+  "vendor": "codex",
+  "kind": "global_reset",
+  "effective_at": "2026-07-09T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-25T18:45:00Z",
+  "scope": {
+    "windows": [
+      "weekly"
+    ],
+    "plans": [
+      "all paid plans"
+    ],
+    "partial": false,
+    "notes": "Non-banked ('hard') reset of the Codex weekly quota, applied fleet-wide to paid users across Codex and ChatGPT Work. Announced only via the personal X account of Thibault 'Tibo' Sottiaux (Codex lead) — no vendor-owned post, changelog entry or status-page note exists. The 5-hour window is not attested as part of this reset; only the weekly quota is. Trigger is the GPT-5.6 Sol / ChatGPT Work GA on the same day (2026-07-09), not an outage: status.openai.com/history lists NO incident on 2026-07-08 or 07-09."
+  },
+  "trigger": "launch",
+  "confidence": "reported",
+  "evidence": [
+    {
+      "type": "user_report",
+      "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
+      "author": "Max Woolf (minimaxir)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://www.ababnews.com/news/f18c1b7c-ff06-4e7e-8e9c-004ba01794e5",
+      "author": null,
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://explainx.ai/blog/gpt-5-6-sol-thinking-budget-banked-reset-tibo-july-2026",
+      "author": null,
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "Research recovered a finer timestamp (2026-07-09T21:24:11Z) but precision is \"day\", so effective_at is truncated rather than asserting accuracy we do not have. The finer value is generally the ANNOUNCEMENT time, not the moment the reset landed. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: SURVIVES, but only on ONE of its three evidence items. minimaxir carries the quote verbatim -- 'OpenAI has directly reset the Codex weekly quota six times: July 9, July 10, July 10 (again), July 14, July 15, and July 17' -- with a distinct permalink per date, and the July 9 permalink is under x.com/thsottiaux (OpenAI Codex lead), so the vendor is right and the misattribution hypothesis is defeate…"
+}

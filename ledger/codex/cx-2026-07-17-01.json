@@ -1,0 +1,60 @@
+{
+  "id": "cx-2026-07-17-01",
+  "vendor": "codex",
+  "kind": "global_reset",
+  "effective_at": "2026-07-17T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-25T18:45:00Z",
+  "scope": {
+    "windows": [
+      "weekly"
+    ],
+    "plans": [
+      "all paid users of Codex and ChatGPT Work"
+    ],
+    "partial": false,
+    "notes": "THE OPERATOR'S \"07-17 IS INCIDENT-RELATED\" HINT IS NOT SUPPORTED BY ANYTHING I COULD FETCH — treat it as falsified-pending-better-evidence, not confirmed. Three things argue against it: (1) the announcement's own framing is celebratory/capacity, not apologetic — \"Oops... I did it again. Enjoy reset usage limits for all paid users for Codex and ChatGPT Work. Super grateful for an incredible team who is iterating at lightspeed and keeping the infra up as we scale faster than ever\" — plus a happy-weekend sign-off (07-17 was a Friday). (2) There IS a same-day status incident, \"Codex 5.6-sol Experiencing Increased Server-Overload Errors\" (status.openai.com/incidents/01KXRHE25717D2WQ1WFMT2B7WZ, i…"
+  },
+  "trigger": "courtesy",
+  "confidence": "probable",
+  "evidence": [
+    {
+      "type": "user_report",
+      "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
+      "author": "Max Woolf (minimaxir)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897",
+      "author": "Dragonrin, OpenAI Developer Community — posted 2026-07-18, so \"yesterday\" = 07-17",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://codex-resets.com/",
+      "author": "codex-resets.com tracker, transcribing the \"Oops... I did it again\" announcement",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://note.com/kitworks/n/n70bb4a29db37?hl=en",
+      "author": "KitWorks on note.com (pub. 2026-07-18 JST) — dates this announcement to 07-18 local",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://news.ycombinator.com/item?id=48963465",
+      "author": "HN commenter on the \"Codex Resets\" submission — speaks to the reset SERIES generally, does NOT pin 07-17",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "Confidence downgraded confirmed -> probable by adversarial verification. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: Could not refute the reset itself. Every quote is verbatim, including the one I most expected to be mis-sourced (the 'Oops... I did it again' entry does contain the 'Enjoy reset usage limits...' sentence). Two US-frame sources independently pin 07-17: minimaxir's list, and a first-hand Pro-account 'yesterday' post dated 07-18. Discretionary, correct vendor. THREE CORRECTIONS: (1) CONFIDENCE DOWNG…"
+}

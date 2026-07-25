@@ -1,0 +1,53 @@
+{
+  "id": "cx-2026-07-14-01",
+  "vendor": "codex",
+  "kind": "global_reset",
+  "effective_at": "2026-07-14T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-25T18:45:00Z",
+  "scope": {
+    "windows": [
+      "weekly"
+    ],
+    "plans": [
+      "paid tiers — announced as \"for all\"; Plus/Pro/Business (Go also reported)"
+    ],
+    "partial": false,
+    "notes": "Immediate (non-banked) refill of the WEEKLY quota. The 5-hour window is not in scope because OpenAI had already temporarily REMOVED the 5-hour cap on 2026-07-12 for Plus/Pro/Business, so from 07-12 onward the weekly bucket was the only thing left to reset. Tied to the \"8M active users across Codex and ChatGPT Work\" milestone — part of a stated cadence of resetting at every 1M increment up to 10M. Rollout was NOT universal in practice: openai/codex issue #33344 was filed the next day by a Business/workspace account that did not receive it, and cites a prior identical failure (#27027) on a June 4 reset. One source (explainx.ai, low quality) instead maps 07-14 to a BANKED reset at the 7M miles…"
+  },
+  "trigger": "milestone",
+  "confidence": "probable",
+  "evidence": [
+    {
+      "type": "user_report",
+      "url": "https://github.com/openai/codex/issues/33344",
+      "author": "issue reporter on OpenAI's official openai/codex repository (opened 2026-07-15)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
+      "author": "Max Woolf (minimaxir)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://codex-resets.com/",
+      "author": "codex-resets.com tracker, transcribing the 8M-milestone announcement",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://explainx.ai/blog/openai-codex-chatgpt-work-8-million-users-gpt-5-6-sol-july-2026",
+      "author": "explainx.ai (pub. 2026-07-15, upd. 2026-07-23) — low-quality SEO blog, corroborating only",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "Confidence downgraded confirmed -> probable by adversarial verification. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: Could not refute. All four URLs load, all four quotes are present verbatim, and the event is a discretionary ad-hoc milestone reset by OpenAI (not a scheduled rollover). Three independent sources name 2026-07-14 explicitly, so the date and day-precision hold. TWO CORRECTIONS, neither fatal: (1) CONFIDENCE DOWNGRADED confirmed -> probable. No cited source is a vendor_post, status_page or telemetry…"
+}

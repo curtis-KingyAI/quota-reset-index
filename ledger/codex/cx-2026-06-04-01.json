@@ -1,0 +1,48 @@
+{
+  "id": "cx-2026-06-04-01",
+  "vendor": "codex",
+  "kind": "global_reset",
+  "effective_at": "2026-06-04T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-25T18:45:00Z",
+  "scope": {
+    "windows": [
+      "weekly"
+    ],
+    "plans": [
+      "paid subscribers (OpenAI staff wording)",
+      "ChatGPT Pro",
+      "ChatGPT Plus"
+    ],
+    "partial": false,
+    "notes": "OpenAI staff described it as a \"manual reset for paid subscribers\" performed by the Codex team \"following recent service issues\" — i.e. a one-off compensatory refill, explicitly \"not a normal scheduled quota renewal\". The community and the openai/codex GitHub tracker both refer to it as the \"unified reset (June 4)\". Mechanics: it did NOT top up on to the existing period — it replaced the quota period wholesale, granting a fresh allocation and discarding any remaining balance, and it moved the displayed weekly reset date forward. The reporting user's dashboard went from ~70% quota remaining with a 7 June reset date (checked 3 June) to 100% with an 11 June reset date (checked 4 June). Because…"
+  },
+  "trigger": "incident_compensation",
+  "confidence": "confirmed",
+  "evidence": [
+    {
+      "type": "vendor_post",
+      "url": "https://community.openai.com/t/questions-about-an-unexpected-codex-usage-reset-and-new-quota-period/1382610",
+      "author": "OpenAI_Support (Mark G.), OpenAI Developer Community, posted 2026-06-04",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://github.com/openai/codex/issues/27027",
+      "author": "L-XLH, issue #27027 on openai/codex (labels: bug, codex-web, rate-limits)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://github.com/openai/codex/discussions/26975",
+      "author": "openai/codex Discussion #26975, \"Codex limit on $100 cut since June 4. reset.\"",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: Could not refute on any axis. (1) All three cited URLs load. (2) Quotes are genuine, not paraphrased: I bypassed the rendered page and pulled the Discourse JSON for thread 1382610, which returns the OpenAI_Support post verbatim -- 'The Codex team performed a manual reset for paid subscribers following recent service issues, which explains why your usage returned to 100% before the previously disp…"
+}

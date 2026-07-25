@@ -1,0 +1,56 @@
+{
+  "id": "cx-2026-04-28-01",
+  "vendor": "codex",
+  "kind": "global_reset",
+  "effective_at": "2026-04-28T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-25T18:45:00Z",
+  "scope": {
+    "windows": [
+      "5h"
+    ],
+    "plans": [
+      "Plus",
+      "Pro",
+      "Business",
+      "Enterprise"
+    ],
+    "partial": false,
+    "notes": "The announcement wording was broad — \"Codex rate limits for ALL paid plans\" — but the only window with positive evidence of actually being reset is the 5-hour rolling window. openai/codex GitHub issue #20395 was filed precisely because the public wording did not match observed behaviour: a Plus subscriber found their WEEKLY limit was NOT reset, and the issue reports OpenAI Support later clarified the reset did not apply universally across all quota types or account states (eligibility varied by quota interval, usage timing and account state). I therefore list scope_windows as [\"5h\"] rather than [\"weekly\",\"5h\"]; treat weekly as disputed/not-universal, not as confirmed-included. Plans: the an…"
+  },
+  "trigger": "courtesy",
+  "confidence": "probable",
+  "evidence": [
+    {
+      "type": "vendor_post",
+      "url": "https://community.openai.com/t/codex-rate-limits-reset-for-all-paid-plans-april-28-2026/1379921",
+      "author": "Thread \"Codex Rate limits reset for all paid plans April 28, 2026\" on OpenAI Developer Community, opened by VeitB (staff), reproducing the announcement by Tibo Sottiaux (Codex eng…",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://github.com/openai/codex/issues/20395",
+      "author": "Issue #20395 \"Clarify Codex rate-limit reset behavior and make reset scope visible in Usage UI\", openai/codex repository — filed by a Plus subscriber whose weekly limit was not re…",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://www.aitopic.com/OpenAI-Codex-Resets-Rate-Limits-for-All-Paid-Users-to-Encourage-GPT-55-Adoption.html",
+      "author": "AI Topic, article dated 2026-04-28, attributing the reset to Codex engineering head Thibault Sottiaux and referencing the 2026-04-23 GPT-5.5 integration",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://knightli.com/en/2026/05/17/codex-usage-limit-reset-history/",
+      "author": "knightli.com, \"Codex Usage Limit Reset: How to Check Quotas and Reset Times\" (reset-history round-up, 2026-05-17)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "Confidence downgraded confirmed -> probable by adversarial verification. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: SURVIVES on the facts, but the confidence grade is NOT earned — downgrade confirmed -> probable. Refutation attempts that FAILED (i.e. the claim held): (1) No dead links — all four evidence URLs returned 200. (2) No fabricated quotes — every claimed quote appears verbatim or in substance on its page, including the exact announcement string 'I have reset Codex rate limits for ALL paid plans to cel…"
+}

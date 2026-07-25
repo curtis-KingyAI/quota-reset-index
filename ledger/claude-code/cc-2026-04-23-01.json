@@ -1,0 +1,37 @@
+{
+  "id": "cc-2026-04-23-01",
+  "vendor": "claude-code",
+  "kind": "global_reset",
+  "effective_at": "2026-04-23T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-25T18:45:00Z",
+  "scope": {
+    "windows": [],
+    "plans": [
+      "all subscribers (tiers not itemised in the vendor post)"
+    ],
+    "partial": false,
+    "notes": "Anthropic's own engineering postmortem states only 'Today we are resetting usage limits for all subscribers.' It does NOT name the 5-hour window, the weekly window, or specific plan tiers, so scope_windows is deliberately left empty rather than guessed. The reset is explicitly framed as compensation for token waste caused by three overlapping Claude Code defects running 2026-03-04 to 2026-04-20 (reasoning effort silently dropped high->medium on Mar 4; a Mar 26 thinking-block cache-clearing bug that fired every turn instead of once; an Opus 4.7 system-prompt verbosity cap). All three were resolved as of v2.1.116 on Apr 20. The postmortem covers Claude Code, the Claude Agent SDK and Claude Co…"
+  },
+  "trigger": "incident_compensation",
+  "confidence": "confirmed",
+  "evidence": [
+    {
+      "type": "vendor_post",
+      "url": "https://www.anthropic.com/engineering/april-23-postmortem",
+      "author": "Anthropic (Engineering)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://fortune.com/2026/04/24/anthropic-engineering-missteps-claude-code-performance-decline-user-backlash/",
+      "author": "Fortune",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: SURVIVES INTACT — I could not break this one. I attacked the quote first, because the initial fetch could have been primed by my own prompt, so I re-fetched with a neutral extraction ('quote verbatim every sentence containing reset or limits, do not paraphrase'). The page returned the claimed sentence character-for-character as its closing line: 'Today we are resetting usage limits for all subscr…"
+}

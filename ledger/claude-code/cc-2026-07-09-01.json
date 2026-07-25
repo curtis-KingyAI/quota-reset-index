@@ -1,0 +1,54 @@
+{
+  "id": "cc-2026-07-09-01",
+  "vendor": "claude-code",
+  "kind": "global_reset",
+  "effective_at": "2026-07-09T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-25T18:45:00Z",
+  "scope": {
+    "windows": [
+      "5h",
+      "weekly"
+    ],
+    "plans": [
+      "all users (Pro, Max, Team, seat-based Enterprise)"
+    ],
+    "partial": false,
+    "notes": "⚠️ DATE IS CONTESTED BY ±1 DAY — treat as the July 9–10 window, not a hard July 10. Of four independently fetched sources, THREE date this reset to July 9 (implicator.ai, explainx.ai, ababnews.com — the last published contemporaneously on July 9) and ONE dates it to July 10 (builderwithin.com, published July 10 and updated July 18). It is almost certainly a SINGLE announcement, not two: implicator.ai catalogues the July resets as July 1 / July 9 / July 16 and calls July 16 the 'third week', leaving no room for a separate July 10 event. The most plausible reconciliation is a late-July-9 US Pacific announcement landing on July 10 UTC. I kept effective_at at 2026-07-10 because the schema asks…"
+  },
+  "trigger": "unknown",
+  "confidence": "probable",
+  "evidence": [
+    {
+      "type": "press",
+      "url": "https://builderwithin.com/articles/claude-usage-reset-gpt-5-6/",
+      "author": "BuilderWithin (published 2026-07-10, updated 2026-07-18)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://www.implicator.ai/anthropic-resets-claude-limits-for-third-week-without-explaining-why/",
+      "author": "Implicator.ai (published 2026-07-16); dates this reset to July 9",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://www.ababnews.com/news/ac883e72-aec1-4064-bdb9-4e37f61bcaf2",
+      "author": "ABAB News (published 2026-07-09, contemporaneous)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://www.explainx.ai/blog/claude-codex-cursor-usage-limits-reset-july-2026",
+      "author": "ExplainX (published 2026-07-16); dates this reset to July 9",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "Operator's original lead was dated claude-code 2026-07-10; evidence places it on 2026-07-09. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: EVENT SURVIVES, DATE REFUTED — correct effective_at to 2026-07-09. The reset is real, discretionary and well-attested, so I am not discarding it, but the claimed July 10 does not hold. Five sources put it on July 9 (implicator.ai; ababnews, published contemporaneously on 07/09/2026 at 19:03; explainx's timeline; explainx's Fable-5 piece; and the search corpus) against ONE for July 10. The DECISIV…"
+}

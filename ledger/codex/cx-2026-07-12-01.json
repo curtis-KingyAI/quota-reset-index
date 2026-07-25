@@ -1,0 +1,60 @@
+{
+  "id": "cx-2026-07-12-01",
+  "vendor": "codex",
+  "kind": "banked_reset",
+  "effective_at": "2026-07-12T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-25T18:45:00Z",
+  "scope": {
+    "windows": [
+      "weekly"
+    ],
+    "plans": [
+      "Codex and ChatGPT Work paid accounts (specific plan tiers not stated in any fetched source)"
+    ],
+    "partial": false,
+    "notes": "Two separate things happened on 12 July 2026 and they must not be conflated. (a) A MORNING announcement from Tibo Sottiaux (OpenAI's Codex lead): temporary removal of the 5-hour usage limit for Plus/Business/Pro plus an IMMEDIATE weekly reset landing 'in the next hour', tied to the 6M-active-user milestone. That is a limit_removal + global_reset, NOT banked. (b) A LATER, SEPARATE announcement the same day: 'Added a banked reset to 500k users of ChatGPT Work and Codex.' This is the banked event the lead refers to. Its stated cause is incident compensation: banked-reset redemption had just been released on web and mobile (previously desktop-app only), and during a roughly 2-hour window under…"
+  },
+  "trigger": "incident_compensation",
+  "confidence": "probable",
+  "evidence": [
+    {
+      "type": "user_report",
+      "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
+      "author": "Max Woolf",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://codex-resets.com/",
+      "author": "Codex Resets tracker (community-run archive of Codex reset announcements)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://explainx.ai/blog/chatgpt-codex-5-hour-limit-removed-weekly-reset-july-2026",
+      "author": "ExplainX",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://www.eesel.ai/blog/gpt-remove-5-hour-limits",
+      "author": "eesel AI",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://community.openai.com/t/banked-codex-resets-disappeared-in-the-new-chatgpt-desktop-app-windows/1386667",
+      "author": "OpenAI Developer Community (Bugs category)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: Not refuted. All five URLs load; all five quotes are verbatim-present, none fabricated or paraphrased into existence. The event is a genuine discretionary banked grant by OpenAI for Codex — codex-resets.com preserves the announcement verbatim including the stated cause (banked-reset redemption newly shipped to web/mobile), which is incident compensation, not a scheduled rollover. I attacked the d…"
+}

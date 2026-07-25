@@ -1,0 +1,53 @@
+{
+  "id": "cx-2026-07-15-01",
+  "vendor": "codex",
+  "kind": "global_reset",
+  "effective_at": "2026-07-15T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-25T18:45:00Z",
+  "scope": {
+    "windows": [
+      "weekly"
+    ],
+    "plans": [
+      "paid tiers — Codex + ChatGPT Work users; Pro confirmed by a first-hand report"
+    ],
+    "partial": false,
+    "notes": "Weekly-quota refill tied to the 9M active-users milestone, one day after the 8M reset. Tracker text: the announcement said they had \"Actually hit 9M active users way earlier today, but then got distracted by the approximately millions of things the team is doing to keep the systems up.\" BANKED-vs-IMMEDIATE IS GENUINELY CONTESTED for this one: community thread 1387097 says \"the reset was supposed to be banked for later use\", while thread 1386897 is titled \"The 'Free' Non-Banked Codex Reset...\" and minimaxir classes 07-15 as a DIRECT reset (reserving \"banked\" for 07-12 and 07-13). A moderator in 1387097 relays OpenAI staff distinguishing two products: global/hard resets (not shown as credits)…"
+  },
+  "trigger": "milestone",
+  "confidence": "probable",
+  "evidence": [
+    {
+      "type": "user_report",
+      "url": "https://community.openai.com/t/missing-banked-reset-after-codex-usage-limit-reset-announcement/1387097",
+      "author": "William_Lynn, OpenAI Developer Community (posted 2026-07-16 04:14)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897",
+      "author": "Dragonrin, OpenAI Developer Community — first-hand Pro account, reset observed 2026-07-15",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
+      "author": "Max Woolf (minimaxir)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://codex-resets.com/",
+      "author": "codex-resets.com tracker, transcribing the 9M-milestone announcement",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "Confidence downgraded confirmed -> probable by adversarial verification. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: Could not refute. All four URLs load; both distinctive quotes ('According to Tibo's announcement on July 15...' and 'Actually hit 9M active users way earlier today') are present character-for-character. Two independent threads on OpenAI's own developer forum plus minimaxir independently pin 2026-07-15; the side effect (next rollover 07-19 -> 07-21, Pro account) is verified first-hand. Discretiona…"
+}

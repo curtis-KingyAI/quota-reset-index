@@ -1,0 +1,74 @@
+{
+  "id": "cx-2026-07-13-01",
+  "vendor": "codex",
+  "kind": "banked_reset",
+  "effective_at": "2026-07-13T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-25T18:45:00Z",
+  "scope": {
+    "windows": [
+      "weekly"
+    ],
+    "plans": [
+      "all Codex and ChatGPT Work accounts (announced as 'everyone's account'; plan tiers not enumerated in fetched sources)"
+    ],
+    "partial": false,
+    "notes": "Trigger was the 7-million-active-user milestone across Codex and ChatGPT Work (up from 6M announced roughly 24 hours earlier). Mechanism: one banked reset added to every account, redeemable by the user at a time of their choosing from the desktop app or web, and it replenishes the WEEKLY usage allowance. This is a true banked grant, not an immediate refill. Expiry: banked resets must be used within 30 days of being added to the bank unless an offer says otherwise. Note the 5-hour limit had already been temporarily removed the previous day, so the weekly cap was the only binding limit this grant addressed. Contested by one source: explainx.ai frames the all-users grant as landing 14 July rat…"
+  },
+  "trigger": "milestone",
+  "confidence": "probable",
+  "evidence": [
+    {
+      "type": "press",
+      "url": "https://www.latent.space/p/ainews-codex-usage-up-10x-in-6-months",
+      "author": "Latent.Space / AINews, 14 July 2026 issue",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://vpsranking.com/news/ai/ai-2026-07-13-openai-codex-7m-users-banked-reset/",
+      "author": "VPSRanking AI News",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://codex-resets.com/",
+      "author": "Codex Resets tracker (community-run archive of Codex reset announcements)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
+      "author": "Max Woolf",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "vendor_post",
+      "url": "https://learn.chatgpt.com/docs/changelog",
+      "author": "OpenAI Codex changelog, Codex CLI 0.144.0, 9 July 2026",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://community.openai.com/t/missing-banked-reset-after-codex-usage-limit-reset-announcement/1387097",
+      "author": "OpenAI Developer Community, staff reply (EricGT) quoting official explanation",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://explainx.ai/blog/openai-codex-chatgpt-work-8-million-users-gpt-5-6-sol-july-2026",
+      "author": "ExplainX",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "Confidence downgraded confirmed -> probable by adversarial verification. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: Event and date survive; the CONFIDENCE GRADE DOES NOT. All seven URLs load and all seven quotes are genuinely present — nothing fabricated. The event is a real discretionary all-accounts banked grant triggered by the 7M milestone, and July 13 is well corroborated (latent.space timestamps the announcement to July 13 6:29 PM, vpsranking dates it July 13, codex-resets.com preserves the text, and an…"
+}
