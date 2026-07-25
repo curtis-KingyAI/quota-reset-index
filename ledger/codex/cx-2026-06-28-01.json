@@ -1,0 +1,40 @@
+{
+  "id": "cx-2026-06-28-01",
+  "vendor": "codex",
+  "kind": "global_reset",
+  "effective_at": "2026-06-28T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-25T18:45:00Z",
+  "scope": {
+    "windows": [
+      "weekly",
+      "5h"
+    ],
+    "plans": [
+      "all paid"
+    ],
+    "partial": false,
+    "notes": "THIS IS THE STATUS-PAGE LEAD THE OPERATOR ASKED FOR, and it comes with a warning. The incident 'Codex Usage Limits Depleting Faster Than Expected' ran Jun 26 17:04 -> Jun 29 17:06 and was root-caused to OpenAI's own abuse/fraud prevention systems wrongly rate-limiting accounts. ⚠️ The status page itself records NO compensation whatsoever — no reset, no credit, no refund. The remediation is only visible in press: THREE full usage-limit resets across June 28-29 plus one extra banked reset usable within 24 hours. So a status-page-only sweep of either vendor will systematically MISS these events. effective_at is the first of the three resets; the run spans 06-28 to 06-29."
+  },
+  "trigger": "incident_compensation",
+  "confidence": "reported",
+  "evidence": [
+    {
+      "type": "press",
+      "url": "https://www.cryptopolitan.com/openai-traces-codex-credit-drain-to-faulty-anti-abuse-system/",
+      "author": "Cryptopolitan (published June 30, 2026)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "status_page",
+      "url": "https://status.openai.com/incidents/01KW2E6W0503W4NXJNCVAG8V6T",
+      "author": "OpenAI Status",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "Confidence probable -> reported by adversarial verification. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: SURVIVES, but the confidence grade is downgraded probable -> reported. I tried to refute this on five vectors and it held on four. 1. QUOTES ARE REAL, NOT PARAPHRASED. Both cited quotes appear verbatim. The status page contains the exact string \"abuse and fraud prevention systems incorrectly rate limiting certain accounts\". Cryptopolitan contains the exact string \"three full usage-limit resets between June 28 and Ju…"
+}

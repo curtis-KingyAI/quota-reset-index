@@ -1,0 +1,42 @@
+{
+  "id": "cc-2026-07-18-01",
+  "vendor": "claude-code",
+  "kind": "limit_increase",
+  "effective_at": "2026-07-18T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-25T18:45:00Z",
+  "scope": {
+    "windows": [
+      "weekly"
+    ],
+    "plans": [
+      "Pro",
+      "Max",
+      "Team",
+      "seat-based Enterprise"
+    ],
+    "partial": false,
+    "notes": "Second extension of the +50% weekly Claude Code promo, now running through August 19, 2026 — i.e. STILL ACTIVE as of today (2026-07-25). Announced by @ClaudeDevs; both my sources are articles reporting that post, not the post itself. Note the plan list widened from 'legacy seat-based Enterprise' (July 13 framing) to 'seat-based Enterprise'."
+  },
+  "trigger": "unknown",
+  "confidence": "reported",
+  "evidence": [
+    {
+      "type": "press",
+      "url": "https://www.digitalapplied.com/blog/claude-code-limits-raised-fable-5-max-team-premium-2026",
+      "author": "@ClaudeDevs, quoted by Digital Applied (published July 20, 2026)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://www.progressiverobot.com/2026/07/18/claude-code-weekly-limits/",
+      "author": "Progressive Robot (published July 18, 2026)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "Confidence probable -> reported by adversarial verification. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: I tried to refute this and could not kill the event, but the confidence grade does not survive. WHAT HOLDS: both URLs load; both contain the claimed quotes verbatim, not paraphrased into existence. It is a genuinely discretionary quota action by the right vendor (Anthropic temporarily lifting Claude Code weekly limits +50%), not a scheduled rollover or a pricing/plan change. The July 18 date and \"day\" precision are…"
+}

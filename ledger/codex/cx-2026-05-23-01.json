@@ -1,0 +1,32 @@
+{
+  "id": "cx-2026-05-23-01",
+  "vendor": "codex",
+  "kind": "global_reset",
+  "effective_at": "2026-05-23T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-25T18:45:00Z",
+  "scope": {
+    "windows": [
+      "weekly"
+    ],
+    "plans": [
+      "all"
+    ],
+    "partial": false,
+    "notes": "Compensatory reset after OpenAI rolled back an optimization that hurt cache hit rates when compacting long-running sessions, which made limits drain faster. Posted by Tibo (Codex team lead) at 8:14 PM in a thread opened May 16. Falls between the operator's codex 05-15 and 06-04 leads."
+  },
+  "trigger": "incident_compensation",
+  "confidence": "reported",
+  "evidence": [
+    {
+      "type": "user_report",
+      "url": "https://community.openai.com/t/codex-rate-limits-reset-incoming/1381065",
+      "author": "Tibo (OpenAI Codex), May 23, 2026",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "Confidence probable -> reported by adversarial verification. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: SURVIVES on substance, DOWNGRADED on confidence. Quote verified verbatim in raw Discourse JSON, post_number 5, created_at 2026-05-23T20:18:54Z: \"Some of you noticed limits drained faster in Codex, we root caused it to an optimization that we rolled back that had an impact on cache hit rates when compacting across long running sessions. We fixed this and have now reset usage limits for all accounts. Enjoy the weekend…"
+}

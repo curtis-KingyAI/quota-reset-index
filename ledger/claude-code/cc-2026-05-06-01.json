@@ -1,0 +1,42 @@
+{
+  "id": "cc-2026-05-06-01",
+  "vendor": "claude-code",
+  "kind": "limit_increase",
+  "effective_at": "2026-05-06T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-25T18:45:00Z",
+  "scope": {
+    "windows": [
+      "5h"
+    ],
+    "plans": [
+      "Pro",
+      "Max",
+      "Team",
+      "seat-based Enterprise"
+    ],
+    "partial": false,
+    "notes": "Two distinct actions in one vendor post: (a) 5-hour Claude Code rate limits doubled for Pro/Max/Team/seat-based Enterprise; (b) peak-hour limit REDUCTION removed for Pro and Max only (that half is kind=limit_removal). Weekly limits were NOT changed by this post. Post says the changes are 'all effective today' and does not use the word 'permanent' — secondary coverage calls it permanent, the vendor post does not. Framed as enabled by a SpaceX Colossus 1 compute deal."
+  },
+  "trigger": "capacity",
+  "confidence": "confirmed",
+  "evidence": [
+    {
+      "type": "vendor_post",
+      "url": "https://www.anthropic.com/news/higher-limits-spacex",
+      "author": "Anthropic",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "vendor_post",
+      "url": "https://www.anthropic.com/news/higher-limits-spacex",
+      "author": "Anthropic",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: Attempted refutation on six fronts; all failed. The claim survives intact. (1) URL LIVE + FIRST-PARTY. https://www.anthropic.com/news/higher-limits-spacex loads 200, titled \"Higher usage limits for Claude and a compute deal with SpaceX\", bylined May 6, 2026. Independently corroborated as the canonical URL/title by search (The New Stack, Yahoo Finance, ITPro, Slashdot, AIN all covered it 05-07/05-09), so this is not…"
+}

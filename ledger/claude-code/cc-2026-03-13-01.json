@@ -1,0 +1,42 @@
+{
+  "id": "cc-2026-03-13-01",
+  "vendor": "claude-code",
+  "kind": "limit_increase",
+  "effective_at": "2026-03-13T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-25T18:45:00Z",
+  "scope": {
+    "windows": [
+      "5h"
+    ],
+    "plans": [
+      "Free",
+      "Pro",
+      "Max",
+      "Team"
+    ],
+    "partial": false,
+    "notes": "Temporary promotion doubling 5-HOUR limits during off-peak hours (peak = 8am-2pm ET weekdays) and all day at weekends. Enterprise excluded. Bonus consumption did NOT count against weekly caps. END DATE IS DISPUTED between my two sources: XDA says 'through March 27, 2026', explainx says the promotion 'concluded March 28, 2026' — I did not resolve this and have not asserted an end date. Announced via Claude's X account per XDA; I did not fetch X per project prohibition."
+  },
+  "trigger": "courtesy",
+  "confidence": "probable",
+  "evidence": [
+    {
+      "type": "press",
+      "url": "https://www.xda-developers.com/claude-doubled-every-users-usage-limits-for-two-weeks/",
+      "author": "XDA Developers (published Mar 15, 2026)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://explainx.ai/blog/claude-usage-limits-2026-timeline-explained",
+      "author": "explainX",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "1 evidence url(s) dropped as not supporting the claim. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: Could not refute. Both cited URLs load and genuinely support the claim. The XDA quote is present VERBATIM, not paraphrased, and XDA is contemporaneous (Mar 15 2026, two days after the start date). The explainX quote is an exact substring. The event is a genuinely discretionary, temporary promotional limit increase by Anthropic - not a routine scheduled rollover, not a pricing/plan change, not another vendor, and it…"
+}

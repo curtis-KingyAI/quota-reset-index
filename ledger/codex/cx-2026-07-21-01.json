@@ -1,0 +1,39 @@
+{
+  "id": "cx-2026-07-21-01",
+  "vendor": "codex",
+  "kind": "global_reset",
+  "effective_at": "2026-07-21T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-25T18:45:00Z",
+  "scope": {
+    "windows": [
+      "weekly"
+    ],
+    "plans": [
+      "all paid"
+    ],
+    "partial": false,
+    "notes": "Final milestone in the run (Altman's commitment topped out at 10M). Covers Codex and ChatGPT Work. Tracker records 17:47 UTC with the reset 'lands in the next hour', so the actual refill may be slightly later; precision set to 'hour' for the same reason as the 07-18 lead. Bloomberg/Unite.AI independently date the 10M announcement to Tuesday July 21, 2026, which corroborates the day. The five-hour cap remained OFF for Plus, Business and Pro through this period — that removal is the operator's existing 07-12 lead, still in effect here."
+  },
+  "trigger": "milestone",
+  "confidence": "reported",
+  "evidence": [
+    {
+      "type": "user_report",
+      "url": "https://codexreset.org/",
+      "author": "codexreset.org tracker (entry dated July 21, 2026 17:47 UTC)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://www.unite.ai/openai-says-codex-and-chatgpt-work-hit-10-million-users/",
+      "author": "Unite.AI (published July 21, 2026, updated July 23)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "Confidence probable -> reported by adversarial verification. ⚠️ At least one evidence url is a third-party X-scraping tracker. Spec §2 forbids third-party X mirrors as a SIGNAL; recorded here as corroboration only, and flagged for the operator to rule on. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: Survives on substance but must be downgraded on all three graded axes. WHAT HOLDS: both URLs return 200 and carry the quoted text verbatim — no paraphrase-into-existence. Unite.AI contains the cited sentence exactly (\"As each milestone landed, OpenAI reset usage limits for all users and kept the five-hour rate cap off for Plus, Business, and Pro subscribers\") and dates the 10M announcement to Tuesday July 21, 2026…"
+}

@@ -1,5 +1,79 @@
 [
   {
+    "id": "cc-2026-03-13-01",
+    "vendor": "claude-code",
+    "kind": "limit_increase",
+    "effective_at": "2026-03-13T00:00:00Z",
+    "effective_at_precision": "day",
+    "observed_at": "2026-07-25T18:45:00Z",
+    "scope": {
+      "windows": [
+        "5h"
+      ],
+      "plans": [
+        "Free",
+        "Pro",
+        "Max",
+        "Team"
+      ],
+      "partial": false,
+      "notes": "Temporary promotion doubling 5-HOUR limits during off-peak hours (peak = 8am-2pm ET weekdays) and all day at weekends. Enterprise excluded. Bonus consumption did NOT count against weekly caps. END DATE IS DISPUTED between my two sources: XDA says 'through March 27, 2026', explainx says the promotion 'concluded March 28, 2026' — I did not resolve this and have not asserted an end date. Announced via Claude's X account per XDA; I did not fetch X per project prohibition."
+    },
+    "trigger": "courtesy",
+    "confidence": "probable",
+    "evidence": [
+      {
+        "type": "press",
+        "url": "https://www.xda-developers.com/claude-doubled-every-users-usage-limits-for-two-weeks/",
+        "author": "XDA Developers (published Mar 15, 2026)",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      },
+      {
+        "type": "press",
+        "url": "https://explainx.ai/blog/claude-usage-limits-2026-timeline-explained",
+        "author": "explainX",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      }
+    ],
+    "recorded_by": "claude-code-agent",
+    "superseded_by": null,
+    "notes": "1 evidence url(s) dropped as not supporting the claim. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: Could not refute. Both cited URLs load and genuinely support the claim. The XDA quote is present VERBATIM, not paraphrased, and XDA is contemporaneous (Mar 15 2026, two days after the start date). The explainX quote is an exact substring. The event is a genuinely discretionary, temporary promotional limit increase by Anthropic - not a routine scheduled rollover, not a pricing/plan change, not another vendor, and it…"
+  },
+  {
+    "id": "cx-2026-04-01-01",
+    "vendor": "codex",
+    "kind": "global_reset",
+    "effective_at": "2026-04-01T00:00:00Z",
+    "effective_at_precision": "day",
+    "observed_at": "2026-07-25T18:45:00Z",
+    "scope": {
+      "windows": [
+        "weekly"
+      ],
+      "plans": [
+        "all paid"
+      ],
+      "partial": false,
+      "notes": "Discretionary reset across ALL plans, explicitly precautionary rather than compensatory — Tibo says OpenAI did not understand why rate-limit hits had spiked. Statement originated on X and was relayed into the OpenAI Developer Community thread; the FORUM POST is my evidence, the X post was not fetched. ⚠️ The same thread's title also references a March 27 reset, which I could NOT source — see notes, treat as an open gap, not a confirmed event."
+    },
+    "trigger": "capacity",
+    "confidence": "reported",
+    "evidence": [
+      {
+        "type": "user_report",
+        "url": "https://community.openai.com/t/codex-limits-finally-good-after-april-1st-reset/1378333",
+        "author": "Tibo (OpenAI), relayed by forum user VeitB, April 1, 2026",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      }
+    ],
+    "recorded_by": "claude-code-agent",
+    "superseded_by": null,
+    "notes": "Confidence probable -> reported by adversarial verification. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: Attacked on all five axes and it held on four, failing only on confidence grade. QUOTE (survives): The exact string \"resetting the usage limits for all plans\" is present verbatim, not paraphrased. Verified three independent ways to rule out a summarizer hallucinating it into existence: the rendered page, the raw Discourse `.json` payload, and the post-2 permalink. All three return the same title, timestamps and user…"
+  },
+  {
     "id": "cc-2026-04-23-01",
     "vendor": "claude-code",
     "kind": "global_reset",
@@ -91,6 +165,83 @@
     "recorded_by": "claude-code-agent",
     "superseded_by": null,
     "notes": "Confidence downgraded confirmed -> probable by adversarial verification. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: SURVIVES on the facts, but the confidence grade is NOT earned — downgrade confirmed -> probable. Refutation attempts that FAILED (i.e. the claim held): (1) No dead links — all four evidence URLs returned 200. (2) No fabricated quotes — every claimed quote appears verbatim or in substance on its page, including the exact announcement string 'I have reset Codex rate limits for ALL paid plans to cel…"
+  },
+  {
+    "id": "cc-2026-05-06-01",
+    "vendor": "claude-code",
+    "kind": "limit_increase",
+    "effective_at": "2026-05-06T00:00:00Z",
+    "effective_at_precision": "day",
+    "observed_at": "2026-07-25T18:45:00Z",
+    "scope": {
+      "windows": [
+        "5h"
+      ],
+      "plans": [
+        "Pro",
+        "Max",
+        "Team",
+        "seat-based Enterprise"
+      ],
+      "partial": false,
+      "notes": "Two distinct actions in one vendor post: (a) 5-hour Claude Code rate limits doubled for Pro/Max/Team/seat-based Enterprise; (b) peak-hour limit REDUCTION removed for Pro and Max only (that half is kind=limit_removal). Weekly limits were NOT changed by this post. Post says the changes are 'all effective today' and does not use the word 'permanent' — secondary coverage calls it permanent, the vendor post does not. Framed as enabled by a SpaceX Colossus 1 compute deal."
+    },
+    "trigger": "capacity",
+    "confidence": "confirmed",
+    "evidence": [
+      {
+        "type": "vendor_post",
+        "url": "https://www.anthropic.com/news/higher-limits-spacex",
+        "author": "Anthropic",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      },
+      {
+        "type": "vendor_post",
+        "url": "https://www.anthropic.com/news/higher-limits-spacex",
+        "author": "Anthropic",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      }
+    ],
+    "recorded_by": "claude-code-agent",
+    "superseded_by": null,
+    "notes": "Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: Attempted refutation on six fronts; all failed. The claim survives intact. (1) URL LIVE + FIRST-PARTY. https://www.anthropic.com/news/higher-limits-spacex loads 200, titled \"Higher usage limits for Claude and a compute deal with SpaceX\", bylined May 6, 2026. Independently corroborated as the canonical URL/title by search (The New Stack, Yahoo Finance, ITPro, Slashdot, AIN all covered it 05-07/05-09), so this is not…"
+  },
+  {
+    "id": "cc-2026-05-13-01",
+    "vendor": "claude-code",
+    "kind": "limit_increase",
+    "effective_at": "2026-05-13T00:00:00Z",
+    "effective_at_precision": "day",
+    "observed_at": "2026-07-25T18:45:00Z",
+    "scope": {
+      "windows": [
+        "weekly"
+      ],
+      "plans": [
+        "Pro",
+        "Max",
+        "Team",
+        "legacy seat-based Enterprise"
+      ],
+      "partial": false,
+      "notes": "START of the +50% Claude Code WEEKLY limit promotion, originally scheduled to end July 13, 2026 at 6PM PDT. Applies to Claude Code only (CLI, IDE extensions, desktop, web); auto-applied, no action required; Free and consumption-based Enterprise seats excluded. ⚠️ DATE IS SOFT: the article I fetched says only 'effective immediately' and was published 14 May 2026; search snippets I did NOT fetch claim a May 13 start. I have anchored to the fetched publication date and set precision=day. ⚠️ DEDUPE RISK: the operator already has a claude-code 2026-05-15 lead — that appears to be a separate ClaudeDevs 5-hour+weekly counter FLUSH, not this promo, but the two are 1-2 days apart and should be check…"
+    },
+    "trigger": "courtesy",
+    "confidence": "reported",
+    "evidence": [
+      {
+        "type": "press",
+        "url": "https://apidog.com/blog/claude-code-weekly-limits-50-percent-increase-july-2026/",
+        "author": "Apidog (published 14 May 2026)",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      }
+    ],
+    "recorded_by": "claude-code-agent",
+    "superseded_by": null,
+    "notes": "Date corrected by adversarial verification: 2026-05-14 -> 2026-05-13. Confidence probable -> reported by adversarial verification. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: SURVIVES with three corrections. Attacks that FAILED: (1) URL is live (curl 200, no redirect). (2) The quote is real and near-verbatim, not paraphrased into existence — the page reads \"Anthropic raised Claude Code weekly usage limits by 50%, effective immediately and running through July 13 at 6PM PDT (1AM GMT, July 14)\". (3) It is genuinely a discretionary vendor action: a temporary +50% raise of the Claude Code we…"
   },
   {
     "id": "cc-2026-05-15-01",
@@ -185,6 +336,69 @@
     "notes": "Operator's original lead was dated codex 2026-05-15; evidence places it on 2026-05-16. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: SURVIVES, with precision downgraded day -> unknown. Every URL loaded and every quote is genuinely on the page - nothing fabricated or paraphrased into existence. Forum 1381065 carries the exact string 'I will reset usage limits this evening' inside a relayed screenshot of @thsottiaux, with Discourse JSON confirming post1 VeitB 2026-05-16T10:25:49Z and post2 OpenAI_Support ('Avinash') 2026-05-16T1…"
   },
   {
+    "id": "cx-2026-05-23-01",
+    "vendor": "codex",
+    "kind": "global_reset",
+    "effective_at": "2026-05-23T00:00:00Z",
+    "effective_at_precision": "day",
+    "observed_at": "2026-07-25T18:45:00Z",
+    "scope": {
+      "windows": [
+        "weekly"
+      ],
+      "plans": [
+        "all"
+      ],
+      "partial": false,
+      "notes": "Compensatory reset after OpenAI rolled back an optimization that hurt cache hit rates when compacting long-running sessions, which made limits drain faster. Posted by Tibo (Codex team lead) at 8:14 PM in a thread opened May 16. Falls between the operator's codex 05-15 and 06-04 leads."
+    },
+    "trigger": "incident_compensation",
+    "confidence": "reported",
+    "evidence": [
+      {
+        "type": "user_report",
+        "url": "https://community.openai.com/t/codex-rate-limits-reset-incoming/1381065",
+        "author": "Tibo (OpenAI Codex), May 23, 2026",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      }
+    ],
+    "recorded_by": "claude-code-agent",
+    "superseded_by": null,
+    "notes": "Confidence probable -> reported by adversarial verification. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: SURVIVES on substance, DOWNGRADED on confidence. Quote verified verbatim in raw Discourse JSON, post_number 5, created_at 2026-05-23T20:18:54Z: \"Some of you noticed limits drained faster in Codex, we root caused it to an optimization that we rolled back that had an impact on cache hit rates when compacting across long running sessions. We fixed this and have now reset usage limits for all accounts. Enjoy the weekend…"
+  },
+  {
+    "id": "cc-2026-06-02-01",
+    "vendor": "claude-code",
+    "kind": "global_reset",
+    "effective_at": "2026-06-02T00:00:00Z",
+    "effective_at_precision": "day",
+    "observed_at": "2026-07-25T18:45:00Z",
+    "scope": {
+      "windows": [],
+      "plans": [
+        "Pro",
+        "Max"
+      ],
+      "partial": false,
+      "notes": "Reset was scoped to IMPACTED Pro and Max subscribers, not all users. Root cause reported as Claude Code sub-agents multiplying excessively and burning tokens abnormally fast during the June 2 incident ('Elevated errors on Opus 4.6', 06:04-11:49 UTC). Which usage window was refilled is NOT stated by my source. Weakest-sourced Claude lead here: one real trade publication plus content-farm restatements; I could not corroborate from a vendor or status-page source."
+    },
+    "trigger": "incident_compensation",
+    "confidence": "reported",
+    "evidence": [
+      {
+        "type": "press",
+        "url": "https://www.storyboard18.com/digital/anthropics-claude-ai-suffers-disruption-what-caused-the-outage-and-why-user-quotas-were-reset-99951.htm",
+        "author": "Storyboard18 (published June 2, 2026)",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      }
+    ],
+    "recorded_by": "claude-code-agent",
+    "superseded_by": null,
+    "notes": "Verifier graded the date \"unknown\". Recorded at the schema's coarsest precision, \"day\"; treat as approximate. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: SURVIVES, with precision downgraded. Attacked on every axis and the core held. (1) URL live (200) and contains the claimed quote VERBATIM, not paraphrased: \"Anthropic restored usage allowances for affected Pro and Max users after a technical issue triggered unusually high token consumption.\" It also carries a stronger second line: \"The company has also rolled out an emergency quota reset for impacted users, meaning…"
+  },
+  {
     "id": "cx-2026-06-04-01",
     "vendor": "codex",
     "kind": "global_reset",
@@ -231,6 +445,88 @@
     "recorded_by": "claude-code-agent",
     "superseded_by": null,
     "notes": "Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: Could not refute on any axis. (1) All three cited URLs load. (2) Quotes are genuine, not paraphrased: I bypassed the rendered page and pulled the Discourse JSON for thread 1382610, which returns the OpenAI_Support post verbatim -- 'The Codex team performed a manual reset for paid subscribers following recent service issues, which explains why your usage returned to 100% before the previously disp…"
+  },
+  {
+    "id": "cx-2026-06-12-01",
+    "vendor": "codex",
+    "kind": "banked_reset",
+    "effective_at": "2026-06-12T00:00:00Z",
+    "effective_at_precision": "day",
+    "observed_at": "2026-07-25T18:45:00Z",
+    "scope": {
+      "windows": [
+        "weekly"
+      ],
+      "plans": [
+        "Go",
+        "Plus",
+        "Pro",
+        "Business"
+      ],
+      "partial": false,
+      "notes": "STRUCTURAL CHANGE, and the most important Codex find for interpreting every later lead: this is where OpenAI moved from ad-hoc surprise resets to user-triggered BANKED resets. Go/Plus/Pro/Business each seeded with one free banked reset; Plus and Pro could earn up to three more by referral (referral window closed June 24, 2026); every banked reset expires 30 days after it is credited. Multiple paying users in the thread reported never receiving the seeded free reset, so rollout was incomplete. After this date, 'reset' in Codex coverage may mean an immediate refill OR a banked credit — the operator's 07-12 and 07-13 leads are banked, per Max Woolf."
+    },
+    "trigger": "launch",
+    "confidence": "probable",
+    "evidence": [
+      {
+        "type": "user_report",
+        "url": "https://community.openai.com/t/flexible-rate-limit-resets-for-codex-and-a-method-to-get-a-reset/1383470",
+        "author": "VeitB, OpenAI Developer Community, June 12, 2026",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      },
+      {
+        "type": "press",
+        "url": "https://www.xda-developers.com/codexs-update-fixes-the-one-thing-i-hate-most-about-ai-usage-limits/",
+        "author": "XDA Developers (published June 22, 2026)",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      }
+    ],
+    "recorded_by": "claude-code-agent",
+    "superseded_by": null,
+    "notes": "Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: Event confirmed on the merits; one attribution defect corrected, no refutation. Both URLs load 200 and support the claim. XDA (pub. June 22, 2026) independently states every specific in the lead verbatim: \"Starting June 12th, Codex users on Go, Plus, Pro and Business plans get a reset they can use whenever they want\", \"Every eligible user on Go, Plus, Pro, and Business starts with one of these for free\", \"Until June…"
+  },
+  {
+    "id": "cx-2026-06-28-01",
+    "vendor": "codex",
+    "kind": "global_reset",
+    "effective_at": "2026-06-28T00:00:00Z",
+    "effective_at_precision": "day",
+    "observed_at": "2026-07-25T18:45:00Z",
+    "scope": {
+      "windows": [
+        "weekly",
+        "5h"
+      ],
+      "plans": [
+        "all paid"
+      ],
+      "partial": false,
+      "notes": "THIS IS THE STATUS-PAGE LEAD THE OPERATOR ASKED FOR, and it comes with a warning. The incident 'Codex Usage Limits Depleting Faster Than Expected' ran Jun 26 17:04 -> Jun 29 17:06 and was root-caused to OpenAI's own abuse/fraud prevention systems wrongly rate-limiting accounts. ⚠️ The status page itself records NO compensation whatsoever — no reset, no credit, no refund. The remediation is only visible in press: THREE full usage-limit resets across June 28-29 plus one extra banked reset usable within 24 hours. So a status-page-only sweep of either vendor will systematically MISS these events. effective_at is the first of the three resets; the run spans 06-28 to 06-29."
+    },
+    "trigger": "incident_compensation",
+    "confidence": "reported",
+    "evidence": [
+      {
+        "type": "press",
+        "url": "https://www.cryptopolitan.com/openai-traces-codex-credit-drain-to-faulty-anti-abuse-system/",
+        "author": "Cryptopolitan (published June 30, 2026)",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      },
+      {
+        "type": "status_page",
+        "url": "https://status.openai.com/incidents/01KW2E6W0503W4NXJNCVAG8V6T",
+        "author": "OpenAI Status",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      }
+    ],
+    "recorded_by": "claude-code-agent",
+    "superseded_by": null,
+    "notes": "Confidence probable -> reported by adversarial verification. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: SURVIVES, but the confidence grade is downgraded probable -> reported. I tried to refute this on five vectors and it held on four. 1. QUOTES ARE REAL, NOT PARAPHRASED. Both cited quotes appear verbatim. The status page contains the exact string \"abuse and fraud prevention systems incorrectly rate limiting certain accounts\". Cryptopolitan contains the exact string \"three full usage-limit resets between June 28 and Ju…"
   },
   {
     "id": "cc-2026-07-09-01",
@@ -499,6 +795,41 @@
     "notes": "Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: Not refuted. All five URLs load; all five quotes are verbatim-present, none fabricated or paraphrased into existence. The event is a genuine discretionary banked grant by OpenAI for Codex — codex-resets.com preserves the announcement verbatim including the stated cause (banked-reset redemption newly shipped to web/mobile), which is incident compensation, not a scheduled rollover. I attacked the d…"
   },
   {
+    "id": "cc-2026-07-13-01",
+    "vendor": "claude-code",
+    "kind": "limit_increase",
+    "effective_at": "2026-07-13T00:00:00Z",
+    "effective_at_precision": "day",
+    "observed_at": "2026-07-25T18:45:00Z",
+    "scope": {
+      "windows": [
+        "weekly"
+      ],
+      "plans": [
+        "Pro",
+        "Max",
+        "Team",
+        "legacy seat-based Enterprise"
+      ],
+      "partial": false,
+      "notes": "EXTENSION, not a new grant: the +50% weekly Claude Code promo was due to lapse July 13 at 6PM PDT and was pushed to July 19, 2026 at 11:59 PM PT. Auto-applied; Free and consumption-based Enterprise seats excluded. Article points readers to support.claude.com for Anthropic's own writeup, but that article is no longer in the live 'Usage and limits' collection."
+    },
+    "trigger": "courtesy",
+    "confidence": "reported",
+    "evidence": [
+      {
+        "type": "press",
+        "url": "https://www.helpnetsecurity.com/2026/07/13/claude-code-weekly-limits-promotion-extended/",
+        "author": "Help Net Security (published July 13, 2026)",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      }
+    ],
+    "recorded_by": "claude-code-agent",
+    "superseded_by": null,
+    "notes": "Confidence probable -> reported by adversarial verification. 1 evidence url(s) dropped as not supporting the claim. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: Survives on substance, downgraded on confidence. The cited Help Net Security URL loads and contains the claimed quote VERBATIM in its opening paragraph (\"Anthropic has extended a limited-time promotion that increases weekly usage limits in Claude Code by 50% through July 19, 2026, at 11:59 PM PT\"), correctly attributed, published 2026-07-13. This is a genuine discretionary vendor quota action by Anthropic for Claude…"
+  },
+  {
     "id": "cx-2026-07-13-01",
     "vendor": "codex",
     "kind": "banked_reset",
@@ -737,5 +1068,125 @@
     "recorded_by": "claude-code-agent",
     "superseded_by": null,
     "notes": "Confidence downgraded confirmed -> probable by adversarial verification. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: Could not refute the reset itself. Every quote is verbatim, including the one I most expected to be mis-sourced (the 'Oops... I did it again' entry does contain the 'Enjoy reset usage limits...' sentence). Two US-frame sources independently pin 07-17: minimaxir's list, and a first-hand Pro-account 'yesterday' post dated 07-18. Discretionary, correct vendor. THREE CORRECTIONS: (1) CONFIDENCE DOWNG…"
+  },
+  {
+    "id": "cc-2026-07-18-01",
+    "vendor": "claude-code",
+    "kind": "limit_increase",
+    "effective_at": "2026-07-18T00:00:00Z",
+    "effective_at_precision": "day",
+    "observed_at": "2026-07-25T18:45:00Z",
+    "scope": {
+      "windows": [
+        "weekly"
+      ],
+      "plans": [
+        "Pro",
+        "Max",
+        "Team",
+        "seat-based Enterprise"
+      ],
+      "partial": false,
+      "notes": "Second extension of the +50% weekly Claude Code promo, now running through August 19, 2026 — i.e. STILL ACTIVE as of today (2026-07-25). Announced by @ClaudeDevs; both my sources are articles reporting that post, not the post itself. Note the plan list widened from 'legacy seat-based Enterprise' (July 13 framing) to 'seat-based Enterprise'."
+    },
+    "trigger": "unknown",
+    "confidence": "reported",
+    "evidence": [
+      {
+        "type": "press",
+        "url": "https://www.digitalapplied.com/blog/claude-code-limits-raised-fable-5-max-team-premium-2026",
+        "author": "@ClaudeDevs, quoted by Digital Applied (published July 20, 2026)",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      },
+      {
+        "type": "press",
+        "url": "https://www.progressiverobot.com/2026/07/18/claude-code-weekly-limits/",
+        "author": "Progressive Robot (published July 18, 2026)",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      }
+    ],
+    "recorded_by": "claude-code-agent",
+    "superseded_by": null,
+    "notes": "Confidence probable -> reported by adversarial verification. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: I tried to refute this and could not kill the event, but the confidence grade does not survive. WHAT HOLDS: both URLs load; both contain the claimed quotes verbatim, not paraphrased into existence. It is a genuinely discretionary quota action by the right vendor (Anthropic temporarily lifting Claude Code weekly limits +50%), not a scheduled rollover or a pricing/plan change. The July 18 date and \"day\" precision are…"
+  },
+  {
+    "id": "cx-2026-07-18-01",
+    "vendor": "codex",
+    "kind": "global_reset",
+    "effective_at": "2026-07-18T00:00:00Z",
+    "effective_at_precision": "day",
+    "observed_at": "2026-07-25T18:45:00Z",
+    "scope": {
+      "windows": [
+        "weekly"
+      ],
+      "plans": [
+        "all paid"
+      ],
+      "partial": false,
+      "notes": "Covers Codex AND ChatGPT Work (OpenAI counts them together as 'agents'). Tracker records 03:28 UTC — I have set precision to 'hour' rather than 'exact' because the minute comes from a third-party scraper of an X post I did not and will not fetch. Tied to the 9-million combined-active-user milestone; the milestone cadence traces back to Sam Altman promising a reset every million users up to 10M. This is the FIRST event after the operator's list ends (07-17)."
+    },
+    "trigger": "unknown",
+    "confidence": "reported",
+    "evidence": [
+      {
+        "type": "user_report",
+        "url": "https://codexreset.org/",
+        "author": "codexreset.org tracker (entry dated July 18, 2026 03:28 UTC)",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      },
+      {
+        "type": "user_report",
+        "url": "https://note.com/kitworks/n/n70bb4a29db37?hl=en",
+        "author": "KitWorks (published July 18, 2026)",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      }
+    ],
+    "recorded_by": "claude-code-agent",
+    "superseded_by": null,
+    "notes": "Verifier refuted the 9M-milestone attribution: its own cited tracker dates the 9M milestone to Jul 16 04:14 UTC and attaches no milestone to the Jul 18 reset. The reset is real; the milestone framing is not. Confidence probable -> reported by adversarial verification. ⚠️ At least one evidence url is a third-party X-scraping tracker. Spec §2 forbids third-party X mirrors as a SIGNAL; recorded here as corroboration only, and flagged for the operator to rule on. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: Survives on the core event, but three parts of the record are wrong and the label must change. WHAT HELD UP. Both URLs load. codexreset.org's log carries a Jul 18 03:28 UTC entry, \"Global Codex quota reset\", quote verbatim: \"Oops... I did it again. Enjoy reset usage limits for all paid users for Codex and ChatGPT Work.\" note.com/kitworks (published 2026-07-18 21:48) carries the claimed quote verbatim — \"However, whe…"
+  },
+  {
+    "id": "cx-2026-07-21-01",
+    "vendor": "codex",
+    "kind": "global_reset",
+    "effective_at": "2026-07-21T00:00:00Z",
+    "effective_at_precision": "day",
+    "observed_at": "2026-07-25T18:45:00Z",
+    "scope": {
+      "windows": [
+        "weekly"
+      ],
+      "plans": [
+        "all paid"
+      ],
+      "partial": false,
+      "notes": "Final milestone in the run (Altman's commitment topped out at 10M). Covers Codex and ChatGPT Work. Tracker records 17:47 UTC with the reset 'lands in the next hour', so the actual refill may be slightly later; precision set to 'hour' for the same reason as the 07-18 lead. Bloomberg/Unite.AI independently date the 10M announcement to Tuesday July 21, 2026, which corroborates the day. The five-hour cap remained OFF for Plus, Business and Pro through this period — that removal is the operator's existing 07-12 lead, still in effect here."
+    },
+    "trigger": "milestone",
+    "confidence": "reported",
+    "evidence": [
+      {
+        "type": "user_report",
+        "url": "https://codexreset.org/",
+        "author": "codexreset.org tracker (entry dated July 21, 2026 17:47 UTC)",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      },
+      {
+        "type": "press",
+        "url": "https://www.unite.ai/openai-says-codex-and-chatgpt-work-hit-10-million-users/",
+        "author": "Unite.AI (published July 21, 2026, updated July 23)",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      }
+    ],
+    "recorded_by": "claude-code-agent",
+    "superseded_by": null,
+    "notes": "Confidence probable -> reported by adversarial verification. ⚠️ At least one evidence url is a third-party X-scraping tracker. Spec §2 forbids third-party X mirrors as a SIGNAL; recorded here as corroboration only, and flagged for the operator to rule on. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: Survives on substance but must be downgraded on all three graded axes. WHAT HOLDS: both URLs return 200 and carry the quoted text verbatim — no paraphrase-into-existence. Unite.AI contains the cited sentence exactly (\"As each milestone landed, OpenAI reset usage limits for all users and kept the five-hour rate cap off for Plus, Business, and Pro subscribers\") and dates the 10M announcement to Tuesday July 21, 2026…"
   }
 ]

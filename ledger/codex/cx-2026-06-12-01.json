@@ -1,0 +1,42 @@
+{
+  "id": "cx-2026-06-12-01",
+  "vendor": "codex",
+  "kind": "banked_reset",
+  "effective_at": "2026-06-12T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-25T18:45:00Z",
+  "scope": {
+    "windows": [
+      "weekly"
+    ],
+    "plans": [
+      "Go",
+      "Plus",
+      "Pro",
+      "Business"
+    ],
+    "partial": false,
+    "notes": "STRUCTURAL CHANGE, and the most important Codex find for interpreting every later lead: this is where OpenAI moved from ad-hoc surprise resets to user-triggered BANKED resets. Go/Plus/Pro/Business each seeded with one free banked reset; Plus and Pro could earn up to three more by referral (referral window closed June 24, 2026); every banked reset expires 30 days after it is credited. Multiple paying users in the thread reported never receiving the seeded free reset, so rollout was incomplete. After this date, 'reset' in Codex coverage may mean an immediate refill OR a banked credit — the operator's 07-12 and 07-13 leads are banked, per Max Woolf."
+  },
+  "trigger": "launch",
+  "confidence": "probable",
+  "evidence": [
+    {
+      "type": "user_report",
+      "url": "https://community.openai.com/t/flexible-rate-limit-resets-for-codex-and-a-method-to-get-a-reset/1383470",
+      "author": "VeitB, OpenAI Developer Community, June 12, 2026",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://www.xda-developers.com/codexs-update-fixes-the-one-thing-i-hate-most-about-ai-usage-limits/",
+      "author": "XDA Developers (published June 22, 2026)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: Event confirmed on the merits; one attribution defect corrected, no refutation. Both URLs load 200 and support the claim. XDA (pub. June 22, 2026) independently states every specific in the lead verbatim: \"Starting June 12th, Codex users on Go, Plus, Pro and Business plans get a reset they can use whenever they want\", \"Every eligible user on Go, Plus, Pro, and Business starts with one of these for free\", \"Until June…"
+}
