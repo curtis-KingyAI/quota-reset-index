@@ -74,6 +74,69 @@
     "notes": "Confidence probable -> reported by adversarial verification. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: Attacked on all five axes and it held on four, failing only on confidence grade. QUOTE (survives): The exact string \"resetting the usage limits for all plans\" is present verbatim, not paraphrased. Verified three independent ways to rule out a summarizer hallucinating it into existence: the rendered page, the raw Discourse `.json` payload, and the post-2 permalink. All three return the same title, timestamps and user…"
   },
   {
+    "id": "cx-2026-04-08-01",
+    "vendor": "codex",
+    "kind": "global_reset",
+    "effective_at": "2026-04-08T00:00:00Z",
+    "effective_at_precision": "day",
+    "observed_at": "2026-07-25T18:45:00Z",
+    "scope": {
+      "windows": [],
+      "plans": [],
+      "partial": false,
+      "notes": "QUOTA WINDOW: scope_windows is deliberately EMPTY. Every single source I fetched was asked directly which window was reset, and every one declined to say. BusinessToday, Technobezz, Daily AI Primer and the Codex Knowledge Base say only \"usage limits\" generically. Let's Data Science comes closest — the reset clears \"the share of a quota a developer has already used in the current window\" — but explicitly does not name the window. codex-resets.com's entry for this milestone likewise does not specify weekly vs 5h. NOTE THE TRAP: \"3 million WEEKLY users\" is a user-count metric, not a quota window; Technobezz's summary conflates the two, and inferring \"weekly quota\" from \"weekly users\" would be…"
+    },
+    "trigger": "milestone",
+    "confidence": "reported",
+    "evidence": [
+      {
+        "type": "press",
+        "url": "https://www.businesstoday.in/technology/story/openai-codex-celebrates-3-million-weekly-users-ceo-sam-altman-resets-usage-limits-524717-2026-04-08",
+        "author": "Business Today",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      },
+      {
+        "type": "user_report",
+        "url": "https://community.openai.com/t/codex-rate-limits-discussion-thread/1378553/177",
+        "author": "OpenAI Developer Community (windysoliloquy)",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      },
+      {
+        "type": "press",
+        "url": "https://www.technobezz.com/news/openai-resets-codex-usage-limits-after-reaching-3-million-weekly-users",
+        "author": "Technobezz",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      },
+      {
+        "type": "press",
+        "url": "https://letsdatascience.com/news/sam-altman-resets-openai-codex-limits-74ec5754",
+        "author": "Let's Data Science",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      },
+      {
+        "type": "press",
+        "url": "https://www.ai-primer.com/engineer/stories/openai-codex-3m-users-limit-reset",
+        "author": "Daily AI Primer",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      },
+      {
+        "type": "press",
+        "url": "https://codex.danielvaughan.com/2026/04/09/codex-3-million-users-growth-usage-limits/",
+        "author": "Codex Knowledge Base (Daniel Vaughan)",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      }
+    ],
+    "recorded_by": "claude-code-agent",
+    "superseded_by": null,
+    "notes": "Part of OpenAI's publicly stated commitment, made at the 3M-user milestone, to reset Codex usage limits at every additional million weekly active users up to 10M. Seeded in Phase 1; NOT yet reviewed by the operator. Verifier: SURVIVES, but with the date corrected 04-07 → 04-08 and confidence capped at \"reported\". WHAT HELD UP: 1. Both claim URLs load (HTTP 200). The quote is genuinely on the BusinessToday page — not paraphrased into existence — including the \"Happy building!\" sign-off, which a first pass missed and a targeted re-fetch confirmed. 2. The event is corroborated by five independent outlets I fetched (BusinessToday, Technobezz, Let's Data Science, Daily AI Primer, Codex Knowledge Base), so this clears the \"second source\" bar. 3. ANNOUNCE vs EFFECT survives scrutiny. The post is present-progressive — \"we…"
+  },
+  {
     "id": "cc-2026-04-23-01",
     "vendor": "claude-code",
     "kind": "global_reset",
@@ -1008,6 +1071,57 @@
     "recorded_by": "claude-code-agent",
     "superseded_by": null,
     "notes": "Confidence downgraded confirmed -> probable by adversarial verification. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: Could not refute. All four URLs load; both distinctive quotes ('According to Tibo's announcement on July 15...' and 'Actually hit 9M active users way earlier today') are present character-for-character. Two independent threads on OpenAI's own developer forum plus minimaxir independently pin 2026-07-15; the side effect (next rollover 07-19 -> 07-21, Pro account) is verified first-hand. Discretiona…"
+  },
+  {
+    "id": "cx-2026-07-16-01",
+    "vendor": "codex",
+    "kind": "global_reset",
+    "effective_at": "2026-07-16T00:00:00Z",
+    "effective_at_precision": "day",
+    "observed_at": "2026-07-25T18:45:00Z",
+    "scope": {
+      "windows": [
+        "weekly"
+      ],
+      "plans": [],
+      "partial": false,
+      "notes": "scope_windows=[\"weekly\"] is sourced, not guessed — three independent attestations: codexreset.org (\"weekly usage should return to 100% within minutes\"); minimaxir (\"OpenAI has directly reset the Codex weekly quota six times\", list includes the post ID that decodes to this event); and an OpenAI-forum user (\"my next weekly reset was also pushed back to July 21\"). NOT the 5-hour window: the 5-hour cap removal on Plus/Business/Pro was a SEPARATE, earlier event at the 6M milestone per BigGo — do not merge them. scope_plans left EMPTY deliberately. The reset is described by product (\"Codex and ChatGPT Work users\"), not by plan tier. BigGo's \"Plus, Business, and Pro\" enumeration belongs to the 6M…"
+    },
+    "trigger": "milestone",
+    "confidence": "reported",
+    "evidence": [
+      {
+        "type": "press",
+        "url": "https://finance.biggo.com/news/0b22f4f6-b980-4f9b-a9aa-382019fc2ba8",
+        "author": "BigGo Finance",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      },
+      {
+        "type": "press",
+        "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
+        "author": "Max Woolf (minimaxir), independent technical blog",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      },
+      {
+        "type": "user_report",
+        "url": "https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897",
+        "author": "OpenAI Developer Community forum user",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      },
+      {
+        "type": "press",
+        "url": "https://codexreset.org/",
+        "author": "Codex Reset Monitor (third-party X-API reset tracker)",
+        "captured_at": "2026-07-25T18:45:00Z",
+        "archive_url": null
+      }
+    ],
+    "recorded_by": "claude-code-agent",
+    "superseded_by": null,
+    "notes": "Part of OpenAI's publicly stated commitment, made at the 3M-user milestone, to reset Codex usage limits at every additional million weekly active users up to 10M. ⚠️ One evidence url (codexreset.org) is a third-party X-scraping tracker, retained because it is the source of the corroborated UTC timestamp. Spec §2 forbids third-party X mirrors as a SIGNAL; flagged for an operator ruling. It is not the only source. Seeded in Phase 1; NOT yet reviewed by the operator. Verifier: SURVIVES on substance; the QUOTE is refuted and confidence is downgraded. Attacked on all axes: (1) QUOTE — REFUTED AS A QUOTE. BigGo's actual sentence is \"According to OpenAI product lead Tibo Sottiaux, who disclosed on social platform X, active users of Codex and ChatGPT Work have recently surpassed 9 million, accompanied by a simultaneous credit reset.\" The claim's version is a re-ordered paraphrase, not verbatim. Note a trap: a targeted re-fetch asking \"does this exact sentence appear\" answered \"Yes\" — a false positive from a leading question, contradicted by two other retrievals of the s…"
   },
   {
     "id": "cx-2026-07-17-01",

@@ -1,0 +1,51 @@
+{
+  "id": "cx-2026-07-16-01",
+  "vendor": "codex",
+  "kind": "global_reset",
+  "effective_at": "2026-07-16T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-25T18:45:00Z",
+  "scope": {
+    "windows": [
+      "weekly"
+    ],
+    "plans": [],
+    "partial": false,
+    "notes": "scope_windows=[\"weekly\"] is sourced, not guessed — three independent attestations: codexreset.org (\"weekly usage should return to 100% within minutes\"); minimaxir (\"OpenAI has directly reset the Codex weekly quota six times\", list includes the post ID that decodes to this event); and an OpenAI-forum user (\"my next weekly reset was also pushed back to July 21\"). NOT the 5-hour window: the 5-hour cap removal on Plus/Business/Pro was a SEPARATE, earlier event at the 6M milestone per BigGo — do not merge them. scope_plans left EMPTY deliberately. The reset is described by product (\"Codex and ChatGPT Work users\"), not by plan tier. BigGo's \"Plus, Business, and Pro\" enumeration belongs to the 6M…"
+  },
+  "trigger": "milestone",
+  "confidence": "reported",
+  "evidence": [
+    {
+      "type": "press",
+      "url": "https://finance.biggo.com/news/0b22f4f6-b980-4f9b-a9aa-382019fc2ba8",
+      "author": "BigGo Finance",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
+      "author": "Max Woolf (minimaxir), independent technical blog",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897",
+      "author": "OpenAI Developer Community forum user",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://codexreset.org/",
+      "author": "Codex Reset Monitor (third-party X-API reset tracker)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "Part of OpenAI's publicly stated commitment, made at the 3M-user milestone, to reset Codex usage limits at every additional million weekly active users up to 10M. ⚠️ One evidence url (codexreset.org) is a third-party X-scraping tracker, retained because it is the source of the corroborated UTC timestamp. Spec §2 forbids third-party X mirrors as a SIGNAL; flagged for an operator ruling. It is not the only source. Seeded in Phase 1; NOT yet reviewed by the operator. Verifier: SURVIVES on substance; the QUOTE is refuted and confidence is downgraded. Attacked on all axes: (1) QUOTE — REFUTED AS A QUOTE. BigGo's actual sentence is \"According to OpenAI product lead Tibo Sottiaux, who disclosed on social platform X, active users of Codex and ChatGPT Work have recently surpassed 9 million, accompanied by a simultaneous credit reset.\" The claim's version is a re-ordered paraphrase, not verbatim. Note a trap: a targeted re-fetch asking \"does this exact sentence appear\" answered \"Yes\" — a false positive from a leading question, contradicted by two other retrievals of the s…"
+}

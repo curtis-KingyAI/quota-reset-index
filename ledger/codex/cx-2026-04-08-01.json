@@ -1,0 +1,63 @@
+{
+  "id": "cx-2026-04-08-01",
+  "vendor": "codex",
+  "kind": "global_reset",
+  "effective_at": "2026-04-08T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-25T18:45:00Z",
+  "scope": {
+    "windows": [],
+    "plans": [],
+    "partial": false,
+    "notes": "QUOTA WINDOW: scope_windows is deliberately EMPTY. Every single source I fetched was asked directly which window was reset, and every one declined to say. BusinessToday, Technobezz, Daily AI Primer and the Codex Knowledge Base say only \"usage limits\" generically. Let's Data Science comes closest — the reset clears \"the share of a quota a developer has already used in the current window\" — but explicitly does not name the window. codex-resets.com's entry for this milestone likewise does not specify weekly vs 5h. NOTE THE TRAP: \"3 million WEEKLY users\" is a user-count metric, not a quota window; Technobezz's summary conflates the two, and inferring \"weekly quota\" from \"weekly users\" would be…"
+  },
+  "trigger": "milestone",
+  "confidence": "reported",
+  "evidence": [
+    {
+      "type": "press",
+      "url": "https://www.businesstoday.in/technology/story/openai-codex-celebrates-3-million-weekly-users-ceo-sam-altman-resets-usage-limits-524717-2026-04-08",
+      "author": "Business Today",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://community.openai.com/t/codex-rate-limits-discussion-thread/1378553/177",
+      "author": "OpenAI Developer Community (windysoliloquy)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://www.technobezz.com/news/openai-resets-codex-usage-limits-after-reaching-3-million-weekly-users",
+      "author": "Technobezz",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://letsdatascience.com/news/sam-altman-resets-openai-codex-limits-74ec5754",
+      "author": "Let's Data Science",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://www.ai-primer.com/engineer/stories/openai-codex-3m-users-limit-reset",
+      "author": "Daily AI Primer",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://codex.danielvaughan.com/2026/04/09/codex-3-million-users-growth-usage-limits/",
+      "author": "Codex Knowledge Base (Daniel Vaughan)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "Part of OpenAI's publicly stated commitment, made at the 3M-user milestone, to reset Codex usage limits at every additional million weekly active users up to 10M. Seeded in Phase 1; NOT yet reviewed by the operator. Verifier: SURVIVES, but with the date corrected 04-07 → 04-08 and confidence capped at \"reported\". WHAT HELD UP: 1. Both claim URLs load (HTTP 200). The quote is genuinely on the BusinessToday page — not paraphrased into existence — including the \"Happy building!\" sign-off, which a first pass missed and a targeted re-fetch confirmed. 2. The event is corroborated by five independent outlets I fetched (BusinessToday, Technobezz, Let's Data Science, Daily AI Primer, Codex Knowledge Base), so this clears the \"second source\" bar. 3. ANNOUNCE vs EFFECT survives scrutiny. The post is present-progressive — \"we…"
+}
