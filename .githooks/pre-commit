@@ -1,0 +1,6 @@
+#!/bin/sh
+# Append-only + validation gate. Installed by `npm run hooks:install`,
+# which sets core.hooksPath to .githooks so this file is version-controlled
+# rather than living untracked in .git/hooks.
+set -e
+exec node "$(git rev-parse --show-toplevel)/scripts/check-append-only.mjs"

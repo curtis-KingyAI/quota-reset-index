@@ -1,0 +1,20 @@
+{
+  "name": "quota-reset-index",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Append-only, evidence-linked ledger of discretionary AI quota resets.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "build:ledger": "node scripts/build-ledger.mjs",
+    "hooks:install": "git config core.hooksPath .githooks && chmod +x .githooks/pre-commit && echo 'hooks installed (core.hooksPath=.githooks)'",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "ajv": "8.17.1",
+    "ajv-formats": "3.0.1"
+  }
+}
