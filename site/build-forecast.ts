@@ -1,5 +1,5 @@
 /**
- * Generates public/forecast.html.
+ * Generates public/forecast.
  *
  * STATIC, and deliberately not interactive. The prototype had sliders; this page
  * does not, for a reason worth stating rather than hiding: there is no live usage
@@ -102,11 +102,11 @@ deserves:</p>
   <li><strong>Claude Code's utilisation is hand-entered, not measured.</strong> The sentinel that
   would have measured it was closed — no supported channel exposes subscription quota state, and none
   distinguishes a vendor-wide grant from an ordinary rollover. See
-  <a href="/methodology.html#sentinel">Methodology</a>.</li>
+  <a href="/methodology#sentinel">Methodology</a>.</li>
 </ul>
 
 <p class="lede">Full formulas, every weight and half-life, and the calibration path are on
-<a href="/methodology.html">Methodology</a>.</p>
+<a href="/methodology">Methodology</a>.</p>
 `;
 
   const html = page({ title: 'Forecast — Quota Reset Index', current: 'forecast', body });
@@ -128,7 +128,7 @@ function main(): void {
   const out = join(ROOT, 'public');
   mkdirSync(out, { recursive: true });
   writeFileSync(join(out, 'forecast.html'), renderForecastPage());
-  console.log('built public/forecast.html');
+  console.log('built public/forecast');
 }
 
 if (isMain(import.meta.url)) main();

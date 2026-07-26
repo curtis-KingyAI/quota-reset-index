@@ -82,10 +82,13 @@ export interface PageOptions {
   script?: string;
 }
 
+// Cloudflare Pages serves /x.html but 308-redirects it to /x, so the
+// extensionless form is canonical. Linking to .html would cost a redirect
+// round-trip on every internal click — verified against the live origin.
 const NAV = [
   { href: '/', label: 'Ledger', key: 'ledger' },
-  { href: '/forecast.html', label: 'Forecast', key: 'forecast' },
-  { href: '/methodology.html', label: 'Methodology', key: 'methodology' },
+  { href: '/forecast', label: 'Forecast', key: 'forecast' },
+  { href: '/methodology', label: 'Methodology', key: 'methodology' },
 ];
 
 export function page(o: PageOptions): string {
@@ -111,7 +114,7 @@ ${o.body}
 <footer>
 Quota Reset Index · a sourced, append-only record of discretionary AI quota resets.
 Data at <a href="/ledger.json">/ledger.json</a> and <a href="/ledger.csv">/ledger.csv</a>, CORS-open —
-see <a href="/methodology.html#data">Methodology</a>. Corrections welcome against the evidence.
+see <a href="/methodology#data">Methodology</a>. Corrections welcome against the evidence.
 </footer>
 ${o.script ? `<script>\n${o.script}\n</script>` : ''}
 </html>

@@ -108,7 +108,7 @@ export function renderLedgerPage(records: any[]): string {
 <h1>Quota Reset Index</h1>
 <p class="lede">Every discretionary quota reset we can evidence, by OpenAI (Codex) and Anthropic
 (Claude Code). Each record links to its sources and carries a confidence grade. This page makes no
-predictions — the <a href="/forecast.html">forecast</a> does, and is the less trustworthy half.</p>
+predictions — the <a href="/forecast">forecast</a> does, and is the less trustworthy half.</p>
 
 <div class="banner">
   ${current.length} current records · ${records.length - current.length} superseded · ${records.length} total

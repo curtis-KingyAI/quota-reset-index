@@ -1,5 +1,5 @@
 /**
- * Generates public/methodology.html.
+ * Generates public/methodology.
  *
  * §8 requires /methodology to carry the formulas, the weights table, the calibration status, and a
  * plain statement of what the sentinel depends on and how it can fail.
@@ -309,7 +309,7 @@ function main(): void {
   const out = join(ROOT, 'public');
   mkdirSync(out, { recursive: true });
   writeFileSync(join(out, 'methodology.html'), renderMethodology());
-  console.log('built public/methodology.html');
+  console.log('built public/methodology');
 }
 
 if (isMain(import.meta.url)) main();
