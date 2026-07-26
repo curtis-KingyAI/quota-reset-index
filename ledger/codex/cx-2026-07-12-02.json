@@ -1,0 +1,50 @@
+{
+  "id": "cx-2026-07-12-02",
+  "vendor": "codex",
+  "kind": "global_reset",
+  "effective_at": "2026-07-12T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-26T11:00:00Z",
+  "scope": {
+    "windows": [
+      "weekly",
+      "5h"
+    ],
+    "plans": [
+      "Plus",
+      "Business",
+      "Pro"
+    ],
+    "partial": false,
+    "notes": "The 6M-active-users milestone in OpenAI's stated commitment to reset Codex usage limits at every additional million weekly active users up to 10M. Reported as carrying TWO distinct effects: an immediate usage reset, AND removal of the existing 5-hour usage cap on Plus, Business and Pro. The cap removal reportedly persisted through the following weeks. Plan list applies to the cap removal specifically; the reset itself is described by product (\"Codex and ChatGPT Work\") rather than by tier."
+  },
+  "trigger": "milestone",
+  "confidence": "reported",
+  "evidence": [
+    {
+      "type": "press",
+      "url": "https://explainx.ai/blog/chatgpt-codex-5-hour-limit-removed-weekly-reset-july-2026",
+      "author": "explainX",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://finance.biggo.com/news/0b22f4f6-b980-4f9b-a9aa-382019fc2ba8",
+      "author": "BigGo Finance",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "⚠️ PROVISIONAL — NOT SEALED, AND NOT AN ASSERTION THAT THIS EVENT IS DISTINCT. Created 2026-07-26 on operator instruction, because a gap with no marker reads as \"didn't happen\". It records an OPEN QUESTION: whether the 6M milestone reset is a separate event from cx-2026-07-12-01, which is recorded on the same day as a banked_reset with trigger incident_compensation. The two are sourced differently and describe different effects (immediate reset + 5-hour cap removal, versus banked credits usable later), but same-day collision is exactly the shape of one announcement described twice. Resolution requires comparing the underlying post IDs and their decoded timestamps; that comparison is in flight and this record must be updated or withdrawn on its result. ⚠️ QUOTE QUALITY: the explainX rendering is a COMPRESSED SUMMARY of a multi-item thread, not clean verbatim — the verifying agent flagged it explicitly. Do not present it as an exact quotation. ⚠️ SCHEMA DEFECT VISIBLE HERE: this record carries TWO effect primitives (a reset and a cap removal) and `kind` can hold only one, so `kind` is recorded as global_reset and the cap removal survives only as prose in scope.notes. See the schema-defect report accompanying this commit.",
+  "status": "provisional",
+  "links": [
+    {
+      "relation": "conflicts_with",
+      "id": "cx-2026-07-12-01",
+      "note": "Same vendor, same UTC day. cx-2026-07-12-01 records a banked_reset attributed to incident_compensation; this records an immediate milestone reset plus a 5-hour cap removal. Either there were two announcements ~24h apart in a dense burst, or one announcement has been split across two sources describing different parts of it. Unresolved: do not treat either record as confirmed-distinct until the post-ID comparison lands."
+    }
+  ]
+}

@@ -14,7 +14,7 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, cpSync, symlinkSync, rmSync, realpathSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
@@ -70,13 +70,15 @@ function makeTempRepo() {
   return { dir, git };
 }
 
-/** Run the hook. Returns {ok, output} rather than throwing, so tests can assert on rejection. */
+/**
+ * Run the hook. Returns {ok, output} rather than throwing, so tests can assert on
+ * rejection. spawnSync rather than execFileSync because the hook writes its
+ * advisory notes to stderr, and those need to be assertable on the SUCCESS path
+ * too — execFileSync only hands back stdout when the command exits 0.
+ */
 function runHook(dir) {
-  try {
-    return { ok: true, output: execFileSync('node', [join(dir, 'scripts', 'check-append-only.mjs')], { cwd: dir, encoding: 'utf8', stdio: 'pipe' }) };
-  } catch (e) {
-    return { ok: false, output: (e.stdout ?? '') + (e.stderr ?? '') };
-  }
+  const r = spawnSync('node', [join(dir, 'scripts', 'check-append-only.mjs')], { cwd: dir, encoding: 'utf8' });
+  return { ok: r.status === 0, output: (r.stdout ?? '') + (r.stderr ?? '') };
 }
 
 // ---------------------------------------------------------------- §4.5 (1)
@@ -304,5 +306,100 @@ test('CSV quotes commas and newlines rather than corrupting the row', () => {
   const { csv } = buildOutputs([rec]);
   assert.match(csv, /"has, a comma and a ""quote"""/);
   assert.match(csv, /"line one\nline two"/);
-  assert.equal(csv.split('\n')[0].split(',').length, 21, 'header column count changed — update the test and the docs');
+  assert.equal(csv.split('\n')[0].split(',').length, 23, 'header column count changed — update the test and the docs');
+});
+
+// ------------------------------------------------- provisional records (added 2026-07-26)
+test('a PROVISIONAL record may still be edited; a sealed one may not', () => {
+  const { dir, git } = makeTempRepo();
+  try {
+    const prov = { ...clone(FIXTURE), status: 'provisional' };
+    const file = join(dir, 'ledger', 'codex', 'cx-2026-01-01-01.json');
+    writeFileSync(file, JSON.stringify(prov, null, 2) + '\n');
+    git('add', '-A');
+    git('commit', '-q', '--no-verify', '-m', 'seed provisional');
+
+    // Editing a sealed field on a PROVISIONAL record is allowed.
+    const edited = clone(prov);
+    edited.effective_at = '2026-01-01T18:00:00Z';
+    edited.observed_at = '2026-01-01T19:00:00Z';
+    edited.evidence[0].captured_at = '2026-01-01T19:00:00Z';
+    writeFileSync(file, JSON.stringify(edited, null, 2) + '\n');
+    git('add', '-A');
+    const res = runHook(dir);
+    assert.equal(res.ok, true, `provisional edit should be permitted:\n${res.output}`);
+    assert.match(res.output, /provisional and was edited/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('sealing a provisional record is permitted, and is one-way', () => {
+  const { dir, git } = makeTempRepo();
+  try {
+    const prov = { ...clone(FIXTURE), status: 'provisional' };
+    const file = join(dir, 'ledger', 'codex', 'cx-2026-01-01-01.json');
+    writeFileSync(file, JSON.stringify(prov, null, 2) + '\n');
+    git('add', '-A');
+    git('commit', '-q', '--no-verify', '-m', 'seed provisional');
+
+    // provisional -> sealed is fine
+    writeFileSync(file, JSON.stringify({ ...prov, status: 'sealed' }, null, 2) + '\n');
+    git('add', '-A');
+    assert.equal(runHook(dir).ok, true, 'promotion to sealed should be permitted');
+    git('commit', '-q', '--no-verify', '-m', 'seal');
+
+    // ...and sealed -> provisional is not
+    writeFileSync(file, JSON.stringify({ ...prov, status: 'provisional' }, null, 2) + '\n');
+    git('add', '-A');
+    const res = runHook(dir);
+    assert.equal(res.ok, false, 'un-sealing must be rejected');
+    assert.match(res.output, /UNSEALING REJECTED/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('a record with no status field is treated as sealed', () => {
+  const { dir, git } = makeTempRepo();
+  try {
+    // Every record written before 2026-07-26 omits `status`. They must stay sealed.
+    const file = join(dir, 'ledger', 'codex', 'cx-2026-01-01-01.json');
+    writeFileSync(file, JSON.stringify(FIXTURE, null, 2) + '\n');
+    git('add', '-A');
+    git('commit', '-q', '--no-verify', '-m', 'seed');
+
+    writeFileSync(file, JSON.stringify({ ...clone(FIXTURE), trigger: 'launch' }, null, 2) + '\n');
+    git('add', '-A');
+    const res = runHook(dir);
+    assert.equal(res.ok, false);
+    assert.match(res.output, /SEALED FIELD MODIFIED/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('links[] must resolve to real records and may not self-reference', () => {
+  const a = { ...clone(FIXTURE), links: [{ relation: 'conflicts_with', id: 'cx-2026-02-02-01', note: 'x' }] };
+  assert.ok(check([a]).some((e) => /not an existing record/.test(e.message)));
+
+  const self = { ...clone(FIXTURE), links: [{ relation: 'related_to', id: 'cx-2026-01-01-01', note: 'x' }] };
+  assert.ok(check([self]).some((e) => /links to itself/.test(e.message)));
+
+  const b = clone(FIXTURE);
+  b.id = 'cx-2026-02-02-01';
+  b.effective_at = '2026-02-02T12:00:00Z';
+  b.observed_at = '2026-02-02T13:00:00Z';
+  b.evidence[0].captured_at = '2026-02-02T13:00:00Z';
+  assert.deepEqual(check([a, b]), []);
+});
+
+test('the CSV export states sealed/provisional explicitly rather than by absence', () => {
+  const sealed = clone(FIXTURE);
+  const prov = { ...clone(FIXTURE), id: 'cx-2026-02-02-01', effective_at: '2026-02-02T12:00:00Z', observed_at: '2026-02-02T13:00:00Z', status: 'provisional' };
+  prov.evidence[0].captured_at = '2026-02-02T13:00:00Z';
+  const { csv } = buildOutputs([sealed, prov]);
+  const rows = csv.trim().split('\n');
+  assert.ok(rows[1].includes(',sealed,'), 'a record with no status must export as sealed');
+  assert.ok(rows[2].includes(',provisional,'));
 });

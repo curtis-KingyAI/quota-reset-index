@@ -94,6 +94,35 @@ function main() {
         continue;
       }
 
+      // A PROVISIONAL record is explicitly unsealed (schema `status`, added
+      // 2026-07-26). It marks an open question rather than asserting an answer,
+      // so it may still be edited. Sealing is one-way: once the COMMITTED version
+      // says "sealed" — or omits status, which every pre-2026-07-26 record does —
+      // the seal applies and this exemption is gone.
+      if (before.status === 'provisional') {
+        if (after.status === 'provisional') {
+          console.warn(`  note: ${path} is provisional and was edited (permitted until it is sealed)`);
+          continue;
+        }
+        if (after.status === 'sealed') {
+          console.warn(`  note: ${path} promoted provisional -> sealed; it is now append-only`);
+          continue;
+        }
+        problems.push(
+          `INVALID PROMOTION: ${path}\n    status went "provisional" -> ${JSON.stringify(after.status)}\n` +
+            `    A provisional record may only stay provisional or become sealed.`,
+        );
+        continue;
+      }
+
+      if (after.status === 'provisional' && before.status !== 'provisional') {
+        problems.push(
+          `UNSEALING REJECTED: ${path}\n    A sealed record cannot be made provisional.\n` +
+            `    If it is wrong, add a new record and point this one at it with superseded_by.`,
+        );
+        continue;
+      }
+
       for (const field of Object.keys(before)) {
         if (field === 'superseded_by') continue; // the one mutable field
         if (before[field] === null) continue; // sealed only once it holds a value

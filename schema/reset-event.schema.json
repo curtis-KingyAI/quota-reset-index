@@ -138,10 +138,36 @@
       "minLength": 1
     },
     "superseded_by": {
-      "description": "The only mutable field. Null, or the id of the record that corrects this one.",
+      "description": "Null, or the id of the record that corrects this one. On a SEALED record this is the only mutable field.",
       "type": ["string", "null"],
       "pattern": "^(cx|cc)-[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{2}$"
     },
-    "notes": { "type": "string" }
+    "notes": { "type": "string" },
+    "status": {
+      "description": "OPTIONAL, added 2026-07-26. Absent means \"sealed\" — every record written before this field existed is sealed, and stays sealed. A \"provisional\" record is explicitly unsealed: it may still be edited, because it marks a question rather than asserting an answer. Promotion to sealed is one-way.",
+      "type": "string",
+      "enum": ["provisional", "sealed"]
+    },
+    "links": {
+      "description": "OPTIONAL, added 2026-07-26. Typed relations to other records. Exists because `superseded_by` was the only inter-record link and it means \"corrected by\", which is the wrong semantics for \"these two records disagree\" or \"these came from one announcement\".",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["relation", "id", "note"],
+        "properties": {
+          "relation": {
+            "description": "conflicts_with = these records may describe the same underlying event, or contradict each other, and a human must rule. same_announcement_as = one vendor announcement produced both records (see the multi-effect schema defect). related_to = weaker association, stated in the note.",
+            "type": "string",
+            "enum": ["conflicts_with", "same_announcement_as", "related_to"]
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^(cx|cc)-[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{2}$"
+          },
+          "note": { "type": "string" }
+        }
+      }
+    }
   }
 }

@@ -51,6 +51,8 @@ const COLUMNS = [
   'recorded_by',
   'superseded_by',
   'notes',
+  'status',
+  'links',
 ];
 
 const JOIN = ' | ';
@@ -85,6 +87,10 @@ function csvRow(rec) {
     recorded_by: rec.recorded_by,
     superseded_by: rec.superseded_by ?? '',
     notes: rec.notes,
+    // Absent status means sealed — made explicit in the flat export so a CSV
+    // reader never has to know that convention.
+    status: rec.status ?? 'sealed',
+    links: (rec.links ?? []).map((l) => `${l.relation}:${l.id}`).join(JOIN),
   };
 }
 
