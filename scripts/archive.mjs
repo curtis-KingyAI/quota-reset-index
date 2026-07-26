@@ -11,8 +11,10 @@
  *         zero cost and zero side effects.
  * PASS 2  Save Page Now, misses only. This WRITES to a third party, so it is
  *         behind an explicit flag. Each capture is VERIFIED by re-querying
- *         availability rather than trusting the response — SPN fails quietly
- *         under load, and an unverified "success" is worse than a recorded miss.
+ *         availability rather than trusting the response. Verification RETRIES
+ *         with backoff: captures routinely take longer than a few seconds to
+ *         appear in the availability index, and a single impatient check
+ *         manufactures false misses.
  * PASS 3  Sites that block archiving (bot-hostile hosts usually block SPN too)
  *         are recorded with status "blocked". A known-unarchivable source is a
  *         finding; a bare URL that looks fine and is not is the failure mode.
@@ -80,11 +82,26 @@ async function savePageNow(url) {
     return { status: 'failed', note: `SPN: ${e.message}` };
   }
 
-  // SPN returns 200 and then quietly does nothing under load. Verify.
-  await sleep(4000);
-  const verified = await checkAvailability(url);
-  if (verified.status === 'ok') return { ...verified, note: 'captured via SPN, verified by availability' };
-  return { status: 'failed', note: 'SPN returned success but no capture is retrievable — unverified, treated as a miss' };
+  // Verify rather than trust: SPN can return 200 and produce nothing.
+  //
+  // ⚠️ BUT DO NOT VERIFY IMPATIENTLY. The 2026-07-26 first run checked once after
+  // 4s and recorded 7 failures. A read-only re-check later found ALL SEVEN had
+  // captured fine — the captures were real, they simply had not propagated into
+  // the availability index yet. A single short check does not distinguish
+  // "SPN did nothing" from "SPN has not finished", and defaulting to the first
+  // reading manufactures false misses.
+  const waits = [5000, 15000, 30000];
+  for (const [i, w] of waits.entries()) {
+    await sleep(w);
+    const verified = await checkAvailability(url);
+    if (verified.status === 'ok') {
+      return { ...verified, note: `captured via SPN, verified after ${waits.slice(0, i + 1).reduce((a, b) => a + b, 0) / 1000}s` };
+    }
+  }
+  return {
+    status: 'failed',
+    note: 'SPN accepted the request but no capture was retrievable within 50s — may still land; re-run to re-check',
+  };
 }
 
 function report() {
@@ -141,7 +158,12 @@ async function main() {
     const r = await savePageNow(url);
     appendAttempt(url, { checked_at: now(), method: 'save-page-now', ...r });
     console.log(`  ${r.status.padEnd(10)} ${url}${r.note ? `\n             ${r.note}` : ''}`);
-    await sleep(6000); // SPN is heavily rate limited; slower is faster here
+    // Pace between captures. Configurable because the right value is empirical.
+    // ⚠️ Note the 2026-07-26 finding: 7 apparent failures at a 6s pace were NOT
+    // throttling — every one had actually captured, and the verify window was the
+    // defect. Do not read a batch of failures here as "go slower" without first
+    // re-running pass 1, which is free and may simply find them.
+    await sleep(Number(process.env.QRI_SPN_DELAY_MS ?? 6000));
   }
   console.log('');
   report();

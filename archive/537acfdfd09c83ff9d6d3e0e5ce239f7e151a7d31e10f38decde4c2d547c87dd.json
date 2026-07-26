@@ -18,6 +18,13 @@
       "method": "save-page-now",
       "status": "failed",
       "note": "SPN returned success but no capture is retrievable — unverified, treated as a miss"
+    },
+    {
+      "checked_at": "2026-07-26T23:16:38.159Z",
+      "method": "wayback-availability",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726225454/https://codexreset.org/",
+      "archive_timestamp": "2026-07-26T22:54:54Z"
     }
   ]
 }
