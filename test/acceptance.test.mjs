@@ -306,7 +306,7 @@ test('CSV quotes commas and newlines rather than corrupting the row', () => {
   const { csv } = buildOutputs([rec]);
   assert.match(csv, /"has, a comma and a ""quote"""/);
   assert.match(csv, /"line one\nline two"/);
-  assert.equal(csv.split('\n')[0].split(',').length, 24, 'header column count changed — update the test and the docs');
+  assert.equal(csv.split('\n')[0].split(',').length, 28, 'header column count changed — update the test and the docs');
 });
 
 // ------------------------------------------------- provisional records (added 2026-07-26)
@@ -446,4 +446,52 @@ test('the hook WARNS when a new field is added to a sealed record', () => {
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
+});
+
+// ------------------------------------------- field_support (root-cause fix, 2026-07-26)
+test('scope.partial can now say UNESTABLISHED, distinct from false', () => {
+  // The root cause of the 2026-07-26 audit: a required boolean cannot say "we do
+  // not know", so 9 records asserted coverage no source addressed.
+  const rec = clone(FIXTURE);
+  rec.scope.partial = null;
+  assert.deepEqual(check([rec]), []);
+
+  const { csv } = buildOutputs([rec]);
+  const cells = csv.trim().split('\n')[1].split(',');
+  const header = csv.trim().split('\n')[0].split(',');
+  assert.equal(cells[header.indexOf('scope_partial')], '', 'null must render as empty, not "false"');
+});
+
+test('field_support marked unestablished must match an actually-empty field', () => {
+  const bad = clone(FIXTURE);
+  bad.field_support = { scope_plans: 'unestablished' }; // but plans is ['plus']
+  const errs = check([bad]);
+  assert.ok(errs.some((e) => /unestablished" but the field holds a value/.test(e.message)), JSON.stringify(errs));
+
+  const good = clone(FIXTURE);
+  good.scope.plans = [];
+  good.field_support = { scope_plans: 'unestablished' };
+  assert.deepEqual(check([good]), []);
+});
+
+test('field_support marked attested must have something to attest', () => {
+  const bad = clone(FIXTURE);
+  bad.scope.windows = [];
+  bad.field_support = { scope_windows: 'attested' };
+  assert.ok(check([bad]).some((e) => /nothing is being attested/.test(e.message)));
+});
+
+test('"inferred" is allowed on a populated field — that is the whole point', () => {
+  // A plausible value nobody asserted of this event is exactly what the audit
+  // found 41 times. It stays recordable, but it is no longer indistinguishable
+  // from an assertion.
+  const rec = clone(FIXTURE);
+  rec.field_support = { scope_plans: 'inferred', trigger: 'attested' };
+  assert.deepEqual(check([rec]), []);
+});
+
+test('records with no field_support still validate — 29 sealed records depend on it', () => {
+  const rec = clone(FIXTURE);
+  delete rec.field_support;
+  assert.deepEqual(check([rec]), []);
 });

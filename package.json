@@ -11,8 +11,10 @@
     "validate": "node scripts/validate.mjs",
     "build:ledger": "node scripts/build-ledger.mjs",
     "hooks:install": "git config core.hooksPath .githooks && chmod +x .githooks/pre-commit && echo 'hooks installed (core.hooksPath=.githooks)'",
-    "test": "node --test test/*.test.mjs status/__tests__/*.test.ts models/__tests__/*.test.ts usage/__tests__/*.test.ts",
-    "status:poll": "node status/ingest.ts"
+    "test": "node --test test/*.test.mjs status/__tests__/*.test.ts models/__tests__/*.test.ts usage/__tests__/*.test.ts site/__tests__/*.test.ts",
+    "status:poll": "node status/ingest.ts",
+    "build:site": "node site/build-methodology.ts",
+    "build": "npm run build:ledger && npm run build:site"
   },
   "dependencies": {
     "ajv": "8.17.1",

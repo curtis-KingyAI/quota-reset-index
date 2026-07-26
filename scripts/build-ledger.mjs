@@ -52,6 +52,10 @@ const COLUMNS = [
   'recorded_by',
   'superseded_by',
   'notes',
+  'support_trigger',
+  'support_scope_windows',
+  'support_scope_plans',
+  'support_scope_partial',
   'status',
   'links',
 ];
@@ -77,7 +81,9 @@ function csvRow(rec) {
     observed_at: rec.observed_at,
     scope_windows: rec.scope.windows.join(JOIN),
     scope_plans: rec.scope.plans.join(JOIN),
-    scope_partial: String(rec.scope.partial),
+    // null renders as the empty string, distinct from "false" — a CSV reader must
+    // be able to tell "not established" from "we say it was universal".
+    scope_partial: rec.scope.partial === null ? '' : String(rec.scope.partial),
     scope_notes: rec.scope.notes,
     trigger: rec.trigger,
     confidence: rec.confidence,
@@ -92,6 +98,10 @@ function csvRow(rec) {
     notes: rec.notes,
     // Absent status means sealed — made explicit in the flat export so a CSV
     // reader never has to know that convention.
+    support_trigger: rec.field_support?.trigger ?? '',
+    support_scope_windows: rec.field_support?.scope_windows ?? '',
+    support_scope_plans: rec.field_support?.scope_plans ?? '',
+    support_scope_partial: rec.field_support?.scope_partial ?? '',
     status: rec.status ?? 'sealed',
     links: (rec.links ?? []).map((l) => `${l.relation}:${l.id}`).join(JOIN),
   };

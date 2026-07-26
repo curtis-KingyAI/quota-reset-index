@@ -1,7 +1,18 @@
 # Proposed amendment to SPEC §2 — mirrors as locators
 
-**Status: DRAFT, awaiting operator approval. No record has been touched.**
-Requested by the operator 2026-07-26. Drafted by claude-code-agent.
+**Status: ADOPTED 2026-07-26 by the operator. This text now governs.**
+Requested and approved by the operator 2026-07-26. Drafted by claude-code-agent.
+
+> On adopting it the operator noted that it **cuts against us**: it makes the 500k population figure
+> for `cx-2026-07-12-01` inadmissible, and so shrinks what the ledger can claim. That was the reason
+> to adopt it, not a cost of doing so — an evidence rule that only ever licensed more claims would
+> not be an evidence rule.
+
+**Binding consequence.** The `scope.partial` correction approved in principle for
+`cx-2026-07-12-01` does **not** survive this amendment. The 500k figure is verbatim from
+codex-reset.com, a mirror, and a population count is substance. Under the fixed `scope.partial`
+predicate, `partial` stays `false` — the field tracks what is *sourceable*, not what is probably
+true. The restriction belongs in `scope.notes`, marked mirror-sourced and inadmissible.
 
 ---
 

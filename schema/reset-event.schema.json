@@ -90,8 +90,8 @@
           "items": { "type": "string", "minLength": 1 }
         },
         "partial": {
-          "description": "PREDICATE, fixed 2026-07-26 so this is not re-litigated per record. TRUE iff an ADMISSIBLE source states that the grant reached only some of the accounts otherwise inside scope.plans/scope.windows — a headcount (\"500k users\"), a percentage, a named cohort, or a staged rollout. FALSE means NO admissible source states such a restriction. Note carefully what FALSE is: a claim about the EVIDENCE, not a positive assertion that the grant was universal. Where the population was never established, `partial` is false and scope.notes MUST say the population is unestablished. Consequence to be aware of: if the only source for a restriction is inadmissible under §2's mirror rule, `partial` stays FALSE even where the restriction is probably real — the field tracks what is sourceable, and scope.notes carries the rest.",
-          "type": "boolean"
+          "description": "PREDICATE, fixed 2026-07-26 so this is not re-litigated per record. TRUE iff an ADMISSIBLE source states that the grant reached only some of the accounts otherwise inside scope.plans/scope.windows — a headcount (\"500k users\"), a percentage, a named cohort, or a staged rollout. FALSE means an admissible source supports universal coverage. NULL means UNESTABLISHED — no source addresses coverage either way. ⚠️ NULL was added 2026-07-26 because a REQUIRED BOOLEAN CANNOT SAY \"WE DO NOT KNOW\", and that is the root cause of the 2026-07-26 audit: 24 of 29 records carried at least one over-claimed field, and 9 of those were this one field asserting coverage no source addressed. A restriction on WHEN a benefit applied (off-peak hours) or on WHICH WINDOW was reset is NOT partial — only account coverage counts. Note also: if the only source for a restriction is inadmissible under §2's mirror rule, this stays FALSE or NULL even where the restriction is probably real. The field tracks what is sourceable; scope.notes carries the rest.",
+          "type": ["boolean", "null"]
         },
         "notes": { "type": "string" }
       }
@@ -160,6 +160,17 @@
       "pattern": "^(cx|cc)-[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{2}$"
     },
     "notes": { "type": "string" },
+    "field_support": {
+      "description": "OPTIONAL, added 2026-07-26. THE ROOT-CAUSE FIX from the audit of that date. Records the PROVENANCE of each enrichment field, separately from its value, because a populated field is otherwise indistinguishable from an asserted one. `attested` = a source states this OF THIS EVENT. `inferred` = it follows from a class-level statement about how the mechanism generally works, or from a neighbouring event — plausible, but nobody asserted it here. `unestablished` = no source addresses it. Absent means the provenance was never recorded, which is the honest reading of every record written before 2026-07-26. The audit found 41 field values across 24 records that were `inferred` or `unestablished` while reading as assertions; this field is what stops that recurring, because filling it in forces the question to be asked.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "trigger": { "type": "string", "enum": ["attested", "inferred", "unestablished"] },
+        "scope_windows": { "type": "string", "enum": ["attested", "inferred", "unestablished"] },
+        "scope_plans": { "type": "string", "enum": ["attested", "inferred", "unestablished"] },
+        "scope_partial": { "type": "string", "enum": ["attested", "inferred", "unestablished"] }
+      }
+    },
     "status": {
       "description": "OPTIONAL, added 2026-07-26. Absent means \"sealed\" — every record written before this field existed is sealed, and stays sealed. A \"provisional\" record is explicitly unsealed: it may still be edited, because it marks a question rather than asserting an answer. Promotion to sealed is one-way.",
       "type": "string",
