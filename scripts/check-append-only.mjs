@@ -141,6 +141,18 @@ function main() {
         }
       }
 
+      // A field ADDED to a sealed record modifies no existing non-null field, so
+      // the append-only rule as written permits it. It is still a material change
+      // to a sealed record, and it must never happen silently.
+      for (const field of Object.keys(after)) {
+        if (field in before) continue;
+        console.warn(
+          `  ⚠️  ${path}: NEW FIELD "${field}" added to a SEALED record. Permitted by the\n` +
+            `      append-only rule (it modifies no existing non-null field) but it changes what\n` +
+            `      the record asserts. This must appear in an approved migration plan.`,
+        );
+      }
+
       // superseded_by is exempt by spec, but silently repointing an existing
       // correction is worth saying out loud even though it is allowed.
       if (before.superseded_by !== null && before.superseded_by !== after.superseded_by) {

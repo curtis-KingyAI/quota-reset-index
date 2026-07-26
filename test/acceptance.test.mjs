@@ -306,7 +306,7 @@ test('CSV quotes commas and newlines rather than corrupting the row', () => {
   const { csv } = buildOutputs([rec]);
   assert.match(csv, /"has, a comma and a ""quote"""/);
   assert.match(csv, /"line one\nline two"/);
-  assert.equal(csv.split('\n')[0].split(',').length, 23, 'header column count changed — update the test and the docs');
+  assert.equal(csv.split('\n')[0].split(',').length, 24, 'header column count changed — update the test and the docs');
 });
 
 // ------------------------------------------------- provisional records (added 2026-07-26)
@@ -402,4 +402,48 @@ test('the CSV export states sealed/provisional explicitly rather than by absence
   const rows = csv.trim().split('\n');
   assert.ok(rows[1].includes(',sealed,'), 'a record with no status must export as sealed');
   assert.ok(rows[2].includes(',provisional,'));
+});
+
+// ------------------------------------------------- effects[] (added 2026-07-26, operator-approved)
+test('effects[] lets one record carry several quota primitives', () => {
+  const rec = { ...clone(FIXTURE), kind: 'global_reset', effects: ['global_reset', 'limit_removal'] };
+  assert.deepEqual(check([rec]), []);
+});
+
+test('effects[0] must equal the sealed kind field', () => {
+  const rec = { ...clone(FIXTURE), kind: 'global_reset', effects: ['limit_removal', 'global_reset'] };
+  const errs = check([rec]);
+  assert.ok(errs.some((e) => e.field === 'effects' && /must match kind/.test(e.message)), JSON.stringify(errs));
+});
+
+test('effects[] rejects duplicates and unknown primitives', () => {
+  assert.ok(check([{ ...clone(FIXTURE), effects: ['global_reset', 'global_reset'] }]).length > 0);
+  assert.ok(check([{ ...clone(FIXTURE), effects: ['global_reset', 'model_efficiency'] }]).length > 0);
+});
+
+test('a record with no effects[] still validates — 29 sealed records depend on that', () => {
+  assert.deepEqual(check([clone(FIXTURE)]), []);
+  const { csv } = buildOutputs([clone(FIXTURE)]);
+  assert.ok(csv.split('\n')[1].includes('global_reset'), 'CSV falls back to kind when effects is absent');
+});
+
+test('the hook WARNS when a new field is added to a sealed record', () => {
+  // Adding a field modifies no existing non-null field, so the append-only rule
+  // permits it. It is still a material change and must never be silent.
+  const { dir, git } = makeTempRepo();
+  try {
+    const file = join(dir, 'ledger', 'codex', 'cx-2026-01-01-01.json');
+    writeFileSync(file, JSON.stringify(FIXTURE, null, 2) + '\n');
+    git('add', '-A');
+    git('commit', '-q', '--no-verify', '-m', 'seed');
+
+    writeFileSync(file, JSON.stringify({ ...clone(FIXTURE), effects: ['global_reset'] }, null, 2) + '\n');
+    git('add', '-A');
+    const res = runHook(dir);
+    assert.equal(res.ok, true, 'permitted by the append-only rule');
+    assert.match(res.output, /NEW FIELD "effects" added to a SEALED record/);
+    assert.match(res.output, /approved migration plan/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
 });

@@ -33,6 +33,7 @@ const COLUMNS = [
   'id',
   'vendor',
   'kind',
+  'effects',
   'effective_at',
   'effective_at_precision',
   'observed_at',
@@ -69,6 +70,8 @@ function csvRow(rec) {
     id: rec.id,
     vendor: rec.vendor,
     kind: rec.kind,
+    // Absent effects means the single `kind` is the whole story.
+    effects: (rec.effects ?? [rec.kind]).join(JOIN),
     effective_at: rec.effective_at,
     effective_at_precision: rec.effective_at_precision,
     observed_at: rec.observed_at,

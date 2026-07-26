@@ -1,5 +1,25 @@
 # Sentinel coverage gap — supported channels vs. what the detection rule needs
 
+> ## ⚠️ PROVISIONAL — this document is not settled
+>
+> The operator's ruling, 2026-07-26: *"Your skeptic found 15 defects in the first synthesis. That
+> doesn't make the second one clean, it makes this workstream high-defect. Mark the corrected
+> picture provisional."*
+>
+> That is correct and this document inherits it. One adversarial pass found **7 missed surfaces and
+> 8 overclaims** in the first synthesis — a defect rate that says nothing about the second pass being
+> clean, only that this subject matter is error-prone. Treat every claim below as a lead.
+>
+> **Two claims are withdrawn outright since first writing:**
+> 1. **"Observation is free" — WITHDRAWN.** It was argued from `total_cost_usd 0`, a figure this same
+>    document establishes is computed locally and is not billing-relevant on a Max/Pro seat. You
+>    cannot prove zero quota cost with a number you have declared unreliable. Status: **unmeasured**.
+>    A protocol to measure it properly is at `experiments/usage-probe-cost.md`.
+> 2. **"The escalation ask shrinks" — RETRACTED AS FRAMED.** See the §2 note below on whether the
+>    *command* or the *endpoint* is documented. If only the command is documented, the ToS objection
+>    has **moved, not shrunk** — parsing stdout from an undocumented surface into a public product is
+>    the same objection in a different place.
+
 Requested by the operator, 2026-07-26, after declining §5.1:
 
 > (1) scope the endpoint-dependent capability as internal-only and tell me what we lose;

@@ -31,6 +31,7 @@
       "enum": ["codex", "claude-code"]
     },
     "kind": {
+      "description": "The PRIMARY effect. Retained because it is sealed on every record written before 2026-07-26. Where a record carries `effects`, this must equal effects[0].",
       "type": "string",
       "enum": [
         "global_reset",
@@ -39,6 +40,22 @@
         "limit_removal",
         "scheduled_recycle"
       ]
+    },
+    "effects": {
+      "description": "OPTIONAL, added 2026-07-26 (operator-approved). One vendor announcement routinely carries several distinct quota effects — an immediate reset AND a forward-looking cap removal are different primitives, and `kind` can hold only one. Ordered: effects[0] is the primary effect and must equal `kind`. Non-quota changes shipped in the same announcement (model efficiency gains, redemption-surface changes) are DELIBERATELY not enumerable here — they do not alter allowance — and belong in scope.notes.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "global_reset",
+          "banked_reset",
+          "limit_increase",
+          "limit_removal",
+          "scheduled_recycle"
+        ]
+      }
     },
     "effective_at": {
       "description": "When the reset took effect. RFC 3339, UTC, Z-suffixed.",
@@ -73,7 +90,7 @@
           "items": { "type": "string", "minLength": 1 }
         },
         "partial": {
-          "description": "True if only some users in scope received it.",
+          "description": "PREDICATE, fixed 2026-07-26 so this is not re-litigated per record. TRUE iff an ADMISSIBLE source states that the grant reached only some of the accounts otherwise inside scope.plans/scope.windows — a headcount (\"500k users\"), a percentage, a named cohort, or a staged rollout. FALSE means NO admissible source states such a restriction. Note carefully what FALSE is: a claim about the EVIDENCE, not a positive assertion that the grant was universal. Where the population was never established, `partial` is false and scope.notes MUST say the population is unestablished. Consequence to be aware of: if the only source for a restriction is inadmissible under §2's mirror rule, `partial` stays FALSE even where the restriction is probably real — the field tracks what is sourceable, and scope.notes carries the rest.",
           "type": "boolean"
         },
         "notes": { "type": "string" }
