@@ -1,16 +1,16 @@
 {
-  "id": "cx-2026-07-15-01",
+  "id": "cx-2026-07-15-02",
   "vendor": "codex",
   "kind": "global_reset",
   "effective_at": "2026-07-15T00:00:00Z",
   "effective_at_precision": "day",
-  "observed_at": "2026-07-25T18:45:00Z",
+  "observed_at": "2026-07-26T14:00:00Z",
   "scope": {
     "windows": [
       "weekly"
     ],
     "plans": [
-      "paid tiers — Codex + ChatGPT Work users; Pro confirmed by a first-hand report"
+      "ChatGPT Pro"
     ],
     "partial": false,
     "notes": "Weekly-quota refill tied to the 9M active-users milestone, one day after the 8M reset. Tracker text: the announcement said they had \"Actually hit 9M active users way earlier today, but then got distracted by the approximately millions of things the team is doing to keep the systems up.\" BANKED-vs-IMMEDIATE IS GENUINELY CONTESTED for this one: community thread 1387097 says \"the reset was supposed to be banked for later use\", while thread 1386897 is titled \"The 'Free' Non-Banked Codex Reset...\" and minimaxir classes 07-15 as a DIRECT reset (reserving \"banked\" for 07-12 and 07-13). A moderator in 1387097 relays OpenAI staff distinguishing two products: global/hard resets (not shown as credits)…"
@@ -48,6 +48,9 @@
     }
   ],
   "recorded_by": "claude-code-agent",
-  "superseded_by": "cx-2026-07-15-02",
-  "notes": "Confidence downgraded confirmed -> probable by adversarial verification. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: Could not refute. All four URLs load; both distinctive quotes ('According to Tibo's announcement on July 15...' and 'Actually hit 9M active users way earlier today') are present character-for-character. Two independent threads on OpenAI's own developer forum plus minimaxir independently pin 2026-07-15; the side effect (next rollover 07-19 -> 07-21, Pro account) is verified first-hand. Discretiona…"
+  "superseded_by": null,
+  "notes": "CORRECTION, migration 02 (2026-07-26), operator-signed. Supersedes cx-2026-07-15-01. The audit of 2026-07-26 found enrichment fields across the ledger that read as assertions while resting on class-level statements about how quota resets generally work. This record carries field_support so that provenance is explicit rather than inferable. scope.plans restated to the tier actually attested first-hand; the announced scope names no tiers. Prior notes: Confidence downgraded confirmed -> probable by adversarial verification. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: Could not refute. All four URLs load; both distinctive quotes ('According to Tibo's announcement on July 15...' and 'Actually hit 9M active users way earlier today') are present character-for-character. Two independent threads on OpenAI's own developer forum plus minimaxir independently pin 2026-07-15; the side effect (next rollover 07-19 -> 07-21, Pro account) is verified first-hand. Discretiona…",
+  "field_support": {
+    "scope_plans": "attested"
+  }
 }

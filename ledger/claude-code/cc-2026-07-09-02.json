@@ -1,17 +1,17 @@
 {
-  "id": "cc-2026-07-09-01",
+  "id": "cc-2026-07-09-02",
   "vendor": "claude-code",
   "kind": "global_reset",
   "effective_at": "2026-07-09T00:00:00Z",
   "effective_at_precision": "day",
-  "observed_at": "2026-07-25T18:45:00Z",
+  "observed_at": "2026-07-26T14:00:00Z",
   "scope": {
     "windows": [
       "5h",
       "weekly"
     ],
     "plans": [
-      "all users (Pro, Max, Team, seat-based Enterprise)"
+      "all users"
     ],
     "partial": false,
     "notes": "⚠️ DATE IS CONTESTED BY ±1 DAY — treat as the July 9–10 window, not a hard July 10. Of four independently fetched sources, THREE date this reset to July 9 (implicator.ai, explainx.ai, ababnews.com — the last published contemporaneously on July 9) and ONE dates it to July 10 (builderwithin.com, published July 10 and updated July 18). It is almost certainly a SINGLE announcement, not two: implicator.ai catalogues the July resets as July 1 / July 9 / July 16 and calls July 16 the 'third week', leaving no room for a separate July 10 event. The most plausible reconciliation is a late-July-9 US Pacific announcement landing on July 10 UTC. I kept effective_at at 2026-07-10 because the schema asks…"
@@ -49,6 +49,9 @@
     }
   ],
   "recorded_by": "claude-code-agent",
-  "superseded_by": "cc-2026-07-09-02",
-  "notes": "Operator's original lead was dated claude-code 2026-07-10; evidence places it on 2026-07-09. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: EVENT SURVIVES, DATE REFUTED — correct effective_at to 2026-07-09. The reset is real, discretionary and well-attested, so I am not discarding it, but the claimed July 10 does not hold. Five sources put it on July 9 (implicator.ai; ababnews, published contemporaneously on 07/09/2026 at 19:03; explainx's timeline; explainx's Fable-5 piece; and the search corpus) against ONE for July 10. The DECISIV…"
+  "superseded_by": null,
+  "notes": "CORRECTION, migration 02 (2026-07-26), operator-signed. Supersedes cc-2026-07-09-01. The audit of 2026-07-26 found enrichment fields across the ledger that read as assertions while resting on class-level statements about how quota resets generally work. This record carries field_support so that provenance is explicit rather than inferable. scope.plans restated to the wording actually asserted of this event. Prior notes: Operator's original lead was dated claude-code 2026-07-10; evidence places it on 2026-07-09. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: EVENT SURVIVES, DATE REFUTED — correct effective_at to 2026-07-09. The reset is real, discretionary and well-attested, so I am not discarding it, but the claimed July 10 does not hold. Five sources put it on July 9 (implicator.ai; ababnews, published contemporaneously on 07/09/2026 at 19:03; explainx's timeline; explainx's Fable-5 piece; and the search corpus) against ONE for July 10. The DECISIV…",
+  "field_support": {
+    "scope_plans": "attested"
+  }
 }

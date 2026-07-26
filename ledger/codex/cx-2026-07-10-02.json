@@ -1,16 +1,16 @@
 {
-  "id": "cx-2026-07-10-01",
+  "id": "cx-2026-07-10-02",
   "vendor": "codex",
   "kind": "global_reset",
   "effective_at": "2026-07-10T00:00:00Z",
   "effective_at_precision": "day",
-  "observed_at": "2026-07-25T18:45:00Z",
+  "observed_at": "2026-07-26T14:00:00Z",
   "scope": {
     "windows": [
       "weekly"
     ],
     "plans": [
-      "all paid plans"
+      "paid tiers"
     ],
     "partial": false,
     "notes": "First of a pre-announced PAIR of non-banked resets delivered inside 24 hours across Codex and ChatGPT Work, framed as a GPT-5.6 Sol launch celebration and as damage control for Sol's high-compute mode burning weekly budgets far faster than GPT-5.5. Announcement wording ('We have reset usage limits across Codex and ChatGPT Work. And another one will come later in the day.') establishes it as the morning/first of the two. Not incident compensation: the only OpenAI status incident on 2026-07-10 was 'OpenAI website and Help Center content may be unavailable' at 11:07 PM — website/Help Center only, hours after this reset, and it names no credits or quota remedy."
@@ -48,6 +48,9 @@
     }
   ],
   "recorded_by": "claude-code-agent",
-  "superseded_by": "cx-2026-07-10-02",
-  "notes": "Research recovered a finer timestamp (2026-07-10T17:59:43Z) but precision is \"day\", so effective_at is truncated rather than asserting accuracy we do not have. The finer value is generally the ANNOUNCEMENT time, not the moment the reset landed. Confidence downgraded confirmed -> probable by adversarial verification. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: EVENT SURVIVES, CONFIDENCE GRADE DOES NOT. All four URLs load and all four support a discretionary OpenAI Codex/ChatGPT Work reset on 2026-07-10. the-decoder carries the claimed quote verbatim ('As an immediate fix, OpenAI reset usage limits for Codex and ChatGPT Work twice in one day so users could keep experimenting'). explainx's launch-week table carries the row verbatim under Jul 10 ('Reset C…"
+  "superseded_by": null,
+  "notes": "CORRECTION, migration 02 (2026-07-26), operator-signed. Supersedes cx-2026-07-10-01. The audit of 2026-07-26 found enrichment fields across the ledger that read as assertions while resting on class-level statements about how quota resets generally work. This record carries field_support so that provenance is explicit rather than inferable. scope.plans restated to the coverage actually asserted of this event. Prior notes: Research recovered a finer timestamp (2026-07-10T17:59:43Z) but precision is \"day\", so effective_at is truncated rather than asserting accuracy we do not have. The finer value is generally the ANNOUNCEMENT time, not the moment the reset landed. Confidence downgraded confirmed -> probable by adversarial verification. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: EVENT SURVIVES, CONFIDENCE GRADE DOES NOT. All four URLs load and all four support a discretionary OpenAI Codex/ChatGPT Work reset on 2026-07-10. the-decoder carries the claimed quote verbatim ('As an immediate fix, OpenAI reset usage limits for Codex and ChatGPT Work twice in one day so users could keep experimenting'). explainx's launch-week table carries the row verbati…",
+  "field_support": {
+    "scope_plans": "attested"
+  }
 }

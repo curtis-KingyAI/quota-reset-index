@@ -1,16 +1,16 @@
 {
-  "id": "cx-2026-07-11-01",
+  "id": "cx-2026-07-11-02",
   "vendor": "codex",
   "kind": "global_reset",
   "effective_at": "2026-07-11T00:00:00Z",
   "effective_at_precision": "day",
-  "observed_at": "2026-07-25T18:45:00Z",
+  "observed_at": "2026-07-26T14:00:00Z",
   "scope": {
     "windows": [
       "weekly"
     ],
     "plans": [
-      "all paid plans"
+      "paid tiers"
     ],
     "partial": false,
     "notes": "⚠️ DATE IS TIMEZONE-SENSITIVE. This is the SECOND of the pre-announced pair. It landed 2026-07-11T05:54Z, which is 2026-07-10 22:54 US/Pacific — i.e. it is 'the second one on July 10' only in Pacific time, and falls on July 11 in UTC. This is exactly why some trackers render the launch-week burst as 'Jul 10 ×2, Jul 11 ×1' and others as 'Jul 9, Jul 10, Jul 10 (again)'. Same shape as its twin: non-banked fleet-wide weekly-quota reset across Codex and ChatGPT Work, paid plans."
@@ -48,6 +48,9 @@
     }
   ],
   "recorded_by": "claude-code-agent",
-  "superseded_by": "cx-2026-07-11-02",
-  "notes": "Research recovered a finer timestamp (2026-07-11T05:54:25Z) but precision is \"day\", so effective_at is truncated rather than asserting accuracy we do not have. The finer value is generally the ANNOUNCEMENT time, not the moment the reset landed. Confidence downgraded confirmed -> probable by adversarial verification. Operator's original lead was dated codex 2026-07-10 (second of two that day); evidence places it on 2026-07-11. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: EVENT SURVIVES AND IS NOT A DUPLICATE; CONFIDENCE GRADE DOES NOT SURVIVE. I attacked this hardest as a double-count of lead 2 and it held on four independent grounds: explainx's Fable-5 article reproduces the announcement text VERBATIM including 'And another one will come later in the day.' (attributed @thsottiaux, July 10) -- the first reset explicitly promises a second the same day; the-decoder…"
+  "superseded_by": null,
+  "notes": "CORRECTION, migration 02 (2026-07-26), operator-signed. Supersedes cx-2026-07-11-01. The audit of 2026-07-26 found enrichment fields across the ledger that read as assertions while resting on class-level statements about how quota resets generally work. This record carries field_support so that provenance is explicit rather than inferable. scope.plans restated to the coverage actually asserted of this event. Prior notes: Research recovered a finer timestamp (2026-07-11T05:54:25Z) but precision is \"day\", so effective_at is truncated rather than asserting accuracy we do not have. The finer value is generally the ANNOUNCEMENT time, not the moment the reset landed. Confidence downgraded confirmed -> probable by adversarial verification. Operator's original lead was dated codex 2026-07-10 (second of two that day); evidence places it on 2026-07-11. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: EVENT SURVIVES AND IS NOT A DUPLICATE; CONFIDENCE GRADE DOES NOT SURVIVE. I attacked this hardest as a double-count of lead 2 and it held on four independent grounds: explainx's Fable-5 article reproduces the announcement text VERBATIM including 'And another one …",
+  "field_support": {
+    "scope_plans": "attested"
+  }
 }

@@ -55,6 +55,6 @@
     }
   ],
   "recorded_by": "claude-code-agent",
-  "superseded_by": null,
+  "superseded_by": "cx-2026-07-18-02",
   "notes": "Confidence downgraded confirmed -> probable by adversarial verification. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: Could not refute the reset itself. Every quote is verbatim, including the one I most expected to be mis-sourced (the 'Oops... I did it again' entry does contain the 'Enjoy reset usage limits...' sentence). Two US-frame sources independently pin 07-17: minimaxir's list, and a first-hand Pro-account 'yesterday' post dated 07-18. Discretionary, correct vendor. THREE CORRECTIONS: (1) CONFIDENCE DOWNG…"
 }

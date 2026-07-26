@@ -1,21 +1,19 @@
 {
-  "id": "cx-2026-07-09-01",
+  "id": "cx-2026-07-09-02",
   "vendor": "codex",
   "kind": "global_reset",
   "effective_at": "2026-07-09T00:00:00Z",
   "effective_at_precision": "day",
-  "observed_at": "2026-07-25T18:45:00Z",
+  "observed_at": "2026-07-26T14:00:00Z",
   "scope": {
     "windows": [
       "weekly"
     ],
-    "plans": [
-      "all paid plans"
-    ],
+    "plans": [],
     "partial": false,
     "notes": "Non-banked ('hard') reset of the Codex weekly quota, applied fleet-wide to paid users across Codex and ChatGPT Work. Announced only via the personal X account of Thibault 'Tibo' Sottiaux (Codex lead) — no vendor-owned post, changelog entry or status-page note exists. The 5-hour window is not attested as part of this reset; only the weekly quota is. Trigger is the GPT-5.6 Sol / ChatGPT Work GA on the same day (2026-07-09), not an outage: status.openai.com/history lists NO incident on 2026-07-08 or 07-09."
   },
-  "trigger": "launch",
+  "trigger": "unknown",
   "confidence": "reported",
   "evidence": [
     {
@@ -41,6 +39,10 @@
     }
   ],
   "recorded_by": "claude-code-agent",
-  "superseded_by": "cx-2026-07-09-02",
-  "notes": "Research recovered a finer timestamp (2026-07-09T21:24:11Z) but precision is \"day\", so effective_at is truncated rather than asserting accuracy we do not have. The finer value is generally the ANNOUNCEMENT time, not the moment the reset landed. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: SURVIVES, but only on ONE of its three evidence items. minimaxir carries the quote verbatim -- 'OpenAI has directly reset the Codex weekly quota six times: July 9, July 10, July 10 (again), July 14, July 15, and July 17' -- with a distinct permalink per date, and the July 9 permalink is under x.com/thsottiaux (OpenAI Codex lead), so the vendor is right and the misattribution hypothesis is defeate…"
+  "superseded_by": null,
+  "notes": "CORRECTION, migration 02 (2026-07-26), operator-signed. Supersedes cx-2026-07-09-01. The audit of 2026-07-26 found enrichment fields across the ledger that read as assertions while resting on class-level statements about how quota resets generally work. This record carries field_support so that provenance is explicit rather than inferable. trigger and scope.plans both rested on a class-level sentence about what resets are generally for. Prior notes: Research recovered a finer timestamp (2026-07-09T21:24:11Z) but precision is \"day\", so effective_at is truncated rather than asserting accuracy we do not have. The finer value is generally the ANNOUNCEMENT time, not the moment the reset landed. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: SURVIVES, but only on ONE of its three evidence items. minimaxir carries the quote verbatim -- 'OpenAI has directly reset the Codex weekly quota six times: July 9, July 10, July 10 (again), July 14, July 15, and July 17' -- with a distinct permalink per date, and the July 9 permalink is under x.com/thsottiaux (OpenAI Codex lead), so the vendor is right and the misattribution hypothesis is defeate…",
+  "field_support": {
+    "trigger": "unestablished",
+    "scope_plans": "unestablished"
+  }
 }

@@ -1,20 +1,19 @@
 {
-  "id": "cx-2026-06-04-01",
+  "id": "cx-2026-06-04-02",
   "vendor": "codex",
   "kind": "global_reset",
   "effective_at": "2026-06-04T00:00:00Z",
   "effective_at_precision": "day",
-  "observed_at": "2026-07-25T18:45:00Z",
+  "observed_at": "2026-07-26T14:00:00Z",
   "scope": {
     "windows": [
       "weekly"
     ],
     "plans": [
       "paid subscribers (OpenAI staff wording)",
-      "ChatGPT Pro",
-      "ChatGPT Plus"
+      "ChatGPT Pro"
     ],
-    "partial": false,
+    "partial": true,
     "notes": "OpenAI staff described it as a \"manual reset for paid subscribers\" performed by the Codex team \"following recent service issues\" — i.e. a one-off compensatory refill, explicitly \"not a normal scheduled quota renewal\". The community and the openai/codex GitHub tracker both refer to it as the \"unified reset (June 4)\". Mechanics: it did NOT top up on to the existing period — it replaced the quota period wholesale, granting a fresh allocation and discarding any remaining balance, and it moved the displayed weekly reset date forward. The reporting user's dashboard went from ~70% quota remaining with a 7 June reset date (checked 3 June) to 100% with an 11 June reset date (checked 4 June). Because…"
   },
   "trigger": "incident_compensation",
@@ -43,6 +42,10 @@
     }
   ],
   "recorded_by": "claude-code-agent",
-  "superseded_by": "cx-2026-06-04-02",
-  "notes": "Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: Could not refute on any axis. (1) All three cited URLs load. (2) Quotes are genuine, not paraphrased: I bypassed the rendered page and pulled the Discourse JSON for thread 1382610, which returns the OpenAI_Support post verbatim -- 'The Codex team performed a manual reset for paid subscribers following recent service issues, which explains why your usage returned to 100% before the previously disp…"
+  "superseded_by": null,
+  "notes": "CORRECTION, migration 02 (2026-07-26), operator-signed. Supersedes cx-2026-06-04-01. The audit of 2026-07-26 found enrichment fields across the ledger that read as assertions while resting on class-level statements about how quota resets generally work. This record carries field_support so that provenance is explicit rather than inferable. ChatGPT Plus removed: the only Plus-specific evidence reports EXCLUSION, and the tier had been expanded out of the staff category term \"paid subscribers\". scope.partial -> true on that same differential. Prior notes: Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: Could not refute on any axis. (1) All three cited URLs load. (2) Quotes are genuine, not paraphrased: I bypassed the rendered page and pulled the Discourse JSON for thread 1382610, which returns the OpenAI_Support post verbatim -- 'The Codex team performed a manual reset for paid subscribers following recent service issues, which explains why your usage returned to 100% before the previously disp…",
+  "field_support": {
+    "scope_plans": "attested",
+    "scope_partial": "attested"
+  }
 }

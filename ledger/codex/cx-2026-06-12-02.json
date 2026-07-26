@@ -1,14 +1,12 @@
 {
-  "id": "cx-2026-06-12-01",
+  "id": "cx-2026-06-12-02",
   "vendor": "codex",
   "kind": "banked_reset",
   "effective_at": "2026-06-12T00:00:00Z",
   "effective_at_precision": "day",
-  "observed_at": "2026-07-25T18:45:00Z",
+  "observed_at": "2026-07-26T14:00:00Z",
   "scope": {
-    "windows": [
-      "weekly"
-    ],
+    "windows": [],
     "plans": [
       "Go",
       "Plus",
@@ -37,6 +35,9 @@
     }
   ],
   "recorded_by": "claude-code-agent",
-  "superseded_by": "cx-2026-06-12-02",
-  "notes": "Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: Event confirmed on the merits; one attribution defect corrected, no refutation. Both URLs load 200 and support the claim. XDA (pub. June 22, 2026) independently states every specific in the lead verbatim: \"Starting June 12th, Codex users on Go, Plus, Pro and Business plans get a reset they can use whenever they want\", \"Every eligible user on Go, Plus, Pro, and Business starts with one of these for free\", \"Until June…"
+  "superseded_by": null,
+  "notes": "CORRECTION, migration 02 (2026-07-26), operator-signed. Supersedes cx-2026-06-12-01. The audit of 2026-07-26 found enrichment fields across the ledger that read as assertions while resting on class-level statements about how quota resets generally work. This record carries field_support so that provenance is explicit rather than inferable. The one \"weekly\" mention in the cited thread is past-tense, describing the ad-hoc regime this feature REPLACED. Back-projected across that boundary. Prior notes: Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: Event confirmed on the merits; one attribution defect corrected, no refutation. Both URLs load 200 and support the claim. XDA (pub. June 22, 2026) independently states every specific in the lead verbatim: \"Starting June 12th, Codex users on Go, Plus, Pro and Business plans get a reset they can use whenever they want\", \"Every eligible user on Go, Plus, Pro, and Business starts with one of these for free\", \"Until June…",
+  "field_support": {
+    "scope_windows": "unestablished"
+  }
 }

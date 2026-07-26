@@ -1,21 +1,16 @@
 {
-  "id": "cx-2026-04-28-01",
+  "id": "cx-2026-04-28-02",
   "vendor": "codex",
   "kind": "global_reset",
   "effective_at": "2026-04-28T00:00:00Z",
   "effective_at_precision": "day",
-  "observed_at": "2026-07-25T18:45:00Z",
+  "observed_at": "2026-07-26T14:00:00Z",
   "scope": {
-    "windows": [
-      "5h"
-    ],
+    "windows": [],
     "plans": [
-      "Plus",
-      "Pro",
-      "Business",
-      "Enterprise"
+      "all paid plans"
     ],
-    "partial": false,
+    "partial": true,
     "notes": "The announcement wording was broad — \"Codex rate limits for ALL paid plans\" — but the only window with positive evidence of actually being reset is the 5-hour rolling window. openai/codex GitHub issue #20395 was filed precisely because the public wording did not match observed behaviour: a Plus subscriber found their WEEKLY limit was NOT reset, and the issue reports OpenAI Support later clarified the reset did not apply universally across all quota types or account states (eligibility varied by quota interval, usage timing and account state). I therefore list scope_windows as [\"5h\"] rather than [\"weekly\",\"5h\"]; treat weekly as disputed/not-universal, not as confirmed-included. Plans: the an…"
   },
   "trigger": "courtesy",
@@ -51,6 +46,11 @@
     }
   ],
   "recorded_by": "claude-code-agent",
-  "superseded_by": "cx-2026-04-28-02",
-  "notes": "Confidence downgraded confirmed -> probable by adversarial verification. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: SURVIVES on the facts, but the confidence grade is NOT earned — downgrade confirmed -> probable. Refutation attempts that FAILED (i.e. the claim held): (1) No dead links — all four evidence URLs returned 200. (2) No fabricated quotes — every claimed quote appears verbatim or in substance on its page, including the exact announcement string 'I have reset Codex rate limits for ALL paid plans to cel…"
+  "superseded_by": null,
+  "notes": "CORRECTION, migration 02 (2026-07-26), operator-signed. Supersedes cx-2026-04-28-01. The audit of 2026-07-26 found enrichment fields across the ledger that read as assertions while resting on class-level statements about how quota resets generally work. This record carries field_support so that provenance is explicit rather than inferable. scope.windows unestablished — the announcement's wording was broad but at least one Plus account reports the weekly window was NOT reset, so which window(s) applied is not sourceable. scope.partial -> true on that same account-level evidence. Prior notes: Confidence downgraded confirmed -> probable by adversarial verification. Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: SURVIVES on the facts, but the confidence grade is NOT earned — downgrade confirmed -> probable. Refutation attempts that FAILED (i.e. the claim held): (1) No dead links — all four evidence URLs returned 200. (2) No fabricated quotes — every claimed quote appears verbatim or in substance on its page, including the exact announcement string 'I have reset Codex rate limits for ALL paid plans to cel…",
+  "field_support": {
+    "scope_windows": "unestablished",
+    "scope_plans": "attested",
+    "scope_partial": "attested"
+  }
 }

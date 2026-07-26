@@ -27,6 +27,6 @@
     }
   ],
   "recorded_by": "claude-code-agent",
-  "superseded_by": null,
+  "superseded_by": "cx-2026-05-23-02",
   "notes": "Confidence probable -> reported by adversarial verification. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: SURVIVES on substance, DOWNGRADED on confidence. Quote verified verbatim in raw Discourse JSON, post_number 5, created_at 2026-05-23T20:18:54Z: \"Some of you noticed limits drained faster in Codex, we root caused it to an optimization that we rolled back that had an impact on cache hit rates when compacting across long running sessions. We fixed this and have now reset usage limits for all accounts. Enjoy the weekend…"
 }

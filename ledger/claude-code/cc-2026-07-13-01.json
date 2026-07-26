@@ -30,6 +30,6 @@
     }
   ],
   "recorded_by": "claude-code-agent",
-  "superseded_by": null,
+  "superseded_by": "cc-2026-07-13-02",
   "notes": "Confidence probable -> reported by adversarial verification. 1 evidence url(s) dropped as not supporting the claim. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: Survives on substance, downgraded on confidence. The cited Help Net Security URL loads and contains the claimed quote VERBATIM in its opening paragraph (\"Anthropic has extended a limited-time promotion that increases weekly usage limits in Claude Code by 50% through July 19, 2026, at 11:59 PM PT\"), correctly attributed, published 2026-07-13. This is a genuine discretionary vendor quota action by Anthropic for Claude…"
 }

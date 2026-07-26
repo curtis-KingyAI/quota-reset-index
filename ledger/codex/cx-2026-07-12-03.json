@@ -1,21 +1,19 @@
 {
-  "id": "cx-2026-07-12-01",
+  "id": "cx-2026-07-12-03",
   "vendor": "codex",
   "kind": "banked_reset",
   "effective_at": "2026-07-12T00:00:00Z",
   "effective_at_precision": "day",
-  "observed_at": "2026-07-25T18:45:00Z",
+  "observed_at": "2026-07-26T14:00:00Z",
   "scope": {
-    "windows": [
-      "weekly"
-    ],
+    "windows": [],
     "plans": [
-      "Codex and ChatGPT Work paid accounts (specific plan tiers not stated in any fetched source)"
+      "Codex"
     ],
     "partial": false,
     "notes": "Two separate things happened on 12 July 2026 and they must not be conflated. (a) A MORNING announcement from Tibo Sottiaux (OpenAI's Codex lead): temporary removal of the 5-hour usage limit for Plus/Business/Pro plus an IMMEDIATE weekly reset landing 'in the next hour', tied to the 6M-active-user milestone. That is a limit_removal + global_reset, NOT banked. (b) A LATER, SEPARATE announcement the same day: 'Added a banked reset to 500k users of ChatGPT Work and Codex.' This is the banked event the lead refers to. Its stated cause is incident compensation: banked-reset redemption had just been released on web and mobile (previously desktop-app only), and during a roughly 2-hour window under…"
   },
-  "trigger": "incident_compensation",
+  "trigger": "unknown",
   "confidence": "probable",
   "evidence": [
     {
@@ -55,6 +53,11 @@
     }
   ],
   "recorded_by": "claude-code-agent",
-  "superseded_by": "cx-2026-07-12-03",
-  "notes": "Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: Not refuted. All five URLs load; all five quotes are verbatim-present, none fabricated or paraphrased into existence. The event is a genuine discretionary banked grant by OpenAI for Codex — codex-resets.com preserves the announcement verbatim including the stated cause (banked-reset redemption newly shipped to web/mobile), which is incident compensation, not a scheduled rollover. I attacked the d…"
+  "superseded_by": null,
+  "notes": "CORRECTION, migration 02 (2026-07-26), operator-signed. Supersedes cx-2026-07-12-01. The audit of 2026-07-26 found enrichment fields across the ledger that read as assertions while resting on class-level statements about how quota resets generally work. This record carries field_support so that provenance is explicit rather than inferable. trigger \"incident_compensation\" is UNSUPPORTED — the defect that prompted the whole audit. No source records an incident on 2026-07-12; the error traces to a generic sentence in minimaxir about what resets are typically for. scope.windows and scope.plans were inferred from the banked-reset mechanism rather than asserted of this grant. ⚠️ The 500k population figure is NOT recorded: its only source is a mirror, and under the adopted §2 amendment a population count is substance a mirror may not carry. scope.partial therefore stays false — the field tracks what is sourceable, not what is probably true. Prior notes: Seeded in Phase 1 by agent research; NOT yet reviewed by the operator. Verifier: Not refuted. All five URLs load; all five quotes are verbatim-present, none fabricated or paraphrased into existence. The event is a genuine discretionary ba…",
+  "field_support": {
+    "trigger": "unestablished",
+    "scope_windows": "unestablished",
+    "scope_plans": "attested"
+  }
 }

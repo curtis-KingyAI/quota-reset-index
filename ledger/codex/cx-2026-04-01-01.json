@@ -27,6 +27,6 @@
     }
   ],
   "recorded_by": "claude-code-agent",
-  "superseded_by": null,
+  "superseded_by": "cx-2026-04-01-02",
   "notes": "Confidence probable -> reported by adversarial verification. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: Attacked on all five axes and it held on four, failing only on confidence grade. QUOTE (survives): The exact string \"resetting the usage limits for all plans\" is present verbatim, not paraphrased. Verified three independent ways to rule out a summarizer hallucinating it into existence: the rendered page, the raw Discourse `.json` payload, and the post-2 permalink. All three return the same title, timestamps and user…"
 }

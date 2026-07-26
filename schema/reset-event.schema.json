@@ -97,6 +97,7 @@
       }
     },
     "trigger": {
+      "description": "Why the grant happened. `unknown` means no admissible source states a cause — pair it with field_support.trigger = \"unestablished\". ⚠️ `competitive_response` and `demand_surge` were added 2026-07-26 by migration 02, because two records had an ATTESTED cause the original enum could not express, and recording an attested cause as `unknown` would have made those records less accurate rather than more. If a future audit finds another such case, extend the enum rather than flattening the cause to `unknown`.",
       "type": "string",
       "enum": [
         "incident_compensation",
@@ -104,11 +105,13 @@
         "milestone",
         "courtesy",
         "capacity",
+        "competitive_response",
+        "demand_surge",
         "unknown"
       ]
     },
     "confidence": {
-      "description": "confirmed = vendor stated it, or sentinel telemetry captured it. probable = multiple independent user reports, consistent timing. reported = single source.",
+      "description": "confirmed = a vendor post or status page states it. probable = multiple independent sources, consistent timing. reported = single source. ⚠️ AMENDED 2026-07-26: `telemetry` was struck from the confirming set. Telemetry establishes that an account's quota changed, never that the vendor granted anything — no channel distinguishes a vendor-wide grant from a scheduled rollover — so it would confirm a proposition this ledger does not record.",
       "type": "string",
       "enum": ["confirmed", "probable", "reported"]
     },

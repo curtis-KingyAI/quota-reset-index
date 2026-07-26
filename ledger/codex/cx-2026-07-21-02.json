@@ -1,0 +1,36 @@
+{
+  "id": "cx-2026-07-21-02",
+  "vendor": "codex",
+  "kind": "global_reset",
+  "effective_at": "2026-07-21T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-26T14:00:00Z",
+  "scope": {
+    "windows": [],
+    "plans": [
+      "all paid"
+    ],
+    "partial": false,
+    "notes": "Final milestone in the run (Altman's commitment topped out at 10M). Covers Codex and ChatGPT Work. Tracker records 17:47 UTC with the reset 'lands in the next hour', so the actual refill may be slightly later; precision set to 'hour' for the same reason as the 07-18 lead. Bloomberg/Unite.AI independently date the 10M announcement to Tuesday July 21, 2026, which corroborates the day. The five-hour cap remained OFF for Plus, Business and Pro through this period — that removal is the operator's existing 07-12 lead, still in effect here."
+  },
+  "trigger": "milestone",
+  "confidence": "reported",
+  "evidence": [
+    {
+      "type": "press",
+      "url": "https://www.unite.ai/openai-says-codex-and-chatgpt-work-hit-10-million-users/",
+      "author": "Unite.AI (published July 21, 2026, updated July 23)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "CORRECTION, migration 02 (2026-07-26), operator-signed. Supersedes cx-2026-07-21-01. RE-ANCHOR ATTEMPTED AND FAILED — recorded honestly rather than quietly downgraded. (1) The tracker citation is STRUCK: codexreset.org's \"Jul 21, 17:47 UTC\" row cites post 2081096447718723984, which decodes to 2026-07-25T19:17:12Z — four days later — and the tracker lists that same id again under its own \"Jul 25\" row. It is a mislabelled duplicate, so under the adopted §2 amendment the mirror fails even as a LOCATOR. (2) Searched for a replacement: digitalapplied.com covers the 10M milestone but states no reset at all; memeburn.com appears to carry an event-specific claim but returns HTTP 403 and could not be read, so it is deliberately NOT cited. (3) ⚠️ THE REMAINING SOURCE IS WEAKER THAN \"reported\" NORMALLY IMPLIES: unite.ai states \"As each milestone landed, OpenAI reset usage limits for all users\" — a claim about the milestone SERIES, not about 2026-07-21 specifically. That is the same generic-read-as-event-specific shape this migration exists to correct. The event is probably real; it is not, on admissible evidence, established for this date. Treat the date as the weakest in the ledger and re-a…",
+  "field_support": {
+    "scope_windows": "unestablished",
+    "scope_plans": "inferred",
+    "scope_partial": "inferred",
+    "trigger": "attested"
+  }
+}

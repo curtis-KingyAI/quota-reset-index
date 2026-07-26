@@ -1,0 +1,38 @@
+{
+  "id": "cc-2026-07-13-02",
+  "vendor": "claude-code",
+  "kind": "limit_increase",
+  "effective_at": "2026-07-13T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-26T14:00:00Z",
+  "scope": {
+    "windows": [
+      "weekly"
+    ],
+    "plans": [
+      "Pro",
+      "Max",
+      "Team",
+      "legacy seat-based Enterprise"
+    ],
+    "partial": false,
+    "notes": "EXTENSION, not a new grant: the +50% weekly Claude Code promo was due to lapse July 13 at 6PM PDT and was pushed to July 19, 2026 at 11:59 PM PT. Auto-applied; Free and consumption-based Enterprise seats excluded. Article points readers to support.claude.com for Anthropic's own writeup, but that article is no longer in the live 'Usage and limits' collection."
+  },
+  "trigger": "unknown",
+  "confidence": "reported",
+  "evidence": [
+    {
+      "type": "press",
+      "url": "https://www.helpnetsecurity.com/2026/07/13/claude-code-weekly-limits-promotion-extended/",
+      "author": "Help Net Security (published July 13, 2026)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "CORRECTION, migration 02 (2026-07-26), operator-signed. Supersedes cc-2026-07-13-01. The audit of 2026-07-26 found enrichment fields across the ledger that read as assertions while resting on class-level statements about how quota resets generally work. This record carries field_support so that provenance is explicit rather than inferable. trigger \"courtesy\" was a reader's gloss on a class-level loyalty maxim; no source states a cause for this event. Prior notes: Confidence probable -> reported by adversarial verification. 1 evidence url(s) dropped as not supporting the claim. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: Survives on substance, downgraded on confidence. The cited Help Net Security URL loads and contains the claimed quote VERBATIM in its opening paragraph (\"Anthropic has extended a limited-time promotion that increases weekly usage limits in Claude Code by 50% through July 19, 2026, at 11:59 PM PT\"), correctly attributed, published 2026-07-13. This is a genuine discretionary vendor quota action by Anthropic for Claude…",
+  "field_support": {
+    "trigger": "unestablished"
+  }
+}

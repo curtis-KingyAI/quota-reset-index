@@ -1,10 +1,10 @@
 {
-  "id": "cc-2026-05-13-01",
+  "id": "cc-2026-05-13-02",
   "vendor": "claude-code",
   "kind": "limit_increase",
   "effective_at": "2026-05-13T00:00:00Z",
   "effective_at_precision": "day",
-  "observed_at": "2026-07-25T18:45:00Z",
+  "observed_at": "2026-07-26T14:00:00Z",
   "scope": {
     "windows": [
       "weekly"
@@ -18,7 +18,7 @@
     "partial": false,
     "notes": "START of the +50% Claude Code WEEKLY limit promotion, originally scheduled to end July 13, 2026 at 6PM PDT. Applies to Claude Code only (CLI, IDE extensions, desktop, web); auto-applied, no action required; Free and consumption-based Enterprise seats excluded. ⚠️ DATE IS SOFT: the article I fetched says only 'effective immediately' and was published 14 May 2026; search snippets I did NOT fetch claim a May 13 start. I have anchored to the fetched publication date and set precision=day. ⚠️ DEDUPE RISK: the operator already has a claude-code 2026-05-15 lead — that appears to be a separate ClaudeDevs 5-hour+weekly counter FLUSH, not this promo, but the two are 1-2 days apart and should be check…"
   },
-  "trigger": "courtesy",
+  "trigger": "competitive_response",
   "confidence": "reported",
   "evidence": [
     {
@@ -30,6 +30,9 @@
     }
   ],
   "recorded_by": "claude-code-agent",
-  "superseded_by": "cc-2026-05-13-02",
-  "notes": "Date corrected by adversarial verification: 2026-05-14 -> 2026-05-13. Confidence probable -> reported by adversarial verification. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: SURVIVES with three corrections. Attacks that FAILED: (1) URL is live (curl 200, no redirect). (2) The quote is real and near-verbatim, not paraphrased into existence — the page reads \"Anthropic raised Claude Code weekly usage limits by 50%, effective immediately and running through July 13 at 6PM PDT (1AM GMT, July 14)\". (3) It is genuinely a discretionary vendor action: a temporary +50% raise of the Claude Code we…"
+  "superseded_by": null,
+  "notes": "CORRECTION, migration 02 (2026-07-26), operator-signed. Supersedes cc-2026-05-13-01. The audit of 2026-07-26 found enrichment fields across the ledger that read as assertions while resting on class-level statements about how quota resets generally work. This record carries field_support so that provenance is explicit rather than inferable. trigger \"courtesy\" was unattested. The cited article asserts, of this exact change and end date, that it is a defensive competitive move. Prior notes: Date corrected by adversarial verification: 2026-05-14 -> 2026-05-13. Confidence probable -> reported by adversarial verification. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: SURVIVES with three corrections. Attacks that FAILED: (1) URL is live (curl 200, no redirect). (2) The quote is real and near-verbatim, not paraphrased into existence — the page reads \"Anthropic raised Claude Code weekly usage limits by 50%, effective immediately and running through July 13 at 6PM PDT (1AM GMT, July 14)\". (3) It is genuinely a discretionary vendor action: a temporary +50% raise of the Claude Code we…",
+  "field_support": {
+    "trigger": "attested"
+  }
 }

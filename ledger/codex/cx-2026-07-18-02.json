@@ -1,0 +1,73 @@
+{
+  "id": "cx-2026-07-18-02",
+  "vendor": "codex",
+  "kind": "global_reset",
+  "effective_at": "2026-07-18T03:00:00Z",
+  "effective_at_precision": "hour",
+  "observed_at": "2026-07-26T14:00:00Z",
+  "scope": {
+    "windows": [
+      "weekly"
+    ],
+    "plans": [
+      "paid users of Codex and ChatGPT Work"
+    ],
+    "partial": false,
+    "notes": "Single announcement, recorded twice before this migration. ⚠️ THE LEDGER KEYS BY UTC. Post 2078320950488297917 decodes to 2026-07-18T03:28:22Z, which is 2026-07-17 20:28 US-Pacific. minimaxir dates its enumeration in Pacific and labels this \"July 17\"; codexreset.org dates in UTC and files it under \"Jul 18\". Both labels denote this one post. UTC is used because a ledger spanning two vendors and many sources needs one clock that does not shift with the reader, and because the decode itself yields UTC. The same convention checks out across all ten cited post IDs at exactly UTC-7 — which is also why cx-2026-07-10-01 and cx-2026-07-11-01 are correctly two records: two distinct post IDs that are both \"July 10\" in Pacific."
+  },
+  "trigger": "unknown",
+  "confidence": "probable",
+  "evidence": [
+    {
+      "type": "user_report",
+      "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
+      "author": "Max Woolf (minimaxir)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897",
+      "author": "Dragonrin, OpenAI Developer Community — posted 2026-07-18, so \"yesterday\" = 07-17",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://codex-resets.com/",
+      "author": "codex-resets.com tracker, transcribing the \"Oops... I did it again\" announcement",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://note.com/kitworks/n/n70bb4a29db37?hl=en",
+      "author": "KitWorks on note.com (pub. 2026-07-18 JST) — dates this announcement to 07-18 local",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://news.ycombinator.com/item?id=48963465",
+      "author": "HN commenter on the \"Codex Resets\" submission — speaks to the reset SERIES generally, does NOT pin 07-17",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "user_report",
+      "url": "https://codexreset.org/",
+      "author": "codexreset.org tracker (entry dated July 18, 2026 03:28 UTC)",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "CORRECTION, migration 02 (2026-07-26), operator-signed. MERGE: supersedes BOTH cx-2026-07-17-01 and cx-2026-07-18-01, which recorded the same announcement under two timezone conventions. Verified by offline post-ID decode, reproduced independently. trigger -> unknown: no admissible source states a cause. The 9-million-milestone attribution previously carried by cx-2026-07-18-01 is STRUCK — 9M attaches to post 2077607697487188198 (2026-07-16T04:14:09Z), a different post two days earlier, already recorded as cx-2026-07-16-01. scope.windows keeps [\"weekly\"], which minimaxir asserts of this specific post rather than of resets in general.",
+  "field_support": {
+    "trigger": "unestablished",
+    "scope_windows": "attested",
+    "scope_plans": "attested",
+    "scope_partial": "inferred"
+  }
+}

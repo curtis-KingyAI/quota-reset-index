@@ -34,6 +34,6 @@
     }
   ],
   "recorded_by": "claude-code-agent",
-  "superseded_by": null,
+  "superseded_by": "cx-2026-07-18-02",
   "notes": "Verifier refuted the 9M-milestone attribution: its own cited tracker dates the 9M milestone to Jul 16 04:14 UTC and attaches no milestone to the Jul 18 reset. The reset is real; the milestone framing is not. Confidence probable -> reported by adversarial verification. ⚠️ At least one evidence url is a third-party X-scraping tracker. Spec §2 forbids third-party X mirrors as a SIGNAL; recorded here as corroboration only, and flagged for the operator to rule on. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: Survives on the core event, but three parts of the record are wrong and the label must change. WHAT HELD UP. Both URLs load. codexreset.org's log carries a Jul 18 03:28 UTC entry, \"Global Codex quota reset\", quote verbatim: \"Oops... I did it again. Enjoy reset usage limits for all paid users for Codex and ChatGPT Work.\" note.com/kitworks (published 2026-07-18 21:48) carries the claimed quote verbatim — \"However, whe…"
 }

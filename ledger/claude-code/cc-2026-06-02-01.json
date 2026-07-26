@@ -26,6 +26,6 @@
     }
   ],
   "recorded_by": "claude-code-agent",
-  "superseded_by": null,
+  "superseded_by": "cc-2026-06-02-02",
   "notes": "Verifier graded the date \"unknown\". Recorded at the schema's coarsest precision, \"day\"; treat as approximate. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: SURVIVES, with precision downgraded. Attacked on every axis and the core held. (1) URL live (200) and contains the claimed quote VERBATIM, not paraphrased: \"Anthropic restored usage allowances for affected Pro and Max users after a technical issue triggered unusually high token consumption.\" It also carries a stronger second line: \"The company has also rolled out an emergency quota reset for impacted users, meaning…"
 }
