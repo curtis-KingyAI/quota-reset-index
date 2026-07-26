@@ -272,7 +272,23 @@ for other people to check our work.</p>
   <li><strong>Dates are UTC.</strong> Several widely-cited secondary sources date these events in US
   Pacific, which puts some of them on the previous day. Where a record's identity depends on that,
   the underlying post id and its decoded UTC timestamp are recorded in the notes.</li>
+  <li><strong>Evidence carries an archive link where one exists.</strong> Each evidence item may have
+  an <code>archive_url</code> and an <code>archive_timestamp</code>, so the claim you can check is
+  "as of that date, this source said this" rather than "this URL currently resolves". Where a source
+  cannot be archived — some hosts refuse it — the fields are absent rather than faked, and that
+  refusal is itself recorded.</li>
 </ul>
+
+<h3>Why the archive lives beside the records, not inside them</h3>
+<p>The record files are append-only: once committed, every field except
+<code>superseded_by</code> is sealed, and a pre-commit hook plus a CI check against full history
+enforce it. Writing an archive link into a committed record would be a <em>mutation</em>, and the
+hook rejects it.</p>
+<p>So archives live in their own append-only index, keyed by URL, and are joined into the published
+files at build time. This is not a workaround for the guarantee — it is a better fit for the data.
+An archive is not a claim about the event; it is a durability measure for a citation, with its own
+lifetime. A single field holds one capture, whereas the index holds a series of attempts, successes
+and failures alike. That is what supports a dated claim rather than a current one.</p>
 
 <h2>How this becomes citable rather than interesting</h2>
 <p>The build order is fixed: ledger, then sentinel, then models, then this page. Calibration is

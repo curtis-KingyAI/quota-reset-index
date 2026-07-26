@@ -1,0 +1,23 @@
+{
+  "url": "https://www.ababnews.com/news/f18c1b7c-ff06-4e7e-8e9c-004ba01794e5",
+  "attempts": [
+    {
+      "checked_at": "2026-07-26T22:52:52.834Z",
+      "method": "wayback-availability",
+      "status": "not_found",
+      "note": "no existing capture"
+    },
+    {
+      "checked_at": "2026-07-26T22:53:45.430Z",
+      "method": "wayback-availability",
+      "status": "not_found",
+      "note": "no existing capture"
+    },
+    {
+      "checked_at": "2026-07-26T23:01:58.155Z",
+      "method": "save-page-now",
+      "status": "failed",
+      "note": "SPN returned success but no capture is retrievable — unverified, treated as a miss"
+    }
+  ]
+}

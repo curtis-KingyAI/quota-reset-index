@@ -1,0 +1,23 @@
+{
+  "url": "https://builderwithin.com/articles/claude-usage-reset-gpt-5-6/",
+  "attempts": [
+    {
+      "checked_at": "2026-07-26T22:51:55.176Z",
+      "method": "wayback-availability",
+      "status": "not_found",
+      "note": "no existing capture"
+    },
+    {
+      "checked_at": "2026-07-26T22:53:40.585Z",
+      "method": "wayback-availability",
+      "status": "not_found",
+      "note": "no existing capture"
+    },
+    {
+      "checked_at": "2026-07-26T22:54:43.781Z",
+      "method": "save-page-now",
+      "status": "failed",
+      "note": "SPN returned success but no capture is retrievable — unverified, treated as a miss"
+    }
+  ]
+}

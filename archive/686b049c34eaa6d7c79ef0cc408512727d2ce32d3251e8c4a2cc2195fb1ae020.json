@@ -1,0 +1,25 @@
+{
+  "url": "https://github.com/openai/codex/issues/33344",
+  "attempts": [
+    {
+      "checked_at": "2026-07-26T22:52:24.138Z",
+      "method": "wayback-availability",
+      "status": "not_found",
+      "note": "no existing capture"
+    },
+    {
+      "checked_at": "2026-07-26T22:53:42.993Z",
+      "method": "wayback-availability",
+      "status": "not_found",
+      "note": "no existing capture"
+    },
+    {
+      "checked_at": "2026-07-26T22:58:00.301Z",
+      "method": "save-page-now",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726225739/https://github.com/openai/codex/issues/33344",
+      "archive_timestamp": "2026-07-26T22:57:39Z",
+      "note": "captured via SPN, verified by availability"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "url": "https://finance.biggo.com/news/0b22f4f6-b980-4f9b-a9aa-382019fc2ba8",
+  "attempts": [
+    {
+      "checked_at": "2026-07-26T22:52:14.747Z",
+      "method": "wayback-availability",
+      "status": "not_found",
+      "note": "no existing capture"
+    },
+    {
+      "checked_at": "2026-07-26T22:53:42.241Z",
+      "method": "wayback-availability",
+      "status": "not_found",
+      "note": "no existing capture"
+    },
+    {
+      "checked_at": "2026-07-26T22:56:52.478Z",
+      "method": "save-page-now",
+      "status": "failed",
+      "note": "SPN returned success but no capture is retrievable — unverified, treated as a miss"
+    }
+  ]
+}

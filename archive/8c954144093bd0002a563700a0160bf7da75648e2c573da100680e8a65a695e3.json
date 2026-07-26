@@ -1,0 +1,25 @@
+{
+  "url": "https://nerdschalk.com/openai-codex-5-hour-limit-removed-gpt-5-6-sol/",
+  "attempts": [
+    {
+      "checked_at": "2026-07-26T22:52:35.536Z",
+      "method": "wayback-availability",
+      "status": "not_found",
+      "note": "no existing capture"
+    },
+    {
+      "checked_at": "2026-07-26T22:53:44.213Z",
+      "method": "wayback-availability",
+      "status": "not_found",
+      "note": "no existing capture"
+    },
+    {
+      "checked_at": "2026-07-26T22:59:49.716Z",
+      "method": "save-page-now",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726225916/https://nerdschalk.com/openai-codex-5-hour-limit-removed-gpt-5-6-sol/",
+      "archive_timestamp": "2026-07-26T22:59:16Z",
+      "note": "captured via SPN, verified by availability"
+    }
+  ]
+}

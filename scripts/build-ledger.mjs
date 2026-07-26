@@ -17,6 +17,7 @@ import { fileURLToPath } from 'node:url';
 import { loadSchema, validateEntries, formatErrors } from '../lib/validate-core.mjs';
 import { canonicalRecord, compareRecords } from '../lib/canonical.mjs';
 import { collectEntries } from './validate.mjs';
+import { loadIndex } from '../lib/archive.mjs';
 import { isMain } from '../lib/is-main.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -49,6 +50,7 @@ const COLUMNS = [
   'evidence_authors',
   'evidence_captured_at',
   'evidence_archive_urls',
+  'evidence_archive_timestamps',
   'recorded_by',
   'superseded_by',
   'notes',
@@ -93,6 +95,7 @@ function csvRow(rec) {
     evidence_authors: ev.map((e) => e.author ?? '').join(JOIN),
     evidence_captured_at: ev.map((e) => e.captured_at).join(JOIN),
     evidence_archive_urls: ev.map((e) => e.archive_url ?? '').join(JOIN),
+    evidence_archive_timestamps: ev.map((e) => e.archive_timestamp ?? '').join(JOIN),
     recorded_by: rec.recorded_by,
     superseded_by: rec.superseded_by ?? '',
     notes: rec.notes,
@@ -107,8 +110,31 @@ function csvRow(rec) {
   };
 }
 
-export function buildOutputs(records) {
-  const sorted = records.slice().sort(compareRecords).map(canonicalRecord);
+/**
+ * Join the archive sidecar into the PUBLISHED output only.
+ *
+ * Record files on disk keep `archive_url: null` — populating them would be a
+ * mutation of a sealed field, which the append-only hook rejects (verified).
+ * The archive lives in its own append-only index; this is where the two meet,
+ * so a consumer of /ledger.json gets the durable link without the ledger's
+ * immutability guarantee being weakened to provide it.
+ *
+ * Deterministic: archive/ is an input like ledger/, so identical inputs still
+ * produce identical bytes.
+ */
+function withArchives(rec, index) {
+  return {
+    ...rec,
+    evidence: rec.evidence.map((e) => {
+      const hit = index.get(e.url);
+      if (!hit?.best) return e;
+      return { ...e, archive_url: hit.best.archive_url, archive_timestamp: hit.best.archive_timestamp };
+    }),
+  };
+}
+
+export function buildOutputs(records, index = new Map()) {
+  const sorted = records.slice().sort(compareRecords).map(canonicalRecord).map((r) => withArchives(r, index));
   const json = JSON.stringify(sorted, null, 2) + '\n';
   const lines = [COLUMNS.join(',')];
   for (const rec of sorted) {
@@ -128,7 +154,7 @@ function main() {
     process.exit(1);
   }
 
-  const { json, csv, count } = buildOutputs(records);
+  const { json, csv, count } = buildOutputs(records, loadIndex());
   mkdirSync(OUT, { recursive: true });
   writeFileSync(join(OUT, 'ledger.json'), json);
   writeFileSync(join(OUT, 'ledger.csv'), csv);

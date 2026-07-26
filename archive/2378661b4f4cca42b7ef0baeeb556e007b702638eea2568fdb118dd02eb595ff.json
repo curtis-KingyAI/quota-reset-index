@@ -1,0 +1,23 @@
+{
+  "url": "https://community.openai.com/t/codex-rate-limits-discussion-thread/1378553/177",
+  "attempts": [
+    {
+      "checked_at": "2026-07-26T22:51:59.524Z",
+      "method": "wayback-availability",
+      "status": "not_found",
+      "note": "no existing capture"
+    },
+    {
+      "checked_at": "2026-07-26T22:53:41.251Z",
+      "method": "wayback-availability",
+      "status": "not_found",
+      "note": "no existing capture"
+    },
+    {
+      "checked_at": "2026-07-26T22:55:47.854Z",
+      "method": "save-page-now",
+      "status": "failed",
+      "note": "SPN returned success but no capture is retrievable — unverified, treated as a miss"
+    }
+  ]
+}

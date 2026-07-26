@@ -1,0 +1,12 @@
+{
+  "url": "https://www.anthropic.com/news/higher-limits-spacex",
+  "attempts": [
+    {
+      "checked_at": "2026-07-26T22:52:57.067Z",
+      "method": "wayback-availability",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260725164456/https://www.anthropic.com/news/higher-limits-spacex",
+      "archive_timestamp": "2026-07-25T16:44:56Z"
+    }
+  ]
+}

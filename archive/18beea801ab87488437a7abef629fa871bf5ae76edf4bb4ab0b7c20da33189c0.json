@@ -1,0 +1,12 @@
+{
+  "url": "https://learn.chatgpt.com/docs/changelog",
+  "attempts": [
+    {
+      "checked_at": "2026-07-26T22:52:28.717Z",
+      "method": "wayback-availability",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260725171403/https://learn.chatgpt.com/docs/changelog",
+      "archive_timestamp": "2026-07-25T17:14:03Z"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "url": "https://status.openai.com/history",
+  "attempts": [
+    {
+      "checked_at": "2026-07-26T22:52:46.730Z",
+      "method": "wayback-availability",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726074529/https://status.openai.com/history",
+      "archive_timestamp": "2026-07-26T07:45:29Z"
+    }
+  ]
+}

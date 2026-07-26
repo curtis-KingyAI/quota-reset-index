@@ -1,0 +1,12 @@
+{
+  "url": "https://codex-resets.com/",
+  "attempts": [
+    {
+      "checked_at": "2026-07-26T22:51:55.759Z",
+      "method": "wayback-availability",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260725174517/https://codex-resets.com/",
+      "archive_timestamp": "2026-07-25T17:45:17Z"
+    }
+  ]
+}

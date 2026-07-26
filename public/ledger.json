@@ -27,7 +27,8 @@
         "url": "https://www.xda-developers.com/claude-doubled-every-users-usage-limits-for-two-weeks/",
         "author": "XDA Developers (published Mar 15, 2026)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260322070518/https://www.xda-developers.com/claude-doubled-every-users-usage-limits-for-two-weeks/",
+        "archive_timestamp": "2026-03-22T07:05:18Z"
       },
       {
         "type": "press",
@@ -66,7 +67,8 @@
         "url": "https://community.openai.com/t/codex-limits-finally-good-after-april-1st-reset/1378333",
         "author": "Tibo (OpenAI), relayed by forum user VeitB, April 1, 2026",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260529005849/https://community.openai.com/t/codex-limits-finally-good-after-april-1st-reset/1378333",
+        "archive_timestamp": "2026-05-29T00:58:49Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -96,7 +98,8 @@
         "url": "https://community.openai.com/t/codex-limits-finally-good-after-april-1st-reset/1378333",
         "author": "Tibo (OpenAI), relayed by forum user VeitB, April 1, 2026",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260529005849/https://community.openai.com/t/codex-limits-finally-good-after-april-1st-reset/1378333",
+        "archive_timestamp": "2026-05-29T00:58:49Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -129,7 +132,8 @@
         "url": "https://www.businesstoday.in/technology/story/openai-codex-celebrates-3-million-weekly-users-ceo-sam-altman-resets-usage-limits-524717-2026-04-08",
         "author": "Business Today",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260414194802/https://www.businesstoday.in/technology/story/openai-codex-celebrates-3-million-weekly-users-ceo-sam-altman-resets-usage-limits-524717-2026-04-08",
+        "archive_timestamp": "2026-04-14T19:48:02Z"
       },
       {
         "type": "user_report",
@@ -143,28 +147,32 @@
         "url": "https://www.technobezz.com/news/openai-resets-codex-usage-limits-after-reaching-3-million-weekly-users",
         "author": "Technobezz",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260413084136/https://www.technobezz.com/news/openai-resets-codex-usage-limits-after-reaching-3-million-weekly-users",
+        "archive_timestamp": "2026-04-13T08:41:36Z"
       },
       {
         "type": "press",
         "url": "https://letsdatascience.com/news/sam-altman-resets-openai-codex-limits-74ec5754",
         "author": "Let's Data Science",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726225842/https://letsdatascience.com/news/sam-altman-resets-openai-codex-limits-74ec5754",
+        "archive_timestamp": "2026-07-26T22:58:42Z"
       },
       {
         "type": "press",
         "url": "https://www.ai-primer.com/engineer/stories/openai-codex-3m-users-limit-reset",
         "author": "Daily AI Primer",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726230208/https://www.ai-primer.com/engineer/stories/openai-codex-3m-users-limit-reset",
+        "archive_timestamp": "2026-07-26T23:02:08Z"
       },
       {
         "type": "press",
         "url": "https://codex.danielvaughan.com/2026/04/09/codex-3-million-users-growth-usage-limits/",
         "author": "Codex Knowledge Base (Daniel Vaughan)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260628085049/https://codex.danielvaughan.com/2026/04/09/codex-3-million-users-growth-usage-limits/",
+        "archive_timestamp": "2026-06-28T08:50:49Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -194,14 +202,16 @@
         "url": "https://www.anthropic.com/engineering/april-23-postmortem",
         "author": "Anthropic (Engineering)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725170042/https://www.anthropic.com/engineering/april-23-postmortem",
+        "archive_timestamp": "2026-07-25T17:00:42Z"
       },
       {
         "type": "press",
         "url": "https://fortune.com/2026/04/24/anthropic-engineering-missteps-claude-code-performance-decline-user-backlash/",
         "author": "Fortune",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260723185158/https://fortune.com/2026/04/24/anthropic-engineering-missteps-claude-code-performance-decline-user-backlash/",
+        "archive_timestamp": "2026-07-23T18:51:58Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -236,28 +246,32 @@
         "url": "https://community.openai.com/t/codex-rate-limits-reset-for-all-paid-plans-april-28-2026/1379921",
         "author": "Thread \"Codex Rate limits reset for all paid plans April 28, 2026\" on OpenAI Developer Community, opened by VeitB (staff), reproducing the announcement by Tibo Sottiaux (Codex eng…",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260711231209/https://community.openai.com/t/codex-rate-limits-reset-for-all-paid-plans-april-28-2026/1379921",
+        "archive_timestamp": "2026-07-11T23:12:09Z"
       },
       {
         "type": "user_report",
         "url": "https://github.com/openai/codex/issues/20395",
         "author": "Issue #20395 \"Clarify Codex rate-limit reset behavior and make reset scope visible in Usage UI\", openai/codex repository — filed by a Plus subscriber whose weekly limit was not re…",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260719155022/https://github.com/openai/codex/issues/20395",
+        "archive_timestamp": "2026-07-19T15:50:22Z"
       },
       {
         "type": "press",
         "url": "https://www.aitopic.com/OpenAI-Codex-Resets-Rate-Limits-for-All-Paid-Users-to-Encourage-GPT-55-Adoption.html",
         "author": "AI Topic, article dated 2026-04-28, attributing the reset to Codex engineering head Thibault Sottiaux and referencing the 2026-04-23 GPT-5.5 integration",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726230241/https://www.aitopic.com/OpenAI-Codex-Resets-Rate-Limits-for-All-Paid-Users-to-Encourage-GPT-55-Adoption.html",
+        "archive_timestamp": "2026-07-26T23:02:41Z"
       },
       {
         "type": "press",
         "url": "https://knightli.com/en/2026/05/17/codex-usage-limit-reset-history/",
         "author": "knightli.com, \"Codex Usage Limit Reset: How to Check Quotas and Reset Times\" (reset-history round-up, 2026-05-17)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260630073541/https://knightli.com/en/2026/05/17/codex-usage-limit-reset-history/",
+        "archive_timestamp": "2026-06-30T07:35:41Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -287,28 +301,32 @@
         "url": "https://community.openai.com/t/codex-rate-limits-reset-for-all-paid-plans-april-28-2026/1379921",
         "author": "Thread \"Codex Rate limits reset for all paid plans April 28, 2026\" on OpenAI Developer Community, opened by VeitB (staff), reproducing the announcement by Tibo Sottiaux (Codex eng…",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260711231209/https://community.openai.com/t/codex-rate-limits-reset-for-all-paid-plans-april-28-2026/1379921",
+        "archive_timestamp": "2026-07-11T23:12:09Z"
       },
       {
         "type": "user_report",
         "url": "https://github.com/openai/codex/issues/20395",
         "author": "Issue #20395 \"Clarify Codex rate-limit reset behavior and make reset scope visible in Usage UI\", openai/codex repository — filed by a Plus subscriber whose weekly limit was not re…",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260719155022/https://github.com/openai/codex/issues/20395",
+        "archive_timestamp": "2026-07-19T15:50:22Z"
       },
       {
         "type": "press",
         "url": "https://www.aitopic.com/OpenAI-Codex-Resets-Rate-Limits-for-All-Paid-Users-to-Encourage-GPT-55-Adoption.html",
         "author": "AI Topic, article dated 2026-04-28, attributing the reset to Codex engineering head Thibault Sottiaux and referencing the 2026-04-23 GPT-5.5 integration",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726230241/https://www.aitopic.com/OpenAI-Codex-Resets-Rate-Limits-for-All-Paid-Users-to-Encourage-GPT-55-Adoption.html",
+        "archive_timestamp": "2026-07-26T23:02:41Z"
       },
       {
         "type": "press",
         "url": "https://knightli.com/en/2026/05/17/codex-usage-limit-reset-history/",
         "author": "knightli.com, \"Codex Usage Limit Reset: How to Check Quotas and Reset Times\" (reset-history round-up, 2026-05-17)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260630073541/https://knightli.com/en/2026/05/17/codex-usage-limit-reset-history/",
+        "archive_timestamp": "2026-06-30T07:35:41Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -348,14 +366,16 @@
         "url": "https://www.anthropic.com/news/higher-limits-spacex",
         "author": "Anthropic",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725164456/https://www.anthropic.com/news/higher-limits-spacex",
+        "archive_timestamp": "2026-07-25T16:44:56Z"
       },
       {
         "type": "vendor_post",
         "url": "https://www.anthropic.com/news/higher-limits-spacex",
         "author": "Anthropic",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725164456/https://www.anthropic.com/news/higher-limits-spacex",
+        "archive_timestamp": "2026-07-25T16:44:56Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -464,14 +484,16 @@
         "url": "https://pasqualepillitteri.it/en/news/2614/claude-resets-rate-limits-5-hour-weekly-may-15-2026",
         "author": "Pasquale Pillitteri (news aggregator), quoting the @ClaudeDevs account",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260628085046/https://pasqualepillitteri.it/en/news/2614/claude-resets-rate-limits-5-hour-weekly-may-15-2026",
+        "archive_timestamp": "2026-06-28T08:50:46Z"
       },
       {
         "type": "press",
         "url": "https://www.verdent.ai/guides/claude-code-limits-doubled-may-2026",
         "author": "Verdent Guides (published 2026-05-21)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726230618/https://www.verdent.ai/guides/claude-code-limits-doubled-may-2026",
+        "archive_timestamp": "2026-07-26T23:06:18Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -499,28 +521,32 @@
         "url": "https://community.openai.com/t/codex-rate-limits-reset-incoming/1381065",
         "author": "VeitB (community moderator), relaying Tibo Sottiaux / @thsottiaux, Codex team lead; OpenAI_Support (admin) replies in-thread",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260719185801/https://community.openai.com/t/codex-rate-limits-reset-incoming/1381065",
+        "archive_timestamp": "2026-07-19T18:58:01Z"
       },
       {
         "type": "status_page",
         "url": "https://status.openai.com/history",
         "author": "OpenAI status page",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726074529/https://status.openai.com/history",
+        "archive_timestamp": "2026-07-26T07:45:29Z"
       },
       {
         "type": "press",
         "url": "https://knightli.com/en/2026/05/17/codex-usage-limit-reset-history/",
         "author": "knightli.com (third-party explainer, published 2026-05-17)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260630073541/https://knightli.com/en/2026/05/17/codex-usage-limit-reset-history/",
+        "archive_timestamp": "2026-06-30T07:35:41Z"
       },
       {
         "type": "user_report",
         "url": "https://community.openai.com/t/codex-users-report-rapid-quota-drains-since-may-10/1380649",
         "author": "multiple forum users (AdityaT, KevinR, LarisaHaster et al.)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260719164514/https://community.openai.com/t/codex-users-report-rapid-quota-drains-since-may-10/1380649",
+        "archive_timestamp": "2026-07-19T16:45:14Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -552,7 +578,8 @@
         "url": "https://community.openai.com/t/codex-rate-limits-reset-incoming/1381065",
         "author": "Tibo (OpenAI Codex), May 23, 2026",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260719185801/https://community.openai.com/t/codex-rate-limits-reset-incoming/1381065",
+        "archive_timestamp": "2026-07-19T18:58:01Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -582,7 +609,8 @@
         "url": "https://community.openai.com/t/codex-rate-limits-reset-incoming/1381065",
         "author": "Tibo (OpenAI Codex), May 23, 2026",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260719185801/https://community.openai.com/t/codex-rate-limits-reset-incoming/1381065",
+        "archive_timestamp": "2026-07-19T18:58:01Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -616,7 +644,8 @@
         "url": "https://www.storyboard18.com/digital/anthropics-claude-ai-suffers-disruption-what-caused-the-outage-and-why-user-quotas-were-reset-99951.htm",
         "author": "Storyboard18 (published June 2, 2026)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726230506/https://www.storyboard18.com/digital/anthropics-claude-ai-suffers-disruption-what-caused-the-outage-and-why-user-quotas-were-reset-99951.htm",
+        "archive_timestamp": "2026-07-26T23:05:06Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -647,7 +676,8 @@
         "url": "https://www.storyboard18.com/digital/anthropics-claude-ai-suffers-disruption-what-caused-the-outage-and-why-user-quotas-were-reset-99951.htm",
         "author": "Storyboard18 (published June 2, 2026)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726230506/https://www.storyboard18.com/digital/anthropics-claude-ai-suffers-disruption-what-caused-the-outage-and-why-user-quotas-were-reset-99951.htm",
+        "archive_timestamp": "2026-07-26T23:05:06Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -684,21 +714,24 @@
         "url": "https://community.openai.com/t/questions-about-an-unexpected-codex-usage-reset-and-new-quota-period/1382610",
         "author": "OpenAI_Support (Mark G.), OpenAI Developer Community, posted 2026-06-04",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260719202846/https://community.openai.com/t/questions-about-an-unexpected-codex-usage-reset-and-new-quota-period/1382610",
+        "archive_timestamp": "2026-07-19T20:28:46Z"
       },
       {
         "type": "user_report",
         "url": "https://github.com/openai/codex/issues/27027",
         "author": "L-XLH, issue #27027 on openai/codex (labels: bug, codex-web, rate-limits)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260709040315/https://github.com/openai/codex/issues/27027",
+        "archive_timestamp": "2026-07-09T04:03:15Z"
       },
       {
         "type": "user_report",
         "url": "https://github.com/openai/codex/discussions/26975",
         "author": "openai/codex Discussion #26975, \"Codex limit on $100 cut since June 4. reset.\"",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260705210132/https://github.com/openai/codex/discussions/26975",
+        "archive_timestamp": "2026-07-05T21:01:32Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -731,21 +764,24 @@
         "url": "https://community.openai.com/t/questions-about-an-unexpected-codex-usage-reset-and-new-quota-period/1382610",
         "author": "OpenAI_Support (Mark G.), OpenAI Developer Community, posted 2026-06-04",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260719202846/https://community.openai.com/t/questions-about-an-unexpected-codex-usage-reset-and-new-quota-period/1382610",
+        "archive_timestamp": "2026-07-19T20:28:46Z"
       },
       {
         "type": "user_report",
         "url": "https://github.com/openai/codex/issues/27027",
         "author": "L-XLH, issue #27027 on openai/codex (labels: bug, codex-web, rate-limits)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260709040315/https://github.com/openai/codex/issues/27027",
+        "archive_timestamp": "2026-07-09T04:03:15Z"
       },
       {
         "type": "user_report",
         "url": "https://github.com/openai/codex/discussions/26975",
         "author": "openai/codex Discussion #26975, \"Codex limit on $100 cut since June 4. reset.\"",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260705210132/https://github.com/openai/codex/discussions/26975",
+        "archive_timestamp": "2026-07-05T21:01:32Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -784,14 +820,16 @@
         "url": "https://community.openai.com/t/flexible-rate-limit-resets-for-codex-and-a-method-to-get-a-reset/1383470",
         "author": "VeitB, OpenAI Developer Community, June 12, 2026",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260719132416/https://community.openai.com/t/flexible-rate-limit-resets-for-codex-and-a-method-to-get-a-reset/1383470",
+        "archive_timestamp": "2026-07-19T13:24:16Z"
       },
       {
         "type": "press",
         "url": "https://www.xda-developers.com/codexs-update-fixes-the-one-thing-i-hate-most-about-ai-usage-limits/",
         "author": "XDA Developers (published June 22, 2026)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260710120806/https://www.xda-developers.com/codexs-update-fixes-the-one-thing-i-hate-most-about-ai-usage-limits/",
+        "archive_timestamp": "2026-07-10T12:08:06Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -824,14 +862,16 @@
         "url": "https://community.openai.com/t/flexible-rate-limit-resets-for-codex-and-a-method-to-get-a-reset/1383470",
         "author": "VeitB, OpenAI Developer Community, June 12, 2026",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260719132416/https://community.openai.com/t/flexible-rate-limit-resets-for-codex-and-a-method-to-get-a-reset/1383470",
+        "archive_timestamp": "2026-07-19T13:24:16Z"
       },
       {
         "type": "press",
         "url": "https://www.xda-developers.com/codexs-update-fixes-the-one-thing-i-hate-most-about-ai-usage-limits/",
         "author": "XDA Developers (published June 22, 2026)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260710120806/https://www.xda-developers.com/codexs-update-fixes-the-one-thing-i-hate-most-about-ai-usage-limits/",
+        "archive_timestamp": "2026-07-10T12:08:06Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -867,14 +907,16 @@
         "url": "https://www.cryptopolitan.com/openai-traces-codex-credit-drain-to-faulty-anti-abuse-system/",
         "author": "Cryptopolitan (published June 30, 2026)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260703064146/https://www.cryptopolitan.com/openai-traces-codex-credit-drain-to-faulty-anti-abuse-system/",
+        "archive_timestamp": "2026-07-03T06:41:46Z"
       },
       {
         "type": "status_page",
         "url": "https://status.openai.com/incidents/01KW2E6W0503W4NXJNCVAG8V6T",
         "author": "OpenAI Status",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726070500/https://status.openai.com/incidents/01KW2E6W0503W4NXJNCVAG8V6T",
+        "archive_timestamp": "2026-07-26T07:05:00Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -904,14 +946,16 @@
         "url": "https://www.cryptopolitan.com/openai-traces-codex-credit-drain-to-faulty-anti-abuse-system/",
         "author": "Cryptopolitan (published June 30, 2026)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260703064146/https://www.cryptopolitan.com/openai-traces-codex-credit-drain-to-faulty-anti-abuse-system/",
+        "archive_timestamp": "2026-07-03T06:41:46Z"
       },
       {
         "type": "status_page",
         "url": "https://status.openai.com/incidents/01KW2E6W0503W4NXJNCVAG8V6T",
         "author": "OpenAI Status",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726070500/https://status.openai.com/incidents/01KW2E6W0503W4NXJNCVAG8V6T",
+        "archive_timestamp": "2026-07-26T07:05:00Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -954,21 +998,24 @@
         "url": "https://www.implicator.ai/anthropic-resets-claude-limits-for-third-week-without-explaining-why/",
         "author": "Implicator.ai (published 2026-07-16); dates this reset to July 9",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726230431/https://www.implicator.ai/anthropic-resets-claude-limits-for-third-week-without-explaining-why/",
+        "archive_timestamp": "2026-07-26T23:04:31Z"
       },
       {
         "type": "press",
         "url": "https://www.ababnews.com/news/ac883e72-aec1-4064-bdb9-4e37f61bcaf2",
         "author": "ABAB News (published 2026-07-09, contemporaneous)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726230101/https://www.ababnews.com/news/ac883e72-aec1-4064-bdb9-4e37f61bcaf2",
+        "archive_timestamp": "2026-07-26T23:01:01Z"
       },
       {
         "type": "press",
         "url": "https://www.explainx.ai/blog/claude-codex-cursor-usage-limits-reset-july-2026",
         "author": "ExplainX (published 2026-07-16); dates this reset to July 9",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260720071902/https://explainx.ai/blog/claude-codex-cursor-usage-limits-reset-july-2026",
+        "archive_timestamp": "2026-07-20T07:19:02Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -1008,21 +1055,24 @@
         "url": "https://www.implicator.ai/anthropic-resets-claude-limits-for-third-week-without-explaining-why/",
         "author": "Implicator.ai (published 2026-07-16); dates this reset to July 9",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726230431/https://www.implicator.ai/anthropic-resets-claude-limits-for-third-week-without-explaining-why/",
+        "archive_timestamp": "2026-07-26T23:04:31Z"
       },
       {
         "type": "press",
         "url": "https://www.ababnews.com/news/ac883e72-aec1-4064-bdb9-4e37f61bcaf2",
         "author": "ABAB News (published 2026-07-09, contemporaneous)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726230101/https://www.ababnews.com/news/ac883e72-aec1-4064-bdb9-4e37f61bcaf2",
+        "archive_timestamp": "2026-07-26T23:01:01Z"
       },
       {
         "type": "press",
         "url": "https://www.explainx.ai/blog/claude-codex-cursor-usage-limits-reset-july-2026",
         "author": "ExplainX (published 2026-07-16); dates this reset to July 9",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260720071902/https://explainx.ai/blog/claude-codex-cursor-usage-limits-reset-july-2026",
+        "archive_timestamp": "2026-07-20T07:19:02Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -1057,7 +1107,8 @@
         "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
         "author": "Max Woolf (minimaxir)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725001620/https://minimaxir.com/2026/07/agent-quota-reset/",
+        "archive_timestamp": "2026-07-25T00:16:20Z"
       },
       {
         "type": "press",
@@ -1071,7 +1122,8 @@
         "url": "https://explainx.ai/blog/gpt-5-6-sol-thinking-budget-banked-reset-tibo-july-2026",
         "author": null,
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260713184720/https://explainx.ai/blog/gpt-5-6-sol-thinking-budget-banked-reset-tibo-july-2026",
+        "archive_timestamp": "2026-07-13T18:47:20Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -1101,7 +1153,8 @@
         "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
         "author": "Max Woolf (minimaxir)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725001620/https://minimaxir.com/2026/07/agent-quota-reset/",
+        "archive_timestamp": "2026-07-25T00:16:20Z"
       },
       {
         "type": "press",
@@ -1115,7 +1168,8 @@
         "url": "https://explainx.ai/blog/gpt-5-6-sol-thinking-budget-banked-reset-tibo-july-2026",
         "author": null,
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260713184720/https://explainx.ai/blog/gpt-5-6-sol-thinking-budget-banked-reset-tibo-july-2026",
+        "archive_timestamp": "2026-07-13T18:47:20Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -1151,28 +1205,32 @@
         "url": "https://the-decoder.com/openai-admits-it-didnt-get-everything-quite-right-with-chatgpt-work-launch-and-scrambles-to-fix-ux-and-costs/",
         "author": null,
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260712133705/https://the-decoder.com/openai-admits-it-didnt-get-everything-quite-right-with-chatgpt-work-launch-and-scrambles-to-fix-ux-and-costs/",
+        "archive_timestamp": "2026-07-12T13:37:05Z"
       },
       {
         "type": "press",
         "url": "https://lapaasvoice.com/openai-reset-chatgpt-work-and-codex-rate-limits-twice-after-gpt-5-6-sol-launch/",
         "author": null,
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726225809/https://lapaasvoice.com/openai-reset-chatgpt-work-and-codex-rate-limits-twice-after-gpt-5-6-sol-launch/",
+        "archive_timestamp": "2026-07-26T22:58:09Z"
       },
       {
         "type": "press",
         "url": "https://explainx.ai/blog/chatgpt-codex-5-hour-limit-removed-weekly-reset-july-2026",
         "author": null,
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260714152158/https://www.explainx.ai/blog/chatgpt-codex-5-hour-limit-removed-weekly-reset-july-2026",
+        "archive_timestamp": "2026-07-14T15:21:58Z"
       },
       {
         "type": "user_report",
         "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
         "author": "Max Woolf (minimaxir)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725001620/https://minimaxir.com/2026/07/agent-quota-reset/",
+        "archive_timestamp": "2026-07-25T00:16:20Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -1204,28 +1262,32 @@
         "url": "https://the-decoder.com/openai-admits-it-didnt-get-everything-quite-right-with-chatgpt-work-launch-and-scrambles-to-fix-ux-and-costs/",
         "author": null,
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260712133705/https://the-decoder.com/openai-admits-it-didnt-get-everything-quite-right-with-chatgpt-work-launch-and-scrambles-to-fix-ux-and-costs/",
+        "archive_timestamp": "2026-07-12T13:37:05Z"
       },
       {
         "type": "press",
         "url": "https://lapaasvoice.com/openai-reset-chatgpt-work-and-codex-rate-limits-twice-after-gpt-5-6-sol-launch/",
         "author": null,
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726225809/https://lapaasvoice.com/openai-reset-chatgpt-work-and-codex-rate-limits-twice-after-gpt-5-6-sol-launch/",
+        "archive_timestamp": "2026-07-26T22:58:09Z"
       },
       {
         "type": "press",
         "url": "https://explainx.ai/blog/chatgpt-codex-5-hour-limit-removed-weekly-reset-july-2026",
         "author": null,
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260714152158/https://www.explainx.ai/blog/chatgpt-codex-5-hour-limit-removed-weekly-reset-july-2026",
+        "archive_timestamp": "2026-07-14T15:21:58Z"
       },
       {
         "type": "user_report",
         "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
         "author": "Max Woolf (minimaxir)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725001620/https://minimaxir.com/2026/07/agent-quota-reset/",
+        "archive_timestamp": "2026-07-25T00:16:20Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -1260,28 +1322,32 @@
         "url": "https://explainx.ai/blog/fable-5-gpt-5-6-rate-limit-resets-july-2026",
         "author": null,
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260714152211/https://www.explainx.ai/blog/fable-5-gpt-5-6-rate-limit-resets-july-2026",
+        "archive_timestamp": "2026-07-14T15:22:11Z"
       },
       {
         "type": "press",
         "url": "https://the-decoder.com/openai-admits-it-didnt-get-everything-quite-right-with-chatgpt-work-launch-and-scrambles-to-fix-ux-and-costs/",
         "author": null,
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260712133705/https://the-decoder.com/openai-admits-it-didnt-get-everything-quite-right-with-chatgpt-work-launch-and-scrambles-to-fix-ux-and-costs/",
+        "archive_timestamp": "2026-07-12T13:37:05Z"
       },
       {
         "type": "press",
         "url": "https://lapaasvoice.com/openai-reset-chatgpt-work-and-codex-rate-limits-twice-after-gpt-5-6-sol-launch/",
         "author": null,
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726225809/https://lapaasvoice.com/openai-reset-chatgpt-work-and-codex-rate-limits-twice-after-gpt-5-6-sol-launch/",
+        "archive_timestamp": "2026-07-26T22:58:09Z"
       },
       {
         "type": "user_report",
         "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
         "author": "Max Woolf (minimaxir)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725001620/https://minimaxir.com/2026/07/agent-quota-reset/",
+        "archive_timestamp": "2026-07-25T00:16:20Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -1313,28 +1379,32 @@
         "url": "https://explainx.ai/blog/fable-5-gpt-5-6-rate-limit-resets-july-2026",
         "author": null,
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260714152211/https://www.explainx.ai/blog/fable-5-gpt-5-6-rate-limit-resets-july-2026",
+        "archive_timestamp": "2026-07-14T15:22:11Z"
       },
       {
         "type": "press",
         "url": "https://the-decoder.com/openai-admits-it-didnt-get-everything-quite-right-with-chatgpt-work-launch-and-scrambles-to-fix-ux-and-costs/",
         "author": null,
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260712133705/https://the-decoder.com/openai-admits-it-didnt-get-everything-quite-right-with-chatgpt-work-launch-and-scrambles-to-fix-ux-and-costs/",
+        "archive_timestamp": "2026-07-12T13:37:05Z"
       },
       {
         "type": "press",
         "url": "https://lapaasvoice.com/openai-reset-chatgpt-work-and-codex-rate-limits-twice-after-gpt-5-6-sol-launch/",
         "author": null,
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726225809/https://lapaasvoice.com/openai-reset-chatgpt-work-and-codex-rate-limits-twice-after-gpt-5-6-sol-launch/",
+        "archive_timestamp": "2026-07-26T22:58:09Z"
       },
       {
         "type": "user_report",
         "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
         "author": "Max Woolf (minimaxir)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725001620/https://minimaxir.com/2026/07/agent-quota-reset/",
+        "archive_timestamp": "2026-07-25T00:16:20Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -1369,35 +1439,40 @@
         "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
         "author": "Max Woolf",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725001620/https://minimaxir.com/2026/07/agent-quota-reset/",
+        "archive_timestamp": "2026-07-25T00:16:20Z"
       },
       {
         "type": "user_report",
         "url": "https://codex-resets.com/",
         "author": "Codex Resets tracker (community-run archive of Codex reset announcements)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725174517/https://codex-resets.com/",
+        "archive_timestamp": "2026-07-25T17:45:17Z"
       },
       {
         "type": "press",
         "url": "https://explainx.ai/blog/chatgpt-codex-5-hour-limit-removed-weekly-reset-july-2026",
         "author": "ExplainX",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260714152158/https://www.explainx.ai/blog/chatgpt-codex-5-hour-limit-removed-weekly-reset-july-2026",
+        "archive_timestamp": "2026-07-14T15:21:58Z"
       },
       {
         "type": "press",
         "url": "https://www.eesel.ai/blog/gpt-remove-5-hour-limits",
         "author": "eesel AI",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726230324/https://www.eesel.ai/blog/gpt-remove-5-hour-limits",
+        "archive_timestamp": "2026-07-26T23:03:24Z"
       },
       {
         "type": "user_report",
         "url": "https://community.openai.com/t/banked-codex-resets-disappeared-in-the-new-chatgpt-desktop-app-windows/1386667",
         "author": "OpenAI Developer Community (Bugs category)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260719131027/https://community.openai.com/t/banked-codex-resets-disappeared-in-the-new-chatgpt-desktop-app-windows/1386667",
+        "archive_timestamp": "2026-07-19T13:10:27Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -1427,35 +1502,40 @@
         "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
         "author": "Max Woolf",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725001620/https://minimaxir.com/2026/07/agent-quota-reset/",
+        "archive_timestamp": "2026-07-25T00:16:20Z"
       },
       {
         "type": "user_report",
         "url": "https://codex-resets.com/",
         "author": "Codex Resets tracker (community-run archive of Codex reset announcements)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725174517/https://codex-resets.com/",
+        "archive_timestamp": "2026-07-25T17:45:17Z"
       },
       {
         "type": "press",
         "url": "https://explainx.ai/blog/chatgpt-codex-5-hour-limit-removed-weekly-reset-july-2026",
         "author": "ExplainX",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260714152158/https://www.explainx.ai/blog/chatgpt-codex-5-hour-limit-removed-weekly-reset-july-2026",
+        "archive_timestamp": "2026-07-14T15:21:58Z"
       },
       {
         "type": "press",
         "url": "https://www.eesel.ai/blog/gpt-remove-5-hour-limits",
         "author": "eesel AI",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726230324/https://www.eesel.ai/blog/gpt-remove-5-hour-limits",
+        "archive_timestamp": "2026-07-26T23:03:24Z"
       },
       {
         "type": "user_report",
         "url": "https://community.openai.com/t/banked-codex-resets-disappeared-in-the-new-chatgpt-desktop-app-windows/1386667",
         "author": "OpenAI Developer Community (Bugs category)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260719131027/https://community.openai.com/t/banked-codex-resets-disappeared-in-the-new-chatgpt-desktop-app-windows/1386667",
+        "archive_timestamp": "2026-07-19T13:10:27Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -1498,28 +1578,32 @@
         "url": "https://nerdschalk.com/openai-codex-5-hour-limit-removed-gpt-5-6-sol/",
         "author": "Nerdschalk — cites the source post ID and carries the verbatim opening",
         "captured_at": "2026-07-26T11:30:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726225916/https://nerdschalk.com/openai-codex-5-hour-limit-removed-gpt-5-6-sol/",
+        "archive_timestamp": "2026-07-26T22:59:16Z"
       },
       {
         "type": "press",
         "url": "https://www.digitaltrends.com/computing/openai-just-took-the-handcuffs-off-your-chatgpt-work-and-codex-usage-limits-at-least-for-now/",
         "author": "Digital Trends",
         "captured_at": "2026-07-26T11:30:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725124741/https://www.digitaltrends.com/computing/openai-just-took-the-handcuffs-off-your-chatgpt-work-and-codex-usage-limits-at-least-for-now/",
+        "archive_timestamp": "2026-07-25T12:47:41Z"
       },
       {
         "type": "press",
         "url": "https://finance.biggo.com/news/ef59065f-8eb7-4d14-b139-d22d3f913ac8",
         "author": "BigGo Finance",
         "captured_at": "2026-07-26T11:30:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726225702/https://finance.biggo.com/news/ef59065f-8eb7-4d14-b139-d22d3f913ac8",
+        "archive_timestamp": "2026-07-26T22:57:02Z"
       },
       {
         "type": "press",
         "url": "https://explainx.ai/blog/chatgpt-codex-5-hour-limit-removed-weekly-reset-july-2026",
         "author": "explainX — renders the thread in COMPRESSED form; not verbatim",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260714152158/https://www.explainx.ai/blog/chatgpt-codex-5-hour-limit-removed-weekly-reset-july-2026",
+        "archive_timestamp": "2026-07-14T15:21:58Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -1573,7 +1657,8 @@
         "url": "https://www.helpnetsecurity.com/2026/07/13/claude-code-weekly-limits-promotion-extended/",
         "author": "Help Net Security (published July 13, 2026)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726230353/https://www.helpnetsecurity.com/2026/07/13/claude-code-weekly-limits-promotion-extended/",
+        "archive_timestamp": "2026-07-26T23:03:53Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -1608,7 +1693,8 @@
         "url": "https://www.helpnetsecurity.com/2026/07/13/claude-code-weekly-limits-promotion-extended/",
         "author": "Help Net Security (published July 13, 2026)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726230353/https://www.helpnetsecurity.com/2026/07/13/claude-code-weekly-limits-promotion-extended/",
+        "archive_timestamp": "2026-07-26T23:03:53Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -1643,49 +1729,56 @@
         "url": "https://www.latent.space/p/ainews-codex-usage-up-10x-in-6-months",
         "author": "Latent.Space / AINews, 14 July 2026 issue",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260714073948/https://www.latent.space/p/ainews-codex-usage-up-10x-in-6-months",
+        "archive_timestamp": "2026-07-14T07:39:48Z"
       },
       {
         "type": "press",
         "url": "https://vpsranking.com/news/ai/ai-2026-07-13-openai-codex-7m-users-banked-reset/",
         "author": "VPSRanking AI News",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726230030/https://vpsranking.com/news/ai/ai-2026-07-13-openai-codex-7m-users-banked-reset/",
+        "archive_timestamp": "2026-07-26T23:00:30Z"
       },
       {
         "type": "user_report",
         "url": "https://codex-resets.com/",
         "author": "Codex Resets tracker (community-run archive of Codex reset announcements)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725174517/https://codex-resets.com/",
+        "archive_timestamp": "2026-07-25T17:45:17Z"
       },
       {
         "type": "user_report",
         "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
         "author": "Max Woolf",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725001620/https://minimaxir.com/2026/07/agent-quota-reset/",
+        "archive_timestamp": "2026-07-25T00:16:20Z"
       },
       {
         "type": "vendor_post",
         "url": "https://learn.chatgpt.com/docs/changelog",
         "author": "OpenAI Codex changelog, Codex CLI 0.144.0, 9 July 2026",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725171403/https://learn.chatgpt.com/docs/changelog",
+        "archive_timestamp": "2026-07-25T17:14:03Z"
       },
       {
         "type": "user_report",
         "url": "https://community.openai.com/t/missing-banked-reset-after-codex-usage-limit-reset-announcement/1387097",
         "author": "OpenAI Developer Community, staff reply (EricGT) quoting official explanation",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260719121141/https://community.openai.com/t/missing-banked-reset-after-codex-usage-limit-reset-announcement/1387097",
+        "archive_timestamp": "2026-07-19T12:11:41Z"
       },
       {
         "type": "press",
         "url": "https://explainx.ai/blog/openai-codex-chatgpt-work-8-million-users-gpt-5-6-sol-july-2026",
         "author": "ExplainX",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260720071935/https://explainx.ai/blog/openai-codex-chatgpt-work-8-million-users-gpt-5-6-sol-july-2026",
+        "archive_timestamp": "2026-07-20T07:19:35Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -1717,28 +1810,32 @@
         "url": "https://github.com/openai/codex/issues/33344",
         "author": "issue reporter on OpenAI's official openai/codex repository (opened 2026-07-15)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726225739/https://github.com/openai/codex/issues/33344",
+        "archive_timestamp": "2026-07-26T22:57:39Z"
       },
       {
         "type": "user_report",
         "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
         "author": "Max Woolf (minimaxir)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725001620/https://minimaxir.com/2026/07/agent-quota-reset/",
+        "archive_timestamp": "2026-07-25T00:16:20Z"
       },
       {
         "type": "user_report",
         "url": "https://codex-resets.com/",
         "author": "codex-resets.com tracker, transcribing the 8M-milestone announcement",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725174517/https://codex-resets.com/",
+        "archive_timestamp": "2026-07-25T17:45:17Z"
       },
       {
         "type": "press",
         "url": "https://explainx.ai/blog/openai-codex-chatgpt-work-8-million-users-gpt-5-6-sol-july-2026",
         "author": "explainx.ai (pub. 2026-07-15, upd. 2026-07-23) — low-quality SEO blog, corroborating only",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260720071935/https://explainx.ai/blog/openai-codex-chatgpt-work-8-million-users-gpt-5-6-sol-july-2026",
+        "archive_timestamp": "2026-07-20T07:19:35Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -1770,28 +1867,32 @@
         "url": "https://github.com/openai/codex/issues/33344",
         "author": "issue reporter on OpenAI's official openai/codex repository (opened 2026-07-15)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726225739/https://github.com/openai/codex/issues/33344",
+        "archive_timestamp": "2026-07-26T22:57:39Z"
       },
       {
         "type": "user_report",
         "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
         "author": "Max Woolf (minimaxir)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725001620/https://minimaxir.com/2026/07/agent-quota-reset/",
+        "archive_timestamp": "2026-07-25T00:16:20Z"
       },
       {
         "type": "user_report",
         "url": "https://codex-resets.com/",
         "author": "codex-resets.com tracker, transcribing the 8M-milestone announcement",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725174517/https://codex-resets.com/",
+        "archive_timestamp": "2026-07-25T17:45:17Z"
       },
       {
         "type": "press",
         "url": "https://explainx.ai/blog/openai-codex-chatgpt-work-8-million-users-gpt-5-6-sol-july-2026",
         "author": "explainx.ai (pub. 2026-07-15, upd. 2026-07-23) — low-quality SEO blog, corroborating only",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260720071935/https://explainx.ai/blog/openai-codex-chatgpt-work-8-million-users-gpt-5-6-sol-july-2026",
+        "archive_timestamp": "2026-07-20T07:19:35Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -1826,28 +1927,32 @@
         "url": "https://community.openai.com/t/missing-banked-reset-after-codex-usage-limit-reset-announcement/1387097",
         "author": "William_Lynn, OpenAI Developer Community (posted 2026-07-16 04:14)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260719121141/https://community.openai.com/t/missing-banked-reset-after-codex-usage-limit-reset-announcement/1387097",
+        "archive_timestamp": "2026-07-19T12:11:41Z"
       },
       {
         "type": "user_report",
         "url": "https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897",
         "author": "Dragonrin, OpenAI Developer Community — first-hand Pro account, reset observed 2026-07-15",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260719173516/https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897",
+        "archive_timestamp": "2026-07-19T17:35:16Z"
       },
       {
         "type": "user_report",
         "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
         "author": "Max Woolf (minimaxir)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725001620/https://minimaxir.com/2026/07/agent-quota-reset/",
+        "archive_timestamp": "2026-07-25T00:16:20Z"
       },
       {
         "type": "user_report",
         "url": "https://codex-resets.com/",
         "author": "codex-resets.com tracker, transcribing the 9M-milestone announcement",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725174517/https://codex-resets.com/",
+        "archive_timestamp": "2026-07-25T17:45:17Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -1879,28 +1984,32 @@
         "url": "https://community.openai.com/t/missing-banked-reset-after-codex-usage-limit-reset-announcement/1387097",
         "author": "William_Lynn, OpenAI Developer Community (posted 2026-07-16 04:14)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260719121141/https://community.openai.com/t/missing-banked-reset-after-codex-usage-limit-reset-announcement/1387097",
+        "archive_timestamp": "2026-07-19T12:11:41Z"
       },
       {
         "type": "user_report",
         "url": "https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897",
         "author": "Dragonrin, OpenAI Developer Community — first-hand Pro account, reset observed 2026-07-15",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260719173516/https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897",
+        "archive_timestamp": "2026-07-19T17:35:16Z"
       },
       {
         "type": "user_report",
         "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
         "author": "Max Woolf (minimaxir)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725001620/https://minimaxir.com/2026/07/agent-quota-reset/",
+        "archive_timestamp": "2026-07-25T00:16:20Z"
       },
       {
         "type": "user_report",
         "url": "https://codex-resets.com/",
         "author": "codex-resets.com tracker, transcribing the 9M-milestone announcement",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725174517/https://codex-resets.com/",
+        "archive_timestamp": "2026-07-25T17:45:17Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -1940,14 +2049,16 @@
         "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
         "author": "Max Woolf (minimaxir), independent technical blog",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725001620/https://minimaxir.com/2026/07/agent-quota-reset/",
+        "archive_timestamp": "2026-07-25T00:16:20Z"
       },
       {
         "type": "user_report",
         "url": "https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897",
         "author": "OpenAI Developer Community forum user",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260719173516/https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897",
+        "archive_timestamp": "2026-07-19T17:35:16Z"
       },
       {
         "type": "press",
@@ -1986,21 +2097,24 @@
         "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
         "author": "Max Woolf (minimaxir)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725001620/https://minimaxir.com/2026/07/agent-quota-reset/",
+        "archive_timestamp": "2026-07-25T00:16:20Z"
       },
       {
         "type": "user_report",
         "url": "https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897",
         "author": "Dragonrin, OpenAI Developer Community — posted 2026-07-18, so \"yesterday\" = 07-17",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260719173516/https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897",
+        "archive_timestamp": "2026-07-19T17:35:16Z"
       },
       {
         "type": "user_report",
         "url": "https://codex-resets.com/",
         "author": "codex-resets.com tracker, transcribing the \"Oops... I did it again\" announcement",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725174517/https://codex-resets.com/",
+        "archive_timestamp": "2026-07-25T17:45:17Z"
       },
       {
         "type": "user_report",
@@ -2014,7 +2128,8 @@
         "url": "https://news.ycombinator.com/item?id=48963465",
         "author": "HN commenter on the \"Codex Resets\" submission — speaks to the reset SERIES generally, does NOT pin 07-17",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260720114719/https://news.ycombinator.com/item?id=48963465",
+        "archive_timestamp": "2026-07-20T11:47:19Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -2049,14 +2164,16 @@
         "url": "https://www.digitalapplied.com/blog/claude-code-limits-raised-fable-5-max-team-premium-2026",
         "author": "@ClaudeDevs, quoted by Digital Applied (published July 20, 2026)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260722194708/https://www.digitalapplied.com/blog/claude-code-limits-raised-fable-5-max-team-premium-2026",
+        "archive_timestamp": "2026-07-22T19:47:08Z"
       },
       {
         "type": "press",
         "url": "https://www.progressiverobot.com/2026/07/18/claude-code-weekly-limits/",
         "author": "Progressive Robot (published July 18, 2026)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260718230023/https://www.progressiverobot.com/2026/07/18/claude-code-weekly-limits/",
+        "archive_timestamp": "2026-07-18T23:00:23Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -2127,21 +2244,24 @@
         "url": "https://minimaxir.com/2026/07/agent-quota-reset/",
         "author": "Max Woolf (minimaxir)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725001620/https://minimaxir.com/2026/07/agent-quota-reset/",
+        "archive_timestamp": "2026-07-25T00:16:20Z"
       },
       {
         "type": "user_report",
         "url": "https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897",
         "author": "Dragonrin, OpenAI Developer Community — posted 2026-07-18, so \"yesterday\" = 07-17",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260719173516/https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897",
+        "archive_timestamp": "2026-07-19T17:35:16Z"
       },
       {
         "type": "user_report",
         "url": "https://codex-resets.com/",
         "author": "codex-resets.com tracker, transcribing the \"Oops... I did it again\" announcement",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260725174517/https://codex-resets.com/",
+        "archive_timestamp": "2026-07-25T17:45:17Z"
       },
       {
         "type": "user_report",
@@ -2155,7 +2275,8 @@
         "url": "https://news.ycombinator.com/item?id=48963465",
         "author": "HN commenter on the \"Codex Resets\" submission — speaks to the reset SERIES generally, does NOT pin 07-17",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260720114719/https://news.ycombinator.com/item?id=48963465",
+        "archive_timestamp": "2026-07-20T11:47:19Z"
       },
       {
         "type": "user_report",
@@ -2207,7 +2328,8 @@
         "url": "https://www.unite.ai/openai-says-codex-and-chatgpt-work-hit-10-million-users/",
         "author": "Unite.AI (published July 21, 2026, updated July 23)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726230543/https://www.unite.ai/openai-says-codex-and-chatgpt-work-hit-10-million-users/",
+        "archive_timestamp": "2026-07-26T23:05:43Z"
       }
     ],
     "recorded_by": "claude-code-agent",
@@ -2237,7 +2359,8 @@
         "url": "https://www.unite.ai/openai-says-codex-and-chatgpt-work-hit-10-million-users/",
         "author": "Unite.AI (published July 21, 2026, updated July 23)",
         "captured_at": "2026-07-25T18:45:00Z",
-        "archive_url": null
+        "archive_url": "https://web.archive.org/web/20260726230543/https://www.unite.ai/openai-says-codex-and-chatgpt-work-hit-10-million-users/",
+        "archive_timestamp": "2026-07-26T23:05:43Z"
       }
     ],
     "recorded_by": "claude-code-agent",

@@ -1,0 +1,25 @@
+{
+  "url": "https://www.eesel.ai/blog/gpt-remove-5-hour-limits",
+  "attempts": [
+    {
+      "checked_at": "2026-07-26T22:53:00.699Z",
+      "method": "wayback-availability",
+      "status": "not_found",
+      "note": "no existing capture"
+    },
+    {
+      "checked_at": "2026-07-26T22:53:46.612Z",
+      "method": "wayback-availability",
+      "status": "not_found",
+      "note": "no existing capture"
+    },
+    {
+      "checked_at": "2026-07-26T23:03:44.824Z",
+      "method": "save-page-now",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726230324/https://www.eesel.ai/blog/gpt-remove-5-hour-limits",
+      "archive_timestamp": "2026-07-26T23:03:24Z",
+      "note": "captured via SPN, verified by availability"
+    }
+  ]
+}

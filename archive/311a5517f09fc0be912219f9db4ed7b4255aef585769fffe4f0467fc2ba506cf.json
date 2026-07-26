@@ -1,0 +1,12 @@
+{
+  "url": "https://news.ycombinator.com/item?id=48963465",
+  "attempts": [
+    {
+      "checked_at": "2026-07-26T22:52:38.857Z",
+      "method": "wayback-availability",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260720114719/https://news.ycombinator.com/item?id=48963465",
+      "archive_timestamp": "2026-07-20T11:47:19Z"
+    }
+  ]
+}

@@ -306,7 +306,7 @@ test('CSV quotes commas and newlines rather than corrupting the row', () => {
   const { csv } = buildOutputs([rec]);
   assert.match(csv, /"has, a comma and a ""quote"""/);
   assert.match(csv, /"line one\nline two"/);
-  assert.equal(csv.split('\n')[0].split(',').length, 28, 'header column count changed — update the test and the docs');
+  assert.equal(csv.split('\n')[0].split(',').length, 29, 'header column count changed — update the test and the docs');
 });
 
 // ------------------------------------------------- provisional records (added 2026-07-26)
