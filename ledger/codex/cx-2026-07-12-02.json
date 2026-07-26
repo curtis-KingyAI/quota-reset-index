@@ -2,9 +2,9 @@
   "id": "cx-2026-07-12-02",
   "vendor": "codex",
   "kind": "global_reset",
-  "effective_at": "2026-07-12T00:00:00Z",
-  "effective_at_precision": "day",
-  "observed_at": "2026-07-26T11:00:00Z",
+  "effective_at": "2026-07-12T18:00:00Z",
+  "effective_at_precision": "hour",
+  "observed_at": "2026-07-26T11:30:00Z",
   "scope": {
     "windows": [
       "weekly",
@@ -16,35 +16,54 @@
       "Pro"
     ],
     "partial": false,
-    "notes": "The 6M-active-users milestone in OpenAI's stated commitment to reset Codex usage limits at every additional million weekly active users up to 10M. Reported as carrying TWO distinct effects: an immediate usage reset, AND removal of the existing 5-hour usage cap on Plus, Business and Pro. The cap removal reportedly persisted through the following weeks. Plan list applies to the cap removal specifically; the reset itself is described by product (\"Codex and ChatGPT Work\") rather than by tier."
+    "notes": "The 6M-active-users milestone. The announcement describes itself as \"Three important updates\": (1) TEMPORARILY removing the 5-hour usage limit for Plus, Business and Pro — the weekly cap stayed in force; (2) an immediate one-time usage reset landing within the hour of the post, NOT banked and with nothing to redeem; (3) GPT-5.6 Sol made more efficient so a given task burns less quota. The plan list applies to the cap removal specifically. Trigger is demand-surge management plus milestone celebration — GPT-5.6 Sol went GA on 07-11 and the post opens \"The last 48 hours of Codex and ChatGPT Work have been intense!\". No incident is involved."
   },
   "trigger": "milestone",
-  "confidence": "reported",
+  "confidence": "probable",
   "evidence": [
     {
       "type": "press",
-      "url": "https://explainx.ai/blog/chatgpt-codex-5-hour-limit-removed-weekly-reset-july-2026",
-      "author": "explainX",
-      "captured_at": "2026-07-25T18:45:00Z",
+      "url": "https://nerdschalk.com/openai-codex-5-hour-limit-removed-gpt-5-6-sol/",
+      "author": "Nerdschalk — cites the source post ID and carries the verbatim opening",
+      "captured_at": "2026-07-26T11:30:00Z",
       "archive_url": null
     },
     {
       "type": "press",
-      "url": "https://finance.biggo.com/news/0b22f4f6-b980-4f9b-a9aa-382019fc2ba8",
+      "url": "https://www.digitaltrends.com/computing/openai-just-took-the-handcuffs-off-your-chatgpt-work-and-codex-usage-limits-at-least-for-now/",
+      "author": "Digital Trends",
+      "captured_at": "2026-07-26T11:30:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://finance.biggo.com/news/ef59065f-8eb7-4d14-b139-d22d3f913ac8",
       "author": "BigGo Finance",
+      "captured_at": "2026-07-26T11:30:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://explainx.ai/blog/chatgpt-codex-5-hour-limit-removed-weekly-reset-july-2026",
+      "author": "explainX — renders the thread in COMPRESSED form; not verbatim",
       "captured_at": "2026-07-25T18:45:00Z",
       "archive_url": null
     }
   ],
   "recorded_by": "claude-code-agent",
   "superseded_by": null,
-  "notes": "⚠️ PROVISIONAL — NOT SEALED, AND NOT AN ASSERTION THAT THIS EVENT IS DISTINCT. Created 2026-07-26 on operator instruction, because a gap with no marker reads as \"didn't happen\". It records an OPEN QUESTION: whether the 6M milestone reset is a separate event from cx-2026-07-12-01, which is recorded on the same day as a banked_reset with trigger incident_compensation. The two are sourced differently and describe different effects (immediate reset + 5-hour cap removal, versus banked credits usable later), but same-day collision is exactly the shape of one announcement described twice. Resolution requires comparing the underlying post IDs and their decoded timestamps; that comparison is in flight and this record must be updated or withdrawn on its result. ⚠️ QUOTE QUALITY: the explainX rendering is a COMPRESSED SUMMARY of a multi-item thread, not clean verbatim — the verifying agent flagged it explicitly. Do not present it as an exact quotation. ⚠️ SCHEMA DEFECT VISIBLE HERE: this record carries TWO effect primitives (a reset and a cap removal) and `kind` can hold only one, so `kind` is recorded as global_reset and the cap removal survives only as prose in scope.notes. See the schema-defect report accompanying this commit.",
+  "notes": "⚠️ STILL PROVISIONAL — the factual question is resolved, but two consequential decisions about SEALED records are the operator's to make (below). RESOLVED 2026-07-26 by post-ID comparison, per operator instruction. This is a DISTINCT event from cx-2026-07-12-01, and the ledger was UNDER-counting rather than double-counting. Three announcements exist across 07-12/13, two of them on 07-12: post 2076365965915467978 decodes to 2026-07-12T17:59:57.945Z (THIS record — immediate reset + 5h cap removal + efficiency, 6M milestone); post 2076418567143408112 decodes to 2026-07-12T21:28:59.055Z (cx-2026-07-12-01 — banked reset to 500k users, no milestone); post 2076735790567338203 decodes to 2026-07-13T18:29:31.013Z (cx-2026-07-13-01 — 7M milestone, universal banked reset). The two 07-12 posts are 3h29m apart with non-overlapping text, different reset TYPES (immediate vs banked) and different populations (all vs 500k). DECODE INDEPENDENTLY VALIDATED: the codex-reset.com /api/feed publishes its own timestamps for two of these IDs and they match the offline arithmetic decode to the second — so the IDs are real and the formula is applied correctly, without trusting the mirror for substance. effective_at is the announcement hour; the reset was stated to land \"within the hour\", so hour precision is the honest ceiling. ⚠️ Root cause of the original confusion: minimaxir collapses both days into one predicate (\"quota resets July 12 and July 13 which can be manually used at any time\") and hyperlinks only the 21:28Z post, so the 17:59Z announcement is invisible to a reader following that source.",
   "status": "provisional",
   "links": [
     {
-      "relation": "conflicts_with",
+      "relation": "related_to",
       "id": "cx-2026-07-12-01",
-      "note": "Same vendor, same UTC day. cx-2026-07-12-01 records a banked_reset attributed to incident_compensation; this records an immediate milestone reset plus a 5-hour cap removal. Either there were two announcements ~24h apart in a dense burst, or one announcement has been split across two sources describing different parts of it. Unresolved: do not treat either record as confirmed-distinct until the post-ID comparison lands."
+      "note": "Same vendor, same UTC day, 3h29m earlier. NOT a conflict — resolved 2026-07-26 by post-ID comparison. Different post IDs, different decoded timestamps, non-overlapping verbatim text, different reset primitives (immediate here, banked there) and different populations (all users here, 500k there). Relation downgraded from conflicts_with to related_to on that evidence."
+    },
+    {
+      "relation": "related_to",
+      "id": "cx-2026-07-13-01",
+      "note": "The 7M milestone, ~24.5h later. Confirms 6M and 7M are separate milestones roughly a day apart rather than one event; the earlier verifier that placed 7M on 07-13 was correct."
     }
   ]
 }
