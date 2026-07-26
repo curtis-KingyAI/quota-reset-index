@@ -1,0 +1,1375 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quota Reset Index</title>
+<style>
+  :root { --ink:#16202a; --soft:#5d6c79; --faint:#8c99a4; --rule:#c7cfd5; --hair:#e6eaed;
+          --well:#f6f8f9; --warn:#8a4a12; --warn-bg:#fdf6ee; --link:#2f5aa8;
+          --codex:#b4431c; --claude:#3a4e86; --dead:#9aa6ae; }
+  *{box-sizing:border-box}
+  body { margin:0 auto; max-width:74rem; padding:2rem 1.25rem 5rem;
+         font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--ink); }
+  a { color:var(--link) }
+  h1 { font-size:2rem; letter-spacing:-.02em; margin:0 0 .25rem }
+  h2 { font-size:1.15rem; margin:2.5rem 0 .75rem; padding-bottom:.4rem; border-bottom:1px solid var(--ink) }
+  .lede { color:var(--soft); margin:0 0 1.5rem; max-width:60rem }
+  nav { display:flex; gap:1.25rem; flex-wrap:wrap; padding:.75rem 0 1.25rem;
+        border-bottom:1px solid var(--rule); margin-bottom:1.5rem; font-size:.9rem }
+  nav a[aria-current] { font-weight:600; color:var(--ink); text-decoration:none }
+  .banner { border:2px solid var(--warn); background:var(--warn-bg); color:var(--warn);
+            padding:.9rem 1.05rem; margin:1.25rem 0; font-weight:600; font-size:.92rem }
+  .banner p { margin:.45rem 0 0; font-weight:400; color:var(--ink) }
+  code { background:var(--well); border:1px solid var(--hair); padding:.05rem .3rem; font-size:.88em }
+  pre { background:var(--well); border:1px solid var(--rule); padding:.9rem 1rem;
+        overflow-x:auto; font-size:.85rem; line-height:1.5 }
+  table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.9rem }
+  th { text-align:left; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase;
+       color:var(--soft); border-bottom:1px solid var(--rule); padding:0 .5rem .4rem 0 }
+  td { padding:.5rem .5rem .5rem 0; border-bottom:1px solid var(--hair); vertical-align:top }
+  td.num, th.num { text-align:right; font-variant-numeric:tabular-nums; padding-right:1.25rem }
+  footer { margin-top:3rem; padding-top:1rem; border-top:1px solid var(--rule);
+           color:var(--soft); font-size:.85rem }
+  .pill { display:inline-block; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase;
+          padding:.1rem .4rem; border:1px solid var(--rule); border-radius:2px; color:var(--soft);
+          white-space:nowrap }
+  .pill.codex { border-color:var(--codex); color:var(--codex) }
+  .pill.claude-code { border-color:var(--claude); color:var(--claude) }
+  .pill.confirmed { border-color:#2b6b3f; color:#2b6b3f }
+  .pill.superseded { border-color:var(--dead); color:var(--dead) }
+  /* field_support markers — the whole point is that they are visually distinct */
+  .sup { font-size:.7rem; letter-spacing:.04em; text-transform:uppercase; margin-left:.35rem }
+  .sup-attested { color:#2b6b3f }
+  .sup-inferred { color:var(--warn) }
+  .sup-unestablished { color:var(--faint); font-style:italic }
+  .unset { color:var(--faint); font-style:italic }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink:#e6eaed; --soft:#9fb0bd; --faint:#7b8894; --rule:#3a4750; --hair:#252d34;
+            --well:#1b2229; --warn:#e0a35c; --warn-bg:#241c11; --link:#7ba7e8;
+            --codex:#e08055; --claude:#8aa3e0; --dead:#5f6b74; }
+    body { background:#121417 }
+    .pill.confirmed { border-color:#6fbf8a; color:#6fbf8a }
+    .sup-attested { color:#6fbf8a }
+  }
+
+  .filters { display:flex; gap:1rem; flex-wrap:wrap; align-items:center; margin:1.25rem 0;
+             padding:.75rem; background:var(--well); border:1px solid var(--rule); font-size:.85rem }
+  .filters label { display:flex; gap:.35rem; align-items:center; color:var(--soft) }
+  .filters select { font:inherit; padding:.15rem }
+  #count { margin-left:auto; color:var(--soft); font-variant-numeric:tabular-nums }
+  tr.dead td { opacity:.55 }
+  ul.ev { margin:0; padding-left:1.1rem; font-size:.82rem }
+  ul.ev li { margin-bottom:.15rem }
+  td.chain { font-size:.8rem; color:var(--soft) }
+  #ledger td:first-child { white-space:nowrap }
+  @media (max-width:900px) { table, thead, tbody, tr, td, th { display:block; width:auto }
+    thead { display:none } tr.rec { border-bottom:2px solid var(--rule); padding:.75rem 0 } }
+  </style>
+
+<nav>
+  <a href="/" aria-current="page">Ledger</a>
+  <a href="/forecast.html">Forecast</a>
+  <a href="/methodology.html">Methodology</a>
+  <a href="/ledger.json">ledger.json</a>
+  <a href="/ledger.csv">ledger.csv</a>
+</nav>
+
+
+<h1>Quota Reset Index</h1>
+<p class="lede">Every discretionary quota reset we can evidence, by OpenAI (Codex) and Anthropic
+(Claude Code). Each record links to its sources and carries a confidence grade. This page makes no
+predictions — the <a href="/forecast.html">forecast</a> does, and is the less trustworthy half.</p>
+
+<div class="banner">
+  28 current records · 19 superseded · 47 total
+  <p>Superseded records are <strong>shown, not hidden</strong>. Corrections are new records that
+  reference the old one; nothing is ever edited in place or deleted. The chain is the audit trail,
+  so removing it would defeat the point of keeping one.</p>
+</div>
+
+<h2>Reading a row</h2>
+<p class="lede">Scope fields carry a provenance marker, because a value nobody asserted must not look
+like one that was:
+<abbr class="sup sup-attested">att</abbr> a source states it of this specific event ·
+<abbr class="sup sup-inferred">inf</abbr> it follows from a general statement about how resets work,
+or from a neighbouring event — nobody asserted it here ·
+<abbr class="sup sup-unestablished">n/e</abbr> no source addresses it.
+An audit on 2026-07-26 found 24 of 29 records carrying at least one field that read as an assertion
+while resting on a general statement. Those were corrected by supersession; the markers are what stop
+it recurring.</p>
+
+<div class="filters">
+  <label>vendor <select id="f-vendor"><option value="">all</option><option value="claude-code">claude-code</option><option value="codex">codex</option></select></label>
+  <label>effect <select id="f-kind"><option value="">all</option><option value="banked_reset">banked_reset</option><option value="global_reset">global_reset</option><option value="limit_increase">limit_increase</option><option value="limit_removal">limit_removal</option></select></label>
+  <label>trigger <select id="f-trigger"><option value="">all</option><option value="capacity">capacity</option><option value="competitive_response">competitive_response</option><option value="courtesy">courtesy</option><option value="demand_surge">demand_surge</option><option value="incident_compensation">incident_compensation</option><option value="launch">launch</option><option value="milestone">milestone</option><option value="unknown">unknown</option></select></label>
+  <label>confidence <select id="f-confidence"><option value="">all</option><option value="confirmed">confirmed</option><option value="probable">probable</option><option value="reported">reported</option></select></label>
+  <label>state <select id="f-state"><option value="">all</option><option value="current">current</option><option value="superseded">superseded</option></select></label>
+  <span id="count"></span>
+</div>
+
+<table id="ledger">
+  <thead><tr>
+    <th>id</th><th>effective (UTC)</th><th>effect</th><th>trigger</th>
+    <th>confidence</th><th>scope</th><th>evidence</th><th>chain</th>
+  </tr></thead>
+  <tbody>
+<tr class="rec"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="milestone" data-confidence="reported"
+        data-state="current">
+    <td>
+      <a id="cx-2026-07-21-02" href="#cx-2026-07-21-02"><code>cx-2026-07-21-02</code></a>
+      <div><span class="pill codex">codex</span>
+      </div>
+    </td>
+    <td>2026-07-21 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>milestone<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></td>
+    <td><span class="pill reported">reported</span></td>
+    <td>
+      <div><b>windows</b> <span class="unset">not established</span><abbr class="sup sup-unestablished" title="Not established — no source addresses this">n/e</abbr></div>
+      <div><b>plans</b> all paid<abbr class="sup sup-inferred" title="Inferred — follows from a general statement about how resets work, or from a neighbouring event. Nobody asserted it here.">inf</abbr></div>
+      <div><b>partial</b> false<abbr class="sup sup-inferred" title="Inferred — follows from a general statement about how resets work, or from a neighbouring event. Nobody asserted it here.">inf</abbr></div>
+    </td>
+    <td><ul class="ev"><li><a href="https://www.unite.ai/openai-says-codex-and-chatgpt-work-hit-10-million-users/" rel="nofollow noopener">unite.ai</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      
+      <div>← replaces <a href="#cx-2026-07-21-01"><code>cx-2026-07-21-01</code></a></div>
+      
+    </td>
+  </tr>
+<tr class="rec dead"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="milestone" data-confidence="reported"
+        data-state="superseded">
+    <td>
+      <a id="cx-2026-07-21-01" href="#cx-2026-07-21-01"><code>cx-2026-07-21-01</code></a>
+      <div><span class="pill codex">codex</span>
+      <span class="pill superseded">superseded</span></div>
+    </td>
+    <td>2026-07-21 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>milestone</td>
+    <td><span class="pill reported">reported</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> all paid</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://codexreset.org/" rel="nofollow noopener">codexreset.org</a> <span class="pill">user_report</span></li><li><a href="https://www.unite.ai/openai-says-codex-and-chatgpt-work-hit-10-million-users/" rel="nofollow noopener">unite.ai</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      → corrected by <a href="#cx-2026-07-21-02"><code>cx-2026-07-21-02</code></a>
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="unknown" data-confidence="probable"
+        data-state="current">
+    <td>
+      <a id="cx-2026-07-18-02" href="#cx-2026-07-18-02"><code>cx-2026-07-18-02</code></a>
+      <div><span class="pill codex">codex</span>
+      </div>
+    </td>
+    <td>2026-07-18 03:00:00<br>
+        <span class="unset">±hour</span></td>
+    <td><div>global_reset</div></td>
+    <td>unknown<abbr class="sup sup-unestablished" title="Not established — no source addresses this">n/e</abbr></td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> weekly<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></div>
+      <div><b>plans</b> paid users of Codex and ChatGPT Work<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></div>
+      <div><b>partial</b> false<abbr class="sup sup-inferred" title="Inferred — follows from a general statement about how resets work, or from a neighbouring event. Nobody asserted it here.">inf</abbr></div>
+    </td>
+    <td><ul class="ev"><li><a href="https://minimaxir.com/2026/07/agent-quota-reset/" rel="nofollow noopener">minimaxir.com</a> <span class="pill">user_report</span></li><li><a href="https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897" rel="nofollow noopener">community.openai.com</a> <span class="pill">user_report</span></li><li><a href="https://codex-resets.com/" rel="nofollow noopener">codex-resets.com</a> <span class="pill">user_report</span></li><li><a href="https://note.com/kitworks/n/n70bb4a29db37?hl=en" rel="nofollow noopener">note.com</a> <span class="pill">user_report</span></li><li><a href="https://news.ycombinator.com/item?id=48963465" rel="nofollow noopener">news.ycombinator.com</a> <span class="pill">user_report</span></li><li><a href="https://codexreset.org/" rel="nofollow noopener">codexreset.org</a> <span class="pill">user_report</span></li></ul></td>
+    <td class="chain">
+      
+      <div>← replaces <a href="#cx-2026-07-18-01"><code>cx-2026-07-18-01</code></a></div>
+      
+    </td>
+  </tr>
+<tr class="rec dead"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="unknown" data-confidence="reported"
+        data-state="superseded">
+    <td>
+      <a id="cx-2026-07-18-01" href="#cx-2026-07-18-01"><code>cx-2026-07-18-01</code></a>
+      <div><span class="pill codex">codex</span>
+      <span class="pill superseded">superseded</span></div>
+    </td>
+    <td>2026-07-18 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>unknown</td>
+    <td><span class="pill reported">reported</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> all paid</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://codexreset.org/" rel="nofollow noopener">codexreset.org</a> <span class="pill">user_report</span></li><li><a href="https://note.com/kitworks/n/n70bb4a29db37?hl=en" rel="nofollow noopener">note.com</a> <span class="pill">user_report</span></li></ul></td>
+    <td class="chain">
+      → corrected by <a href="#cx-2026-07-18-02"><code>cx-2026-07-18-02</code></a>
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="claude-code" data-kind="limit_increase"
+        data-trigger="unknown" data-confidence="reported"
+        data-state="current">
+    <td>
+      <a id="cc-2026-07-18-01" href="#cc-2026-07-18-01"><code>cc-2026-07-18-01</code></a>
+      <div><span class="pill claude-code">claude-code</span>
+      </div>
+    </td>
+    <td>2026-07-18 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>limit_increase</div></td>
+    <td>unknown</td>
+    <td><span class="pill reported">reported</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> Pro, Max, Team, seat-based Enterprise</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://www.digitalapplied.com/blog/claude-code-limits-raised-fable-5-max-team-premium-2026" rel="nofollow noopener">digitalapplied.com</a> <span class="pill">press</span></li><li><a href="https://www.progressiverobot.com/2026/07/18/claude-code-weekly-limits/" rel="nofollow noopener">progressiverobot.com</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      
+      
+      
+    </td>
+  </tr>
+<tr class="rec dead"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="courtesy" data-confidence="probable"
+        data-state="superseded">
+    <td>
+      <a id="cx-2026-07-17-01" href="#cx-2026-07-17-01"><code>cx-2026-07-17-01</code></a>
+      <div><span class="pill codex">codex</span>
+      <span class="pill superseded">superseded</span></div>
+    </td>
+    <td>2026-07-17 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>courtesy</td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> all paid users of Codex and ChatGPT Work</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://minimaxir.com/2026/07/agent-quota-reset/" rel="nofollow noopener">minimaxir.com</a> <span class="pill">user_report</span></li><li><a href="https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897" rel="nofollow noopener">community.openai.com</a> <span class="pill">user_report</span></li><li><a href="https://codex-resets.com/" rel="nofollow noopener">codex-resets.com</a> <span class="pill">user_report</span></li><li><a href="https://note.com/kitworks/n/n70bb4a29db37?hl=en" rel="nofollow noopener">note.com</a> <span class="pill">user_report</span></li><li><a href="https://news.ycombinator.com/item?id=48963465" rel="nofollow noopener">news.ycombinator.com</a> <span class="pill">user_report</span></li></ul></td>
+    <td class="chain">
+      → corrected by <a href="#cx-2026-07-18-02"><code>cx-2026-07-18-02</code></a>
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="milestone" data-confidence="reported"
+        data-state="current">
+    <td>
+      <a id="cx-2026-07-16-01" href="#cx-2026-07-16-01"><code>cx-2026-07-16-01</code></a>
+      <div><span class="pill codex">codex</span>
+      </div>
+    </td>
+    <td>2026-07-16 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>milestone</td>
+    <td><span class="pill reported">reported</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> <span class="unset">not established</span></div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://finance.biggo.com/news/0b22f4f6-b980-4f9b-a9aa-382019fc2ba8" rel="nofollow noopener">finance.biggo.com</a> <span class="pill">press</span></li><li><a href="https://minimaxir.com/2026/07/agent-quota-reset/" rel="nofollow noopener">minimaxir.com</a> <span class="pill">press</span></li><li><a href="https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897" rel="nofollow noopener">community.openai.com</a> <span class="pill">user_report</span></li><li><a href="https://codexreset.org/" rel="nofollow noopener">codexreset.org</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="milestone" data-confidence="probable"
+        data-state="current">
+    <td>
+      <a id="cx-2026-07-15-02" href="#cx-2026-07-15-02"><code>cx-2026-07-15-02</code></a>
+      <div><span class="pill codex">codex</span>
+      </div>
+    </td>
+    <td>2026-07-15 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>milestone</td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> ChatGPT Pro<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://community.openai.com/t/missing-banked-reset-after-codex-usage-limit-reset-announcement/1387097" rel="nofollow noopener">community.openai.com</a> <span class="pill">user_report</span></li><li><a href="https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897" rel="nofollow noopener">community.openai.com</a> <span class="pill">user_report</span></li><li><a href="https://minimaxir.com/2026/07/agent-quota-reset/" rel="nofollow noopener">minimaxir.com</a> <span class="pill">user_report</span></li><li><a href="https://codex-resets.com/" rel="nofollow noopener">codex-resets.com</a> <span class="pill">user_report</span></li></ul></td>
+    <td class="chain">
+      
+      <div>← replaces <a href="#cx-2026-07-15-01"><code>cx-2026-07-15-01</code></a></div>
+      
+    </td>
+  </tr>
+<tr class="rec dead"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="milestone" data-confidence="probable"
+        data-state="superseded">
+    <td>
+      <a id="cx-2026-07-15-01" href="#cx-2026-07-15-01"><code>cx-2026-07-15-01</code></a>
+      <div><span class="pill codex">codex</span>
+      <span class="pill superseded">superseded</span></div>
+    </td>
+    <td>2026-07-15 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>milestone</td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> paid tiers — Codex + ChatGPT Work users; Pro confirmed by a first-hand report</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://community.openai.com/t/missing-banked-reset-after-codex-usage-limit-reset-announcement/1387097" rel="nofollow noopener">community.openai.com</a> <span class="pill">user_report</span></li><li><a href="https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897" rel="nofollow noopener">community.openai.com</a> <span class="pill">user_report</span></li><li><a href="https://minimaxir.com/2026/07/agent-quota-reset/" rel="nofollow noopener">minimaxir.com</a> <span class="pill">user_report</span></li><li><a href="https://codex-resets.com/" rel="nofollow noopener">codex-resets.com</a> <span class="pill">user_report</span></li></ul></td>
+    <td class="chain">
+      → corrected by <a href="#cx-2026-07-15-02"><code>cx-2026-07-15-02</code></a>
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="milestone" data-confidence="probable"
+        data-state="current">
+    <td>
+      <a id="cx-2026-07-14-02" href="#cx-2026-07-14-02"><code>cx-2026-07-14-02</code></a>
+      <div><span class="pill codex">codex</span>
+      </div>
+    </td>
+    <td>2026-07-14 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>milestone</td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> Codex and ChatGPT Work<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://github.com/openai/codex/issues/33344" rel="nofollow noopener">github.com</a> <span class="pill">user_report</span></li><li><a href="https://minimaxir.com/2026/07/agent-quota-reset/" rel="nofollow noopener">minimaxir.com</a> <span class="pill">user_report</span></li><li><a href="https://codex-resets.com/" rel="nofollow noopener">codex-resets.com</a> <span class="pill">user_report</span></li><li><a href="https://explainx.ai/blog/openai-codex-chatgpt-work-8-million-users-gpt-5-6-sol-july-2026" rel="nofollow noopener">explainx.ai</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      
+      <div>← replaces <a href="#cx-2026-07-14-01"><code>cx-2026-07-14-01</code></a></div>
+      
+    </td>
+  </tr>
+<tr class="rec dead"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="milestone" data-confidence="probable"
+        data-state="superseded">
+    <td>
+      <a id="cx-2026-07-14-01" href="#cx-2026-07-14-01"><code>cx-2026-07-14-01</code></a>
+      <div><span class="pill codex">codex</span>
+      <span class="pill superseded">superseded</span></div>
+    </td>
+    <td>2026-07-14 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>milestone</td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> paid tiers — announced as &quot;for all&quot;; Plus/Pro/Business (Go also reported)</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://github.com/openai/codex/issues/33344" rel="nofollow noopener">github.com</a> <span class="pill">user_report</span></li><li><a href="https://minimaxir.com/2026/07/agent-quota-reset/" rel="nofollow noopener">minimaxir.com</a> <span class="pill">user_report</span></li><li><a href="https://codex-resets.com/" rel="nofollow noopener">codex-resets.com</a> <span class="pill">user_report</span></li><li><a href="https://explainx.ai/blog/openai-codex-chatgpt-work-8-million-users-gpt-5-6-sol-july-2026" rel="nofollow noopener">explainx.ai</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      → corrected by <a href="#cx-2026-07-14-02"><code>cx-2026-07-14-02</code></a>
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="codex" data-kind="banked_reset"
+        data-trigger="milestone" data-confidence="probable"
+        data-state="current">
+    <td>
+      <a id="cx-2026-07-13-01" href="#cx-2026-07-13-01"><code>cx-2026-07-13-01</code></a>
+      <div><span class="pill codex">codex</span>
+      </div>
+    </td>
+    <td>2026-07-13 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>banked_reset</div></td>
+    <td>milestone</td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> all Codex and ChatGPT Work accounts (announced as 'everyone's account'; plan tiers not enumerated in fetched sources)</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://www.latent.space/p/ainews-codex-usage-up-10x-in-6-months" rel="nofollow noopener">latent.space</a> <span class="pill">press</span></li><li><a href="https://vpsranking.com/news/ai/ai-2026-07-13-openai-codex-7m-users-banked-reset/" rel="nofollow noopener">vpsranking.com</a> <span class="pill">press</span></li><li><a href="https://codex-resets.com/" rel="nofollow noopener">codex-resets.com</a> <span class="pill">user_report</span></li><li><a href="https://minimaxir.com/2026/07/agent-quota-reset/" rel="nofollow noopener">minimaxir.com</a> <span class="pill">user_report</span></li><li><a href="https://learn.chatgpt.com/docs/changelog" rel="nofollow noopener">learn.chatgpt.com</a> <span class="pill">vendor_post</span></li><li><a href="https://community.openai.com/t/missing-banked-reset-after-codex-usage-limit-reset-announcement/1387097" rel="nofollow noopener">community.openai.com</a> <span class="pill">user_report</span></li><li><a href="https://explainx.ai/blog/openai-codex-chatgpt-work-8-million-users-gpt-5-6-sol-july-2026" rel="nofollow noopener">explainx.ai</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="claude-code" data-kind="limit_increase"
+        data-trigger="unknown" data-confidence="reported"
+        data-state="current">
+    <td>
+      <a id="cc-2026-07-13-02" href="#cc-2026-07-13-02"><code>cc-2026-07-13-02</code></a>
+      <div><span class="pill claude-code">claude-code</span>
+      </div>
+    </td>
+    <td>2026-07-13 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>limit_increase</div></td>
+    <td>unknown<abbr class="sup sup-unestablished" title="Not established — no source addresses this">n/e</abbr></td>
+    <td><span class="pill reported">reported</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> Pro, Max, Team, legacy seat-based Enterprise</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://www.helpnetsecurity.com/2026/07/13/claude-code-weekly-limits-promotion-extended/" rel="nofollow noopener">helpnetsecurity.com</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      
+      <div>← replaces <a href="#cc-2026-07-13-01"><code>cc-2026-07-13-01</code></a></div>
+      
+    </td>
+  </tr>
+<tr class="rec dead"
+        data-vendor="claude-code" data-kind="limit_increase"
+        data-trigger="courtesy" data-confidence="reported"
+        data-state="superseded">
+    <td>
+      <a id="cc-2026-07-13-01" href="#cc-2026-07-13-01"><code>cc-2026-07-13-01</code></a>
+      <div><span class="pill claude-code">claude-code</span>
+      <span class="pill superseded">superseded</span></div>
+    </td>
+    <td>2026-07-13 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>limit_increase</div></td>
+    <td>courtesy</td>
+    <td><span class="pill reported">reported</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> Pro, Max, Team, legacy seat-based Enterprise</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://www.helpnetsecurity.com/2026/07/13/claude-code-weekly-limits-promotion-extended/" rel="nofollow noopener">helpnetsecurity.com</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      → corrected by <a href="#cc-2026-07-13-02"><code>cc-2026-07-13-02</code></a>
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="codex" data-kind="global_reset limit_removal"
+        data-trigger="demand_surge" data-confidence="probable"
+        data-state="current">
+    <td>
+      <a id="cx-2026-07-12-02" href="#cx-2026-07-12-02"><code>cx-2026-07-12-02</code></a>
+      <div><span class="pill codex">codex</span>
+      </div>
+    </td>
+    <td>2026-07-12 18:00:00<br>
+        <span class="unset">±hour</span></td>
+    <td><div>global_reset</div><div>limit_removal</div></td>
+    <td>demand_surge<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> weekly<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></div>
+      <div><b>plans</b> Plus, Business, Pro<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></div>
+      <div><b>partial</b> false<abbr class="sup sup-inferred" title="Inferred — follows from a general statement about how resets work, or from a neighbouring event. Nobody asserted it here.">inf</abbr></div>
+    </td>
+    <td><ul class="ev"><li><a href="https://nerdschalk.com/openai-codex-5-hour-limit-removed-gpt-5-6-sol/" rel="nofollow noopener">nerdschalk.com</a> <span class="pill">press</span></li><li><a href="https://www.digitaltrends.com/computing/openai-just-took-the-handcuffs-off-your-chatgpt-work-and-codex-usage-limits-at-least-for-now/" rel="nofollow noopener">digitaltrends.com</a> <span class="pill">press</span></li><li><a href="https://finance.biggo.com/news/ef59065f-8eb7-4d14-b139-d22d3f913ac8" rel="nofollow noopener">finance.biggo.com</a> <span class="pill">press</span></li><li><a href="https://explainx.ai/blog/chatgpt-codex-5-hour-limit-removed-weekly-reset-july-2026" rel="nofollow noopener">explainx.ai</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      
+      
+      <div>related_to <a href="#cx-2026-07-12-01"><code>cx-2026-07-12-01</code></a></div><div>related_to <a href="#cx-2026-07-13-01"><code>cx-2026-07-13-01</code></a></div>
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="codex" data-kind="banked_reset"
+        data-trigger="unknown" data-confidence="probable"
+        data-state="current">
+    <td>
+      <a id="cx-2026-07-12-03" href="#cx-2026-07-12-03"><code>cx-2026-07-12-03</code></a>
+      <div><span class="pill codex">codex</span>
+      </div>
+    </td>
+    <td>2026-07-12 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>banked_reset</div></td>
+    <td>unknown<abbr class="sup sup-unestablished" title="Not established — no source addresses this">n/e</abbr></td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> <span class="unset">not established</span><abbr class="sup sup-unestablished" title="Not established — no source addresses this">n/e</abbr></div>
+      <div><b>plans</b> Codex<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://minimaxir.com/2026/07/agent-quota-reset/" rel="nofollow noopener">minimaxir.com</a> <span class="pill">user_report</span></li><li><a href="https://codex-resets.com/" rel="nofollow noopener">codex-resets.com</a> <span class="pill">user_report</span></li><li><a href="https://explainx.ai/blog/chatgpt-codex-5-hour-limit-removed-weekly-reset-july-2026" rel="nofollow noopener">explainx.ai</a> <span class="pill">press</span></li><li><a href="https://www.eesel.ai/blog/gpt-remove-5-hour-limits" rel="nofollow noopener">eesel.ai</a> <span class="pill">press</span></li><li><a href="https://community.openai.com/t/banked-codex-resets-disappeared-in-the-new-chatgpt-desktop-app-windows/1386667" rel="nofollow noopener">community.openai.com</a> <span class="pill">user_report</span></li></ul></td>
+    <td class="chain">
+      
+      <div>← replaces <a href="#cx-2026-07-12-01"><code>cx-2026-07-12-01</code></a></div>
+      
+    </td>
+  </tr>
+<tr class="rec dead"
+        data-vendor="codex" data-kind="banked_reset"
+        data-trigger="incident_compensation" data-confidence="probable"
+        data-state="superseded">
+    <td>
+      <a id="cx-2026-07-12-01" href="#cx-2026-07-12-01"><code>cx-2026-07-12-01</code></a>
+      <div><span class="pill codex">codex</span>
+      <span class="pill superseded">superseded</span></div>
+    </td>
+    <td>2026-07-12 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>banked_reset</div></td>
+    <td>incident_compensation</td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> Codex and ChatGPT Work paid accounts (specific plan tiers not stated in any fetched source)</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://minimaxir.com/2026/07/agent-quota-reset/" rel="nofollow noopener">minimaxir.com</a> <span class="pill">user_report</span></li><li><a href="https://codex-resets.com/" rel="nofollow noopener">codex-resets.com</a> <span class="pill">user_report</span></li><li><a href="https://explainx.ai/blog/chatgpt-codex-5-hour-limit-removed-weekly-reset-july-2026" rel="nofollow noopener">explainx.ai</a> <span class="pill">press</span></li><li><a href="https://www.eesel.ai/blog/gpt-remove-5-hour-limits" rel="nofollow noopener">eesel.ai</a> <span class="pill">press</span></li><li><a href="https://community.openai.com/t/banked-codex-resets-disappeared-in-the-new-chatgpt-desktop-app-windows/1386667" rel="nofollow noopener">community.openai.com</a> <span class="pill">user_report</span></li></ul></td>
+    <td class="chain">
+      → corrected by <a href="#cx-2026-07-12-03"><code>cx-2026-07-12-03</code></a>
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="launch" data-confidence="probable"
+        data-state="current">
+    <td>
+      <a id="cx-2026-07-11-02" href="#cx-2026-07-11-02"><code>cx-2026-07-11-02</code></a>
+      <div><span class="pill codex">codex</span>
+      </div>
+    </td>
+    <td>2026-07-11 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>launch</td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> paid tiers<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://explainx.ai/blog/fable-5-gpt-5-6-rate-limit-resets-july-2026" rel="nofollow noopener">explainx.ai</a> <span class="pill">press</span></li><li><a href="https://the-decoder.com/openai-admits-it-didnt-get-everything-quite-right-with-chatgpt-work-launch-and-scrambles-to-fix-ux-and-costs/" rel="nofollow noopener">the-decoder.com</a> <span class="pill">press</span></li><li><a href="https://lapaasvoice.com/openai-reset-chatgpt-work-and-codex-rate-limits-twice-after-gpt-5-6-sol-launch/" rel="nofollow noopener">lapaasvoice.com</a> <span class="pill">press</span></li><li><a href="https://minimaxir.com/2026/07/agent-quota-reset/" rel="nofollow noopener">minimaxir.com</a> <span class="pill">user_report</span></li></ul></td>
+    <td class="chain">
+      
+      <div>← replaces <a href="#cx-2026-07-11-01"><code>cx-2026-07-11-01</code></a></div>
+      
+    </td>
+  </tr>
+<tr class="rec dead"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="launch" data-confidence="probable"
+        data-state="superseded">
+    <td>
+      <a id="cx-2026-07-11-01" href="#cx-2026-07-11-01"><code>cx-2026-07-11-01</code></a>
+      <div><span class="pill codex">codex</span>
+      <span class="pill superseded">superseded</span></div>
+    </td>
+    <td>2026-07-11 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>launch</td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> all paid plans</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://explainx.ai/blog/fable-5-gpt-5-6-rate-limit-resets-july-2026" rel="nofollow noopener">explainx.ai</a> <span class="pill">press</span></li><li><a href="https://the-decoder.com/openai-admits-it-didnt-get-everything-quite-right-with-chatgpt-work-launch-and-scrambles-to-fix-ux-and-costs/" rel="nofollow noopener">the-decoder.com</a> <span class="pill">press</span></li><li><a href="https://lapaasvoice.com/openai-reset-chatgpt-work-and-codex-rate-limits-twice-after-gpt-5-6-sol-launch/" rel="nofollow noopener">lapaasvoice.com</a> <span class="pill">press</span></li><li><a href="https://minimaxir.com/2026/07/agent-quota-reset/" rel="nofollow noopener">minimaxir.com</a> <span class="pill">user_report</span></li></ul></td>
+    <td class="chain">
+      → corrected by <a href="#cx-2026-07-11-02"><code>cx-2026-07-11-02</code></a>
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="launch" data-confidence="probable"
+        data-state="current">
+    <td>
+      <a id="cx-2026-07-10-02" href="#cx-2026-07-10-02"><code>cx-2026-07-10-02</code></a>
+      <div><span class="pill codex">codex</span>
+      </div>
+    </td>
+    <td>2026-07-10 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>launch</td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> paid tiers<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://the-decoder.com/openai-admits-it-didnt-get-everything-quite-right-with-chatgpt-work-launch-and-scrambles-to-fix-ux-and-costs/" rel="nofollow noopener">the-decoder.com</a> <span class="pill">press</span></li><li><a href="https://lapaasvoice.com/openai-reset-chatgpt-work-and-codex-rate-limits-twice-after-gpt-5-6-sol-launch/" rel="nofollow noopener">lapaasvoice.com</a> <span class="pill">press</span></li><li><a href="https://explainx.ai/blog/chatgpt-codex-5-hour-limit-removed-weekly-reset-july-2026" rel="nofollow noopener">explainx.ai</a> <span class="pill">press</span></li><li><a href="https://minimaxir.com/2026/07/agent-quota-reset/" rel="nofollow noopener">minimaxir.com</a> <span class="pill">user_report</span></li></ul></td>
+    <td class="chain">
+      
+      <div>← replaces <a href="#cx-2026-07-10-01"><code>cx-2026-07-10-01</code></a></div>
+      
+    </td>
+  </tr>
+<tr class="rec dead"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="launch" data-confidence="probable"
+        data-state="superseded">
+    <td>
+      <a id="cx-2026-07-10-01" href="#cx-2026-07-10-01"><code>cx-2026-07-10-01</code></a>
+      <div><span class="pill codex">codex</span>
+      <span class="pill superseded">superseded</span></div>
+    </td>
+    <td>2026-07-10 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>launch</td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> all paid plans</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://the-decoder.com/openai-admits-it-didnt-get-everything-quite-right-with-chatgpt-work-launch-and-scrambles-to-fix-ux-and-costs/" rel="nofollow noopener">the-decoder.com</a> <span class="pill">press</span></li><li><a href="https://lapaasvoice.com/openai-reset-chatgpt-work-and-codex-rate-limits-twice-after-gpt-5-6-sol-launch/" rel="nofollow noopener">lapaasvoice.com</a> <span class="pill">press</span></li><li><a href="https://explainx.ai/blog/chatgpt-codex-5-hour-limit-removed-weekly-reset-july-2026" rel="nofollow noopener">explainx.ai</a> <span class="pill">press</span></li><li><a href="https://minimaxir.com/2026/07/agent-quota-reset/" rel="nofollow noopener">minimaxir.com</a> <span class="pill">user_report</span></li></ul></td>
+    <td class="chain">
+      → corrected by <a href="#cx-2026-07-10-02"><code>cx-2026-07-10-02</code></a>
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="unknown" data-confidence="reported"
+        data-state="current">
+    <td>
+      <a id="cx-2026-07-09-02" href="#cx-2026-07-09-02"><code>cx-2026-07-09-02</code></a>
+      <div><span class="pill codex">codex</span>
+      </div>
+    </td>
+    <td>2026-07-09 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>unknown<abbr class="sup sup-unestablished" title="Not established — no source addresses this">n/e</abbr></td>
+    <td><span class="pill reported">reported</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> <span class="unset">not established</span><abbr class="sup sup-unestablished" title="Not established — no source addresses this">n/e</abbr></div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://minimaxir.com/2026/07/agent-quota-reset/" rel="nofollow noopener">minimaxir.com</a> <span class="pill">user_report</span></li><li><a href="https://www.ababnews.com/news/f18c1b7c-ff06-4e7e-8e9c-004ba01794e5" rel="nofollow noopener">ababnews.com</a> <span class="pill">press</span></li><li><a href="https://explainx.ai/blog/gpt-5-6-sol-thinking-budget-banked-reset-tibo-july-2026" rel="nofollow noopener">explainx.ai</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      
+      <div>← replaces <a href="#cx-2026-07-09-01"><code>cx-2026-07-09-01</code></a></div>
+      
+    </td>
+  </tr>
+<tr class="rec dead"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="launch" data-confidence="reported"
+        data-state="superseded">
+    <td>
+      <a id="cx-2026-07-09-01" href="#cx-2026-07-09-01"><code>cx-2026-07-09-01</code></a>
+      <div><span class="pill codex">codex</span>
+      <span class="pill superseded">superseded</span></div>
+    </td>
+    <td>2026-07-09 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>launch</td>
+    <td><span class="pill reported">reported</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> all paid plans</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://minimaxir.com/2026/07/agent-quota-reset/" rel="nofollow noopener">minimaxir.com</a> <span class="pill">user_report</span></li><li><a href="https://www.ababnews.com/news/f18c1b7c-ff06-4e7e-8e9c-004ba01794e5" rel="nofollow noopener">ababnews.com</a> <span class="pill">press</span></li><li><a href="https://explainx.ai/blog/gpt-5-6-sol-thinking-budget-banked-reset-tibo-july-2026" rel="nofollow noopener">explainx.ai</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      → corrected by <a href="#cx-2026-07-09-02"><code>cx-2026-07-09-02</code></a>
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="claude-code" data-kind="global_reset"
+        data-trigger="unknown" data-confidence="probable"
+        data-state="current">
+    <td>
+      <a id="cc-2026-07-09-02" href="#cc-2026-07-09-02"><code>cc-2026-07-09-02</code></a>
+      <div><span class="pill claude-code">claude-code</span>
+      </div>
+    </td>
+    <td>2026-07-09 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>unknown</td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> 5h, weekly</div>
+      <div><b>plans</b> all users<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://builderwithin.com/articles/claude-usage-reset-gpt-5-6/" rel="nofollow noopener">builderwithin.com</a> <span class="pill">press</span></li><li><a href="https://www.implicator.ai/anthropic-resets-claude-limits-for-third-week-without-explaining-why/" rel="nofollow noopener">implicator.ai</a> <span class="pill">press</span></li><li><a href="https://www.ababnews.com/news/ac883e72-aec1-4064-bdb9-4e37f61bcaf2" rel="nofollow noopener">ababnews.com</a> <span class="pill">press</span></li><li><a href="https://www.explainx.ai/blog/claude-codex-cursor-usage-limits-reset-july-2026" rel="nofollow noopener">explainx.ai</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      
+      <div>← replaces <a href="#cc-2026-07-09-01"><code>cc-2026-07-09-01</code></a></div>
+      
+    </td>
+  </tr>
+<tr class="rec dead"
+        data-vendor="claude-code" data-kind="global_reset"
+        data-trigger="unknown" data-confidence="probable"
+        data-state="superseded">
+    <td>
+      <a id="cc-2026-07-09-01" href="#cc-2026-07-09-01"><code>cc-2026-07-09-01</code></a>
+      <div><span class="pill claude-code">claude-code</span>
+      <span class="pill superseded">superseded</span></div>
+    </td>
+    <td>2026-07-09 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>unknown</td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> 5h, weekly</div>
+      <div><b>plans</b> all users (Pro, Max, Team, seat-based Enterprise)</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://builderwithin.com/articles/claude-usage-reset-gpt-5-6/" rel="nofollow noopener">builderwithin.com</a> <span class="pill">press</span></li><li><a href="https://www.implicator.ai/anthropic-resets-claude-limits-for-third-week-without-explaining-why/" rel="nofollow noopener">implicator.ai</a> <span class="pill">press</span></li><li><a href="https://www.ababnews.com/news/ac883e72-aec1-4064-bdb9-4e37f61bcaf2" rel="nofollow noopener">ababnews.com</a> <span class="pill">press</span></li><li><a href="https://www.explainx.ai/blog/claude-codex-cursor-usage-limits-reset-july-2026" rel="nofollow noopener">explainx.ai</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      → corrected by <a href="#cc-2026-07-09-02"><code>cc-2026-07-09-02</code></a>
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="incident_compensation" data-confidence="reported"
+        data-state="current">
+    <td>
+      <a id="cx-2026-06-28-02" href="#cx-2026-06-28-02"><code>cx-2026-06-28-02</code></a>
+      <div><span class="pill codex">codex</span>
+      </div>
+    </td>
+    <td>2026-06-28 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>incident_compensation</td>
+    <td><span class="pill reported">reported</span></td>
+    <td>
+      <div><b>windows</b> <span class="unset">not established</span><abbr class="sup sup-unestablished" title="Not established — no source addresses this">n/e</abbr></div>
+      <div><b>plans</b> all paid</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://www.cryptopolitan.com/openai-traces-codex-credit-drain-to-faulty-anti-abuse-system/" rel="nofollow noopener">cryptopolitan.com</a> <span class="pill">press</span></li><li><a href="https://status.openai.com/incidents/01KW2E6W0503W4NXJNCVAG8V6T" rel="nofollow noopener">status.openai.com</a> <span class="pill">status_page</span></li></ul></td>
+    <td class="chain">
+      
+      <div>← replaces <a href="#cx-2026-06-28-01"><code>cx-2026-06-28-01</code></a></div>
+      
+    </td>
+  </tr>
+<tr class="rec dead"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="incident_compensation" data-confidence="reported"
+        data-state="superseded">
+    <td>
+      <a id="cx-2026-06-28-01" href="#cx-2026-06-28-01"><code>cx-2026-06-28-01</code></a>
+      <div><span class="pill codex">codex</span>
+      <span class="pill superseded">superseded</span></div>
+    </td>
+    <td>2026-06-28 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>incident_compensation</td>
+    <td><span class="pill reported">reported</span></td>
+    <td>
+      <div><b>windows</b> weekly, 5h</div>
+      <div><b>plans</b> all paid</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://www.cryptopolitan.com/openai-traces-codex-credit-drain-to-faulty-anti-abuse-system/" rel="nofollow noopener">cryptopolitan.com</a> <span class="pill">press</span></li><li><a href="https://status.openai.com/incidents/01KW2E6W0503W4NXJNCVAG8V6T" rel="nofollow noopener">status.openai.com</a> <span class="pill">status_page</span></li></ul></td>
+    <td class="chain">
+      → corrected by <a href="#cx-2026-06-28-02"><code>cx-2026-06-28-02</code></a>
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="codex" data-kind="banked_reset"
+        data-trigger="launch" data-confidence="probable"
+        data-state="current">
+    <td>
+      <a id="cx-2026-06-12-02" href="#cx-2026-06-12-02"><code>cx-2026-06-12-02</code></a>
+      <div><span class="pill codex">codex</span>
+      </div>
+    </td>
+    <td>2026-06-12 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>banked_reset</div></td>
+    <td>launch</td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> <span class="unset">not established</span><abbr class="sup sup-unestablished" title="Not established — no source addresses this">n/e</abbr></div>
+      <div><b>plans</b> Go, Plus, Pro, Business</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://community.openai.com/t/flexible-rate-limit-resets-for-codex-and-a-method-to-get-a-reset/1383470" rel="nofollow noopener">community.openai.com</a> <span class="pill">user_report</span></li><li><a href="https://www.xda-developers.com/codexs-update-fixes-the-one-thing-i-hate-most-about-ai-usage-limits/" rel="nofollow noopener">xda-developers.com</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      
+      <div>← replaces <a href="#cx-2026-06-12-01"><code>cx-2026-06-12-01</code></a></div>
+      
+    </td>
+  </tr>
+<tr class="rec dead"
+        data-vendor="codex" data-kind="banked_reset"
+        data-trigger="launch" data-confidence="probable"
+        data-state="superseded">
+    <td>
+      <a id="cx-2026-06-12-01" href="#cx-2026-06-12-01"><code>cx-2026-06-12-01</code></a>
+      <div><span class="pill codex">codex</span>
+      <span class="pill superseded">superseded</span></div>
+    </td>
+    <td>2026-06-12 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>banked_reset</div></td>
+    <td>launch</td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> Go, Plus, Pro, Business</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://community.openai.com/t/flexible-rate-limit-resets-for-codex-and-a-method-to-get-a-reset/1383470" rel="nofollow noopener">community.openai.com</a> <span class="pill">user_report</span></li><li><a href="https://www.xda-developers.com/codexs-update-fixes-the-one-thing-i-hate-most-about-ai-usage-limits/" rel="nofollow noopener">xda-developers.com</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      → corrected by <a href="#cx-2026-06-12-02"><code>cx-2026-06-12-02</code></a>
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="incident_compensation" data-confidence="confirmed"
+        data-state="current">
+    <td>
+      <a id="cx-2026-06-04-02" href="#cx-2026-06-04-02"><code>cx-2026-06-04-02</code></a>
+      <div><span class="pill codex">codex</span>
+      </div>
+    </td>
+    <td>2026-06-04 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>incident_compensation</td>
+    <td><span class="pill confirmed">confirmed</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> paid subscribers (OpenAI staff wording), ChatGPT Pro<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></div>
+      <div><b>partial</b> true<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></div>
+    </td>
+    <td><ul class="ev"><li><a href="https://community.openai.com/t/questions-about-an-unexpected-codex-usage-reset-and-new-quota-period/1382610" rel="nofollow noopener">community.openai.com</a> <span class="pill">vendor_post</span></li><li><a href="https://github.com/openai/codex/issues/27027" rel="nofollow noopener">github.com</a> <span class="pill">user_report</span></li><li><a href="https://github.com/openai/codex/discussions/26975" rel="nofollow noopener">github.com</a> <span class="pill">user_report</span></li></ul></td>
+    <td class="chain">
+      
+      <div>← replaces <a href="#cx-2026-06-04-01"><code>cx-2026-06-04-01</code></a></div>
+      
+    </td>
+  </tr>
+<tr class="rec dead"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="incident_compensation" data-confidence="confirmed"
+        data-state="superseded">
+    <td>
+      <a id="cx-2026-06-04-01" href="#cx-2026-06-04-01"><code>cx-2026-06-04-01</code></a>
+      <div><span class="pill codex">codex</span>
+      <span class="pill superseded">superseded</span></div>
+    </td>
+    <td>2026-06-04 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>incident_compensation</td>
+    <td><span class="pill confirmed">confirmed</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> paid subscribers (OpenAI staff wording), ChatGPT Pro, ChatGPT Plus</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://community.openai.com/t/questions-about-an-unexpected-codex-usage-reset-and-new-quota-period/1382610" rel="nofollow noopener">community.openai.com</a> <span class="pill">vendor_post</span></li><li><a href="https://github.com/openai/codex/issues/27027" rel="nofollow noopener">github.com</a> <span class="pill">user_report</span></li><li><a href="https://github.com/openai/codex/discussions/26975" rel="nofollow noopener">github.com</a> <span class="pill">user_report</span></li></ul></td>
+    <td class="chain">
+      → corrected by <a href="#cx-2026-06-04-02"><code>cx-2026-06-04-02</code></a>
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="claude-code" data-kind="global_reset"
+        data-trigger="incident_compensation" data-confidence="reported"
+        data-state="current">
+    <td>
+      <a id="cc-2026-06-02-02" href="#cc-2026-06-02-02"><code>cc-2026-06-02-02</code></a>
+      <div><span class="pill claude-code">claude-code</span>
+      </div>
+    </td>
+    <td>2026-06-02 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>incident_compensation</td>
+    <td><span class="pill reported">reported</span></td>
+    <td>
+      <div><b>windows</b> <span class="unset">not established</span></div>
+      <div><b>plans</b> Pro, Max</div>
+      <div><b>partial</b> true<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></div>
+    </td>
+    <td><ul class="ev"><li><a href="https://www.storyboard18.com/digital/anthropics-claude-ai-suffers-disruption-what-caused-the-outage-and-why-user-quotas-were-reset-99951.htm" rel="nofollow noopener">storyboard18.com</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      
+      <div>← replaces <a href="#cc-2026-06-02-01"><code>cc-2026-06-02-01</code></a></div>
+      
+    </td>
+  </tr>
+<tr class="rec dead"
+        data-vendor="claude-code" data-kind="global_reset"
+        data-trigger="incident_compensation" data-confidence="reported"
+        data-state="superseded">
+    <td>
+      <a id="cc-2026-06-02-01" href="#cc-2026-06-02-01"><code>cc-2026-06-02-01</code></a>
+      <div><span class="pill claude-code">claude-code</span>
+      <span class="pill superseded">superseded</span></div>
+    </td>
+    <td>2026-06-02 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>incident_compensation</td>
+    <td><span class="pill reported">reported</span></td>
+    <td>
+      <div><b>windows</b> <span class="unset">not established</span></div>
+      <div><b>plans</b> Pro, Max</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://www.storyboard18.com/digital/anthropics-claude-ai-suffers-disruption-what-caused-the-outage-and-why-user-quotas-were-reset-99951.htm" rel="nofollow noopener">storyboard18.com</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      → corrected by <a href="#cc-2026-06-02-02"><code>cc-2026-06-02-02</code></a>
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="incident_compensation" data-confidence="reported"
+        data-state="current">
+    <td>
+      <a id="cx-2026-05-23-02" href="#cx-2026-05-23-02"><code>cx-2026-05-23-02</code></a>
+      <div><span class="pill codex">codex</span>
+      </div>
+    </td>
+    <td>2026-05-23 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>incident_compensation</td>
+    <td><span class="pill reported">reported</span></td>
+    <td>
+      <div><b>windows</b> <span class="unset">not established</span><abbr class="sup sup-unestablished" title="Not established — no source addresses this">n/e</abbr></div>
+      <div><b>plans</b> all</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://community.openai.com/t/codex-rate-limits-reset-incoming/1381065" rel="nofollow noopener">community.openai.com</a> <span class="pill">user_report</span></li></ul></td>
+    <td class="chain">
+      
+      <div>← replaces <a href="#cx-2026-05-23-01"><code>cx-2026-05-23-01</code></a></div>
+      
+    </td>
+  </tr>
+<tr class="rec dead"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="incident_compensation" data-confidence="reported"
+        data-state="superseded">
+    <td>
+      <a id="cx-2026-05-23-01" href="#cx-2026-05-23-01"><code>cx-2026-05-23-01</code></a>
+      <div><span class="pill codex">codex</span>
+      <span class="pill superseded">superseded</span></div>
+    </td>
+    <td>2026-05-23 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>incident_compensation</td>
+    <td><span class="pill reported">reported</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> all</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://community.openai.com/t/codex-rate-limits-reset-incoming/1381065" rel="nofollow noopener">community.openai.com</a> <span class="pill">user_report</span></li></ul></td>
+    <td class="chain">
+      → corrected by <a href="#cx-2026-05-23-02"><code>cx-2026-05-23-02</code></a>
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="incident_compensation" data-confidence="probable"
+        data-state="current">
+    <td>
+      <a id="cx-2026-05-16-01" href="#cx-2026-05-16-01"><code>cx-2026-05-16-01</code></a>
+      <div><span class="pill codex">codex</span>
+      </div>
+    </td>
+    <td>2026-05-16 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>incident_compensation</td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> <span class="unset">not established</span></div>
+      <div><b>plans</b> <span class="unset">not established</span></div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://community.openai.com/t/codex-rate-limits-reset-incoming/1381065" rel="nofollow noopener">community.openai.com</a> <span class="pill">user_report</span></li><li><a href="https://status.openai.com/history" rel="nofollow noopener">status.openai.com</a> <span class="pill">status_page</span></li><li><a href="https://knightli.com/en/2026/05/17/codex-usage-limit-reset-history/" rel="nofollow noopener">knightli.com</a> <span class="pill">press</span></li><li><a href="https://community.openai.com/t/codex-users-report-rapid-quota-drains-since-may-10/1380649" rel="nofollow noopener">community.openai.com</a> <span class="pill">user_report</span></li></ul></td>
+    <td class="chain">
+      
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="claude-code" data-kind="global_reset"
+        data-trigger="courtesy" data-confidence="probable"
+        data-state="current">
+    <td>
+      <a id="cc-2026-05-15-01" href="#cc-2026-05-15-01"><code>cc-2026-05-15-01</code></a>
+      <div><span class="pill claude-code">claude-code</span>
+      </div>
+    </td>
+    <td>2026-05-15 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>courtesy</td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> 5h, weekly</div>
+      <div><b>plans</b> Pro, Max, Team, Enterprise (seat-based)</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://pasqualepillitteri.it/en/news/2614/claude-resets-rate-limits-5-hour-weekly-may-15-2026" rel="nofollow noopener">pasqualepillitteri.it</a> <span class="pill">press</span></li><li><a href="https://www.verdent.ai/guides/claude-code-limits-doubled-may-2026" rel="nofollow noopener">verdent.ai</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="claude-code" data-kind="limit_increase"
+        data-trigger="competitive_response" data-confidence="reported"
+        data-state="current">
+    <td>
+      <a id="cc-2026-05-13-02" href="#cc-2026-05-13-02"><code>cc-2026-05-13-02</code></a>
+      <div><span class="pill claude-code">claude-code</span>
+      </div>
+    </td>
+    <td>2026-05-13 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>limit_increase</div></td>
+    <td>competitive_response<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></td>
+    <td><span class="pill reported">reported</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> Pro, Max, Team, legacy seat-based Enterprise</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://apidog.com/blog/claude-code-weekly-limits-50-percent-increase-july-2026/" rel="nofollow noopener">apidog.com</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      
+      <div>← replaces <a href="#cc-2026-05-13-01"><code>cc-2026-05-13-01</code></a></div>
+      
+    </td>
+  </tr>
+<tr class="rec dead"
+        data-vendor="claude-code" data-kind="limit_increase"
+        data-trigger="courtesy" data-confidence="reported"
+        data-state="superseded">
+    <td>
+      <a id="cc-2026-05-13-01" href="#cc-2026-05-13-01"><code>cc-2026-05-13-01</code></a>
+      <div><span class="pill claude-code">claude-code</span>
+      <span class="pill superseded">superseded</span></div>
+    </td>
+    <td>2026-05-13 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>limit_increase</div></td>
+    <td>courtesy</td>
+    <td><span class="pill reported">reported</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> Pro, Max, Team, legacy seat-based Enterprise</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://apidog.com/blog/claude-code-weekly-limits-50-percent-increase-july-2026/" rel="nofollow noopener">apidog.com</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      → corrected by <a href="#cc-2026-05-13-02"><code>cc-2026-05-13-02</code></a>
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="claude-code" data-kind="limit_increase"
+        data-trigger="capacity" data-confidence="confirmed"
+        data-state="current">
+    <td>
+      <a id="cc-2026-05-06-01" href="#cc-2026-05-06-01"><code>cc-2026-05-06-01</code></a>
+      <div><span class="pill claude-code">claude-code</span>
+      </div>
+    </td>
+    <td>2026-05-06 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>limit_increase</div></td>
+    <td>capacity</td>
+    <td><span class="pill confirmed">confirmed</span></td>
+    <td>
+      <div><b>windows</b> 5h</div>
+      <div><b>plans</b> Pro, Max, Team, seat-based Enterprise</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://www.anthropic.com/news/higher-limits-spacex" rel="nofollow noopener">anthropic.com</a> <span class="pill">vendor_post</span></li><li><a href="https://www.anthropic.com/news/higher-limits-spacex" rel="nofollow noopener">anthropic.com</a> <span class="pill">vendor_post</span></li></ul></td>
+    <td class="chain">
+      
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="courtesy" data-confidence="probable"
+        data-state="current">
+    <td>
+      <a id="cx-2026-04-28-02" href="#cx-2026-04-28-02"><code>cx-2026-04-28-02</code></a>
+      <div><span class="pill codex">codex</span>
+      </div>
+    </td>
+    <td>2026-04-28 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>courtesy</td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> <span class="unset">not established</span><abbr class="sup sup-unestablished" title="Not established — no source addresses this">n/e</abbr></div>
+      <div><b>plans</b> all paid plans<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></div>
+      <div><b>partial</b> true<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></div>
+    </td>
+    <td><ul class="ev"><li><a href="https://community.openai.com/t/codex-rate-limits-reset-for-all-paid-plans-april-28-2026/1379921" rel="nofollow noopener">community.openai.com</a> <span class="pill">vendor_post</span></li><li><a href="https://github.com/openai/codex/issues/20395" rel="nofollow noopener">github.com</a> <span class="pill">user_report</span></li><li><a href="https://www.aitopic.com/OpenAI-Codex-Resets-Rate-Limits-for-All-Paid-Users-to-Encourage-GPT-55-Adoption.html" rel="nofollow noopener">aitopic.com</a> <span class="pill">press</span></li><li><a href="https://knightli.com/en/2026/05/17/codex-usage-limit-reset-history/" rel="nofollow noopener">knightli.com</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      
+      <div>← replaces <a href="#cx-2026-04-28-01"><code>cx-2026-04-28-01</code></a></div>
+      
+    </td>
+  </tr>
+<tr class="rec dead"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="courtesy" data-confidence="probable"
+        data-state="superseded">
+    <td>
+      <a id="cx-2026-04-28-01" href="#cx-2026-04-28-01"><code>cx-2026-04-28-01</code></a>
+      <div><span class="pill codex">codex</span>
+      <span class="pill superseded">superseded</span></div>
+    </td>
+    <td>2026-04-28 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>courtesy</td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> 5h</div>
+      <div><b>plans</b> Plus, Pro, Business, Enterprise</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://community.openai.com/t/codex-rate-limits-reset-for-all-paid-plans-april-28-2026/1379921" rel="nofollow noopener">community.openai.com</a> <span class="pill">vendor_post</span></li><li><a href="https://github.com/openai/codex/issues/20395" rel="nofollow noopener">github.com</a> <span class="pill">user_report</span></li><li><a href="https://www.aitopic.com/OpenAI-Codex-Resets-Rate-Limits-for-All-Paid-Users-to-Encourage-GPT-55-Adoption.html" rel="nofollow noopener">aitopic.com</a> <span class="pill">press</span></li><li><a href="https://knightli.com/en/2026/05/17/codex-usage-limit-reset-history/" rel="nofollow noopener">knightli.com</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      → corrected by <a href="#cx-2026-04-28-02"><code>cx-2026-04-28-02</code></a>
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="claude-code" data-kind="global_reset"
+        data-trigger="incident_compensation" data-confidence="confirmed"
+        data-state="current">
+    <td>
+      <a id="cc-2026-04-23-01" href="#cc-2026-04-23-01"><code>cc-2026-04-23-01</code></a>
+      <div><span class="pill claude-code">claude-code</span>
+      </div>
+    </td>
+    <td>2026-04-23 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>incident_compensation</td>
+    <td><span class="pill confirmed">confirmed</span></td>
+    <td>
+      <div><b>windows</b> <span class="unset">not established</span></div>
+      <div><b>plans</b> all subscribers (tiers not itemised in the vendor post)</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://www.anthropic.com/engineering/april-23-postmortem" rel="nofollow noopener">anthropic.com</a> <span class="pill">vendor_post</span></li><li><a href="https://fortune.com/2026/04/24/anthropic-engineering-missteps-claude-code-performance-decline-user-backlash/" rel="nofollow noopener">fortune.com</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="milestone" data-confidence="reported"
+        data-state="current">
+    <td>
+      <a id="cx-2026-04-08-01" href="#cx-2026-04-08-01"><code>cx-2026-04-08-01</code></a>
+      <div><span class="pill codex">codex</span>
+      </div>
+    </td>
+    <td>2026-04-08 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>milestone</td>
+    <td><span class="pill reported">reported</span></td>
+    <td>
+      <div><b>windows</b> <span class="unset">not established</span></div>
+      <div><b>plans</b> <span class="unset">not established</span></div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://www.businesstoday.in/technology/story/openai-codex-celebrates-3-million-weekly-users-ceo-sam-altman-resets-usage-limits-524717-2026-04-08" rel="nofollow noopener">businesstoday.in</a> <span class="pill">press</span></li><li><a href="https://community.openai.com/t/codex-rate-limits-discussion-thread/1378553/177" rel="nofollow noopener">community.openai.com</a> <span class="pill">user_report</span></li><li><a href="https://www.technobezz.com/news/openai-resets-codex-usage-limits-after-reaching-3-million-weekly-users" rel="nofollow noopener">technobezz.com</a> <span class="pill">press</span></li><li><a href="https://letsdatascience.com/news/sam-altman-resets-openai-codex-limits-74ec5754" rel="nofollow noopener">letsdatascience.com</a> <span class="pill">press</span></li><li><a href="https://www.ai-primer.com/engineer/stories/openai-codex-3m-users-limit-reset" rel="nofollow noopener">ai-primer.com</a> <span class="pill">press</span></li><li><a href="https://codex.danielvaughan.com/2026/04/09/codex-3-million-users-growth-usage-limits/" rel="nofollow noopener">codex.danielvaughan.com</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="unknown" data-confidence="reported"
+        data-state="current">
+    <td>
+      <a id="cx-2026-04-01-02" href="#cx-2026-04-01-02"><code>cx-2026-04-01-02</code></a>
+      <div><span class="pill codex">codex</span>
+      </div>
+    </td>
+    <td>2026-04-01 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>unknown<abbr class="sup sup-unestablished" title="Not established — no source addresses this">n/e</abbr></td>
+    <td><span class="pill reported">reported</span></td>
+    <td>
+      <div><b>windows</b> <span class="unset">not established</span><abbr class="sup sup-unestablished" title="Not established — no source addresses this">n/e</abbr></div>
+      <div><b>plans</b> all plans<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://community.openai.com/t/codex-limits-finally-good-after-april-1st-reset/1378333" rel="nofollow noopener">community.openai.com</a> <span class="pill">user_report</span></li></ul></td>
+    <td class="chain">
+      
+      <div>← replaces <a href="#cx-2026-04-01-01"><code>cx-2026-04-01-01</code></a></div>
+      
+    </td>
+  </tr>
+<tr class="rec dead"
+        data-vendor="codex" data-kind="global_reset"
+        data-trigger="capacity" data-confidence="reported"
+        data-state="superseded">
+    <td>
+      <a id="cx-2026-04-01-01" href="#cx-2026-04-01-01"><code>cx-2026-04-01-01</code></a>
+      <div><span class="pill codex">codex</span>
+      <span class="pill superseded">superseded</span></div>
+    </td>
+    <td>2026-04-01 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div></td>
+    <td>capacity</td>
+    <td><span class="pill reported">reported</span></td>
+    <td>
+      <div><b>windows</b> weekly</div>
+      <div><b>plans</b> all paid</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://community.openai.com/t/codex-limits-finally-good-after-april-1st-reset/1378333" rel="nofollow noopener">community.openai.com</a> <span class="pill">user_report</span></li></ul></td>
+    <td class="chain">
+      → corrected by <a href="#cx-2026-04-01-02"><code>cx-2026-04-01-02</code></a>
+      
+      
+    </td>
+  </tr>
+<tr class="rec"
+        data-vendor="claude-code" data-kind="limit_increase"
+        data-trigger="courtesy" data-confidence="probable"
+        data-state="current">
+    <td>
+      <a id="cc-2026-03-13-01" href="#cc-2026-03-13-01"><code>cc-2026-03-13-01</code></a>
+      <div><span class="pill claude-code">claude-code</span>
+      </div>
+    </td>
+    <td>2026-03-13 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>limit_increase</div></td>
+    <td>courtesy</td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> 5h</div>
+      <div><b>plans</b> Free, Pro, Max, Team</div>
+      <div><b>partial</b> false</div>
+    </td>
+    <td><ul class="ev"><li><a href="https://www.xda-developers.com/claude-doubled-every-users-usage-limits-for-two-weeks/" rel="nofollow noopener">xda-developers.com</a> <span class="pill">press</span></li><li><a href="https://explainx.ai/blog/claude-usage-limits-2026-timeline-explained" rel="nofollow noopener">explainx.ai</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      
+      
+      
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+
+<footer>
+Quota Reset Index · a sourced, append-only record of discretionary AI quota resets.
+Data at <a href="/ledger.json">/ledger.json</a> and <a href="/ledger.csv">/ledger.csv</a>, CORS-open —
+see <a href="/methodology.html#data">Methodology</a>. Corrections welcome against the evidence.
+</footer>
+<script>
+
+(function(){
+  var rows = Array.prototype.slice.call(document.querySelectorAll('tr.rec'));
+  var sel = ['vendor','kind','trigger','confidence','state'].map(function(k){
+    return { key:k, el:document.getElementById('f-'+k) };
+  });
+  var count = document.getElementById('count');
+  function apply(){
+    var shown = 0;
+    rows.forEach(function(row){
+      var ok = sel.every(function(s){
+        var want = s.el.value;
+        if (!want) return true;
+        var have = row.getAttribute('data-'+s.key) || '';
+        // kind is space-separated because a record may carry several effects
+        return s.key === 'kind' ? have.split(' ').indexOf(want) !== -1 : have === want;
+      });
+      row.style.display = ok ? '' : 'none';
+      if (ok) shown++;
+    });
+    count.textContent = shown + ' of ' + rows.length + ' shown';
+  }
+  sel.forEach(function(s){ s.el.addEventListener('change', apply); });
+  apply();
+})();
+
+</script>
+</html>

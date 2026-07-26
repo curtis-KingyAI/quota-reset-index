@@ -55,8 +55,25 @@ The forecasts below sit on top of it and are strictly the less trustworthy half 
 <p>An audit on 2026-07-26 found that <strong>24 of 29 records carried at least one over-claimed
 enrichment field</strong> — a scope or trigger value that no source asserted of that specific event.
 The events themselves survived: every record's vendor, date and evidence held up under adversarial
-review, and six candidate events were rejected before entry. The defects were in the metadata
-around them. That correction is in progress and this page will state when it lands.</p>
+review, and six candidate events were rejected before entry. The defects were in the metadata around
+them.</p>
+
+<p><strong>That correction has landed.</strong> Every accepted change was written as a superseding
+record; nothing was edited in place and nothing was deleted. Two details worth stating, because they
+are the reason to believe the rest:</p>
+<ul>
+  <li>The 41 proposed corrections were themselves put through an adversarial pass before any record
+  moved. <strong>21 of the 41 were wrong</strong> — 11 "corrected" values that were already right,
+  and 10 would have replaced a real defect with a different unsupported claim. Had they been applied
+  as drafted, the ledger would have looked audited while staying wrong.</li>
+  <li>That pass also found two structural defects nobody had asked it to look for: one event recorded
+  twice under two timezone conventions, and a citation whose own identifier decoded to a date four
+  days from the one it was filed under. Both are fixed; both are visible in the record chain.</li>
+</ul>
+
+<p>The root cause was a schema property rather than 24 careless judgments. A required boolean cannot
+say "we do not know", so nine records asserted account coverage no source had addressed. Fields can
+now be explicitly unestablished, and every enrichment field carries a provenance marker.</p>
 
 <h2>Model A — Codex: self-exciting intensity</h2>
 <p>Codex quota state is not observable from outside, so the reset history is the richest signal
@@ -133,7 +150,7 @@ between a Tuesday and a Saturday on otherwise identical inputs.</p>
 rather than left-endpoint because both models are steep near t=0 and a left-endpoint sum would bias
 the short windows.</p>
 
-<h2>What the sentinel depends on, and how it fails</h2>
+<h2 id="sentinel">What the sentinel depends on, and how it fails</h2>
 <p>§8 requires this stated plainly, so:</p>
 
 <div class="fail">
@@ -154,6 +171,35 @@ Telemetry can establish that <em>your</em> quota changed. It cannot establish th
 anything. That is precisely what this ledger records, which is why the ledger is not the fallback
 instrument here. It is the only one.</p>
 </div>
+
+<h2 id="data">The data, and how to use it</h2>
+<p>Both files are regenerated from the flat record files by a deterministic build — same inputs,
+byte-identical output — and are never hand-edited. They are served CORS-open because the point is
+for other people to check our work.</p>
+
+<table>
+  <tr><th>endpoint</th><th>format</th><th>headers</th></tr>
+  <tr><td><a href="/ledger.json"><code>/ledger.json</code></a></td><td>array of record objects</td>
+      <td><code>Access-Control-Allow-Origin: *</code><br><code>Cache-Control: public, max-age=3600, stale-while-revalidate=86400</code></td></tr>
+  <tr><td><a href="/ledger.csv"><code>/ledger.csv</code></a></td><td>one row per record, RFC 4180</td>
+      <td>same</td></tr>
+</table>
+
+<p>Four things a consumer needs to know:</p>
+<ul>
+  <li><strong>Superseded records are included.</strong> Filter on <code>superseded_by === null</code>
+  for the current view. They are present rather than removed because the correction chain is the
+  audit trail — a ledger that deletes its own history is asking to be believed rather than checked.</li>
+  <li><strong><code>field_support</code> tells you what to trust.</strong> Per enrichment field:
+  <code>attested</code> (a source states it of that event), <code>inferred</code> (it follows from a
+  general statement, nobody asserted it here), <code>unestablished</code> (nothing addresses it).
+  A field with no marker predates 2026-07-26 and its provenance was never recorded.</li>
+  <li><strong><code>scope.partial: null</code> means unestablished</strong>, and is distinct from
+  <code>false</code>. In the CSV it renders as an empty cell rather than the string "false".</li>
+  <li><strong>Dates are UTC.</strong> Several widely-cited secondary sources date these events in US
+  Pacific, which puts some of them on the previous day. Where a record's identity depends on that,
+  the underlying post id and its decoded UTC timestamp are recorded in the notes.</li>
+</ul>
 
 <h2>How this becomes citable rather than interesting</h2>
 <p>The build order is fixed: ledger, then sentinel, then models, then this page. Calibration is
