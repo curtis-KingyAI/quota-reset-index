@@ -60,6 +60,20 @@ export const STYLES = `
   }
 `;
 
+/**
+ * NOINDEX DEFAULTS TO ON, and is disabled only by an explicit opt-in.
+ *
+ * The staging origin (<project>.pages.dev) must never be indexed: an indexed
+ * staging URL is a stranded URL the moment the custom domain lands, and the
+ * project doctrine is to 301 before changing status — which you cannot do for a
+ * URL you did not mean to publish. Defaulting to indexable and remembering to
+ * turn it off is the wrong way round; forgetting the flag would be the failure.
+ *
+ * To build an indexable site once the custom domain resolves:
+ *   QRI_INDEXABLE=1 npm run build
+ */
+export const NOINDEX = process.env.QRI_INDEXABLE !== '1';
+
 export interface PageOptions {
   title: string;
   current: 'ledger' | 'forecast' | 'methodology';
@@ -83,7 +97,7 @@ export function page(o: PageOptions): string {
 <html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(o.title)}</title>
+${NOINDEX ? '<meta name="robots" content="noindex, nofollow">\n' : ''}<title>${esc(o.title)}</title>
 <style>${STYLES}${o.extraStyles ?? ''}</style>
 
 <nav>

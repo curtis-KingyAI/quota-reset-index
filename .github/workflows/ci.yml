@@ -1,0 +1,59 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Read-only. This workflow verifies; it never writes to the repo or deploys.
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # ⚠️ LOAD-BEARING. The default is a shallow clone (depth 1), which would
+          # make the append-only history check VACUOUS — it would find no history
+          # to check and pass silently. A green tick that verified nothing is worse
+          # than no check, because it retires the question.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Validate the ledger
+        run: npm run validate
+
+      - name: Tests
+        run: npm test
+
+      # THE POINT OF THIS WORKFLOW.
+      #
+      # The pre-commit hook runs where the author controls it: `git commit
+      # --no-verify`, or a clone where `npm run hooks:install` was never run,
+      # bypasses it entirely. For a ledger whose whole value is verifiability,
+      # enforcement inside the actor's own control is an honour system with a
+      # script attached. This re-derives the append-only property from committed
+      # history, where a local flag cannot reach.
+      - name: Append-only, verified against history
+        run: npm run check:history
+
+      # A published site built from a stale tree corresponds to no commit.
+      - name: Build is reproducible from the tree
+        run: |
+          npm run build
+          if [ -n "$(git status --porcelain public/)" ]; then
+            echo "::error::public/ is stale — rebuilding changed it. Commit the rebuilt output."
+            git --no-pager diff --stat public/
+            exit 1
+          fi
+
+      - name: Deploy preflight (never publishes)
+        run: npm run deploy

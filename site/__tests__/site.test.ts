@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import { renderLedgerPage } from '../build-ledger-page.ts';
 import { renderForecastPage } from '../build-forecast.ts';
 import { renderHeaders, HEADER_RULES } from '../headers.ts';
+import { renderMethodology } from '../build-methodology.ts';
+import { renderRobots } from '../robots.ts';
 import { collectEntries } from '../../scripts/validate.mjs';
 
 const records = collectEntries().map((e: any) => JSON.parse(e.raw));
@@ -73,4 +75,21 @@ test('the CORS contract is emitted and covers both data endpoints', () => {
 
 test('the ledger page states the audit rather than presenting a clean face', () => {
   assert.match(ledger, /24 of 29 records/);
+});
+
+test('EVERY page carries noindex by default — a staging origin must not be indexable', () => {
+  // methodology.html renders its own document rather than using the shared shell,
+  // so it silently missed the noindex meta on first implementation. This test is
+  // the reason that cannot recur.
+  for (const [name, html] of [
+    ['ledger', ledger],
+    ['forecast', forecast],
+    ['methodology', renderMethodology()],
+  ] as [string, string][]) {
+    assert.match(html, /<meta name="robots" content="noindex, nofollow">/, `${name} must be noindex by default`);
+  }
+});
+
+test('robots.txt agrees with the meta tag', () => {
+  assert.match(renderRobots(), /Disallow: \//);
 });

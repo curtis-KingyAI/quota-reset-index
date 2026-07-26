@@ -36,6 +36,7 @@ import {
   STEP_HOURS,
   TAU,
 } from '../models/config.ts';
+import { NOINDEX } from './layout.ts';
 import { isMain } from '../lib/is-main.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -77,7 +78,7 @@ export function renderMethodology(): string {
 <html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Methodology — Quota Reset Index</title>
+${NOINDEX ? '<meta name="robots" content="noindex, nofollow">\n' : ''}<title>Methodology — Quota Reset Index</title>
 <style>
   :root { --ink:#16202a; --soft:#5d6c79; --rule:#c7cfd5; --well:#f6f8f9; --warn:#8a4a12; }
   *{box-sizing:border-box}
