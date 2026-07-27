@@ -104,8 +104,9 @@ export const STYLES = `
   /* ---------- notices ---------- */
   .banner { border-left:3px solid var(--warn); background:var(--warn-bg); border-radius:0 2px 2px 0;
             padding:.95rem 1.15rem; margin:1.4rem 0; font-size:.94rem; max-width:54rem }
-  .banner > :first-child { font-weight:650; color:var(--warn) }
-  .banner p { margin:.4rem 0 0; color:var(--ink-2) }
+  .banner-lead { display:block; font-weight:650; color:var(--warn); margin-bottom:.35rem }
+  .banner p { margin:0; color:var(--ink-2); font-weight:400 }
+  .banner p strong { font-weight:650; color:var(--ink) }
 
   /* ---------- tables ---------- */
   table { width:100%; border-collapse:collapse; margin:1.1rem 0; font-size:.95rem }

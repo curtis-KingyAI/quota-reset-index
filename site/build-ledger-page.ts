@@ -114,7 +114,7 @@ ${forecastHero(heroFigures())}
 predictions — the <a href="/forecast">forecast</a> does, and is the less trustworthy half.</p>
 
 <div class="banner">
-  ${current.length} current records · ${records.length - current.length} superseded · ${records.length} total
+  <span class="banner-lead">${current.length} current records · ${records.length - current.length} superseded · ${records.length} total</span>
   <p>Superseded records are <strong>shown, not hidden</strong>. Corrections are new records that
   reference the old one; nothing is ever edited in place or deleted. The chain is the audit trail,
   so removing it would defeat the point of keeping one.</p>

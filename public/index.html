@@ -86,8 +86,9 @@
   /* ---------- notices ---------- */
   .banner { border-left:3px solid var(--warn); background:var(--warn-bg); border-radius:0 2px 2px 0;
             padding:.95rem 1.15rem; margin:1.4rem 0; font-size:.94rem; max-width:54rem }
-  .banner > :first-child { font-weight:650; color:var(--warn) }
-  .banner p { margin:.4rem 0 0; color:var(--ink-2) }
+  .banner-lead { display:block; font-weight:650; color:var(--warn); margin-bottom:.35rem }
+  .banner p { margin:0; color:var(--ink-2); font-weight:400 }
+  .banner p strong { font-weight:650; color:var(--ink) }
 
   /* ---------- tables ---------- */
   table { width:100%; border-collapse:collapse; margin:1.1rem 0; font-size:.95rem }
@@ -179,7 +180,7 @@
 predictions — the <a href="/forecast">forecast</a> does, and is the less trustworthy half.</p>
 
 <div class="banner">
-  28 current records · 19 superseded · 47 total
+  <span class="banner-lead">28 current records · 19 superseded · 47 total</span>
   <p>Superseded records are <strong>shown, not hidden</strong>. Corrections are new records that
   reference the old one; nothing is ever edited in place or deleted. The chain is the audit trail,
   so removing it would defeat the point of keeping one.</p>
