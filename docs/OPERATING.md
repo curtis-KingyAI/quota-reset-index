@@ -56,9 +56,32 @@ threshold is the point at which the site starts warning readers, not the goal.
 npm run sweep -- --check
 ```
 
-Exits non-zero when overdue, so it can back a reminder. **Nothing here schedules itself** — the
-2026-07-12 automation freeze means wiring a timer is an explicit operator action, not something an
-agent does on its own initiative.
+Exits non-zero when overdue, so it can back a reminder.
+
+### The scheduled reminder — registered, not rogue
+
+**Created 2026-07-27 on explicit operator instruction.** The 2026-07-12 automation freeze means wiring
+a timer is an operator decision, never an agent's own initiative; this one was asked for. Recorded here
+so a later audit can identify it rather than flag it as unexplained automation.
+
+| | |
+|---|---|
+| routine | **Quota Reset Index — weekly sweep** |
+| id | `trig_01NWrCc74W8qXJcimeDQtrb3` |
+| schedule | `0 16 * * 1` — Mondays 16:00 UTC = **09:00 America/Vancouver** |
+| runs | a **cloud** session, `claude-sonnet-5`, cloning the public repo |
+| manage | <https://claude.ai/code/routines/trig_01NWrCc74W8qXJcimeDQtrb3> |
+
+It runs `npm run sweep -- --check`, does the read-only research pass above, and **reports**. It is
+explicitly forbidden from writing to `ledger/`, recording a sweep, or committing — it has no push
+credentials, and its tool list excludes `Write` and `Edit`. A human still rules on every candidate,
+and still runs `--record`.
+
+⚠️ **It reads GitHub, not your laptop.** It clones the public repo, so it sees `operations/sweeps.jsonl`
+**as pushed**. Sweep locally without pushing and it will nag you anyway — which is arguably the correct
+behaviour, since an unpushed sweep is not part of the public audit trail.
+
+⚠️ **It cannot delete itself and neither can an agent.** Disable or remove it at the link above.
 
 ## Ownership — §11.3
 
