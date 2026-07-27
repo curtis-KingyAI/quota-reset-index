@@ -1,2 +1,9 @@
 node_modules/
 .agent-lock
+
+# Observation logs are one person's account usage over time — personal telemetry,
+# not evidence. They default to ~/.quota-reset-index/ and belong nowhere near a
+# repository whose whole pitch is "check our work". Ignored here in case
+# QRI_OBS_LOG is ever pointed inside the tree.
+observations.jsonl
+last-*.json
