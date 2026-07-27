@@ -41,8 +41,16 @@ and the markers are what stop it recurring.
 **Sources are graded, not merely listed.** `confirmed` requires a vendor post or status page.
 Third-party trackers that republish social posts may locate a claim but may never carry its substance.
 
-**The forecasts are labelled uncalibrated, because they are.** Every weight is a hand-set prior. None
-has been checked against an outcome. The banner comes off when a Brier score replaces it, not before.
+**The forecasts are labelled uncalibrated, and now we can say how badly.** Every weight is a hand-set
+prior. On 2026-07-27 they were scored for the first time — walk-forward against the 19 Codex resets on
+file, nothing fitted — and **no configuration was distinguishable from simply predicting the historical
+base rate**. The banner stays, but it no longer means "never checked"; it means *checked, and not yet
+better than a constant rate*.
+
+That measurement also found the regime the site was publishing over-forecast by ~14 points, so **the
+headline figure was changed from 46% to 29% on the strength of it**. The superseded figure is still
+named on the methodology page. `npm run backtest` reproduces every number; the working is in
+[`docs/CALIBRATION.md`](docs/CALIBRATION.md).
 
 ## Repository layout
 

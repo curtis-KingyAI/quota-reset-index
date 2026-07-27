@@ -58,15 +58,16 @@ That sweep also exposed a loose end worth generalising: migration 02 correctly *
 from `cx-2026-07-21-02` for being four days mis-dated, and then nobody recorded the 07-25 event it
 belonged to. **A struck citation is a signal that an event exists somewhere else.**
 
-Phase 6 (calibration) needs roughly **40 labelled events per vendor**:
+Phase 6 was treated as blocked on roughly **40 labelled events per vendor**. ⚠️ **That threshold was
+itself hand-set and never justified, and it has now been superseded by an actual measurement** — see
+the calibration section below. The binding constraint is real but smaller than it looked: at ~1 Codex
+reset a week, a skill interval that excludes zero is plausibly **months** away, not the year that
+figure implied.
 
-| vendor | current records | reset-bearing |
-|---|---|---|
-| codex | 19 | 19 |
-| claude-code | **9** | **4** |
-
-Claude Code is the binding constraint. At two or three events a month, **calibration is on the order
-of a year away, not a quarter** — so the uncalibrated banner is not a temporary state, it is the state.
+| vendor | current records | reset-bearing | assessable |
+|---|---|---|---|
+| codex | 19 | 19 | ✅ backtested 2026-07-27 |
+| claude-code | **9** | **4** | ✗ — nothing can be said at 4 events |
 
 What has changed is that two collection paths now exist and neither needs a decision to keep running:
 
@@ -80,6 +81,49 @@ someone knowing to look for it, which is the actual bottleneck on growing the co
 
 ---
 
+## ✅ FIRST CALIBRATION MEASUREMENT — 2026-07-27
+
+**`npm run backtest` reproduces every figure. Full working in [`CALIBRATION.md`](CALIBRATION.md).**
+
+The forecast had carried a banner since it was built saying the weights were hand-set priors never
+checked against an outcome, and that the banner would come off when a Brier score replaced it. **Nobody
+had ever computed one.** The 19 Codex reset events already on file were enough to ask the sharper
+question: *does this beat a constant rate?*
+
+Walk-forward, nothing fitted, model scored exactly as published, seeing only records dated strictly
+before each decision point. Both baselines walk-forward too.
+
+| series | Brier ↓ | skill | mean forecast | observed |
+|---|---|---|---|---|
+| **normal** | **0.1744** | +0.134 | 25.4% | 25.8% |
+| quiet | 0.1870 | +0.071 | 15.8% | 25.8% |
+| **launch** *(published until 07-27)* | 0.1895 | +0.059 | **38.9%** | 25.8% |
+| baseline: constant rate | 0.1953 | +0.030 | 16.5% | 25.8% |
+| baseline: historical frequency | 0.2013 | — | 16.3% | 25.8% |
+
+**Finding 1 — the banner stays, and now means something better.** Every 95% block-bootstrap interval on
+the skill score includes zero; the then-published configuration scored +0.059, CI [−0.485, +0.302]. No
+configuration is distinguishable from predicting the historical base rate. That is a statement about a
+19-event sample, not a verdict on the model — but the banner moved from *"never checked against an
+outcome"* to *"checked, and not yet distinguishable from a constant rate"*.
+
+**Finding 2 — the published regime was wrong, and was changed.** `launch` over-forecast by ~14 points
+and scored *below* a constant rate on non-overlapping windows. `normal` is nearly perfectly calibrated
+in the large and ranked first under both window schemes. **The site moved to `normal` the same day and
+the headline figure fell from 46% to 29%.** The superseded regime stays named on `/methodology` rather
+than being quietly replaced.
+
+⚠️ **What this does not establish.** Nothing was fitted — three already-published configurations were
+scored and one matched, so this is regime *selection*, not calibration. Calibration in the large is a
+weak property; a flat 25.8% would achieve it too. **The Hawkes structure this model is built around
+remains unevidenced**, and Claude Code cannot be assessed at all.
+
+⚠️ **These figures go stale the moment the corpus grows.** A test pins the headline finding so a ledger
+that has grown enough to change the answer fails loudly rather than leaving a stale claim on the page.
+Re-run and re-publish; do not carry them forward.
+
+---
+
 ## Phase state
 
 | phase | state | note |
@@ -90,7 +134,7 @@ someone knowing to look for it, which is the actual bottleneck on growing the co
 | 3 — status ingestion | ✅ built, **not scheduled** | No scheduler. The 2026-07-12 automation freeze means wiring one is an explicit operator action. |
 | 4 — model port | ✅ complete | Verified identical to the prototype across 29 numbers. Found §7.2's Claude Code column to be wrong. |
 | 5 — public surface | ✅ **deployed and live** | Four pages, CORS verified, sitemap, canonical URLs, schema.org Dataset. |
-| 6 — calibration | ⏸ blocked on data | ~40 labelled events per vendor needed; claude-code has 4 reset-bearing. Now being operated toward — see OPERATING.md. |
+| 6 — calibration | 🟡 **first measurement taken** | Codex backtested 2026-07-27: banner stays, and the published regime was changed on the evidence. Claude Code unassessable at 4 reset events. See below and `CALIBRATION.md`. |
 
 ## The ledger
 
@@ -189,15 +233,19 @@ Stated plainly so it can be checked rather than assumed. Any one of these breaks
 8. **Telemetry is treated as confirmation.** `capture/` produces candidates, never records. If an
    observation ever reaches `evidence[]`, the ledger is asserting a vendor grant on the strength of one
    account's quota moving — which no channel can establish.
-9. **A record cannot be re-audited from itself.** Already true of 65 fields across ~44 records, whose
+9. **A calibration figure is carried forward after the corpus changes.** The 2026-07-27 backtest is
+   true of 19 Codex events and nothing else. Republishing it against a grown ledger would be the
+   stale-count defect wearing a lab coat — worse, because a Brier score reads as measured fact. A test
+   pins the headline finding so growth fails loudly.
+10. **A record cannot be re-audited from itself.** Already true of 65 fields across ~44 records, whose
    prose was truncated at write time — including, in at least one case, the reasoning that justified a
    confidence grade. Records are checkable only while they carry their own working; a ledger of
    conclusions with the arguments cut off is asking to be believed rather than checked. Guarded for new
    records, permanent for the existing ones.
 
-Items 2, 3, 4, 7, 8 and 9 are enforced by code — 9 only for newly added records; the existing 65 are
-sealed and beyond repair. Items 1, 5 and 6 depend on the person doing the work following
-`docs/RUNBOOK.md`.
+Items 2, 3, 4, 7, 8, 9 and 10 are enforced by code — 9 by a test that fails when the corpus outgrows
+the published figures, 10 only for newly added records, since the existing 65 are sealed and beyond
+repair. Items 1, 5 and 6 depend on the person doing the work following `docs/RUNBOOK.md`.
 
 ---
 
