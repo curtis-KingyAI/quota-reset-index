@@ -251,18 +251,33 @@ test('§2 — the hook rejects deleting a record', () => {
 });
 
 test('regression — the hook actually executes when the repo sits on a symlinked path', () => {
-  // mkdtemp hands back /var/folders/... which is a symlink to /private/var/folders/...
-  // With a naive `process.argv[1] === fileURLToPath(import.meta.url)` guard, main()
-  // never runs and the hook exits 0 having checked NOTHING. See lib/is-main.mjs.
-  // If this test ever fails, the append-only gate has become a no-op.
+  // The naive `process.argv[1] === fileURLToPath(import.meta.url)` guard is FALSE
+  // on a symlinked path, so main() never runs and the hook exits 0 having checked
+  // NOTHING. See lib/is-main.mjs. If this fails, the append-only gate is a no-op.
+  //
+  // ⚠️ THE SYMLINK IS CREATED EXPLICITLY, not inherited from the platform.
+  // macOS mkdtemp returns /var/folders/... which is already a symlink, so this
+  // test exercised the bug there by accident. Linux /tmp is a real directory, so
+  // the same test was silently VACUOUS in CI — passing while proving nothing,
+  // which is the precise failure it exists to catch. Found on CI's first run.
   const { dir, git } = makeTempRepo();
+  const linkPath = `${dir}-link`;
   try {
     writeFileSync(join(dir, 'ledger', 'codex', 'cx-2026-01-01-01.json'), JSON.stringify(FIXTURE, null, 2) + '\n');
     git('add', '-A');
-    const res = runHook(dir);
-    assert.match(res.output, /append-only check passed \(1 record staged\)/, `hook produced no output — it did not run:\n${JSON.stringify(res)}`);
-    assert.notEqual(realpathSync(dir), dir, 'this test is only meaningful on a symlinked temp path');
+
+    symlinkSync(realpathSync(dir), linkPath, 'dir');
+    assert.notEqual(realpathSync(linkPath), linkPath, 'the link must genuinely resolve elsewhere');
+
+    // Run the hook THROUGH the symlink — this is the path shape that broke it.
+    const res = runHook(linkPath);
+    assert.match(
+      res.output,
+      /append-only check passed \(1 record staged\)/,
+      `hook produced no output — it did not run through the symlinked path:\n${JSON.stringify(res)}`,
+    );
   } finally {
+    rmSync(linkPath, { force: true });
     rmSync(dir, { recursive: true, force: true });
   }
 });
