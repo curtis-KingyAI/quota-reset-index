@@ -42,7 +42,8 @@ checks public posts and replies from approved accounts."*
 ## Cost, which shapes the design
 
 X **closed the flat $200/mo Basic tier to new signups in February 2026** and retired the free tier.
-New developers are pay-per-use, around **$0.005 per post read**, capped at 2M reads/month.
+New developers are pay-per-use and credit-based, at **$0.005 per post read** and **$0.010 per user
+read**, with no minimum spend and same-resource requests deduplicated inside 24h.
 
 That makes the polling strategy the difference between a few dollars a month and a few hundred, so it
 is fixed in `x-api.ts` rather than left to a caller:
@@ -63,7 +64,7 @@ is fixed in `x-api.ts` rather than left to a caller:
 1. **Create an X developer account** and buy credits at <https://console.x.com>. Pricing is
    pay-per-usage, credit-based — *"No contracts, subscriptions, or minimum spend"* — at **$0.005 per
    post read** and **$0.010 per user read**, with same-resource requests inside 24h deduplicated.
-   Realistically **£1–2/month** here, because `since_id` means a quiet hour reads nothing.
+   Realistically **$1–2/month** here, because `since_id` means a quiet hour reads nothing.
 2. **Generate a bearer token** with read access to user timelines.
 3. **Store it.** Two options, and the second is better:
    ```bash
@@ -96,7 +97,7 @@ Without the token it makes **no request and spends nothing** — that is the def
 
 ```
 @thsottiaux: … NO CREDENTIAL — inert.
-  skipped x-api-v2: QRI_X_BEARER_TOKEN is not set — no request was made and nothing was spent
+  skipped x-api-v2: no credential (env or token file) — no request was made and nothing was spent
 ```
 
 The token is read into a private field, used in one `Authorization` header, and never logged,
