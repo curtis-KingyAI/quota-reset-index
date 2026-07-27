@@ -79,6 +79,31 @@ It does the read-only research pass above and **reports**. It is forbidden from 
 recording a sweep, or committing — it has no repository, no credentials, and no `Write` or `Edit` tool.
 A human rules on every candidate and runs `--record` themselves.
 
+#### ⚠️ It cannot browse, and that is its most important limitation
+
+Its tools are `Bash`, `WebFetch`, `WebSearch`. **No browser.** That gap is not cosmetic: on 2026-07-27
+the two most valuable sources of the day both returned HTTP errors to every plain fetch and rendered
+perfectly in a browser — `jawlah.co` (403), which upgraded a record by supersession, and the
+`@thsottiaux` post (402), which **four sweeps had logged as `blocked`** and which became a *confirmed*
+record once someone opened it.
+
+The mechanism the agent cannot reach: x.com serves the full post text in its `<title>` and
+`og:description` to unauthenticated clients even when the timeline body is behind a login wall.
+
+So the prompt was changed on 2026-07-27 to make `blocked` a **handoff rather than a conclusion**. Every
+report now opens with:
+
+```
+## ⚠️ OPEN THESE IN A BROWSER — I could not read them
+- <url> — HTTP <code>. Would settle: <what it decides>
+```
+
+...and it must say what each would settle, so you can triage instead of opening all of them, and must
+state explicitly when nothing was blocked — an absent section reads as an oversight.
+
+**Read that section first.** It is where the agent's ceiling is, and on this evidence it is where the
+records are.
+
 #### ⚠️ It has NO checkout, and that was a deliberate correction
 
 The first version cloned the repo. Its very first run was rejected outright:
