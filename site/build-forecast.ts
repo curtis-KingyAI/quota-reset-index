@@ -19,6 +19,7 @@ import { CLAUDE_BASELINE, calendarLabel } from '../models/claudeCode.ts';
 import { claudeForecast, codexForecast, pct } from '../models/integrate.ts';
 import { CALIBRATION_BANNER, type Regime } from '../models/config.ts';
 import { esc, forecastHero, page } from './layout.ts';
+import { DESCRIPTIONS, seoHead } from './seo.ts';
 import { heroFigures } from './hero-data.ts';
 import { isMain } from '../lib/is-main.mjs';
 
@@ -111,7 +112,11 @@ deserves:</p>
 <a href="/methodology">Methodology</a>.</p>
 `;
 
-  const html = page({ title: 'Forecast — Quota Reset Index', path: '/forecast', current: 'forecast', body });
+  const html = page({
+    title: 'Quota reset forecast — Codex and Claude Code',
+    path: '/forecast', current: 'forecast', body,
+    head: seoHead({ title: 'Quota reset forecast — Codex and Claude Code', description: DESCRIPTIONS.forecast, path: '/forecast' }),
+  });
 
   // §7.3, enforced at build time rather than trusted: if a probability reaches the
   // page without the banner preceding it, fail the build rather than publish it.

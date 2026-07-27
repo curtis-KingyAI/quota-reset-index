@@ -125,3 +125,53 @@ test('the sitemap lists only the CANONICAL origin', () => {
     assert.ok(xml.includes(`https://ledger.kingy.ai${p}<`), `sitemap must list ${p}`);
   }
 });
+
+// ------------------------------------------------- SEO (operator request, 2026-07-27)
+test('every page has a meta description and social preview tags', () => {
+  // Without these a shared link renders as a bare URL and a search result has no
+  // snippet — the two places a reader decides whether to click.
+  for (const [name, html] of [
+    ['ledger', ledger],
+    ['forecast', forecast],
+    ['methodology', renderMethodology()],
+  ] as [string, string][]) {
+    assert.match(html, /<meta name="description" content="[^"]{60,320}">/, `${name} needs a description`);
+    for (const tag of ['og:title', 'og:description', 'og:url', 'og:site_name', 'twitter:card']) {
+      assert.ok(html.includes(tag), `${name} missing ${tag}`);
+    }
+    // og:url must be the canonical origin, never the pages.dev one.
+    assert.ok(!/og:url" content="https:\/\/quota-reset-index/.test(html), `${name} og:url must be canonical`);
+  }
+});
+
+test('the ledger declares itself as a schema.org Dataset', () => {
+  // This site publishes data with an open licence and machine-readable
+  // distributions. Dataset markup is what makes that legible to search engines
+  // and dataset aggregators rather than looking like an ordinary web page.
+  const m = ledger.match(/<script type="application\/ld\+json">(.*?)<\/script>/s);
+  assert.ok(m, 'ledger must emit JSON-LD');
+  const parsed = JSON.parse(m[1]);
+  const nodes = Array.isArray(parsed) ? parsed : [parsed];
+  const ds = nodes.find((n: any) => n['@type'] === 'Dataset');
+  assert.ok(ds, 'a Dataset node must be present');
+  assert.equal(ds.distribution.length, 2, 'both JSON and CSV distributions');
+  assert.match(ds.license, /creativecommons/);
+  assert.match(ds.temporalCoverage, /^\d{4}-\d{2}-\d{2}\/\d{4}-\d{2}-\d{2}$/);
+  for (const d of ds.distribution) {
+    assert.ok(d.contentUrl.startsWith('https://ledger.kingy.ai/'), 'distributions on the canonical origin');
+  }
+});
+
+test('titles are distinct and descriptive, not one repeated string', () => {
+  const titles = [ledger, forecast, renderMethodology()].map((h) => h.match(/<title>(.*?)<\/title>/s)![1]);
+  assert.equal(new Set(titles).size, 3, 'each page needs its own title');
+  for (const t of titles) assert.ok(t.length >= 25 && t.length <= 75, `title length off: "${t}"`);
+});
+
+test('all pages share ONE stylesheet — methodology no longer carries a private copy', () => {
+  // It drifted twice: once missing noindex, once missing the raised type scale.
+  const meth = renderMethodology();
+  assert.match(meth, /class="masthead"/, 'methodology must use the shared shell');
+  assert.match(meth, /--codex:/, 'methodology must use the shared tokens');
+  assert.equal((meth.match(/<style>/g) ?? []).length, 1, 'exactly one stylesheet');
+});

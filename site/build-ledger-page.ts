@@ -19,6 +19,7 @@ import { fileURLToPath } from 'node:url';
 import { collectEntries } from '../scripts/validate.mjs';
 import { compareRecords } from '../lib/canonical.mjs';
 import { esc, forecastHero, page } from './layout.ts';
+import { DESCRIPTIONS, seoHead } from './seo.ts';
 import { heroFigures } from './hero-data.ts';
 import { isMain } from '../lib/is-main.mjs';
 
@@ -193,7 +194,23 @@ ${rows}
 })();
 `;
 
-  return page({ title: 'Quota Reset Index', path: '/', current: 'ledger', body, extraStyles, script });
+  // `current` is already bound above; reuse it rather than shadowing.
+  const dates = current.map((r: any) => r.effective_at.slice(0, 10)).sort();
+  const head = seoHead({
+    title: 'Quota Reset Index — sourced AI quota resets',
+    description: DESCRIPTIONS.ledger,
+    path: '/',
+    dataset: {
+      records: current.length,
+      evidence: current.flatMap((r: any) => r.evidence).length,
+      earliest: dates[0],
+      latest: dates[dates.length - 1],
+    },
+  });
+  return page({
+    title: 'Quota Reset Index — every sourced AI quota reset',
+    path: '/', current: 'ledger', body, head, extraStyles, script,
+  });
 }
 
 function main(): void {

@@ -36,7 +36,8 @@ import {
   STEP_HOURS,
   TAU,
 } from '../models/config.ts';
-import { CANONICAL_ORIGIN, NOINDEX, STYLES, forecastHero } from './layout.ts';
+import { forecastHero, page } from './layout.ts';
+import { DESCRIPTIONS, seoHead } from './seo.ts';
 import { heroFigures } from './hero-data.ts';
 import { isMain } from '../lib/is-main.mjs';
 
@@ -75,59 +76,7 @@ const weightTable = (rows: WeightRow[]): string =>
     .join('\n');
 
 export function renderMethodology(): string {
-  return `<!doctype html>
-<html lang="en">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-${NOINDEX ? '<meta name="robots" content="noindex, nofollow">\n' : ''}<link rel="canonical" href="${CANONICAL_ORIGIN}/methodology">
-<title>Methodology — Quota Reset Index</title>
-<style>
-  html { font-size: 112.5% }
-  :root { --ink:#16202a; --soft:#5d6c79; --rule:#c7cfd5; --well:#f6f8f9; --warn:#8a4a12; }
-  *{box-sizing:border-box}
-  body { margin:0 auto; max-width:64rem; padding:2rem 1.25rem 5rem;
-         font:1rem/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--ink); }
-  h1 { font-size:2rem; letter-spacing:-.02em; margin:0 0 .25rem }
-  h2 { font-size:1.2rem; margin:2.5rem 0 .75rem; padding-bottom:.4rem; border-bottom:1px solid var(--ink) }
-  h3 { font-size:1rem; margin:1.75rem 0 .5rem }
-  .lede { color:var(--soft); margin:0 0 2rem }
-  .banner { border:2px solid var(--warn); background:#fdf6ee; color:var(--warn);
-            padding:1rem 1.15rem; margin:1.5rem 0; font-weight:600; }
-  .banner p { margin:.5rem 0 0; font-weight:400; color:var(--ink) }
-  table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem }
-  th { text-align:left; font-size:.95rem; letter-spacing:.08em; text-transform:uppercase;
-       color:var(--soft); border-bottom:1px solid var(--rule); padding:0 .5rem .4rem 0 }
-  td { padding:.45rem .5rem .45rem 0; border-bottom:1px solid #e6eaed; vertical-align:top }
-  td.num, th.num { text-align:right; font-variant-numeric:tabular-nums; padding-right:1.25rem }
-  pre { background:var(--well); border:1px solid var(--rule); padding:.9rem 1rem;
-        overflow-x:auto; font-size:.95rem; line-height:1.5 }
-  code { background:var(--well); border:1px solid #e6eaed; padding:.05rem .3rem; font-size:.92em }
-  .fail { border-left:3px solid var(--rule); padding-left:1rem; margin:1rem 0; color:var(--soft) }
-  footer { margin-top:3rem; padding-top:1rem; border-top:1px solid var(--rule);
-           color:var(--soft); font-size:.95rem }
-  .hero { border:2px solid var(--ink); margin:0 0 2rem; padding:1.1rem 1.3rem 1rem }
-  .hero-head { font-size:.92rem; letter-spacing:.08em; text-transform:uppercase; color:var(--soft); margin-bottom:.75rem }
-  .hero-nums { display:flex; gap:2.5rem; flex-wrap:wrap; align-items:flex-start }
-  .hero-num { display:flex; flex-direction:column; line-height:1 }
-  .hero-num b { font-size:3.4rem; font-weight:700; letter-spacing:-.03em; font-variant-numeric:tabular-nums }
-  .hero-num span { font-size:.92rem; color:var(--soft); margin-top:.4rem; max-width:16rem; line-height:1.35 }
-  .hero-num em { display:block; font-size:.82rem; font-style:italic; color:var(--faint,#8c99a4) }
-  .hero-num.codex b { color:#b4431c }
-  .hero-num.claude b { color:#3a4e86 }
-  .hero-num.sched b { color:var(--soft); font-size:2.4rem }
-  .hero-caveat { margin:1rem 0 0; padding-top:.8rem; border-top:1px solid var(--rule); font-size:.92rem; color:var(--ink) }
-  @media (max-width:640px) { .hero-nums { gap:1.5rem } .hero-num b { font-size:2.6rem } }
-  @media (prefers-color-scheme: dark) {
-    :root { --ink:#e6eaed; --soft:#9fb0bd; --rule:#3a4750; --well:#1b2229; --warn:#e0a35c; }
-    .hero-num.codex b { color:#e08055 } .hero-num.claude b { color:#8aa3e0 }
-    body { background:#121417 }
-    .banner { background:#241c11 }
-    td { border-bottom-color:#252d34 }
-    code, pre { border-color:#2a333b }
-  }
-</style>
-
-${forecastHero(heroFigures())}
+  const body = `${forecastHero(heroFigures())}
 
 <h1>Methodology</h1>
 <p class="lede">How the Quota Reset Index records events and how it forecasts them — including what
@@ -318,9 +267,19 @@ Until then the banner at the top of this page stays exactly where it is.</p>
 Quota Reset Index · methodology · generated from <code>models/config.ts</code>, so the weights above
 are the weights in use. Ledger data at <code>/ledger.json</code> and <code>/ledger.csv</code>,
 CORS-open. Corrections welcome against the evidence, not against the conclusions.
-</footer>
-</html>
 `;
+
+  return page({
+    title: 'Methodology — how the Quota Reset Index works',
+    path: '/methodology',
+    current: 'methodology',
+    body,
+    head: seoHead({
+      title: 'Methodology — Quota Reset Index',
+      description: DESCRIPTIONS.methodology,
+      path: '/methodology',
+    }),
+  });
 }
 
 function main(): void {
