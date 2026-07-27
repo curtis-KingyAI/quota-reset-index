@@ -22,7 +22,7 @@ receipts. This does.
 | Coverage | 2026-03-13 → 2026-07-21 |
 | Evidence | 88 cited sources on current records — **85 carry a dated archive capture** |
 | | (those resolve to 64 distinct URLs, 61 of them captured) |
-| Tests | 213 |
+| Tests | 226 |
 <!-- /generated:readme-stats -->
 
 ## Why you might trust it

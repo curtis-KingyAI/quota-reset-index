@@ -372,11 +372,52 @@ An archive is not a claim about the event; it is a durability measure for a cita
 lifetime. A single field holds one capture, whereas the index holds a series of attempts, successes
 and failures alike. That is what supports a dated claim rather than a current one.</p>
 
+<h2 id="calibration">The first measurement — and it does not flatter us</h2>
+<p>The banner at the top of this page said the weights had never been checked against an outcome, and
+that it would come off when a Brier score replaced it. On <strong>2026-07-27</strong> that score was
+computed for the first time, against the 19 Codex reset events the ledger already held.
+<code>npm run backtest</code> reproduces every figure.</p>
+
+<p>For each day, using <strong>only records dated strictly before it</strong>, the model forecast
+P(reset in the next 48h); that was scored against what happened. Nothing was fitted — the model was
+scored exactly as published, which matters because the priors were hand-set by someone reading this
+same record. The baselines are walk-forward too, or beating them would prove nothing.</p>
+
+<table>
+  <tr><th>series</th><th class="num">Brier ↓</th><th class="num">skill</th><th class="num">mean forecast</th><th class="num">observed</th></tr>
+  <tr><td><strong>normal</strong></td><td class="num"><strong>0.1744</strong></td><td class="num">+0.134</td><td class="num">25.4%</td><td class="num">25.8%</td></tr>
+  <tr><td>quiet</td><td class="num">0.1870</td><td class="num">+0.071</td><td class="num">15.8%</td><td class="num">25.8%</td></tr>
+  <tr><td><strong>launch</strong> — the one shown on this site</td><td class="num">0.1895</td><td class="num">+0.059</td><td class="num"><strong>38.9%</strong></td><td class="num">25.8%</td></tr>
+  <tr><td>baseline: constant rate</td><td class="num">0.1953</td><td class="num">+0.030</td><td class="num">16.5%</td><td class="num">25.8%</td></tr>
+  <tr><td>baseline: historical frequency</td><td class="num">0.2013</td><td class="num">—</td><td class="num">16.3%</td><td class="num">25.8%</td></tr>
+</table>
+
+<div class="fail">
+<p><strong>Finding 1 — the banner stays.</strong> Every 95% bootstrap interval on the skill score
+<em>includes zero</em>: the published configuration scores +0.059 with an interval of
+[−0.485, +0.302]. <strong>No configuration is statistically distinguishable from simply predicting the
+historical base rate.</strong> That is a statement about the sample — 19 events — rather than a verdict
+on the model. But the banner has changed meaning: it no longer says "never checked". It says
+<em>checked, and not yet distinguishable from a constant rate</em>.</p>
+
+<p><strong>Finding 2 — the regime shown on this site is the wrong one.</strong> The figure at the top of
+every page uses the <code>launch</code> regime. It <strong>over-forecasts by about 14 points</strong> —
+38.9% predicted against 25.8% observed — and on non-overlapping windows it scores <em>below</em> the
+constant-rate baseline. <code>normal</code> is nearly perfectly calibrated in the large and ranks first
+under both schemes.</p>
+
+<p>That is published here before it is acted on, because a site that only reports measurements
+favourable to itself is not measuring. Note also what it does <em>not</em> establish: being calibrated
+in the large is a weak property — a flat 25.8% would achieve it too — so the self-exciting structure
+this model is built around remains unevidenced.</p>
+</div>
+
 <h2>How this becomes citable rather than interesting</h2>
-<p>The build order is fixed: ledger, then sentinel, then models, then this page. Calibration is
-blocked on roughly 40 labelled events per vendor. When that unblocks, the work is maximum-likelihood
-fitting against the ledger with a held-out window, and a Brier score published beside each forecast.
-Until then the banner at the top of this page stays exactly where it is.</p>
+<p>The remaining constraint is events. At roughly one Codex reset a week, an interval that excludes zero
+is plausibly months away rather than the year implied by "40 labelled events per vendor" — a threshold
+that was itself hand-set and is now superseded by an actual measurement. Claude Code, with four reset
+events, cannot be assessed at all, and that asymmetry is structural. Full working:
+<code>docs/CALIBRATION.md</code>.</p>
 
 <footer>
 Quota Reset Index · methodology · generated from <code>models/config.ts</code>, so the weights above
