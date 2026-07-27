@@ -21,6 +21,7 @@ import { CALIBRATION_BANNER, type Regime } from '../models/config.ts';
 import { esc, forecastHero, page } from './layout.ts';
 import { DESCRIPTIONS, seoHead } from './seo.ts';
 import { heroFigures } from './hero-data.ts';
+import { heroScript } from './hero-script.ts';
 import { isMain } from '../lib/is-main.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -114,7 +115,7 @@ deserves:</p>
 
   const html = page({
     title: 'Quota reset forecast — Codex and Claude Code',
-    path: '/forecast', current: 'forecast', body,
+    path: '/forecast', current: 'forecast', body, script: heroScript(),
     head: seoHead({ title: 'Quota reset forecast — Codex and Claude Code', description: DESCRIPTIONS.forecast, path: '/forecast' }),
   });
 

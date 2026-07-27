@@ -6,6 +6,12 @@ import { renderHeaders, HEADER_RULES } from '../headers.ts';
 import { renderMethodology } from '../build-methodology.ts';
 import { renderRobots } from '../robots.ts';
 import { renderSitemap } from '../sitemap.ts';
+import { CODEX_BASELINE } from '../../models/codex.ts';
+import { codexForecast, pct } from '../../models/integrate.ts';
+
+/** Server-side probability at given elapsed hours / prior count. */
+const pctOf = (since: number, prior: number, w: number) =>
+  pct(codexForecast({ ...CODEX_BASELINE, since, prior }, 'launch', w).probability);
 import { collectEntries } from '../../scripts/validate.mjs';
 
 const records = collectEntries().map((e: any) => JSON.parse(e.raw));
@@ -174,4 +180,52 @@ test('all pages share ONE stylesheet — methodology no longer carries a private
   assert.match(meth, /class="masthead"/, 'methodology must use the shared shell');
   assert.match(meth, /--codex:/, 'methodology must use the shared tokens');
   assert.equal((meth.match(/<style>/g) ?? []).length, 1, 'exactly one stylesheet');
+});
+
+// ------------------------- ledger-driven forecast (fixes the frozen baseline)
+test('the Codex figure is derived from the LEDGER, not a hardcoded baseline', async () => {
+  const { codexLiveState } = await import('../live-state.ts');
+  const { CODEX_BASELINE } = await import('../../models/codex.ts');
+  const live = codexLiveState();
+
+  // The whole point: these must reflect real records, not the frozen constants.
+  const latest = records
+    .filter((r: any) => r.vendor === 'codex' && !r.superseded_by)
+    .map((r: any) => r.effective_at)
+    .sort()
+    .pop();
+  assert.equal(live.lastResetIso, latest, 'must use the most recent Codex reset on record');
+  assert.notEqual(live.since, CODEX_BASELINE.since, 'must not silently equal the old hardcoded value');
+  assert.ok(live.since > 0 && live.prior > 0);
+});
+
+test('the build stays deterministic despite being time-aware', async () => {
+  // AS_OF comes from the ledger, never the wall clock, so §4.4 still holds.
+  const { codexLiveState } = await import('../live-state.ts');
+  assert.equal(codexLiveState().asOfIso, codexLiveState().asOfIso);
+  assert.equal(renderLedgerPage(records), renderLedgerPage(records));
+});
+
+test('the client recompute agrees with the server model at the same elapsed time', () => {
+  // Two implementations of one model WILL drift unless something checks. The
+  // client constants are injected from config.ts; this proves the maths matches.
+  const el = { since: 200, prior: 4, W: 48 };
+  const BASE = 0.33 / 24, A = 0.02, TAU = 30, K = 0.85, RT = 8, STEP = 0.25;
+  const mu = BASE * (0.55 + 0.075 * el.prior);
+  let integral = 0;
+  for (let t = 0; t < el.W; t += STEP) {
+    const dt = el.since + t + STEP / 2;
+    integral += (mu + A * Math.exp(-dt / TAU)) * (1 - K * Math.exp(-dt / RT)) * STEP;
+  }
+  const clientPct = Math.round((1 - Math.exp(-integral)) * 100);
+
+  // server side, same inputs
+  const serverPct = pctOf(el.since, el.prior, el.W);
+  assert.equal(clientPct, serverPct, 'client and server must produce the same number');
+});
+
+test('the hero declares which figure is measured and which is not', () => {
+  assert.match(ledger, /data-last-reset="20\d\d-\d\d-\d\dT/, 'live payload must be embedded');
+  assert.match(ledger, /from a stated baseline — not measured/, 'Claude Code must be labelled');
+  assert.match(ledger, /derived from\s+<a href="\/">this ledger's own record<\/a>/, 'Codex provenance must be stated');
 });

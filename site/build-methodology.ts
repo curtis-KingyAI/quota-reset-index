@@ -39,6 +39,7 @@ import {
 import { forecastHero, page } from './layout.ts';
 import { DESCRIPTIONS, seoHead } from './seo.ts';
 import { heroFigures } from './hero-data.ts';
+import { heroScript } from './hero-script.ts';
 import { isMain } from '../lib/is-main.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -274,6 +275,7 @@ CORS-open. Corrections welcome against the evidence, not against the conclusions
     path: '/methodology',
     current: 'methodology',
     body,
+    script: heroScript(),
     head: seoHead({
       title: 'Methodology — Quota Reset Index',
       description: DESCRIPTIONS.methodology,

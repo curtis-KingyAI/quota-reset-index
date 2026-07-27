@@ -162,16 +162,19 @@
 
 
 
-<section class="hero" aria-label="Forecast summary">
+<section class="hero" aria-label="Forecast summary" data-last-reset="2026-07-21T00:00:00Z" data-prior="7" data-window="48">
   <div class="hero-head">Chance of a discretionary quota reset · next 48 hours</div>
   <div class="hero-nums">
-    <div class="hero-num codex"><b>55%</b><span>Codex</span></div>
-    <div class="hero-num claude"><b>27%</b><span>Claude Code</span></div>
+    <div class="hero-num codex"><b id="cx-pct">51%</b><span>Codex<em id="cx-since">last reset 6 days ago · 7 in the past fortnight</em></span></div>
+    <div class="hero-num claude"><b>27%</b><span>Claude Code<em>from a stated baseline — not measured</em></span></div>
     <div class="hero-num sched"><b>95%</b><span>Claude Code scheduled recycle<em>counted separately — do not add</em></span></div>
   </div>
   <p class="hero-caveat"><strong>Uncalibrated.</strong> These are hand-set priors from the public
   event record, not fitted parameters, and none has been checked against an outcome. There is no
-  accuracy score behind them yet. <a href="/forecast">How they are built</a> ·
+  accuracy score behind them yet. The Codex figure is derived from
+  <a href="/">this ledger's own record</a> of when resets actually happened and updates as time
+  passes; the Claude Code figure comes from a stated baseline, because no supported channel exposes
+  its usage state. <a href="/forecast">How they are built</a> ·
   <a href="/methodology">why they may be wrong</a>.</p>
 </section>
 <h1>Quota Reset Index</h1>
@@ -1473,5 +1476,41 @@ that links back to the one it replaces. Data at <a href="/ledger.json">/ledger.j
   apply();
 })();
 
+(function(){
+  var el = document.querySelector('.hero[data-last-reset]');
+  if (!el) return;
+  var out = document.getElementById('cx-pct');
+  var note = document.getElementById('cx-since');
+  if (!out) return;
+
+  var since = (Date.now() - Date.parse(el.dataset.lastReset)) / 3600000;
+  if (!isFinite(since) || since < 0) return;   // leave the server value alone
+  var prior = Number(el.dataset.prior) || 0;
+  var W = Number(el.dataset.window) || 48;
+
+  // Constants injected from models/config.ts at build time.
+  var BASE=0.01375, A=0.02, TAU=30, K=0.85, RT=8, STEP=0.25;
+  var mu = BASE * (0.55 + 0.075 * prior);
+
+  // lambda(t) = (mu + alpha*e^-(dt/tau)) * (1 - k*e^-(dt/rt))
+  // Evidence terms are all inert here: the incident and mirroring inputs are
+  // zero on a static page, and the social-post term is unreachable by design.
+  function lambda(t){
+    var dt = since + t;
+    return (mu + A * Math.exp(-dt / TAU)) * (1 - K * Math.exp(-dt / RT));
+  }
+  var integral = 0;
+  for (var t = 0; t < W; t += STEP) integral += lambda(t + STEP / 2) * STEP;
+  var p = Math.round((1 - Math.exp(-integral)) * 100);
+
+  out.textContent = p + '%';
+
+  if (note) {
+    var label = since < 1 ? 'less than an hour ago'
+              : since < 48 ? Math.round(since) + ' hours ago'
+              : Math.round(since / 24) + ' days ago';
+    note.textContent = 'last reset ' + label + ' \u00b7 ' + prior + ' in the past fortnight';
+  }
+})();
 </script>
 </html>

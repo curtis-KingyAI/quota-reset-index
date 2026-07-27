@@ -166,18 +166,29 @@ export function forecastHero(f: {
   claude: number;
   windowHours: number;
   scheduled: number;
+  live?: { lastResetIso: string; asOfIso: string; prior: number; sinceLabel: string };
 }): string {
+  const live = f.live;
   return `
-<section class="hero" aria-label="Forecast summary">
+<section class="hero" aria-label="Forecast summary"${
+    live
+      ? ` data-last-reset="${live.lastResetIso}" data-prior="${live.prior}" data-window="${f.windowHours}"`
+      : ''
+  }>
   <div class="hero-head">Chance of a discretionary quota reset · next ${f.windowHours} hours</div>
   <div class="hero-nums">
-    <div class="hero-num codex"><b>${f.codex}%</b><span>Codex</span></div>
-    <div class="hero-num claude"><b>${f.claude}%</b><span>Claude Code</span></div>
+    <div class="hero-num codex"><b id="cx-pct">${f.codex}%</b><span>Codex<em id="cx-since">${
+      live ? `last reset ${live.sinceLabel} · ${live.prior} in the past fortnight` : ''
+    }</em></span></div>
+    <div class="hero-num claude"><b>${f.claude}%</b><span>Claude Code<em>from a stated baseline — not measured</em></span></div>
     <div class="hero-num sched"><b>${f.scheduled}%</b><span>Claude Code scheduled recycle<em>counted separately — do not add</em></span></div>
   </div>
   <p class="hero-caveat"><strong>Uncalibrated.</strong> These are hand-set priors from the public
   event record, not fitted parameters, and none has been checked against an outcome. There is no
-  accuracy score behind them yet. <a href="/forecast">How they are built</a> ·
+  accuracy score behind them yet. The Codex figure is derived from
+  <a href="/">this ledger's own record</a> of when resets actually happened and updates as time
+  passes; the Claude Code figure comes from a stated baseline, because no supported channel exposes
+  its usage state. <a href="/forecast">How they are built</a> ·
   <a href="/methodology">why they may be wrong</a>.</p>
 </section>`;
 }
