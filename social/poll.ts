@@ -24,6 +24,7 @@ import { homedir } from 'node:os';
 import { appendLine, readLines } from '../lib/jsonl.mjs';
 import { isMain } from '../lib/is-main.mjs';
 import { explainTerms } from './classify.ts';
+import { TOKEN_FILE, xTokenSource } from '../lib/x-token.mjs';
 import { TRACKED_HANDLES, XApiProvider } from './x-api.ts';
 import { resolveSocialSignal, type SocialReading } from './provider.ts';
 
@@ -80,6 +81,23 @@ export function toLine(r: SocialReading) {
 }
 
 async function main(): Promise<void> {
+  if (process.argv.includes('--credential')) {
+    // Confirms the operator's setup WITHOUT revealing the secret — it reports a
+    // source and a length, never content. An agent can verify the plumbing and
+    // remain unable to read the credential, which is the point.
+    const t = xTokenSource();
+    if (t.present) {
+      console.log(`credential FOUND via ${t.source} (${t.length} characters — value not shown)`);
+      console.log('Run `npm run social:poll -- --dry-run` to make one live call and see what it returns.');
+    } else {
+      console.log(`no credential: ${t.note}`);
+      console.log('\nSet one of:');
+      console.log('  export QRI_X_BEARER_TOKEN=...           (this shell only; NOT visible to launchd)');
+      console.log(`  printf %s "<token>" > ${TOKEN_FILE} && chmod 600 ${TOKEN_FILE}`);
+    }
+    return;
+  }
+
   if (process.argv.includes('--explain')) {
     console.log('Classifier terms — hand-set, never validated against an outcome.\n');
     console.log(explainTerms());

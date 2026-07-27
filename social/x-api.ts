@@ -37,6 +37,7 @@
  */
 
 import { decodePostId } from '../lib/snowflake.mjs';
+import { readXToken } from '../lib/x-token.mjs';
 import { classify } from './classify.ts';
 import { NO_SOCIAL_SIGNAL, type SocialCapabilities, type SocialProvider, type SocialReading } from './provider.ts';
 
@@ -88,7 +89,8 @@ export class XApiProvider implements SocialProvider {
   constructor(o: XApiOptions) {
     this.handle = o.handle;
     // Read here and held privately. Never re-exposed on the instance.
-    this.#token = o.token ?? process.env.QRI_X_BEARER_TOKEN ?? undefined;
+    // Env var, else a mode-600 file — see lib/x-token.mjs for why the file matters.
+    this.#token = o.token ?? readXToken() ?? undefined;
     this.#fetch = o.fetchImpl ?? globalThis.fetch;
     this.#sinceId = o.sinceId ?? null;
     this.#userId = o.userId ?? null;
@@ -133,7 +135,7 @@ export class XApiProvider implements SocialProvider {
         this.handle,
         this.id,
         now,
-        'QRI_X_BEARER_TOKEN is not set — no request was made and nothing was spent',
+        'no credential (env or token file) — no request was made and nothing was spent',
       );
     }
 

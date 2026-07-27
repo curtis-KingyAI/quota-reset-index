@@ -60,14 +60,36 @@ is fixed in `x-api.ts` rather than left to a caller:
 
 **Creating the developer account and holding the token is the operator's job, not an agent's.**
 
-1. Create an X developer account and generate a **bearer token** (read access to user timelines).
-2. Put it in your environment. Never in the repo:
+1. **Create an X developer account** and buy credits at <https://console.x.com>. Pricing is
+   pay-per-usage, credit-based — *"No contracts, subscriptions, or minimum spend"* — at **$0.005 per
+   post read** and **$0.010 per user read**, with same-resource requests inside 24h deduplicated.
+   Realistically **£1–2/month** here, because `since_id` means a quiet hour reads nothing.
+2. **Generate a bearer token** with read access to user timelines.
+3. **Store it.** Two options, and the second is better:
    ```bash
-   export QRI_X_BEARER_TOKEN='...'
+   export QRI_X_BEARER_TOKEN='...'        # this shell only — NOT visible to launchd
    ```
-3. Poll:
    ```bash
-   npm run social:poll
+   printf %s '<token>' > ~/.quota-reset-index/x-token && chmod 600 ~/.quota-reset-index/x-token
+   ```
+   ⚠️ **Prefer the file.** A shell-profile export is invisible to a scheduled job, so if polling is
+   ever put on a timer it would run, find no credential, report "inert", and cost nothing — silently,
+   forever, looking exactly like "the accounts were quiet". The same class of silent failure that
+   killed the cloud sweep routine.
+
+   ⚠️ **The file must be mode 600.** A group- or world-readable token file is *refused*, not warned
+   about — a credential others can read is worse than none because it looks secure.
+4. **Check it without showing it to anyone:**
+   ```bash
+   npm run social:poll -- --credential
+   ```
+   Reports the source and the character count, **never the value**. That is deliberate: an agent can
+   verify your plumbing and remain unable to read your secret. A test asserts the token cannot appear
+   in that output.
+5. **First live call**, which reads at most 5 posts per account:
+   ```bash
+   npm run social:poll -- --dry-run     # makes the call, writes nothing
+   npm run social:poll                  # makes the call, appends to the log
    ```
 
 Without the token it makes **no request and spends nothing** — that is the default state:

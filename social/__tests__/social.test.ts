@@ -143,10 +143,13 @@ test('classify tolerates junk input', () => {
 // ------------------------------------------------------------------ the provider
 test('with no token, no request is made and nothing is spent', () => {
   const { impl, calls } = fakeFetch(USER_ROUTE);
-  const p = new XApiProvider({ handle: 'thsottiaux', token: undefined, fetchImpl: impl });
+  // ⚠️ token: '' rather than undefined. `undefined` now falls back to the env var
+  // AND to ~/.quota-reset-index/x-token, so once the operator sets a real
+  // credential this test would start making live, METERED calls from the suite.
+  const p = new XApiProvider({ handle: 'thsottiaux', token: '', fetchImpl: impl });
   return p.read(NOW).then((r) => {
     assert.equal(r.provenance, 'unavailable');
-    assert.match(r.note ?? '', /QRI_X_BEARER_TOKEN is not set/);
+    assert.match(r.note ?? '', /no credential \(env or token file\)/);
     assert.match(r.note ?? '', /nothing was spent/);
     assert.equal(calls.length, 0, 'a metered API must not be called without a credential');
     assert.match(p.describe(), /NO CREDENTIAL — inert/);

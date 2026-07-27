@@ -150,7 +150,7 @@ Re-run and re-publish; do not carry them forward.
 | Evidence | **90 items** on current records, across **66 unique URLs** |
 | Archived | **85 of 90 items (94.4%)** · **61 of 66 URLs (92.4%)** |
 | `field_support` | attested 25 · unestablished 14 · inferred 4 · **9 records carry none** (they predate the field) |
-| Tests | **234** |
+| Tests | **241** |
 <!-- /generated:status-stats -->
 
 ⚠️ **Two archive figures, both correct, and they are not interchangeable.** 24 evidence items cite a
