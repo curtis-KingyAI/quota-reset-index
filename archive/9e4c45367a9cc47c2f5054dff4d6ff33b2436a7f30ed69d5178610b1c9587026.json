@@ -43,6 +43,15 @@
       "archive_timestamp": "2026-07-26T22:53:55Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:47:51.834Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726225355/https://apidog.com/blog/claude-code-weekly-limits-50-percent-increase-july-2026/",
+      "archive_timestamp": "2026-07-26T22:53:55Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

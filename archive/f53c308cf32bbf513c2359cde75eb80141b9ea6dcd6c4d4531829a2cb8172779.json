@@ -25,6 +25,15 @@
       "archive_timestamp": "2026-07-25T16:44:56Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:50:11.745Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260725164456/https://www.anthropic.com/news/higher-limits-spacex",
+      "archive_timestamp": "2026-07-25T16:44:56Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

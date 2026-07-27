@@ -25,6 +25,15 @@
       "archive_timestamp": "2026-07-05T21:01:32Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:49:05.355Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260705210132/https://github.com/openai/codex/discussions/26975",
+      "archive_timestamp": "2026-07-05T21:01:32Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

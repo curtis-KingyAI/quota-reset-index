@@ -25,6 +25,15 @@
       "archive_timestamp": "2026-06-28T08:50:49Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:48:00.855Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260628085049/https://codex.danielvaughan.com/2026/04/09/codex-3-million-users-growth-usage-limits/",
+      "archive_timestamp": "2026-06-28T08:50:49Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

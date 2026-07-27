@@ -25,6 +25,15 @@
       "archive_timestamp": "2026-07-25T00:16:20Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:49:31.768Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260725001620/https://minimaxir.com/2026/07/agent-quota-reset/",
+      "archive_timestamp": "2026-07-25T00:16:20Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

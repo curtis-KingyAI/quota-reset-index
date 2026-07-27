@@ -38,6 +38,15 @@
       "archive_timestamp": "2026-07-26T23:03:53Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:50:34.985Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726230353/https://www.helpnetsecurity.com/2026/07/13/claude-code-weekly-limits-promotion-extended/",
+      "archive_timestamp": "2026-07-26T23:03:53Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

@@ -78,16 +78,47 @@ test('urlKey is stable and distinct', () => {
 });
 
 // ------------------------------------------------- verification demotes (2026-07-27)
-test('a capture that failed its last verification is no longer served', () => {
+test('a CONFIRMED dead capture is no longer served', () => {
   // Otherwise verifying is theatre: the log faithfully records that a link is dead
-  // and the site goes on publishing it.
+  // and the site goes on publishing it. Two consecutive failures — see below for
+  // why one is not enough.
   const entry = {
     attempts: [
-      { method: 'availability', status: 'ok', archive_url: 'A', archive_timestamp: '1' },
+      { method: 'availability', status: 'ok', archive_url: 'A', archive_timestamp: '1', checked_at: '1' },
       { method: 'verify', status: 'not_found', archive_url: 'A', checked_at: '2' },
+      { method: 'verify', status: 'not_found', archive_url: 'A', checked_at: '3' },
     ],
   };
   assert.equal(bestCapture(entry), null);
+});
+
+test('a SINGLE not_found does not demote — one 404 is not evidence', () => {
+  // ⚠️ LEARNED EXPENSIVELY. A verification run reported 4 of 61 captures dead with
+  // HTTP 404 and that was published as a 6.6% rot rate. Re-checking each three
+  // times returned 200 twelve times out of twelve: web.archive.org returns 404s
+  // under load, and that run was already throttled into 42 network failures. The
+  // real figure was 1 of 62. Demotion needs confirmation.
+  const entry = {
+    attempts: [
+      { method: 'availability', status: 'ok', archive_url: 'A', archive_timestamp: '1', checked_at: '1' },
+      { method: 'verify', status: 'not_found', archive_url: 'A', checked_at: '2' },
+    ],
+  };
+  assert.equal(bestCapture(entry)?.archive_url, 'A');
+});
+
+test('a later success from ANY method outranks an earlier failed verify', () => {
+  // This is what the real unite.ai entry looked like: a verify said not_found, then
+  // an availability check and a re-capture both said ok at the same URL — and the
+  // capture was being withheld because only `verify` attempts were consulted.
+  const entry = {
+    attempts: [
+      { method: 'save-page-now', status: 'ok', archive_url: 'A', archive_timestamp: '1', checked_at: '1' },
+      { method: 'verify', status: 'not_found', archive_url: 'A', checked_at: '2' },
+      { method: 'wayback-availability', status: 'ok', archive_url: 'A', checked_at: '3' },
+    ],
+  };
+  assert.equal(bestCapture(entry)?.archive_url, 'A');
 });
 
 test('INCONCLUSIVE is not dead — a failed check must NOT demote', () => {
@@ -128,8 +159,9 @@ test('a dead capture falls back to a live one rather than blanking', () => {
   const entry = {
     attempts: [
       { method: 'availability', status: 'ok', archive_url: 'A', archive_timestamp: '1' },
-      { method: 'availability', status: 'ok', archive_url: 'B', archive_timestamp: '2' },
+      { method: 'availability', status: 'ok', archive_url: 'B', archive_timestamp: '2', checked_at: '2' },
       { method: 'verify', status: 'not_found', archive_url: 'B', checked_at: '3' },
+      { method: 'verify', status: 'not_found', archive_url: 'B', checked_at: '4' },
     ],
   };
   assert.equal(bestCapture(entry)?.archive_url, 'A');

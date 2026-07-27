@@ -38,6 +38,15 @@
       "archive_timestamp": "2026-07-26T22:59:16Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:49:34.904Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726225916/https://nerdschalk.com/openai-codex-5-hour-limit-removed-gpt-5-6-sol/",
+      "archive_timestamp": "2026-07-26T22:59:16Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

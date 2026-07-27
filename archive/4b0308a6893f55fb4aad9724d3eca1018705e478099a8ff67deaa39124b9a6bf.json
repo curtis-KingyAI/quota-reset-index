@@ -25,6 +25,15 @@
       "archive_timestamp": "2026-07-13T18:47:20Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:48:48.544Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260713184720/https://explainx.ai/blog/gpt-5-6-sol-thinking-budget-banked-reset-tibo-july-2026",
+      "archive_timestamp": "2026-07-13T18:47:20Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

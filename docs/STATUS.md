@@ -148,9 +148,9 @@ Re-run and re-publish; do not carry them forward.
 | Confidence | confirmed 3 · probable 15 · reported 10 |
 | Effects (current) | global_reset 20 · limit_increase 5 · banked_reset 4 · limit_removal 1 |
 | Evidence | **88 items** on current records, across **64 unique URLs** |
-| Archived | **81 of 88 items (92.0%)** · **58 of 64 URLs (90.6%)** |
+| Archived | **85 of 88 items (96.5%)** · **61 of 64 URLs (95.3%)** |
 | `field_support` | attested 22 · unestablished 13 · inferred 4 · **9 records carry none** (they predate the field) |
-| Tests | **232** |
+| Tests | **234** |
 <!-- /generated:status-stats -->
 
 ⚠️ **Two archive figures, both correct, and they are not interchangeable.** 24 evidence items cite a
@@ -200,26 +200,35 @@ session marked the other's number as an error over exactly this.
   or `scope.notes` ends mid-thought, enforced in the pre-commit hook. It applies to additions only, by
   design: the existing 65 are sealed and unrepairable, and a check that can never be satisfied is one
   that gets deleted.
-- **⚠️ ARCHIVE ROT IS REAL AND MEASURED — 2026-07-27.** `npm run archive:verify` checked all 61 stored
-  captures for the first time. **4 no longer resolve (6.6%), within four months of capture**: three
-  return HTTP 404, and one had its recorded snapshot replaced by a nearby one. `STATUS.md` called link
-  rot the most likely failure and archiving the mitigation; the mitigation had never been tested, and
-  it is decaying at a measurable rate. Dead captures are now demoted — `bestCapture()` stops serving
-  them — so published coverage fell 61 → 57 of 64; a read-only re-check of the availability API then recovered one, to 58.
+- **⚠️ ARCHIVE VERIFICATION — AND A RETRACTION OF MY OWN FIRST RESULT, 2026-07-27.**
 
-  ⚠️ **One of the four is `unite.ai`, the SOLE source for `cx-2026-07-21-02`** — already flagged as the
-  weakest date in the ledger, and whose live page also refuses plain clients. That record now has
-  neither a working archive nor a fetchable source.
+  `npm run archive:verify` checked all stored captures for the first time. `STATUS.md` had called link
+  rot the most likely failure and archiving the mitigation, and the mitigation had never been tested.
 
-  ⚠️ **INCONCLUSIVE IS NOT DEAD, and that distinction nearly cost 43 links.** The first full run was
-  throttled into 42 "fetch failed" results. Under the demotion rule as first written, published
-  coverage would have dropped from 61 to **18** — a 70% loss caused by our own client being rate
-  limited, and indistinguishable from a real finding. Only `not_found` demotes; `failed` does not.
-  Re-running at 2s intervals resolved 38 of the 42 as fine. A test pins it.
+  **The first run reported 4 of 61 captures dead — a 6.6% rot rate — and that was published. It was
+  wrong.** Re-checking each of the four, three times apiece, returned **200 on twelve of twelve
+  attempts**. Every one was a transient 404 from web.archive.org during a run that was simultaneously
+  being throttled into 42 network failures. A clean run at 2.5s spacing returned **61 ok, 1 dead, 0
+  errors**.
 
-  **Remediation is a decision, not a chore.** `npm run archive -- --save` would ask archive.org to make
-  fresh captures. That pass WRITES to a third party and is deliberately behind a flag; it has not been
-  run.
+  **The verified finding: 1 of 62 captures is genuinely gone (1.6%)** —
+  `letsdatascience.com/news/sam-altman-resets-openai-codex-limits-74ec5754`, confirmed by three spaced
+  404s *and* by the Wayback availability API reporting no snapshot for that URL at all. Published
+  coverage is **61 of 64**.
+
+  **The measurement error is the more useful finding.** A single HTTP 404 from an archive is not
+  evidence a capture is gone; Wayback returns them under load. `bestCapture()` now demotes only on
+  **two consecutive definitive failures**, and counts confirming evidence from any method — a later
+  successful availability check outranks an earlier failed verify, which it previously did not. Tests
+  pin all five cases.
+
+  This is the ledger's own rule turned on its author: *a confident sweep is not evidence*, the same
+  lesson as the 21-of-41 wrong corrections. I ran a sweep, got a plausible bad-news number, and
+  published it from single observations taken during a run I already knew was unhealthy.
+
+  **A save pass was run** (operator-authorised) and captured `jawlah.co`, `yellow.com` and others.
+  ⚠️ Note what re-capturing cannot do: a fresh capture of `unite.ai` archives *today's* page, not the
+  July version `cx-2026-07-21-02` cites. It restores a link, not the evidence.
 - **1 evidence URL remains uncaptured**: `note.com/kitworks/n/n70bb4a29db37`.
 - **`/usage` probe cost — unmeasured.** Protocol at `experiments/usage-probe-cost.md`. Nothing depends
   on the answer.

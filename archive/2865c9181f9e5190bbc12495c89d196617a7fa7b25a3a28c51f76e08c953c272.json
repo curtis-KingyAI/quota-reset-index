@@ -25,6 +25,15 @@
       "archive_timestamp": "2026-06-30T07:35:41Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:49:18.497Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260630073541/https://knightli.com/en/2026/05/17/codex-usage-limit-reset-history/",
+      "archive_timestamp": "2026-06-30T07:35:41Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

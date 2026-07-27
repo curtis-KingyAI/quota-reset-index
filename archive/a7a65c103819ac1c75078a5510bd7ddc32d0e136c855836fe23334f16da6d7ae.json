@@ -16,6 +16,15 @@
       "archive_timestamp": "2026-07-19T13:24:16Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:48:26.981Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260719132416/https://community.openai.com/t/flexible-rate-limit-resets-for-codex-and-a-method-to-get-a-reset/1383470",
+      "archive_timestamp": "2026-07-19T13:24:16Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

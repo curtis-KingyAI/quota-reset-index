@@ -25,6 +25,15 @@
       "archive_timestamp": "2026-07-14T07:39:48Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:50:41.184Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260714073948/https://www.latent.space/p/ainews-codex-usage-up-10x-in-6-months",
+      "archive_timestamp": "2026-07-14T07:39:48Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

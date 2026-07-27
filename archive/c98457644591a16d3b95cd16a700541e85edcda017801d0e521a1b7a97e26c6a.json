@@ -16,6 +16,15 @@
       "archive_timestamp": "2026-07-19T20:28:46Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:48:32.792Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260719202846/https://community.openai.com/t/questions-about-an-unexpected-codex-usage-reset-and-new-quota-period/1382610",
+      "archive_timestamp": "2026-07-19T20:28:46Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

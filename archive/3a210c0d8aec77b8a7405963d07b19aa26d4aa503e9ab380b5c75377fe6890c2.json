@@ -38,6 +38,15 @@
       "archive_timestamp": "2026-07-26T23:05:06Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:50:47.396Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726230506/https://www.storyboard18.com/digital/anthropics-claude-ai-suffers-disruption-what-caused-the-outage-and-why-user-quotas-were-reset-99951.htm",
+      "archive_timestamp": "2026-07-26T23:05:06Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

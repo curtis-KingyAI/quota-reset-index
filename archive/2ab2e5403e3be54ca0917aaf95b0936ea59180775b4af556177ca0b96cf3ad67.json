@@ -25,6 +25,15 @@
       "archive_timestamp": "2026-07-03T06:41:46Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:50:19.387Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260703064146/https://www.cryptopolitan.com/openai-traces-codex-credit-drain-to-faulty-anti-abuse-system/",
+      "archive_timestamp": "2026-07-03T06:41:46Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

@@ -32,6 +32,15 @@
       "status": "ok",
       "archive_url": "https://web.archive.org/web/20260719225931/https://news.ycombinator.com/item?id=48963465",
       "archive_timestamp": "2026-07-19T22:59:31Z"
+    },
+    {
+      "checked_at": "2026-07-27T07:49:37.555Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260720114719/https://news.ycombinator.com/item?id=48963465",
+      "archive_timestamp": "2026-07-20T11:47:19Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

@@ -16,6 +16,15 @@
       "archive_timestamp": "2026-07-19T13:10:27Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:48:07.491Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260719131027/https://community.openai.com/t/banked-codex-resets-disappeared-in-the-new-chatgpt-desktop-app-windows/1386667",
+      "archive_timestamp": "2026-07-19T13:10:27Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

@@ -38,6 +38,15 @@
       "archive_timestamp": "2026-07-26T23:04:31Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:50:38.018Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726230431/https://www.implicator.ai/anthropic-resets-claude-limits-for-third-week-without-explaining-why/",
+      "archive_timestamp": "2026-07-26T23:04:31Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

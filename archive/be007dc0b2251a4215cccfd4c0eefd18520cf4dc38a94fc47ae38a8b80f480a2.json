@@ -43,6 +43,15 @@
       "archive_timestamp": "2026-07-26T22:55:56Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:48:42.392Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726225556/https://explainx.ai/blog/claude-usage-limits-2026-timeline-explained",
+      "archive_timestamp": "2026-07-26T22:55:56Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

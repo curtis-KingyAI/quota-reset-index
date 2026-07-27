@@ -25,6 +25,15 @@
       "archive_timestamp": "2026-06-28T08:50:46Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:49:40.683Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260628085046/https://pasqualepillitteri.it/en/news/2614/claude-resets-rate-limits-5-hour-weekly-may-15-2026",
+      "archive_timestamp": "2026-06-28T08:50:46Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

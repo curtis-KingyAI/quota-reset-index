@@ -43,6 +43,15 @@
       "archive_timestamp": "2026-07-26T22:56:27Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:48:55.723Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726225627/https://finance.biggo.com/news/0b22f4f6-b980-4f9b-a9aa-382019fc2ba8",
+      "archive_timestamp": "2026-07-26T22:56:27Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

@@ -25,6 +25,15 @@
       "archive_timestamp": "2026-04-14T19:48:02Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:50:16.014Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260414194802/https://www.businesstoday.in/technology/story/openai-codex-celebrates-3-million-weekly-users-ceo-sam-altman-resets-usage-limits-524717-2026-04-08",
+      "archive_timestamp": "2026-04-14T19:48:02Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

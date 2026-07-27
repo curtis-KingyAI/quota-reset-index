@@ -29,6 +29,15 @@
       "archive_timestamp": "2026-07-26T23:06:18Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:50:56.684Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726230618/https://www.verdent.ai/guides/claude-code-limits-doubled-may-2026",
+      "archive_timestamp": "2026-07-26T23:06:18Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

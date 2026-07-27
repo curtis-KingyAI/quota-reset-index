@@ -16,6 +16,15 @@
       "archive_timestamp": "2026-05-29T00:58:49Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:48:10.542Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260529005849/https://community.openai.com/t/codex-limits-finally-good-after-april-1st-reset/1378333",
+      "archive_timestamp": "2026-05-29T00:58:49Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

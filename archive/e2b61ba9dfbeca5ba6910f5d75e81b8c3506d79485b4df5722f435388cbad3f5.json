@@ -25,6 +25,15 @@
       "archive_timestamp": "2026-04-13T08:41:36Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:50:50.419Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260413084136/https://www.technobezz.com/news/openai-resets-codex-usage-limits-after-reaching-3-million-weekly-users",
+      "archive_timestamp": "2026-04-13T08:41:36Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

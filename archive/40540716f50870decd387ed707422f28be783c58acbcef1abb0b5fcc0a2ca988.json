@@ -16,6 +16,15 @@
       "archive_timestamp": "2026-07-19T16:45:14Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:48:23.744Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260719164514/https://community.openai.com/t/codex-users-report-rapid-quota-drains-since-may-10/1380649",
+      "archive_timestamp": "2026-07-19T16:45:14Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

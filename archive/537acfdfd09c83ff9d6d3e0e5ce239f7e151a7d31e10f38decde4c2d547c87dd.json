@@ -43,6 +43,15 @@
       "archive_timestamp": "2026-07-26T22:54:54Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:48:04.343Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726225454/https://codexreset.org/",
+      "archive_timestamp": "2026-07-26T22:54:54Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

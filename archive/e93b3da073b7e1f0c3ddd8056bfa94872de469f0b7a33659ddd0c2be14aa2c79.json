@@ -38,6 +38,24 @@
       "archive_timestamp": "2026-07-26T22:58:42Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:49:27.958Z",
+      "method": "verify",
+      "status": "not_found",
+      "archive_url": "https://web.archive.org/web/20260726225842/https://letsdatascience.com/news/sam-altman-resets-openai-codex-limits-74ec5754",
+      "archive_timestamp": "2026-07-26T22:58:42Z",
+      "http": 404,
+      "note": "capture did not resolve (HTTP 404)"
+    },
+    {
+      "checked_at": "2026-07-27T07:52:31.631Z",
+      "method": "verify",
+      "status": "not_found",
+      "archive_url": "https://web.archive.org/web/20260726225842/https://letsdatascience.com/news/sam-altman-resets-openai-codex-limits-74ec5754",
+      "archive_timestamp": null,
+      "http": 404,
+      "note": "CONFIRMATION run: 404 on three spaced direct fetches, and the Wayback availability API reports no snapshot for this URL at all. Genuinely gone, unlike the three transient 404s of the throttled run."
     }
   ]
 }

@@ -25,6 +25,15 @@
       "archive_timestamp": "2026-07-26T07:45:29Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:49:43.956Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726074529/https://status.openai.com/history",
+      "archive_timestamp": "2026-07-26T07:45:29Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

@@ -25,6 +25,15 @@
       "archive_timestamp": "2026-07-25T17:14:03Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:49:24.936Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260725171403/https://learn.chatgpt.com/docs/changelog",
+      "archive_timestamp": "2026-07-25T17:14:03Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

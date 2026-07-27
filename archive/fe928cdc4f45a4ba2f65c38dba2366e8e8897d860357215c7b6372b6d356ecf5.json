@@ -16,6 +16,15 @@
       "archive_timestamp": "2026-03-22T07:05:18Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:51:00.015Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260322070518/https://www.xda-developers.com/claude-doubled-every-users-usage-limits-for-two-weeks/",
+      "archive_timestamp": "2026-03-22T07:05:18Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

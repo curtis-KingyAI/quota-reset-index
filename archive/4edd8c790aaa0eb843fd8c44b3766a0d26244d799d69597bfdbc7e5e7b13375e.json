@@ -25,6 +25,15 @@
       "archive_timestamp": "2026-07-18T23:00:23Z",
       "http": 200,
       "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T07:50:44.250Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260718230023/https://www.progressiverobot.com/2026/07/18/claude-code-weekly-limits/",
+      "archive_timestamp": "2026-07-18T23:00:23Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }
