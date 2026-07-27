@@ -20,6 +20,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadSchema, validateEntries, formatErrors } from '../lib/validate-core.mjs';
 import { stableKey } from '../lib/canonical.mjs';
+import { truncatedFields, truncationMessage } from '../lib/truncation.mjs';
 import { isMain } from '../lib/is-main.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -82,7 +83,28 @@ function main() {
         continue;
       }
 
-      if (!code.startsWith('M')) continue; // A / additions are the point of the exercise
+      // ---- 3. a NEW record may not ship prose that stops mid-sentence ----
+      //
+      // Additions are the point of the exercise, so they skip the append-only
+      // checks — but they get this one. 65 fields across ~44 existing records were
+      // silently truncated at write time (see lib/truncation.mjs); those are sealed
+      // and unrepairable, which is exactly why the gate belongs here, where the
+      // author can still finish the sentence.
+      if (code.startsWith('A')) {
+        const path = parts[1];
+        try {
+          const rec = JSON.parse(git('show', `:${path}`));
+          for (const field of truncatedFields(rec)) {
+            const value = field === 'notes' ? rec.notes : rec.scope?.notes;
+            problems.push(truncationMessage(path, field, value));
+          }
+        } catch {
+          /* unparseable: step 1 already reports it against this file */
+        }
+        continue;
+      }
+
+      if (!code.startsWith('M')) continue;
 
       const path = parts[1];
       let before, after;

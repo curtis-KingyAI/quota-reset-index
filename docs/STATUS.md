@@ -85,7 +85,7 @@ someone knowing to look for it, which is the actual bottleneck on growing the co
 | phase | state | note |
 |---|---|---|
 | 0 — repo & audit | ✅ complete | Found two spec premises false: `status.anthropic.com` redirects; OpenAI is not on Atlassian Statuspage. |
-| 1 — the ledger | ✅ complete | 47 records, 28 current. 6 candidate events refuted before entry. |
+| 1 — the ledger | ✅ complete | 48 records, 28 current. 6 candidate events refuted before entry. |
 | 2 — the sentinel | ⛔ **closed, not blocked** | Four reasons; see `PHASE-2-CLOSED.md`. Its reopening condition (b) — "each user runs it locally against their own seat" — is what `capture/` now is. §4 of that document still binds: telemetry never establishes a vendor grant. |
 | 3 — status ingestion | ✅ built, **not scheduled** | No scheduler. The 2026-07-12 automation freeze means wiring one is an explicit operator action. |
 | 4 — model port | ✅ complete | Verified identical to the prototype across 29 numbers. Found §7.2's Claude Code column to be wrong. |
@@ -96,16 +96,16 @@ someone knowing to look for it, which is the actual bottleneck on growing the co
 
 | | |
 |---|---|
-| Records | 47 total · **28 current** · 19 superseded |
-| Vendors | codex 19 current (34 total) · claude-code 9 current (13 total) |
+| Records | 48 total · **28 current** · 20 superseded |
+| Vendors | codex 19 current (35 total) · claude-code 9 current (13 total) |
 | Span | 2026-03-13 → 2026-07-21 |
-| Confidence | confirmed 3 · probable 14 · reported 11 |
-| Effects (current) | global_reset 20 · limit_increase 5 · banked_reset 3 · limit_removal 1 |
+| Confidence | confirmed 3 · probable 15 · reported 10 |
+| Effects (current) | global_reset 20 · limit_increase 5 · banked_reset 4 · limit_removal 1 |
 | Evidence | **86 items** on current records, across **62 unique URLs** |
 | Archived | **85 of 86 items (98.8%)** · **61 of 62 URLs (98.4%)** |
 | `field_support` | attested 19 · unestablished 13 · inferred 4 · **9 records carry none** (they predate the field) |
-| Tests | **190** |
-| Commits | 38 |
+| Tests | **200** |
+| Commits | 41 |
 
 ⚠️ **Two archive figures, both correct, and they are not interchangeable.** 24 evidence items cite a
 URL another record also cites, so "85 of 86" counts *items* and "61 of 62" counts *distinct URLs*.
@@ -134,6 +134,26 @@ session marked the other's number as an error over exactly this.
   would never trip however old the comparison got. **Mitigated by the page stating its own check date
   twice in prose** ("fetched and read on 2026-07-27"), so a reader can judge staleness without trusting
   the gate. Closing it properly would need a wall-clock read, which §4.4 forbids.
+- **⚠️ 65 truncated prose fields across ~44 of the 48 records — unrecoverable.** Surveyed 2026-07-27.
+  The lengths cluster unmistakably: `scope.notes` at **699–700**, `notes` at **975–1200** with many
+  landing on exactly **1200**. Whatever authored the Phase 1 and migration-02 records capped its own
+  prose at write time, silently.
+
+  This is worse than untidy, because the truncated text is usually the **justification**.
+  `cx-2026-06-28-02` records that its confidence was downgraded after failing one of five adversarial
+  vectors, and is cut off during vector 1 — so *which one failed is unrecoverable*.
+
+  **The content is genuinely gone, not merely misplaced.** It was truncated before it ever reached
+  disk: the predecessor `cx-2026-06-28-01` carries the same sentence cut at the same point, and no
+  commit in history holds a fuller version. Reconstructing it would be fabrication dressed as recovered
+  evidence, so **the 65 stay exactly as they are** — sealed, and now themselves part of the audit trail.
+  `docs/MIGRATION-PLAN-01.md` holds a separate, fuller verdict for the 06-28 record; it is the closest
+  thing to a recovery and it is not the same text.
+
+  **A guard now stops the 66th.** `lib/truncation.mjs` rejects any *newly added* record whose `notes`
+  or `scope.notes` ends mid-thought, enforced in the pre-commit hook. It applies to additions only, by
+  design: the existing 65 are sealed and unrepairable, and a check that can never be satisfied is one
+  that gets deleted.
 - **1 evidence URL remains uncaptured**: `note.com/kitworks/n/n70bb4a29db37`.
 - **`/usage` probe cost — unmeasured.** Protocol at `experiments/usage-probe-cost.md`. Nothing depends
   on the answer.
@@ -167,9 +187,15 @@ Stated plainly so it can be checked rather than assumed. Any one of these breaks
 8. **Telemetry is treated as confirmation.** `capture/` produces candidates, never records. If an
    observation ever reaches `evidence[]`, the ledger is asserting a vendor grant on the strength of one
    account's quota moving — which no channel can establish.
+9. **A record cannot be re-audited from itself.** Already true of 65 fields across ~44 records, whose
+   prose was truncated at write time — including, in at least one case, the reasoning that justified a
+   confidence grade. Records are checkable only while they carry their own working; a ledger of
+   conclusions with the arguments cut off is asking to be believed rather than checked. Guarded for new
+   records, permanent for the existing ones.
 
-Items 2, 3, 4, 7 and 8 are enforced by code. Items 1, 5 and 6 depend on the person doing the work
-following `docs/RUNBOOK.md`.
+Items 2, 3, 4, 7, 8 and 9 are enforced by code — 9 only for newly added records; the existing 65 are
+sealed and beyond repair. Items 1, 5 and 6 depend on the person doing the work following
+`docs/RUNBOOK.md`.
 
 ---
 
