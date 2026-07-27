@@ -19,8 +19,9 @@ receipts. This does.
 | Records | **47** — 28 current, 19 superseded |
 | Vendors | OpenAI Codex · Anthropic Claude Code |
 | Coverage | 2026-03-13 → 2026-07-21 |
-| Evidence | 86 cited sources on current records, **99% with a Wayback capture** |
-| Tests | 104 |
+| Evidence | 86 cited sources on current records — **85 carry a dated archive capture** |
+| | (those resolve to 62 distinct URLs, 61 of them captured) |
+| Tests | 175 |
 
 ## Why you might trust it
 
@@ -49,9 +50,16 @@ archive/<sha256>.json       Wayback captures, appended never rewritten
 schema/                     JSON Schema for a record
 lib/  scripts/              validation, deterministic build, append-only enforcement
 models/                     the two forecasters, ported from a prototype
-site/                       static site generator
+site/                       static site generator — ledger, forecast, methodology, compare
 docs/                       runbook, status, migration plans, research
+capture/                    local quota observation → candidates for a human (never records)
+social/                     the vendor-employee X signal, log-only
 ```
+
+`capture/` and `social/` are **collection** paths, deliberately fenced off from everything published:
+tests assert that nothing in `site/`, `models/`, `scripts/`, `status/` or `usage/` imports either.
+Neither can write to `ledger/`. See their own READMEs for why that boundary is load-bearing rather
+than tidy.
 
 ## Working on it
 
@@ -62,6 +70,14 @@ npm run validate        # every record, by file and field
 npm test
 npm run build           # regenerates public/ deterministically
 npm run check:history   # append-only, verified against full git history
+npm run deploy          # preflight; add -- --publish to ship
+```
+
+Collection, neither of which touches the ledger:
+
+```bash
+npm run capture:detect          # candidate resets from local observations (--verbose, --write)
+npm run social:poll -- --show   # what the X signal has collected (inert without a token)
 ```
 
 **Before adding a record, read [`docs/RUNBOOK.md`](docs/RUNBOOK.md).** It is written for a human doing
