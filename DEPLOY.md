@@ -1,6 +1,8 @@
 # Deploy
 
-**The pipeline is built. It has never been run against anything, and it refuses to publish.**
+**The site is LIVE at <https://ledger.kingy.ai>, indexable, on Cloudflare Pages project
+`quota-reset-index`.** This page previously said the pipeline "has never been run against anything,
+and it refuses to publish". That went stale at go-live and is corrected here.
 
 ```bash
 npm run deploy
@@ -9,11 +11,20 @@ npm run deploy
 Runs the preflight only. Safe. Exits 0 when the site is publishable.
 
 ```bash
-npm run deploy -- --publish
+QRI_PAGES_PROJECT=quota-reset-index QRI_INDEXABLE=1 npm run deploy -- --publish
 ```
 
-Refuses, exits 2, and prints what is missing. The upload step is deliberately not implemented:
-spec §8 says build the pipeline, not run it, and §2 forbids production deploys without approval.
+**Publishes.** The upload step is implemented and uses the operator's existing `wrangler` OAuth
+session — no API token is created, stored or handled by an agent. Without `QRI_PAGES_PROJECT` or an
+authenticated session it exits 2 and prints exactly what is missing.
+
+⚠️ **The Pages project has NO git integration** (`Git Provider: No`). Pushing to GitHub does not
+deploy — `git push` and publishing are separate steps, and forgetting the second is why a push can
+look successful while the live site stays on the previous build. `/compare` returned 200 in that
+state because Pages served the old index for the unknown route, which reads as a working page.
+
+`QRI_INDEXABLE=1` is a deliberate, separate decision from publishing; without it the build ships
+`noindex`.
 
 ## What the preflight checks
 
