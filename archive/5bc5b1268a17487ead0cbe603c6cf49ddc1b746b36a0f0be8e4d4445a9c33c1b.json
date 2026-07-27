@@ -20,6 +20,24 @@
       "archive_url": "https://web.archive.org/web/20260726230030/https://vpsranking.com/news/ai/ai-2026-07-13-openai-codex-7m-users-banked-reset/",
       "archive_timestamp": "2026-07-26T23:00:30Z",
       "note": "captured via SPN, verified by availability"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:23.497Z",
+      "method": "verify",
+      "status": "failed",
+      "archive_url": "https://web.archive.org/web/20260726230030/https://vpsranking.com/news/ai/ai-2026-07-13-openai-codex-7m-users-banked-reset/",
+      "archive_timestamp": "2026-07-26T23:00:30Z",
+      "http": null,
+      "note": "request failed: fetch failed"
+    },
+    {
+      "checked_at": "2026-07-27T07:00:42.719Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726230030/https://vpsranking.com/news/ai/ai-2026-07-13-openai-codex-7m-users-banked-reset/",
+      "archive_timestamp": "2026-07-26T23:00:30Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

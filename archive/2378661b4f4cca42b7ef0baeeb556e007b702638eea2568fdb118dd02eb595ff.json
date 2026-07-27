@@ -25,6 +25,15 @@
       "status": "ok",
       "archive_url": "https://web.archive.org/web/20260726225526/https://community.openai.com/t/codex-rate-limits-discussion-thread/1378553/177",
       "archive_timestamp": "2026-07-26T22:55:26Z"
+    },
+    {
+      "checked_at": "2026-07-27T06:57:57.298Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726225526/https://community.openai.com/t/codex-rate-limits-discussion-thread/1378553/177",
+      "archive_timestamp": "2026-07-26T22:55:26Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

@@ -76,3 +76,66 @@ test('urlKey is stable and distinct', () => {
   assert.equal(urlKey('https://a.invalid'), urlKey('https://a.invalid'));
   assert.notEqual(urlKey('https://a.invalid'), urlKey('https://b.invalid'));
 });
+
+// ------------------------------------------------- verification demotes (2026-07-27)
+test('a capture that failed its last verification is no longer served', () => {
+  // Otherwise verifying is theatre: the log faithfully records that a link is dead
+  // and the site goes on publishing it.
+  const entry = {
+    attempts: [
+      { method: 'availability', status: 'ok', archive_url: 'A', archive_timestamp: '1' },
+      { method: 'verify', status: 'not_found', archive_url: 'A', checked_at: '2' },
+    ],
+  };
+  assert.equal(bestCapture(entry), null);
+});
+
+test('INCONCLUSIVE is not dead — a failed check must NOT demote', () => {
+  // ⚠️ THE MOST IMPORTANT ONE. `not_found` means the archive answered and the
+  // snapshot is gone. `failed` means we could not ask — timeout, refused
+  // connection, rate limit. The first full verification run was throttled into 42
+  // "fetch failed" results; under a rule that demoted on any non-ok verdict,
+  // published coverage would have fallen from 61 to 18 purely because our own
+  // client got rate-limited, and it would have looked like a real finding.
+  const entry = {
+    attempts: [
+      { method: 'availability', status: 'ok', archive_url: 'A', archive_timestamp: '1' },
+      { method: 'verify', status: 'failed', archive_url: 'A', checked_at: '2' },
+    ],
+  };
+  assert.equal(bestCapture(entry)?.archive_url, 'A');
+});
+
+test('a never-verified capture is still served', () => {
+  // Every capture was unverified until 2026-07-27. Demoting them would have blanked
+  // the entire archive layer the moment verification shipped.
+  const entry = { attempts: [{ method: 'availability', status: 'ok', archive_url: 'A', archive_timestamp: '1' }] };
+  assert.equal(bestCapture(entry)?.archive_url, 'A');
+});
+
+test('the latest verdict wins — a dead capture can come back', () => {
+  const entry = {
+    attempts: [
+      { method: 'availability', status: 'ok', archive_url: 'A', archive_timestamp: '1' },
+      { method: 'verify', status: 'not_found', archive_url: 'A', checked_at: '2' },
+      { method: 'verify', status: 'ok', archive_url: 'A', checked_at: '3' },
+    ],
+  };
+  assert.equal(bestCapture(entry)?.archive_url, 'A');
+});
+
+test('a dead capture falls back to a live one rather than blanking', () => {
+  const entry = {
+    attempts: [
+      { method: 'availability', status: 'ok', archive_url: 'A', archive_timestamp: '1' },
+      { method: 'availability', status: 'ok', archive_url: 'B', archive_timestamp: '2' },
+      { method: 'verify', status: 'not_found', archive_url: 'B', checked_at: '3' },
+    ],
+  };
+  assert.equal(bestCapture(entry)?.archive_url, 'A');
+});
+
+test('a verify attempt is a verdict, never itself a capture', () => {
+  const entry = { attempts: [{ method: 'verify', status: 'ok', archive_url: 'A', checked_at: '1' }] };
+  assert.equal(bestCapture(entry), null, 'a verdict with no capture behind it is not a capture');
+});

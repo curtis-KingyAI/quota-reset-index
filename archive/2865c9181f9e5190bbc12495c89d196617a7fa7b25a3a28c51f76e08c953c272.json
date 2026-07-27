@@ -7,6 +7,24 @@
       "status": "ok",
       "archive_url": "https://web.archive.org/web/20260630073541/https://knightli.com/en/2026/05/17/codex-usage-limit-reset-history/",
       "archive_timestamp": "2026-06-30T07:35:41Z"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:16.120Z",
+      "method": "verify",
+      "status": "failed",
+      "archive_url": "https://web.archive.org/web/20260630073541/https://knightli.com/en/2026/05/17/codex-usage-limit-reset-history/",
+      "archive_timestamp": "2026-06-30T07:35:41Z",
+      "http": null,
+      "note": "request failed: fetch failed"
+    },
+    {
+      "checked_at": "2026-07-27T07:00:08.615Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260630073541/https://knightli.com/en/2026/05/17/codex-usage-limit-reset-history/",
+      "archive_timestamp": "2026-06-30T07:35:41Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

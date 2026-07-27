@@ -25,6 +25,24 @@
       "status": "ok",
       "archive_url": "https://web.archive.org/web/20260726225355/https://apidog.com/blog/claude-code-weekly-limits-50-percent-increase-july-2026/",
       "archive_timestamp": "2026-07-26T22:53:55Z"
+    },
+    {
+      "checked_at": "2026-07-27T06:57:35.581Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726225355/https://apidog.com/blog/claude-code-weekly-limits-50-percent-increase-july-2026/",
+      "archive_timestamp": "2026-07-26T22:53:55Z",
+      "http": 200,
+      "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T06:57:48.630Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726225355/https://apidog.com/blog/claude-code-weekly-limits-50-percent-increase-july-2026/",
+      "archive_timestamp": "2026-07-26T22:53:55Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

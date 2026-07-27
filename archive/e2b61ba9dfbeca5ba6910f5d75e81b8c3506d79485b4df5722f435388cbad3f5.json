@@ -7,6 +7,24 @@
       "status": "ok",
       "archive_url": "https://web.archive.org/web/20260413084136/https://www.technobezz.com/news/openai-resets-codex-usage-limits-after-reaching-3-million-weekly-users",
       "archive_timestamp": "2026-04-13T08:41:36Z"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:35.484Z",
+      "method": "verify",
+      "status": "failed",
+      "archive_url": "https://web.archive.org/web/20260413084136/https://www.technobezz.com/news/openai-resets-codex-usage-limits-after-reaching-3-million-weekly-users",
+      "archive_timestamp": "2026-04-13T08:41:36Z",
+      "http": null,
+      "note": "request failed: fetch failed"
+    },
+    {
+      "checked_at": "2026-07-27T07:01:51.375Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260413084136/https://www.technobezz.com/news/openai-resets-codex-usage-limits-after-reaching-3-million-weekly-users",
+      "archive_timestamp": "2026-04-13T08:41:36Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

@@ -7,6 +7,24 @@
       "status": "ok",
       "archive_url": "https://web.archive.org/web/20260725001620/https://minimaxir.com/2026/07/agent-quota-reset/",
       "archive_timestamp": "2026-07-25T00:16:20Z"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:18.798Z",
+      "method": "verify",
+      "status": "failed",
+      "archive_url": "https://web.archive.org/web/20260725001620/https://minimaxir.com/2026/07/agent-quota-reset/",
+      "archive_timestamp": "2026-07-25T00:16:20Z",
+      "http": null,
+      "note": "request failed: fetch failed"
+    },
+    {
+      "checked_at": "2026-07-27T07:00:22.717Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260725001620/https://minimaxir.com/2026/07/agent-quota-reset/",
+      "archive_timestamp": "2026-07-25T00:16:20Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

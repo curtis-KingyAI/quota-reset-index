@@ -20,6 +20,24 @@
       "archive_url": "https://web.archive.org/web/20260726230324/https://www.eesel.ai/blog/gpt-remove-5-hour-limits",
       "archive_timestamp": "2026-07-26T23:03:24Z",
       "note": "captured via SPN, verified by availability"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:30.859Z",
+      "method": "verify",
+      "status": "failed",
+      "archive_url": "https://web.archive.org/web/20260726230324/https://www.eesel.ai/blog/gpt-remove-5-hour-limits",
+      "archive_timestamp": "2026-07-26T23:03:24Z",
+      "http": null,
+      "note": "request failed: fetch failed"
+    },
+    {
+      "checked_at": "2026-07-27T07:01:31.889Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726230324/https://www.eesel.ai/blog/gpt-remove-5-hour-limits",
+      "archive_timestamp": "2026-07-26T23:03:24Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

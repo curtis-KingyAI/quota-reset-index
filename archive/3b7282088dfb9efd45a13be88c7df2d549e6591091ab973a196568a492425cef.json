@@ -7,6 +7,24 @@
       "status": "ok",
       "archive_url": "https://web.archive.org/web/20260720071902/https://explainx.ai/blog/claude-codex-cursor-usage-limits-reset-july-2026",
       "archive_timestamp": "2026-07-20T07:19:02Z"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:31.509Z",
+      "method": "verify",
+      "status": "failed",
+      "archive_url": "https://web.archive.org/web/20260720071902/https://explainx.ai/blog/claude-codex-cursor-usage-limits-reset-july-2026",
+      "archive_timestamp": "2026-07-20T07:19:02Z",
+      "http": null,
+      "note": "request failed: fetch failed"
+    },
+    {
+      "checked_at": "2026-07-27T07:01:34.641Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260720071902/https://explainx.ai/blog/claude-codex-cursor-usage-limits-reset-july-2026",
+      "archive_timestamp": "2026-07-20T07:19:02Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

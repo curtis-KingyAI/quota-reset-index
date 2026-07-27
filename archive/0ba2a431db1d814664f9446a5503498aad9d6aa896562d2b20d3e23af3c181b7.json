@@ -7,6 +7,24 @@
       "status": "ok",
       "archive_url": "https://web.archive.org/web/20260712133705/https://the-decoder.com/openai-admits-it-didnt-get-everything-quite-right-with-chatgpt-work-launch-and-scrambles-to-fix-ux-and-costs/",
       "archive_timestamp": "2026-07-12T13:37:05Z"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:22.833Z",
+      "method": "verify",
+      "status": "failed",
+      "archive_url": "https://web.archive.org/web/20260712133705/https://the-decoder.com/openai-admits-it-didnt-get-everything-quite-right-with-chatgpt-work-launch-and-scrambles-to-fix-ux-and-costs/",
+      "archive_timestamp": "2026-07-12T13:37:05Z",
+      "http": null,
+      "note": "request failed: fetch failed"
+    },
+    {
+      "checked_at": "2026-07-27T07:00:40.245Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260712133705/https://the-decoder.com/openai-admits-it-didnt-get-everything-quite-right-with-chatgpt-work-launch-and-scrambles-to-fix-ux-and-costs/",
+      "archive_timestamp": "2026-07-12T13:37:05Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

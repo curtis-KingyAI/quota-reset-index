@@ -20,9 +20,9 @@ receipts. This does.
 | Records | **48** — 28 current, 20 superseded |
 | Vendors | OpenAI Codex · Anthropic Claude Code |
 | Coverage | 2026-03-13 → 2026-07-21 |
-| Evidence | 88 cited sources on current records — **85 carry a dated archive capture** |
-| | (those resolve to 64 distinct URLs, 61 of them captured) |
-| Tests | 226 |
+| Evidence | 88 cited sources on current records — **81 carry a dated archive capture** |
+| | (those resolve to 64 distinct URLs, 58 of them captured) |
+| Tests | 232 |
 <!-- /generated:readme-stats -->
 
 ## Why you might trust it

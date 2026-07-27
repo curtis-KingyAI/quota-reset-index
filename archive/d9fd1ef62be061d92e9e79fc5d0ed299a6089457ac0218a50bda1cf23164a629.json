@@ -20,6 +20,30 @@
       "archive_url": "https://web.archive.org/web/20260726225809/https://lapaasvoice.com/openai-reset-chatgpt-work-and-codex-rate-limits-twice-after-gpt-5-6-sol-launch/",
       "archive_timestamp": "2026-07-26T22:58:09Z",
       "note": "captured via SPN, verified by availability"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:16.780Z",
+      "method": "verify",
+      "status": "failed",
+      "archive_url": "https://web.archive.org/web/20260726225809/https://lapaasvoice.com/openai-reset-chatgpt-work-and-codex-rate-limits-twice-after-gpt-5-6-sol-launch/",
+      "archive_timestamp": "2026-07-26T22:58:09Z",
+      "http": null,
+      "note": "request failed: fetch failed"
+    },
+    {
+      "checked_at": "2026-07-27T07:00:12.096Z",
+      "method": "verify",
+      "status": "not_found",
+      "archive_url": "https://web.archive.org/web/20260726225809/https://lapaasvoice.com/openai-reset-chatgpt-work-and-codex-rate-limits-twice-after-gpt-5-6-sol-launch/",
+      "archive_timestamp": "2026-07-26T22:58:09Z",
+      "http": 404,
+      "note": "capture did not resolve (HTTP 404)"
+    },
+    {
+      "checked_at": "2026-07-27T07:03:01.505Z",
+      "method": "wayback-availability",
+      "status": "not_found",
+      "note": "no existing capture"
     }
   ]
 }

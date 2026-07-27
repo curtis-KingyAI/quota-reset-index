@@ -20,6 +20,24 @@
       "archive_url": "https://web.archive.org/web/20260726230208/https://www.ai-primer.com/engineer/stories/openai-codex-3m-users-limit-reset",
       "archive_timestamp": "2026-07-26T23:02:08Z",
       "note": "captured via SPN, verified by availability"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:25.639Z",
+      "method": "verify",
+      "status": "failed",
+      "archive_url": "https://web.archive.org/web/20260726230208/https://www.ai-primer.com/engineer/stories/openai-codex-3m-users-limit-reset",
+      "archive_timestamp": "2026-07-26T23:02:08Z",
+      "http": null,
+      "note": "request failed: fetch failed"
+    },
+    {
+      "checked_at": "2026-07-27T07:01:10.140Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726230208/https://www.ai-primer.com/engineer/stories/openai-codex-3m-users-limit-reset",
+      "archive_timestamp": "2026-07-26T23:02:08Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

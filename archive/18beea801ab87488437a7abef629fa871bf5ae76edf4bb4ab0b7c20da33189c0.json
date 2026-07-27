@@ -7,6 +7,24 @@
       "status": "ok",
       "archive_url": "https://web.archive.org/web/20260725171403/https://learn.chatgpt.com/docs/changelog",
       "archive_timestamp": "2026-07-25T17:14:03Z"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:17.503Z",
+      "method": "verify",
+      "status": "failed",
+      "archive_url": "https://web.archive.org/web/20260725171403/https://learn.chatgpt.com/docs/changelog",
+      "archive_timestamp": "2026-07-25T17:14:03Z",
+      "http": null,
+      "note": "request failed: fetch failed"
+    },
+    {
+      "checked_at": "2026-07-27T07:00:17.384Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260725171403/https://learn.chatgpt.com/docs/changelog",
+      "archive_timestamp": "2026-07-25T17:14:03Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

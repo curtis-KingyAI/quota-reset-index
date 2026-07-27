@@ -7,6 +7,24 @@
       "status": "ok",
       "archive_url": "https://web.archive.org/web/20260714152211/https://www.explainx.ai/blog/fable-5-gpt-5-6-rate-limit-resets-july-2026",
       "archive_timestamp": "2026-07-14T15:22:11Z"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:09.354Z",
+      "method": "verify",
+      "status": "failed",
+      "archive_url": "https://web.archive.org/web/20260714152211/https://www.explainx.ai/blog/fable-5-gpt-5-6-rate-limit-resets-july-2026",
+      "archive_timestamp": "2026-07-14T15:22:11Z",
+      "http": null,
+      "note": "request failed: fetch failed"
+    },
+    {
+      "checked_at": "2026-07-27T06:59:38.413Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260714152211/https://www.explainx.ai/blog/fable-5-gpt-5-6-rate-limit-resets-july-2026",
+      "archive_timestamp": "2026-07-14T15:22:11Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

@@ -7,6 +7,31 @@
       "status": "ok",
       "archive_url": "https://web.archive.org/web/20260720114719/https://news.ycombinator.com/item?id=48963465",
       "archive_timestamp": "2026-07-20T11:47:19Z"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:20.128Z",
+      "method": "verify",
+      "status": "failed",
+      "archive_url": "https://web.archive.org/web/20260720114719/https://news.ycombinator.com/item?id=48963465",
+      "archive_timestamp": "2026-07-20T11:47:19Z",
+      "http": null,
+      "note": "request failed: fetch failed"
+    },
+    {
+      "checked_at": "2026-07-27T07:00:29.383Z",
+      "method": "verify",
+      "status": "not_found",
+      "archive_url": "https://web.archive.org/web/20260720114719/https://news.ycombinator.com/item?id=48963465",
+      "archive_timestamp": "2026-07-20T11:47:19Z",
+      "http": 200,
+      "note": "recorded capture 20260720114719 is gone; Wayback served 20260719225931 instead"
+    },
+    {
+      "checked_at": "2026-07-27T07:03:02.154Z",
+      "method": "wayback-availability",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260719225931/https://news.ycombinator.com/item?id=48963465",
+      "archive_timestamp": "2026-07-19T22:59:31Z"
     }
   ]
 }

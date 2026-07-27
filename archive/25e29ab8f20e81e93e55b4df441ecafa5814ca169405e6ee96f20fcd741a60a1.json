@@ -7,6 +7,15 @@
       "status": "ok",
       "archive_url": "https://web.archive.org/web/20260710120806/https://www.xda-developers.com/codexs-update-fixes-the-one-thing-i-hate-most-about-ai-usage-limits/",
       "archive_timestamp": "2026-07-10T12:08:06Z"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:41.457Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260710120806/https://www.xda-developers.com/codexs-update-fixes-the-one-thing-i-hate-most-about-ai-usage-limits/",
+      "archive_timestamp": "2026-07-10T12:08:06Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

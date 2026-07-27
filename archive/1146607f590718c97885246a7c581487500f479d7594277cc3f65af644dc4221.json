@@ -7,6 +7,24 @@
       "status": "ok",
       "archive_url": "https://web.archive.org/web/20260726070500/https://status.openai.com/incidents/01KW2E6W0503W4NXJNCVAG8V6T",
       "archive_timestamp": "2026-07-26T07:05:00Z"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:22.184Z",
+      "method": "verify",
+      "status": "failed",
+      "archive_url": "https://web.archive.org/web/20260726070500/https://status.openai.com/incidents/01KW2E6W0503W4NXJNCVAG8V6T",
+      "archive_timestamp": "2026-07-26T07:05:00Z",
+      "http": null,
+      "note": "request failed: fetch failed"
+    },
+    {
+      "checked_at": "2026-07-27T07:00:37.740Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726070500/https://status.openai.com/incidents/01KW2E6W0503W4NXJNCVAG8V6T",
+      "archive_timestamp": "2026-07-26T07:05:00Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

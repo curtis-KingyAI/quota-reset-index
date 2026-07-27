@@ -148,9 +148,9 @@ Re-run and re-publish; do not carry them forward.
 | Confidence | confirmed 3 · probable 15 · reported 10 |
 | Effects (current) | global_reset 20 · limit_increase 5 · banked_reset 4 · limit_removal 1 |
 | Evidence | **88 items** on current records, across **64 unique URLs** |
-| Archived | **85 of 88 items (96.5%)** · **61 of 64 URLs (95.3%)** |
+| Archived | **81 of 88 items (92.0%)** · **58 of 64 URLs (90.6%)** |
 | `field_support` | attested 22 · unestablished 13 · inferred 4 · **9 records carry none** (they predate the field) |
-| Tests | **226** |
+| Tests | **232** |
 <!-- /generated:status-stats -->
 
 ⚠️ **Two archive figures, both correct, and they are not interchangeable.** 24 evidence items cite a
@@ -200,6 +200,26 @@ session marked the other's number as an error over exactly this.
   or `scope.notes` ends mid-thought, enforced in the pre-commit hook. It applies to additions only, by
   design: the existing 65 are sealed and unrepairable, and a check that can never be satisfied is one
   that gets deleted.
+- **⚠️ ARCHIVE ROT IS REAL AND MEASURED — 2026-07-27.** `npm run archive:verify` checked all 61 stored
+  captures for the first time. **4 no longer resolve (6.6%), within four months of capture**: three
+  return HTTP 404, and one had its recorded snapshot replaced by a nearby one. `STATUS.md` called link
+  rot the most likely failure and archiving the mitigation; the mitigation had never been tested, and
+  it is decaying at a measurable rate. Dead captures are now demoted — `bestCapture()` stops serving
+  them — so published coverage fell 61 → 57 of 64; a read-only re-check of the availability API then recovered one, to 58.
+
+  ⚠️ **One of the four is `unite.ai`, the SOLE source for `cx-2026-07-21-02`** — already flagged as the
+  weakest date in the ledger, and whose live page also refuses plain clients. That record now has
+  neither a working archive nor a fetchable source.
+
+  ⚠️ **INCONCLUSIVE IS NOT DEAD, and that distinction nearly cost 43 links.** The first full run was
+  throttled into 42 "fetch failed" results. Under the demotion rule as first written, published
+  coverage would have dropped from 61 to **18** — a 70% loss caused by our own client being rate
+  limited, and indistinguishable from a real finding. Only `not_found` demotes; `failed` does not.
+  Re-running at 2s intervals resolved 38 of the 42 as fine. A test pins it.
+
+  **Remediation is a decision, not a chore.** `npm run archive -- --save` would ask archive.org to make
+  fresh captures. That pass WRITES to a third party and is deliberately behind a flag; it has not been
+  run.
 - **1 evidence URL remains uncaptured**: `note.com/kitworks/n/n70bb4a29db37`.
 - **`/usage` probe cost — unmeasured.** Protocol at `experiments/usage-probe-cost.md`. Nothing depends
   on the answer.

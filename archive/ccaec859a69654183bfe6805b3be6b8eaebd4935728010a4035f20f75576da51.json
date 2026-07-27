@@ -7,6 +7,15 @@
       "status": "ok",
       "archive_url": "https://web.archive.org/web/20260719173516/https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897",
       "archive_timestamp": "2026-07-19T17:35:16Z"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:07.398Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260719173516/https://community.openai.com/t/the-free-non-banked-codex-reset-may-have-reduced-my-total-usage/1386897",
+      "archive_timestamp": "2026-07-19T17:35:16Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

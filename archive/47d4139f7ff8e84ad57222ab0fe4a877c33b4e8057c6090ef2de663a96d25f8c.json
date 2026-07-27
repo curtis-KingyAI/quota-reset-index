@@ -7,6 +7,15 @@
       "status": "ok",
       "archive_url": "https://web.archive.org/web/20260711231209/https://community.openai.com/t/codex-rate-limits-reset-for-all-paid-plans-april-28-2026/1379921",
       "archive_timestamp": "2026-07-11T23:12:09Z"
+    },
+    {
+      "checked_at": "2026-07-27T06:57:58.717Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260711231209/https://community.openai.com/t/codex-rate-limits-reset-for-all-paid-plans-april-28-2026/1379921",
+      "archive_timestamp": "2026-07-11T23:12:09Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

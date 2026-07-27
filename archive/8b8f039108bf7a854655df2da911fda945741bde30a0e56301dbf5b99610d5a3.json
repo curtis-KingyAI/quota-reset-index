@@ -20,6 +20,24 @@
       "archive_url": "https://web.archive.org/web/20260726225702/https://finance.biggo.com/news/ef59065f-8eb7-4d14-b139-d22d3f913ac8",
       "archive_timestamp": "2026-07-26T22:57:02Z",
       "note": "captured via SPN, verified by availability"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:11.995Z",
+      "method": "verify",
+      "status": "failed",
+      "archive_url": "https://web.archive.org/web/20260726225702/https://finance.biggo.com/news/ef59065f-8eb7-4d14-b139-d22d3f913ac8",
+      "archive_timestamp": "2026-07-26T22:57:02Z",
+      "http": null,
+      "note": "request failed: fetch failed"
+    },
+    {
+      "checked_at": "2026-07-27T06:59:49.742Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726225702/https://finance.biggo.com/news/ef59065f-8eb7-4d14-b139-d22d3f913ac8",
+      "archive_timestamp": "2026-07-26T22:57:02Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

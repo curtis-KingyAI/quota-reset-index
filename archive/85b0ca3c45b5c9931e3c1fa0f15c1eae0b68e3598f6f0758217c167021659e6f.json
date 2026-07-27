@@ -7,6 +7,24 @@
       "status": "ok",
       "archive_url": "https://web.archive.org/web/20260725170042/https://www.anthropic.com/engineering/april-23-postmortem",
       "archive_timestamp": "2026-07-25T17:00:42Z"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:26.950Z",
+      "method": "verify",
+      "status": "failed",
+      "archive_url": "https://web.archive.org/web/20260725170042/https://www.anthropic.com/engineering/april-23-postmortem",
+      "archive_timestamp": "2026-07-25T17:00:42Z",
+      "http": null,
+      "note": "request failed: fetch failed"
+    },
+    {
+      "checked_at": "2026-07-27T07:01:15.466Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260725170042/https://www.anthropic.com/engineering/april-23-postmortem",
+      "archive_timestamp": "2026-07-25T17:00:42Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

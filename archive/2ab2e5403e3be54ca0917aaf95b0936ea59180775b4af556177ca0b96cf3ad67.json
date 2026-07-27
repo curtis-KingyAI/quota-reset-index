@@ -7,6 +7,24 @@
       "status": "ok",
       "archive_url": "https://web.archive.org/web/20260703064146/https://www.cryptopolitan.com/openai-traces-codex-credit-drain-to-faulty-anti-abuse-system/",
       "archive_timestamp": "2026-07-03T06:41:46Z"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:28.900Z",
+      "method": "verify",
+      "status": "failed",
+      "archive_url": "https://web.archive.org/web/20260703064146/https://www.cryptopolitan.com/openai-traces-codex-credit-drain-to-faulty-anti-abuse-system/",
+      "archive_timestamp": "2026-07-03T06:41:46Z",
+      "http": null,
+      "note": "request failed: fetch failed"
+    },
+    {
+      "checked_at": "2026-07-27T07:01:23.738Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260703064146/https://www.cryptopolitan.com/openai-traces-codex-credit-drain-to-faulty-anti-abuse-system/",
+      "archive_timestamp": "2026-07-03T06:41:46Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

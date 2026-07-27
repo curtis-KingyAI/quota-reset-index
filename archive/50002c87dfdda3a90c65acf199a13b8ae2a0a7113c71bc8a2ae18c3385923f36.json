@@ -20,6 +20,30 @@
       "archive_url": "https://web.archive.org/web/20260726230241/https://www.aitopic.com/OpenAI-Codex-Resets-Rate-Limits-for-All-Paid-Users-to-Encourage-GPT-55-Adoption.html",
       "archive_timestamp": "2026-07-26T23:02:41Z",
       "note": "captured via SPN, verified by availability"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:26.287Z",
+      "method": "verify",
+      "status": "failed",
+      "archive_url": "https://web.archive.org/web/20260726230241/https://www.aitopic.com/OpenAI-Codex-Resets-Rate-Limits-for-All-Paid-Users-to-Encourage-GPT-55-Adoption.html",
+      "archive_timestamp": "2026-07-26T23:02:41Z",
+      "http": null,
+      "note": "request failed: fetch failed"
+    },
+    {
+      "checked_at": "2026-07-27T07:01:12.798Z",
+      "method": "verify",
+      "status": "not_found",
+      "archive_url": "https://web.archive.org/web/20260726230241/https://www.aitopic.com/OpenAI-Codex-Resets-Rate-Limits-for-All-Paid-Users-to-Encourage-GPT-55-Adoption.html",
+      "archive_timestamp": "2026-07-26T23:02:41Z",
+      "http": 404,
+      "note": "capture did not resolve (HTTP 404)"
+    },
+    {
+      "checked_at": "2026-07-27T07:03:03.237Z",
+      "method": "wayback-availability",
+      "status": "not_found",
+      "note": "no existing capture"
     }
   ]
 }

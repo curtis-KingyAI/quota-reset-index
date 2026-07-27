@@ -7,6 +7,24 @@
       "status": "ok",
       "archive_url": "https://web.archive.org/web/20260725174517/https://codex-resets.com/",
       "archive_timestamp": "2026-07-25T17:45:17Z"
+    },
+    {
+      "checked_at": "2026-07-27T06:57:37.941Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260725174517/https://codex-resets.com/",
+      "archive_timestamp": "2026-07-25T17:45:17Z",
+      "http": 200,
+      "note": "capture still resolves"
+    },
+    {
+      "checked_at": "2026-07-27T06:57:50.241Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260725174517/https://codex-resets.com/",
+      "archive_timestamp": "2026-07-25T17:45:17Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

@@ -7,6 +7,15 @@
       "status": "ok",
       "archive_url": "https://web.archive.org/web/20260719121141/https://community.openai.com/t/missing-banked-reset-after-codex-usage-limit-reset-announcement/1387097",
       "archive_timestamp": "2026-07-19T12:11:41Z"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:05.207Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260719121141/https://community.openai.com/t/missing-banked-reset-after-codex-usage-limit-reset-announcement/1387097",
+      "archive_timestamp": "2026-07-19T12:11:41Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

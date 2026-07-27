@@ -20,6 +20,24 @@
       "archive_url": "https://web.archive.org/web/20260726230101/https://www.ababnews.com/news/ac883e72-aec1-4064-bdb9-4e37f61bcaf2",
       "archive_timestamp": "2026-07-26T23:01:01Z",
       "note": "captured via SPN, verified by availability"
+    },
+    {
+      "checked_at": "2026-07-27T06:58:24.149Z",
+      "method": "verify",
+      "status": "failed",
+      "archive_url": "https://web.archive.org/web/20260726230101/https://www.ababnews.com/news/ac883e72-aec1-4064-bdb9-4e37f61bcaf2",
+      "archive_timestamp": "2026-07-26T23:01:01Z",
+      "http": null,
+      "note": "request failed: fetch failed"
+    },
+    {
+      "checked_at": "2026-07-27T07:00:45.314Z",
+      "method": "verify",
+      "status": "ok",
+      "archive_url": "https://web.archive.org/web/20260726230101/https://www.ababnews.com/news/ac883e72-aec1-4064-bdb9-4e37f61bcaf2",
+      "archive_timestamp": "2026-07-26T23:01:01Z",
+      "http": 200,
+      "note": "capture still resolves"
     }
   ]
 }

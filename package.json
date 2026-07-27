@@ -22,7 +22,8 @@
     "social:poll": "node social/poll.ts",
     "sweep": "node scripts/sweep.mjs",
     "build:docs": "node scripts/build-docs.mjs",
-    "backtest": "node scripts/backtest.mjs"
+    "backtest": "node scripts/backtest.mjs",
+    "archive:verify": "node scripts/verify-archives.mjs"
   },
   "dependencies": {
     "ajv": "8.17.1",
