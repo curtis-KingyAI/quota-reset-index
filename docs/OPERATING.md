@@ -69,17 +69,45 @@ so a later audit can identify it rather than flag it as unexplained automation.
 | routine | **Quota Reset Index — weekly sweep** |
 | id | `trig_01NWrCc74W8qXJcimeDQtrb3` |
 | schedule | `0 16 * * 1` — Mondays 16:00 UTC = **09:00 America/Vancouver** |
-| runs | a **cloud** session, `claude-sonnet-5`, cloning the public repo |
+| runs | a **cloud** session, `claude-sonnet-5` |
+| repo checkout | **none.** No GitHub authorization is required or held |
+| reads | `https://ledger.kingy.ai/ledger.json` and `raw.githubusercontent.com/…/operations/sweeps.jsonl` |
+| tools | `Bash`, `WebFetch`, `WebSearch` |
 | manage | <https://claude.ai/code/routines/trig_01NWrCc74W8qXJcimeDQtrb3> |
 
-It runs `npm run sweep -- --check`, does the read-only research pass above, and **reports**. It is
-explicitly forbidden from writing to `ledger/`, recording a sweep, or committing — it has no push
-credentials, and its tool list excludes `Write` and `Edit`. A human still rules on every candidate,
-and still runs `--record`.
+It does the read-only research pass above and **reports**. It is forbidden from writing to `ledger/`,
+recording a sweep, or committing — it has no repository, no credentials, and no `Write` or `Edit` tool.
+A human rules on every candidate and runs `--record` themselves.
 
-⚠️ **It reads GitHub, not your laptop.** It clones the public repo, so it sees `operations/sweeps.jsonl`
-**as pushed**. Sweep locally without pushing and it will nag you anyway — which is arguably the correct
-behaviour, since an unpushed sweep is not part of the public audit trail.
+#### ⚠️ It has NO checkout, and that was a deliberate correction
+
+The first version cloned the repo. Its very first run was rejected outright:
+
+```
+HTTP 400  github_repo_access_denied
+"GitHub repository access check failed — re-authorize GitHub in settings"
+```
+
+**Do not "fix" this by adding the git source back.** The account has no GitHub App installed and no
+OAuth app authorized, so the clone cannot succeed, and the failure happens *before the session starts*
+— meaning it would have failed silently every Monday with nothing to notice. Granting a GitHub App
+standing repository access purely to power a reminder is a poor trade when the same data is already
+public.
+
+So it reads the **published** endpoints instead, which needs no authorization at all. Both were
+verified unauthenticated before the switch. There is a pleasing consequence: the reminder now consumes
+this project's own CORS-open data endpoint exactly as any third party would, so if `/ledger.json` ever
+breaks, the reminder breaks too and you find out.
+
+**What that costs, and how it is compensated.** Without a checkout it cannot run
+`npm run sweep -- --check`, so it recomputes `lastReviewed` and the 21/45-day status itself. The prompt
+therefore requires it to **print all three values and the subtraction** rather than assert a verdict —
+the arithmetic is checkable in the report instead of trusted. The Snowflake decode is inlined in the
+prompt for the same reason, since `lib/snowflake.mjs` is not there and id-decoding is the discipline
+that catches the trackers mislabelling their own rows.
+
+⚠️ **It reads what is PUSHED, not your laptop.** Sweep locally without pushing and it will still nag
+you — correctly, since an unpushed sweep is not part of the public audit trail.
 
 ⚠️ **It cannot delete itself and neither can an agent.** Disable or remove it at the link above.
 
