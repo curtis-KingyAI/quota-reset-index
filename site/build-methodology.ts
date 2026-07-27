@@ -36,7 +36,8 @@ import {
   STEP_HOURS,
   TAU,
 } from '../models/config.ts';
-import { NOINDEX } from './layout.ts';
+import { NOINDEX, STYLES, forecastHero } from './layout.ts';
+import { heroFigures } from './hero-data.ts';
 import { isMain } from '../lib/is-main.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -103,14 +104,29 @@ ${NOINDEX ? '<meta name="robots" content="noindex, nofollow">\n' : ''}<title>Met
   .fail { border-left:3px solid var(--rule); padding-left:1rem; margin:1rem 0; color:var(--soft) }
   footer { margin-top:3rem; padding-top:1rem; border-top:1px solid var(--rule);
            color:var(--soft); font-size:.95rem }
+  .hero { border:2px solid var(--ink); margin:0 0 2rem; padding:1.1rem 1.3rem 1rem }
+  .hero-head { font-size:.92rem; letter-spacing:.08em; text-transform:uppercase; color:var(--soft); margin-bottom:.75rem }
+  .hero-nums { display:flex; gap:2.5rem; flex-wrap:wrap; align-items:flex-start }
+  .hero-num { display:flex; flex-direction:column; line-height:1 }
+  .hero-num b { font-size:3.4rem; font-weight:700; letter-spacing:-.03em; font-variant-numeric:tabular-nums }
+  .hero-num span { font-size:.92rem; color:var(--soft); margin-top:.4rem; max-width:16rem; line-height:1.35 }
+  .hero-num em { display:block; font-size:.82rem; font-style:italic; color:var(--faint,#8c99a4) }
+  .hero-num.codex b { color:#b4431c }
+  .hero-num.claude b { color:#3a4e86 }
+  .hero-num.sched b { color:var(--soft); font-size:2.4rem }
+  .hero-caveat { margin:1rem 0 0; padding-top:.8rem; border-top:1px solid var(--rule); font-size:.92rem; color:var(--ink) }
+  @media (max-width:640px) { .hero-nums { gap:1.5rem } .hero-num b { font-size:2.6rem } }
   @media (prefers-color-scheme: dark) {
     :root { --ink:#e6eaed; --soft:#9fb0bd; --rule:#3a4750; --well:#1b2229; --warn:#e0a35c; }
+    .hero-num.codex b { color:#e08055 } .hero-num.claude b { color:#8aa3e0 }
     body { background:#121417 }
     .banner { background:#241c11 }
     td { border-bottom-color:#252d34 }
     code, pre { border-color:#2a333b }
   }
 </style>
+
+${forecastHero(heroFigures())}
 
 <h1>Methodology</h1>
 <p class="lede">How the Quota Reset Index records events and how it forecasts them — including what

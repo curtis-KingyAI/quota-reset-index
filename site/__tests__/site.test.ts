@@ -93,3 +93,47 @@ test('EVERY page carries noindex by default — a staging origin must not be ind
 test('robots.txt agrees with the meta tag', () => {
   assert.match(renderRobots(), /Disallow: \//);
 });
+
+// ------------------------------------- forecast hero (operator decision, 2026-07-27)
+test('the forecast hero appears on EVERY page, with its caveat inseparable from it', () => {
+  // The hero promotes uncalibrated numbers to the most prominent element on the
+  // site. §7.3's requirement therefore binds harder, not softer: a large
+  // percentage reads as authoritative, and these have never been checked against
+  // an outcome. Numbers and caveat are emitted by one function so a template edit
+  // cannot separate them — this test is what keeps that true.
+  for (const [name, html] of [
+    ['ledger', renderLedgerPage(records)],
+    ['forecast', renderForecastPage()],
+    ['methodology', renderMethodology()],
+  ] as [string, string][]) {
+    assert.match(html, /class="hero"/, `${name} must carry the hero`);
+    assert.match(html, /class="hero-caveat"/, `${name} hero must carry its caveat`);
+    assert.match(html, /<strong>Uncalibrated\.<\/strong>/, `${name} must say Uncalibrated in the hero`);
+    assert.match(html, /never been checked against an outcome|not been checked against an outcome|none has been checked against an outcome/i,
+      `${name} must state the numbers are unchecked`);
+
+    // The caveat must not be hideable or deferred.
+    // NOTE: match the RENDERED element, not the bare class name — "hero-caveat"
+    // also appears in the <style> block, which precedes all markup and made an
+    // earlier version of this test compare a CSS rule against the section.
+    const heroAt = html.indexOf('<section class="hero"');
+    const caveatAt = html.indexOf('<p class="hero-caveat"');
+    assert.ok(caveatAt > heroAt, `${name}: caveat must sit inside the hero block`);
+    assert.ok(!/<details|display:\s*none/.test(html.slice(heroAt, caveatAt + 400)), `${name}: caveat must not be collapsible`);
+  }
+});
+
+test('the hero appears BEFORE the page heading — it leads, per the operator', () => {
+  const html = renderLedgerPage(records);
+  assert.ok(html.indexOf('class="hero"') < html.indexOf('<h1>'), 'hero must precede the h1');
+});
+
+test('all three pages show the SAME hero figures', () => {
+  // One source of truth. A ledger page claiming 55% while the forecast page says
+  // something else would undermine both.
+  const grab = (h: string) => (h.match(/hero-num[^>]*"><b>(\d+)%/g) ?? []).join('|');
+  const a = grab(renderLedgerPage(records));
+  assert.ok(a.length > 0, 'hero numbers must render');
+  assert.equal(grab(renderForecastPage()), a);
+  assert.equal(grab(renderMethodology()), a);
+});

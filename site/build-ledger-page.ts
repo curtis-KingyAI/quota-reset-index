@@ -18,7 +18,8 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { collectEntries } from '../scripts/validate.mjs';
 import { compareRecords } from '../lib/canonical.mjs';
-import { esc, page } from './layout.ts';
+import { esc, forecastHero, page } from './layout.ts';
+import { heroFigures } from './hero-data.ts';
 import { isMain } from '../lib/is-main.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -105,6 +106,7 @@ export function renderLedgerPage(records: any[]): string {
   const opts = (vals: string[]) => vals.map((v) => `<option value="${esc(v)}">${esc(v)}</option>`).join('');
 
   const body = `
+${forecastHero(heroFigures())}
 <h1>Quota Reset Index</h1>
 <p class="lede">Every discretionary quota reset we can evidence, by OpenAI (Codex) and Anthropic
 (Claude Code). Each record links to its sources and carries a confidence grade. This page makes no

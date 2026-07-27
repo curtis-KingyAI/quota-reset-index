@@ -48,6 +48,22 @@
   .sup-inferred { color:var(--warn) }
   .sup-unestablished { color:var(--faint); font-style:italic }
   .unset { color:var(--faint); font-style:italic }
+  /* Forecast hero. Large enough to be the first thing read, with the caveat
+     inside the same bordered block so the two cannot be visually divorced. */
+  .hero { border:2px solid var(--ink); margin:0 0 2rem; padding:1.1rem 1.3rem 1rem }
+  .hero-head { font-size:.92rem; letter-spacing:.08em; text-transform:uppercase;
+               color:var(--soft); margin-bottom:.75rem }
+  .hero-nums { display:flex; gap:2.5rem; flex-wrap:wrap; align-items:flex-start }
+  .hero-num { display:flex; flex-direction:column; line-height:1 }
+  .hero-num b { font-size:3.4rem; font-weight:700; letter-spacing:-.03em; font-variant-numeric:tabular-nums }
+  .hero-num span { font-size:.92rem; color:var(--soft); margin-top:.4rem; max-width:16rem; line-height:1.35 }
+  .hero-num em { display:block; font-size:.82rem; font-style:italic; color:var(--faint) }
+  .hero-num.codex b { color:var(--codex) }
+  .hero-num.claude b { color:var(--claude) }
+  .hero-num.sched b { color:var(--soft); font-size:2.4rem }
+  .hero-caveat { margin:1rem 0 0; padding-top:.8rem; border-top:1px solid var(--rule);
+                 font-size:.92rem; color:var(--ink) }
+  @media (max-width:640px) { .hero-nums { gap:1.5rem } .hero-num b { font-size:2.6rem } }
   @media (prefers-color-scheme: dark) {
     :root { --ink:#e6eaed; --soft:#9fb0bd; --faint:#7b8894; --rule:#3a4750; --hair:#252d34;
             --well:#1b2229; --warn:#e0a35c; --warn-bg:#241c11; --link:#7ba7e8;
@@ -80,6 +96,19 @@
 </nav>
 
 
+
+<section class="hero" aria-label="Forecast summary">
+  <div class="hero-head">Chance of a discretionary quota reset in the next 48 hours</div>
+  <div class="hero-nums">
+    <div class="hero-num codex"><b>55%</b><span>Codex</span></div>
+    <div class="hero-num claude"><b>27%</b><span>Claude Code</span></div>
+    <div class="hero-num sched"><b>95%</b><span>Claude Code scheduled recycle<em>counted separately — do not add</em></span></div>
+  </div>
+  <p class="hero-caveat"><strong>Uncalibrated.</strong> These are hand-set priors from the public
+  event record, not fitted parameters, and none has been checked against an outcome. There is no
+  accuracy score behind them yet. <a href="/forecast">How they are built</a> ·
+  <a href="/methodology">why they may be wrong</a>.</p>
+</section>
 <h1>Quota Reset Index</h1>
 <p class="lede">Every discretionary quota reset we can evidence, by OpenAI (Codex) and Anthropic
 (Claude Code). Each record links to its sources and carries a confidence grade. This page makes no

@@ -18,7 +18,8 @@ import { CODEX_BASELINE } from '../models/codex.ts';
 import { CLAUDE_BASELINE, calendarLabel } from '../models/claudeCode.ts';
 import { claudeForecast, codexForecast, pct } from '../models/integrate.ts';
 import { CALIBRATION_BANNER, type Regime } from '../models/config.ts';
-import { esc, page } from './layout.ts';
+import { esc, forecastHero, page } from './layout.ts';
+import { heroFigures } from './hero-data.ts';
 import { isMain } from '../lib/is-main.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -46,6 +47,7 @@ export function renderForecastPage(): string {
   const clL = claudeForecast(CLAUDE_BASELINE, 'launch', PINNED, 48);
 
   const body = `
+${forecastHero(heroFigures())}
 <h1>Forecast</h1>
 <p class="lede">Two vendors, two methodologies, because they expose different amounts of state.
 These are the less trustworthy half of this project — the <a href="/">ledger</a> is the asset.</p>
