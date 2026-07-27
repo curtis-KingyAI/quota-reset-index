@@ -14,13 +14,14 @@
     "test": "node --test test/*.test.mjs status/__tests__/*.test.ts models/__tests__/*.test.ts usage/__tests__/*.test.ts site/__tests__/*.test.ts capture/__tests__/*.test.mjs social/__tests__/*.test.ts lib/__tests__/*.test.mjs",
     "status:poll": "node status/ingest.ts",
     "build:site": "node site/build-methodology.ts && node site/build-ledger-page.ts && node site/build-forecast.ts && node site/build-compare.ts && node site/headers.ts && node site/robots.ts && node site/sitemap.ts",
-    "build": "npm run build:ledger && npm run build:site",
+    "build": "npm run build:ledger && npm run build:site && npm run build:docs",
     "deploy": "node scripts/deploy.mjs",
     "check:history": "node scripts/check-history.mjs",
     "archive": "node scripts/archive.mjs",
     "capture:detect": "node capture/detect.mjs",
     "social:poll": "node social/poll.ts",
-    "sweep": "node scripts/sweep.mjs"
+    "sweep": "node scripts/sweep.mjs",
+    "build:docs": "node scripts/build-docs.mjs"
   },
   "dependencies": {
     "ajv": "8.17.1",

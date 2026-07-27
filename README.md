@@ -14,14 +14,16 @@ receipts. This does.
 
 ## What is actually here
 
+<!-- generated:readme-stats -->
 | | |
 |---|---|
-| Records | **47** — 28 current, 19 superseded |
+| Records | **48** — 28 current, 20 superseded |
 | Vendors | OpenAI Codex · Anthropic Claude Code |
 | Coverage | 2026-03-13 → 2026-07-21 |
-| Evidence | 86 cited sources on current records — **85 carry a dated archive capture** |
-| | (those resolve to 62 distinct URLs, 61 of them captured) |
-| Tests | 175 |
+| Evidence | 88 cited sources on current records — **85 carry a dated archive capture** |
+| | (those resolve to 64 distinct URLs, 61 of them captured) |
+| Tests | 210 |
+<!-- /generated:readme-stats -->
 
 ## Why you might trust it
 

@@ -46,12 +46,17 @@ jobs:
         run: npm run check:history
 
       # A published site built from a stale tree corresponds to no commit.
+      # ⚠️ SCOPE IS THE WHOLE TREE, NOT public/. Widened 2026-07-27 so that the
+      # generated figure blocks in README.md and docs/STATUS.md are covered by the
+      # same guarantee. Those counts drifted twice in a single session while they
+      # were hand-maintained; now a stale one fails the build, using the check that
+      # already existed rather than a new mechanism.
       - name: Build is reproducible from the tree
         run: |
           npm run build
-          if [ -n "$(git status --porcelain public/)" ]; then
-            echo "::error::public/ is stale — rebuilding changed it. Commit the rebuilt output."
-            git --no-pager diff --stat public/
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::error::tree is stale — rebuilding changed it. Commit the rebuilt output."
+            git --no-pager diff --stat
             exit 1
           fi
 

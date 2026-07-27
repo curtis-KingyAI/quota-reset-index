@@ -94,18 +94,20 @@ someone knowing to look for it, which is the actual bottleneck on growing the co
 
 ## The ledger
 
+<!-- generated:status-stats -->
 | | |
 |---|---|
 | Records | 48 total · **28 current** · 20 superseded |
 | Vendors | codex 19 current (35 total) · claude-code 9 current (13 total) |
+| Reset-bearing | codex 19 · claude-code 4 — the constraint on Phase 6 |
 | Span | 2026-03-13 → 2026-07-21 |
 | Confidence | confirmed 3 · probable 15 · reported 10 |
 | Effects (current) | global_reset 20 · limit_increase 5 · banked_reset 4 · limit_removal 1 |
-| Evidence | **86 items** on current records, across **62 unique URLs** |
-| Archived | **85 of 86 items (98.8%)** · **61 of 62 URLs (98.4%)** |
-| `field_support` | attested 19 · unestablished 13 · inferred 4 · **9 records carry none** (they predate the field) |
-| Tests | **200** |
-| Commits | 41 |
+| Evidence | **88 items** on current records, across **64 unique URLs** |
+| Archived | **85 of 88 items (96.5%)** · **61 of 64 URLs (95.3%)** |
+| `field_support` | attested 22 · unestablished 13 · inferred 4 · **9 records carry none** (they predate the field) |
+| Tests | **210** |
+<!-- /generated:status-stats -->
 
 ⚠️ **Two archive figures, both correct, and they are not interchangeable.** 24 evidence items cite a
 URL another record also cites, so "85 of 86" counts *items* and "61 of 62" counts *distinct URLs*.
