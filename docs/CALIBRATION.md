@@ -1,6 +1,23 @@
 # Calibration — the first measurement
 
-**Run 2026-07-27. `npm run backtest` reproduces every figure here.**
+**Run 2026-07-27 against 19 Codex events. `npm run backtest` reproduces the current figures.**
+
+> ### ⚠️ THE NUMBERS BELOW ARE A DATED SNAPSHOT — the site's are not
+>
+> A 20th Codex event (`cx-2026-07-25-01`) landed four hours after this was written and every figure
+> here moved. **`/methodology` now COMPUTES the table at build time** from `models/backtest.ts`, so the
+> published page cannot go stale; this document is the record of the first run and its reasoning.
+>
+> That staleness is exactly what `STATUS.md` item 9 warns about — *"a calibration figure carried
+> forward after the corpus changes"* — committed within hours by the person who wrote the warning.
+> Hand-typed figures in this project have now gone stale three times in one day. The method, the
+> caveats and the two findings below all still hold; only the decimals moved.
+>
+> | | at 19 events | at 20 events |
+> |---|---|---|
+> | normal — Brier | 0.1744 | 0.1789 |
+> | launch — mean forecast vs observed | 38.9% vs 25.8% | 40.0% vs 26.9% |
+> | published-configuration skill | +0.059 *(launch)* | +0.131 *(normal)* |
 
 The forecast has carried a banner since it was built: *the weights are hand-set priors that have never
 been checked against an outcome, and the banner comes off when a Brier score replaces it.* Nobody had

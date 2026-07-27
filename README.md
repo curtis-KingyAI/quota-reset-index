@@ -17,11 +17,11 @@ receipts. This does.
 <!-- generated:readme-stats -->
 | | |
 |---|---|
-| Records | **48** — 28 current, 20 superseded |
+| Records | **49** — 29 current, 20 superseded |
 | Vendors | OpenAI Codex · Anthropic Claude Code |
-| Coverage | 2026-03-13 → 2026-07-21 |
-| Evidence | 88 cited sources on current records — **85 carry a dated archive capture** |
-| | (those resolve to 64 distinct URLs, 61 of them captured) |
+| Coverage | 2026-03-13 → 2026-07-25 |
+| Evidence | 90 cited sources on current records — **85 carry a dated archive capture** |
+| | (those resolve to 66 distinct URLs, 61 of them captured) |
 | Tests | 234 |
 <!-- /generated:readme-stats -->
 

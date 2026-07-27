@@ -141,15 +141,15 @@ Re-run and re-publish; do not carry them forward.
 <!-- generated:status-stats -->
 | | |
 |---|---|
-| Records | 48 total · **28 current** · 20 superseded |
-| Vendors | codex 19 current (35 total) · claude-code 9 current (13 total) |
-| Reset-bearing | codex 19 · claude-code 4 — the constraint on Phase 6 |
-| Span | 2026-03-13 → 2026-07-21 |
-| Confidence | confirmed 3 · probable 15 · reported 10 |
-| Effects (current) | global_reset 20 · limit_increase 5 · banked_reset 4 · limit_removal 1 |
-| Evidence | **88 items** on current records, across **64 unique URLs** |
-| Archived | **85 of 88 items (96.5%)** · **61 of 64 URLs (95.3%)** |
-| `field_support` | attested 22 · unestablished 13 · inferred 4 · **9 records carry none** (they predate the field) |
+| Records | 49 total · **29 current** · 20 superseded |
+| Vendors | codex 20 current (36 total) · claude-code 9 current (13 total) |
+| Reset-bearing | codex 20 · claude-code 4 — the constraint on Phase 6 |
+| Span | 2026-03-13 → 2026-07-25 |
+| Confidence | confirmed 4 · probable 15 · reported 10 |
+| Effects (current) | global_reset 21 · limit_increase 5 · banked_reset 4 · limit_removal 1 |
+| Evidence | **90 items** on current records, across **66 unique URLs** |
+| Archived | **85 of 90 items (94.4%)** · **61 of 66 URLs (92.4%)** |
+| `field_support` | attested 25 · unestablished 14 · inferred 4 · **9 records carry none** (they predate the field) |
 | Tests | **234** |
 <!-- /generated:status-stats -->
 

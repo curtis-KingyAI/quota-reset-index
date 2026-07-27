@@ -37,6 +37,9 @@ import {
   TAU,
 } from '../models/config.ts';
 import { forecastHero, page } from './layout.ts';
+import { bootstrapSkill, calibrationInTheLarge, run, skill } from '../models/backtest.ts';
+import { loadEvents } from '../scripts/backtest.mjs';
+import { HERO_REGIME } from './hero-data.ts';
 import { DESCRIPTIONS, seoHead } from './seo.ts';
 import { heroFigures } from './hero-data.ts';
 import { coverageSpan } from './live-state.ts';
@@ -77,7 +80,76 @@ const weightTable = (rows: WeightRow[]): string =>
     )
     .join('\n');
 
+
+/**
+ * Calibration figures, COMPUTED AT BUILD TIME rather than transcribed.
+ *
+ * ⚠️ These were hand-typed for exactly four hours and went stale the moment a 20th
+ * Codex event landed — which is precisely the failure `STATUS.md` item 9 warns
+ * about ("a calibration figure carried forward after the corpus changes"),
+ * committed by the person who wrote the warning. The backtest is a pure function of
+ * the ledger, so there is no reason to type its output anywhere.
+ *
+ * Deterministic: nothing here reads a clock, and the bootstrap is seeded.
+ */
+interface Calibration {
+  tableRows: string;
+  events: number;
+  days: number;
+  positives: number;
+  publishedSkill: number;
+  ci: { lo: number; hi: number };
+  launchMean: number;
+  launchObserved: number;
+}
+
+const LABEL: Record<string, string> = {
+  normal: 'normal',
+  quiet: 'quiet',
+  launch: 'launch',
+  'baseline-constant': 'baseline: constant rate',
+  'baseline-climatology': 'baseline: historical frequency',
+};
+
+function calibration(): Calibration {
+  const { codex, claudeCode } = loadEvents();
+  const { series, days, positives } = run(codex, claudeCode, ['quiet', 'normal', 'launch']);
+  const ref = series.find((s) => s.regime === 'baseline-climatology')!;
+  const pc = (x: number) => `${(x * 100).toFixed(1)}%`;
+
+  const tableRows = [...series]
+    .sort((a, b) => a.brier - b.brier)
+    .map((s) => {
+      const c = calibrationInTheLarge(s.rows);
+      const sk = s === ref ? '—' : skill(s.brier, ref.brier).toFixed(3);
+      const name =
+        s.regime === HERO_REGIME
+          ? `<strong>${LABEL[s.regime]}</strong> — shown on this site`
+          : s.regime === 'launch'
+            ? '<strong>launch</strong> — shown here until 2026-07-27'
+            : LABEL[s.regime];
+      return `<tr><td>${name}</td><td class="num">${s.brier.toFixed(4)}</td><td class="num">${sk}</td><td class="num">${pc(c.meanForecast)}</td><td class="num">${pc(c.observedFrequency)}</td></tr>`;
+    })
+    .join('\n  ');
+
+  const pub = series.find((s) => s.regime === HERO_REGIME)!;
+  const lc = calibrationInTheLarge(series.find((s) => s.regime === 'launch')!.rows);
+
+  return {
+    tableRows,
+    events: codex.length,
+    days,
+    positives,
+    publishedSkill: skill(pub.brier, ref.brier),
+    ci: bootstrapSkill(pub.rows, ref.rows),
+    launchMean: lc.meanForecast,
+    launchObserved: lc.observedFrequency,
+  };
+}
+
 export function renderMethodology(): string {
+  const cal = calibration();
+  const pcOf = (x: number) => `${(x * 100).toFixed(1)}%`;
   const body = `${forecastHero(heroFigures())}
 
 <h1>Methodology</h1>
@@ -262,7 +334,7 @@ and failures alike. That is what supports a dated claim rather than a current on
 <h2 id="calibration">The first measurement — and it does not flatter us</h2>
 <p>The banner at the top of this page said the weights had never been checked against an outcome, and
 that it would come off when a Brier score replaced it. On <strong>2026-07-27</strong> that score was
-computed for the first time, against the 19 Codex reset events the ledger already held.
+computed for the first time, against the ${cal.events} Codex reset events the ledger holds.
 <code>npm run backtest</code> reproduces every figure.</p>
 
 <p>For each day, using <strong>only records dated strictly before it</strong>, the model forecast
@@ -272,24 +344,20 @@ same record. The baselines are walk-forward too, or beating them would prove not
 
 <table>
   <tr><th>series</th><th class="num">Brier ↓</th><th class="num">skill</th><th class="num">mean forecast</th><th class="num">observed</th></tr>
-  <tr><td><strong>normal</strong> — now shown on this site</td><td class="num"><strong>0.1744</strong></td><td class="num">+0.134</td><td class="num">25.4%</td><td class="num">25.8%</td></tr>
-  <tr><td>quiet</td><td class="num">0.1870</td><td class="num">+0.071</td><td class="num">15.8%</td><td class="num">25.8%</td></tr>
-  <tr><td><strong>launch</strong> — shown here until 2026-07-27</td><td class="num">0.1895</td><td class="num">+0.059</td><td class="num"><strong>38.9%</strong></td><td class="num">25.8%</td></tr>
-  <tr><td>baseline: constant rate</td><td class="num">0.1953</td><td class="num">+0.030</td><td class="num">16.5%</td><td class="num">25.8%</td></tr>
-  <tr><td>baseline: historical frequency</td><td class="num">0.2013</td><td class="num">—</td><td class="num">16.3%</td><td class="num">25.8%</td></tr>
+  ${cal.tableRows}
 </table>
 
 <div class="fail">
 <p><strong>Finding 1 — the banner stays.</strong> Every 95% bootstrap interval on the skill score
-<em>includes zero</em>: the published configuration scores +0.059 with an interval of
-[−0.485, +0.302]. <strong>No configuration is statistically distinguishable from simply predicting the
-historical base rate.</strong> That is a statement about the sample — 19 events — rather than a verdict
+<em>includes zero</em>: the published configuration scores ${cal.publishedSkill >= 0 ? '+' : ''}${cal.publishedSkill.toFixed(3)} with an interval of
+[${cal.ci.lo.toFixed(3)}, ${cal.ci.hi.toFixed(3)}]. <strong>No configuration is statistically distinguishable from simply predicting the
+historical base rate.</strong> That is a statement about the sample — ${cal.events} events — rather than a verdict
 on the model. But the banner has changed meaning: it no longer says "never checked". It says
 <em>checked, and not yet distinguishable from a constant rate</em>.</p>
 
 <p><strong>Finding 2 — the regime this site published was the wrong one, and has been changed.</strong>
-Every page used to show the <code>launch</code> figure. It <strong>over-forecast by about 14
-points</strong> — 38.9% predicted against 25.8% observed — and on non-overlapping windows it scored
+Every page used to show the <code>launch</code> figure. It <strong>over-forecast by about ${Math.round((cal.launchMean - cal.launchObserved) * 100)}
+points</strong> — ${pcOf(cal.launchMean)} predicted against ${pcOf(cal.launchObserved)} observed — and on non-overlapping windows it scored
 <em>below</em> the constant-rate baseline, which is to say worse than assuming nothing.
 <code>normal</code> is nearly perfectly calibrated in the large and ranks first under both schemes.</p>
 
@@ -300,7 +368,7 @@ this page rather than being quietly replaced.</p>
 
 <p>Note what this does <em>not</em> establish. Three already-published configurations were scored and
 one matched the record; nothing was fitted, so this is regime selection rather than calibration. Being
-calibrated in the large is also a weak property — a flat 25.8% would achieve it too — so the
+calibrated in the large is also a weak property — a flat ${pcOf(cal.launchObserved)} would achieve it too — so the
 self-exciting structure this model is built around remains unevidenced, and the banner above stays.</p>
 </div>
 

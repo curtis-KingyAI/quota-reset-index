@@ -9,6 +9,7 @@
 
 import { collectEntries } from './validate.mjs';
 import { bootstrapSkill, calibrationInTheLarge, run, skill } from '../models/backtest.ts';
+import { HERO_REGIME } from '../site/hero-data.ts';
 import { isMain } from '../lib/is-main.mjs';
 
 const RESET = new Set(['global_reset', 'banked_reset']);
@@ -50,11 +51,14 @@ function main() {
     );
   }
 
-  const published = series.find((s) => s.regime === 'launch');
+  // ⚠️ NOT hardcoded. This said `'launch'` and kept calling it "the published
+  // configuration" after the site had moved to `normal` on the strength of this very
+  // backtest — the label drifting from the value, again.
+  const published = series.find((s) => s.regime === HERO_REGIME);
   const ci = bootstrapSkill(published.rows, ref.rows);
   const s = skill(published.brier, ref.brier);
   console.log(
-    `\n  PUBLISHED CONFIGURATION (launch regime): skill ${s.toFixed(3)}` +
+    `\n  PUBLISHED CONFIGURATION (${HERO_REGIME} regime): skill ${s.toFixed(3)}` +
       ` · 95% block-bootstrap CI [${ci.lo.toFixed(3)}, ${ci.hi.toFixed(3)}]`,
   );
   console.log(

@@ -2448,5 +2448,49 @@
       "scope_partial": "inferred",
       "trigger": "attested"
     }
+  },
+  {
+    "id": "cx-2026-07-25-01",
+    "vendor": "codex",
+    "kind": "global_reset",
+    "effective_at": "2026-07-25T19:00:00Z",
+    "effective_at_precision": "hour",
+    "observed_at": "2026-07-27T16:20:10Z",
+    "scope": {
+      "windows": [],
+      "plans": [
+        "all Codex users",
+        "ChatGPT Work users"
+      ],
+      "partial": false,
+      "notes": "Announced by the Codex engineering lead in the first person plural: 'We have reset usage limits for all Codex and ChatGPT Work users.' scope.plans uses the source's own wording — NOTE THAT IT CARRIES NO PAID QUALIFIER, unlike cx-2026-06-28-03 where Cryptopolitan's headline says 'all paid users'. Recording what this source says rather than importing the narrower scope from a different event. scope.windows is unestablished: the post names no window and inferring one from how resets generally work is the exact defect the 2026-07-26 audit was about. ⚠️ THE OUTAGE DETAIL DOES NOT RECONCILE CLEANLY WITH THE STATUS PAGE, and is deliberately left unreconciled. The post says 'Last night around 2am to 4am we suffered an almost global outage'; status.openai.com records NO incident in the 02:00-04:00 UTC window on 2026-07-25, its earliest entries that day being 11:08 and 11:57. A timezone reading (2am-4am US Pacific = 09:00-11:00 UTC) lands adjacent to those but does not match them, and that is inference, not evidence. The RESET is attested regardless; only the outage's timing is unresolved."
+    },
+    "trigger": "incident_compensation",
+    "confidence": "confirmed",
+    "evidence": [
+      {
+        "type": "vendor_post",
+        "url": "https://x.com/thsottiaux/status/2081096447718723984",
+        "author": "Tibo Sottiaux (@thsottiaux), Codex engineering lead, OpenAI",
+        "captured_at": "2026-07-27T16:18:00Z",
+        "archive_url": null
+      },
+      {
+        "type": "user_report",
+        "url": "https://codexreset.org",
+        "author": "codexreset.org (mirror — LOCATOR ONLY)",
+        "captured_at": "2026-07-27T03:00:00Z",
+        "archive_url": null
+      }
+    ],
+    "recorded_by": "claude-code-agent",
+    "superseded_by": null,
+    "notes": "NEW EVENT, 2026-07-27, operator-directed. Closes the lead opened by the first operating sweep and left open through three sweeps. HOW IT WAS FINALLY SOURCED, because the method matters as much as the record: the post returned HTTP 402 to every plain fetch attempted across two days, so under §2 the event was unrecordable — its only substance came from reset trackers, which are mirrors and may locate a post but never testify to its contents. Opening the same URL in a browser rendered it: x.com serves the post text in its own page title and og:description to unauthenticated clients even though the timeline body is behind a login wall. That is a read of the SOURCE, not of a republication, and it is the difference between an unrecordable rumour and a confirmed record. Same lesson as jawlah.co earlier the same day — a source marked 'blocked' is not evidence of absence, and retrying one in a browser is cheap. DATE. The post id 2081096447718723984 decodes to 2026-07-25T19:17:12Z by arithmetic, which is testimony-free and independent of anything the trackers claim; a visible reply in the thread is dated Jul 25, corroborating. effective_at is set to the 19:00 hour with precision 'hour' rather than to the post instant: 'We have reset' is past tense, so the reset occurred at or shortly before the announcement, and claiming the announcement instant as the effect instant would manufacture precision the source does not give. ⚠️ FIRST RECORD IN THIS LEDGER TO CITE x.com DIRECTLY, AND THE FIRST TO GRADE AN X POST AS vendor_post — so it sets precedent and the grade is the part most worth challenging. The reasoning: RUNBOOK §2 says a press article relaying an X post is press 'not a vendor post', which is only meaningful if the original post is one; the author is the named OpenAI engineering lead for Codex speaking as the company; and every existing vendor_post citation is likewise an identified vendor voice on a vendor channel. The counter-argument, recorded honestly: this is a personal account rather than an official corporate one such as @OpenAI, and no corporate channel corroborates it. If the operator rules that a personal employee account cannot earn 'confirmed', the fix is a superseding record at 'probable' — the evidence and every other field stand unchanged. The tracker is cited as a LOCATOR only, typed user_report per §2, and carries none of the substance.",
+    "field_support": {
+      "trigger": "attested",
+      "scope_windows": "unestablished",
+      "scope_plans": "attested",
+      "scope_partial": "attested"
+    }
   }
 ]

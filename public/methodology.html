@@ -165,24 +165,24 @@
   </header>
 
 
-<section class="hero" aria-label="Forecast summary" data-last-reset="2026-07-21T00:00:00Z" data-prior="5" data-window="48" data-resets="[&quot;2026-07-21T00:00:00Z&quot;,&quot;2026-07-18T03:00:00Z&quot;,&quot;2026-07-16T00:00:00Z&quot;,&quot;2026-07-15T00:00:00Z&quot;,&quot;2026-07-14T00:00:00Z&quot;]" data-reviewed="2026-07-27T05:10:00Z" data-stale-days="21" data-abandoned-days="45">
+<section class="hero" aria-label="Forecast summary" data-last-reset="2026-07-25T19:00:00Z" data-prior="6" data-window="48" data-resets="[&quot;2026-07-25T19:00:00Z&quot;,&quot;2026-07-21T00:00:00Z&quot;,&quot;2026-07-18T03:00:00Z&quot;,&quot;2026-07-16T00:00:00Z&quot;,&quot;2026-07-15T00:00:00Z&quot;,&quot;2026-07-14T00:00:00Z&quot;]" data-reviewed="2026-07-27T16:22:00Z" data-stale-days="21" data-abandoned-days="45">
   <div class="hero-head">Chance of a discretionary quota reset · next 48 hours · <span class="hero-regime">normal regime</span></div>
   <div class="hero-nums">
-    <div class="hero-num codex"><b id="cx-pct">29%</b><span>Codex<em id="cx-since">last reset 6 days ago · 5 in the past fortnight</em></span></div>
+    <div class="hero-num codex"><b id="cx-pct">37%</b><span>Codex<em id="cx-since">last reset 45 hours ago · 6 in the past fortnight</em></span></div>
     <div class="hero-num claude"><b>16%</b><span>Claude Code<em>from a stated baseline — not measured</em></span></div>
     <div class="hero-num sched"><b>95%</b><span>Claude Code scheduled recycle<em>counted separately — do not add</em></span></div>
   </div>
   <p class="hero-range">Shown at the <strong>normal</strong> regime — the one that best
   matches this ledger's own record. Scored against the 19 Codex resets on file it forecast 25.4% where
-  25.8% of windows contained an event; the other two give <b>16%</b> (quiet) and <b>46%</b> (launch). <strong>This site showed <code>launch</code> until 2026-07-27, which over-forecast
+  25.8% of windows contained an event; the other two give <b>25%</b> (quiet) and <b>53%</b> (launch). <strong>This site showed <code>launch</code> until 2026-07-27, which over-forecast
   by about 14 points.</strong> <a href="/methodology#calibration">How that was measured</a> ·
   <a href="/forecast">all three, side by side</a>.</p>
   <p class="hero-asof">Ledger covers <strong>March–July 2026</strong> ·
-  last updated <time datetime="2026-07-27T04:47:30Z">2026-07-27 04:47 UTC</time> ·
+  last updated <time datetime="2026-07-27T16:20:10Z">2026-07-27 16:20 UTC</time> ·
   the Codex figure is re-reckoned against your clock on load, so it is never the frozen build-time
   number. If a reset happened that this ledger has not recorded yet, the figure reads
   <em>low</em>, not high.</p>
-  <p class="freshness" id="freshness">Last reviewed <time datetime="2026-07-27T05:10:00Z">2026-07-27</time>.</p>
+  <p class="freshness" id="freshness">Last reviewed <time datetime="2026-07-27T16:22:00Z">2026-07-27</time>.</p>
   <p class="hero-caveat"><strong>Uncalibrated.</strong> These are hand-set priors from the public
   event record, not fitted parameters, and none has been checked against an outcome. There is no
   accuracy score behind them yet. The Codex figure is derived from
@@ -377,7 +377,7 @@ and failures alike. That is what supports a dated claim rather than a current on
 <h2 id="calibration">The first measurement — and it does not flatter us</h2>
 <p>The banner at the top of this page said the weights had never been checked against an outcome, and
 that it would come off when a Brier score replaced it. On <strong>2026-07-27</strong> that score was
-computed for the first time, against the 19 Codex reset events the ledger already held.
+computed for the first time, against the 20 Codex reset events the ledger holds.
 <code>npm run backtest</code> reproduces every figure.</p>
 
 <p>For each day, using <strong>only records dated strictly before it</strong>, the model forecast
@@ -387,24 +387,24 @@ same record. The baselines are walk-forward too, or beating them would prove not
 
 <table>
   <tr><th>series</th><th class="num">Brier ↓</th><th class="num">skill</th><th class="num">mean forecast</th><th class="num">observed</th></tr>
-  <tr><td><strong>normal</strong> — now shown on this site</td><td class="num"><strong>0.1744</strong></td><td class="num">+0.134</td><td class="num">25.4%</td><td class="num">25.8%</td></tr>
-  <tr><td>quiet</td><td class="num">0.1870</td><td class="num">+0.071</td><td class="num">15.8%</td><td class="num">25.8%</td></tr>
-  <tr><td><strong>launch</strong> — shown here until 2026-07-27</td><td class="num">0.1895</td><td class="num">+0.059</td><td class="num"><strong>38.9%</strong></td><td class="num">25.8%</td></tr>
-  <tr><td>baseline: constant rate</td><td class="num">0.1953</td><td class="num">+0.030</td><td class="num">16.5%</td><td class="num">25.8%</td></tr>
-  <tr><td>baseline: historical frequency</td><td class="num">0.2013</td><td class="num">—</td><td class="num">16.3%</td><td class="num">25.8%</td></tr>
+  <tr><td><strong>normal</strong> — shown on this site</td><td class="num">0.1789</td><td class="num">0.131</td><td class="num">26.2%</td><td class="num">26.9%</td></tr>
+  <tr><td>quiet</td><td class="num">0.1928</td><td class="num">0.064</td><td class="num">16.4%</td><td class="num">26.9%</td></tr>
+  <tr><td><strong>launch</strong> — shown here until 2026-07-27</td><td class="num">0.1936</td><td class="num">0.060</td><td class="num">40.0%</td><td class="num">26.9%</td></tr>
+  <tr><td>baseline: constant rate</td><td class="num">0.1998</td><td class="num">0.030</td><td class="num">17.0%</td><td class="num">26.9%</td></tr>
+  <tr><td>baseline: historical frequency</td><td class="num">0.2059</td><td class="num">—</td><td class="num">16.7%</td><td class="num">26.9%</td></tr>
 </table>
 
 <div class="fail">
 <p><strong>Finding 1 — the banner stays.</strong> Every 95% bootstrap interval on the skill score
-<em>includes zero</em>: the published configuration scores +0.059 with an interval of
-[−0.485, +0.302]. <strong>No configuration is statistically distinguishable from simply predicting the
-historical base rate.</strong> That is a statement about the sample — 19 events — rather than a verdict
+<em>includes zero</em>: the published configuration scores +0.131 with an interval of
+[-0.091, 0.286]. <strong>No configuration is statistically distinguishable from simply predicting the
+historical base rate.</strong> That is a statement about the sample — 20 events — rather than a verdict
 on the model. But the banner has changed meaning: it no longer says "never checked". It says
 <em>checked, and not yet distinguishable from a constant rate</em>.</p>
 
 <p><strong>Finding 2 — the regime this site published was the wrong one, and has been changed.</strong>
-Every page used to show the <code>launch</code> figure. It <strong>over-forecast by about 14
-points</strong> — 38.9% predicted against 25.8% observed — and on non-overlapping windows it scored
+Every page used to show the <code>launch</code> figure. It <strong>over-forecast by about 13
+points</strong> — 40.0% predicted against 26.9% observed — and on non-overlapping windows it scored
 <em>below</em> the constant-rate baseline, which is to say worse than assuming nothing.
 <code>normal</code> is nearly perfectly calibrated in the large and ranks first under both schemes.</p>
 
@@ -415,7 +415,7 @@ this page rather than being quietly replaced.</p>
 
 <p>Note what this does <em>not</em> establish. Three already-published configurations were scored and
 one matched the record; nothing was fitted, so this is regime selection rather than calibration. Being
-calibrated in the large is also a weak property — a flat 25.8% would achieve it too — so the
+calibrated in the large is also a weak property — a flat 26.9% would achieve it too — so the
 self-exciting structure this model is built around remains unevidenced, and the banner above stays.</p>
 </div>
 
