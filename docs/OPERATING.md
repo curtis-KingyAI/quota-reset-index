@@ -58,6 +58,43 @@ npm run sweep -- --check
 
 Exits non-zero when overdue, so it can back a reminder.
 
+### The weekly reminder — a local launchd job, since 2026-07-27
+
+**Registered here so a later audit can identify it rather than flag it as unexplained automation.**
+Created on explicit operator instruction; the 2026-07-12 freeze makes wiring a timer an operator
+decision, never an agent's own initiative.
+
+| | |
+|---|---|
+| label | `com.kingy.quota-reset-index.weekly` |
+| plist | `~/Library/LaunchAgents/com.kingy.quota-reset-index.weekly.plist` |
+| runs | `scripts/weekly-check.sh` — in this repo, so it is version-controlled |
+| schedule | **Mondays 09:00 LOCAL** (launchd calendar intervals are local, unlike the UTC cron it replaces) |
+| log | `~/Library/Application Support/QuotaResetIndex/weekly-check.log` |
+
+```bash
+scripts/weekly-check.sh --status   # recent runs — is it alive?
+scripts/weekly-check.sh --test     # force a notification, prove it can reach you
+launchctl list | grep quota-reset  # is it loaded?
+```
+
+**It notifies rather than logs**, because the thing it replaces failed precisely by writing where
+nobody could read. A macOS banner appears when the sweep is overdue. A healthy week is logged and
+**deliberately not** notified — a weekly "all fine" banner is noise, and noise gets muted, after which
+the overdue one is muted too.
+
+⚠️ **A BROKEN RUN NOTIFIES TOO.** Missing repo, missing node, npm failure: all produce a *"check
+BROKEN"* banner rather than a silent non-zero exit. That is the whole lesson of the routine it
+replaced — a scheduled job whose failure is indistinguishable from good news is worse than no job.
+Verified by pointing it at a nonexistent repo and watching it report.
+
+Verified end to end rather than assumed: run by hand ✅, run under `launchctl start` with launchd's own
+minimal environment ✅ (the classic trap is a job that works by hand and fails on schedule because
+`node` is not on launchd's PATH — the plist sets it explicitly), notification path ✅, failure path ✅.
+
+⚠️ **It only fires while you are logged in**, and a Mac asleep at 09:00 Monday misses that week. The
+site's freshness signal is the backstop and is independent of all of this — see the top of this file.
+
 ### ⛔ The scheduled reminder — BUILT, THEN DISABLED 2026-07-27. It was write-only.
 
 **Do not re-enable it without first checking that its output can be read.** That is the whole lesson
