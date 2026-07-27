@@ -13,6 +13,7 @@ import { codexForecast, pct } from '../../models/integrate.ts';
 const pctOf = (since: number, prior: number, w: number) =>
   pct(codexForecast({ ...CODEX_BASELINE, since, prior }, 'launch', w).probability);
 import { collectEntries } from '../../scripts/validate.mjs';
+import { HERO_REGIME, heroFigures } from '../hero-data.ts';
 
 const records = collectEntries().map((e: any) => JSON.parse(e.raw));
 const ledger = renderLedgerPage(records);
@@ -228,4 +229,42 @@ test('the hero declares which figure is measured and which is not', () => {
   assert.match(ledger, /data-last-reset="20\d\d-\d\d-\d\dT/, 'live payload must be embedded');
   assert.match(ledger, /from a stated baseline — not measured/, 'Claude Code must be labelled');
   assert.match(ledger, /derived from\s+<a href="\/">this ledger's own record<\/a>/, 'Codex provenance must be stated');
+});
+
+// ------------------------------------------------- the regime disclosure (2026-07-27)
+test('the hero NAMES the regime it speaks in, on every page', () => {
+  // Until 2026-07-27 the hero showed the `launch` figure — the HIGHEST of three
+  // base rates — with no indication it was a choice. At the ledger state when this
+  // was written that was 46% against 29% (normal) and 16% (quiet): nearly 3x the
+  // low end, undisclosed, at 4rem, on a site whose whole argument is that it does
+  // not overstate.
+  for (const [name, html] of [
+    ['ledger', ledger],
+    ['forecast', forecast],
+    ['methodology', renderMethodology()],
+  ] as [string, string][]) {
+    assert.ok(html.includes(`${HERO_REGIME} regime`), `${name} must name the regime in the hero head`);
+    assert.match(html, /highest of the three/, `${name} must say it is the top of the range`);
+    assert.match(html, /hand-set judgement, not a derived one/, `${name} must say nobody derived it`);
+  }
+});
+
+test('the label is threaded from HERO_REGIME, so it cannot drift from the value', () => {
+  // The failure this prevents: someone changes the regime that produces the number
+  // and leaves a label saying "launch". Both come from one constant.
+  const f = heroFigures();
+  assert.equal(f.regime, HERO_REGIME);
+  assert.ok(ledger.includes(`${f.regime} regime`), 'the rendered label must be the regime actually used');
+});
+
+test('the hero shows the OTHER regimes, so the spread behind one number is visible', () => {
+  const f = heroFigures();
+  assert.ok(f.alternatives.length >= 2, 'both unshown regimes must be offered');
+  for (const a of f.alternatives) {
+    assert.ok(ledger.includes(`<b>${a.codex}%</b> (${a.regime})`), `${a.regime} figure must render`);
+  }
+  // And the headline must genuinely be the highest, or the disclosure is a lie.
+  for (const a of f.alternatives) {
+    assert.ok(f.codex >= a.codex, `${HERO_REGIME} must be >= ${a.regime}, else "highest of three" is false`);
+  }
 });

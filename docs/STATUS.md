@@ -106,7 +106,7 @@ someone knowing to look for it, which is the actual bottleneck on growing the co
 | Evidence | **88 items** on current records, across **64 unique URLs** |
 | Archived | **85 of 88 items (96.5%)** · **61 of 64 URLs (95.3%)** |
 | `field_support` | attested 22 · unestablished 13 · inferred 4 · **9 records carry none** (they predate the field) |
-| Tests | **210** |
+| Tests | **213** |
 <!-- /generated:status-stats -->
 
 ⚠️ **Two archive figures, both correct, and they are not interchangeable.** 24 evidence items cite a

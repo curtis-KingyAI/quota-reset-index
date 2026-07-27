@@ -100,6 +100,12 @@ export const STYLES = `
   .hero-caveat { margin:1.35rem 0 0; padding-top:.9rem; border-top:1px solid var(--hair);
                  font-size:.9rem; color:var(--ink-2); max-width:52rem }
   .hero-caveat strong { color:var(--warn) }
+  /* The regime the headline speaks in. Marked in the head so it qualifies the
+     NUMBER rather than reading as a footnote about it. */
+  .hero-regime { color:var(--warn) }
+  .hero-range { margin:.9rem 0 .2rem; font-size:.85rem; line-height:1.55; color:var(--ink-2); max-width:56rem }
+  .hero-range b { font-variant-numeric:tabular-nums; color:var(--ink) }
+
   /* Freshness. Escalated client-side against the reader's clock — see hero-script.ts.
      The base state is deliberately quiet: a maintained ledger should not shout. */
   .freshness { margin:.2rem 0 .2rem; font-size:.85rem; line-height:1.5; color:var(--faint); max-width:56rem }
@@ -175,6 +181,10 @@ export function forecastHero(f: {
   claude: number;
   windowHours: number;
   scheduled: number;
+  /** The regime the headline speaks in. Threaded from HERO_REGIME so the label cannot drift from the value. */
+  regime?: string;
+  /** Codex at the regimes NOT shown, so the spread behind one number is visible. */
+  alternatives?: { regime: string; codex: number }[];
   live?: {
     lastResetIso: string;
     asOfIso: string;
@@ -198,7 +208,9 @@ export function forecastHero(f: {
         ` data-abandoned-days="${live.abandonedDays}"`
       : ''
   }>
-  <div class="hero-head">Chance of a discretionary quota reset · next ${f.windowHours} hours</div>
+  <div class="hero-head">Chance of a discretionary quota reset · next ${f.windowHours} hours${
+    f.regime ? ` · <span class="hero-regime">${esc(f.regime)} regime</span>` : ''
+  }</div>
   <div class="hero-nums">
     <div class="hero-num codex"><b id="cx-pct">${f.codex}%</b><span>Codex<em id="cx-since">${
       live ? `last reset ${live.sinceLabel} · ${live.prior} in the past fortnight` : ''
@@ -206,6 +218,15 @@ export function forecastHero(f: {
     <div class="hero-num claude"><b>${f.claude}%</b><span>Claude Code<em>from a stated baseline — not measured</em></span></div>
     <div class="hero-num sched"><b>${f.scheduled}%</b><span>Claude Code scheduled recycle<em>counted separately — do not add</em></span></div>
   </div>
+  ${
+    f.regime && f.alternatives?.length
+      ? `<p class="hero-range">Shown at the <strong>${esc(f.regime)}</strong> regime — the highest of the three
+  base rates this model carries. The same records give ${f.alternatives
+    .map((a) => `<b>${a.codex}%</b> (${esc(a.regime)})`)
+    .join(' and ')} for Codex. <strong>Which regime applies is a hand-set judgement, not a derived one</strong>;
+  nothing in the ledger decides it. <a href="/forecast">All three, side by side</a>.</p>`
+      : ''
+  }
   ${live ? `<p class="hero-asof">Ledger covers <strong>${live.coverage.label}</strong> ·
   last updated <time datetime="${live.asOfIso}">${live.asOfIso.slice(0, 16).replace('T', ' ')} UTC</time> ·
   the Codex figure is re-reckoned against your clock on load, so it is never the frozen build-time

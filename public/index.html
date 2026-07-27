@@ -82,6 +82,12 @@
   .hero-caveat { margin:1.35rem 0 0; padding-top:.9rem; border-top:1px solid var(--hair);
                  font-size:.9rem; color:var(--ink-2); max-width:52rem }
   .hero-caveat strong { color:var(--warn) }
+  /* The regime the headline speaks in. Marked in the head so it qualifies the
+     NUMBER rather than reading as a footnote about it. */
+  .hero-regime { color:var(--warn) }
+  .hero-range { margin:.9rem 0 .2rem; font-size:.85rem; line-height:1.55; color:var(--ink-2); max-width:56rem }
+  .hero-range b { font-variant-numeric:tabular-nums; color:var(--ink) }
+
   /* Freshness. Escalated client-side against the reader's clock — see hero-script.ts.
      The base state is deliberately quiet: a maintained ledger should not shout. */
   .freshness { margin:.2rem 0 .2rem; font-size:.85rem; line-height:1.5; color:var(--faint); max-width:56rem }
@@ -174,12 +180,15 @@
 
 
 <section class="hero" aria-label="Forecast summary" data-last-reset="2026-07-21T00:00:00Z" data-prior="5" data-window="48" data-resets="[&quot;2026-07-21T00:00:00Z&quot;,&quot;2026-07-18T03:00:00Z&quot;,&quot;2026-07-16T00:00:00Z&quot;,&quot;2026-07-15T00:00:00Z&quot;,&quot;2026-07-14T00:00:00Z&quot;]" data-reviewed="2026-07-27T05:10:00Z" data-stale-days="21" data-abandoned-days="45">
-  <div class="hero-head">Chance of a discretionary quota reset · next 48 hours</div>
+  <div class="hero-head">Chance of a discretionary quota reset · next 48 hours · <span class="hero-regime">launch regime</span></div>
   <div class="hero-nums">
     <div class="hero-num codex"><b id="cx-pct">46%</b><span>Codex<em id="cx-since">last reset 6 days ago · 5 in the past fortnight</em></span></div>
     <div class="hero-num claude"><b>27%</b><span>Claude Code<em>from a stated baseline — not measured</em></span></div>
     <div class="hero-num sched"><b>95%</b><span>Claude Code scheduled recycle<em>counted separately — do not add</em></span></div>
   </div>
+  <p class="hero-range">Shown at the <strong>launch</strong> regime — the highest of the three
+  base rates this model carries. The same records give <b>16%</b> (quiet) and <b>29%</b> (normal) for Codex. <strong>Which regime applies is a hand-set judgement, not a derived one</strong>;
+  nothing in the ledger decides it. <a href="/forecast">All three, side by side</a>.</p>
   <p class="hero-asof">Ledger covers <strong>March–July 2026</strong> ·
   last updated <time datetime="2026-07-27T04:47:30Z">2026-07-27 04:47 UTC</time> ·
   the Codex figure is re-reckoned against your clock on load, so it is never the frozen build-time
