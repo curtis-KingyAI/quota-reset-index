@@ -33,7 +33,7 @@ Each of these is a failure that would otherwise be found *after* publication.
 
 1. **A decided subdomain and host.** Spec §11.1, open since Phase 0 and never answered. The operator
    makes this change, not the agent. Note the constraint recorded during Phase 0: kingy.ai's DNS sits
-   behind Rocket.net's managed Cloudflare with no dashboard access, so a `*.kingy.ai` subdomain may
+   behind a managed Cloudflare tenancy the operator does not administer, so a `*.kingy.ai` subdomain may
    not be self-serve.
 2. **Operator approval to publish**, on the record.
 

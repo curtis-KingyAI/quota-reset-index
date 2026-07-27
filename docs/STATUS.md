@@ -15,7 +15,7 @@ operator, not the agent.
 The site is built, preflighted and publishable. `npm run deploy` exits 0. It cannot ship because
 there is nowhere to ship it to.
 
-**The constraint recorded in Phase 0:** kingy.ai's DNS sits behind Rocket.net's managed Cloudflare
+**The constraint recorded in Phase 0:** kingy.ai's DNS was believed to sit behind a managed Cloudflare tenancy
 with no dashboard access, so a `*.kingy.ai` subdomain may not be self-serve. That is worth
 establishing before choosing, not after.
 
