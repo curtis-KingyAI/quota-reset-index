@@ -13,7 +13,7 @@
     "hooks:install": "git config core.hooksPath .githooks && chmod +x .githooks/pre-commit && echo 'hooks installed (core.hooksPath=.githooks)'",
     "test": "node --test test/*.test.mjs status/__tests__/*.test.ts models/__tests__/*.test.ts usage/__tests__/*.test.ts site/__tests__/*.test.ts capture/__tests__/*.test.mjs social/__tests__/*.test.ts",
     "status:poll": "node status/ingest.ts",
-    "build:site": "node site/build-methodology.ts && node site/build-ledger-page.ts && node site/build-forecast.ts && node site/headers.ts && node site/robots.ts && node site/sitemap.ts",
+    "build:site": "node site/build-methodology.ts && node site/build-ledger-page.ts && node site/build-forecast.ts && node site/build-compare.ts && node site/headers.ts && node site/robots.ts && node site/sitemap.ts",
     "build": "npm run build:ledger && npm run build:site",
     "deploy": "node scripts/deploy.mjs",
     "check:history": "node scripts/check-history.mjs",

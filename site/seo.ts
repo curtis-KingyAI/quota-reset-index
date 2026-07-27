@@ -100,4 +100,7 @@ export const DESCRIPTIONS = {
   methodology:
     'The formulas, weights and evidence rules behind the Quota Reset Index — including what it cannot ' +
     'do and how the sentinel would fail.',
+  compare:
+    'How the Quota Reset Index compares with willcodexquotareset.com, codexreset.org and ' +
+    'codex-resets.com — including the three things they do better.',
 } as const;

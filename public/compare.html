@@ -2,19 +2,19 @@
 <html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Probability of the next discretionary quota reset for Codex and Claude Code, from a self-exciting model and a renewal hazard. Uncalibrated and clearly labelled as such.">
-<link rel="canonical" href="https://ledger.kingy.ai/forecast">
+<meta name="description" content="How the Quota Reset Index compares with willcodexquotareset.com, codexreset.org and codex-resets.com — including the three things they do better.">
+<link rel="canonical" href="https://ledger.kingy.ai/compare">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Quota Reset Index">
-<meta property="og:title" content="Quota reset forecast — Codex and Claude Code">
-<meta property="og:description" content="Probability of the next discretionary quota reset for Codex and Claude Code, from a self-exciting model and a renewal hazard. Uncalibrated and clearly labelled as such.">
-<meta property="og:url" content="https://ledger.kingy.ai/forecast">
+<meta property="og:title" content="Codex reset trackers compared — and where they beat us">
+<meta property="og:description" content="How the Quota Reset Index compares with willcodexquotareset.com, codexreset.org and codex-resets.com — including the three things they do better.">
+<meta property="og:url" content="https://ledger.kingy.ai/compare">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Quota reset forecast — Codex and Claude Code">
-<meta name="twitter:description" content="Probability of the next discretionary quota reset for Codex and Claude Code, from a self-exciting model and a renewal hazard. Uncalibrated and clearly labelled as such.">
+<meta name="twitter:title" content="Codex reset trackers compared — and where they beat us">
+<meta name="twitter:description" content="How the Quota Reset Index compares with willcodexquotareset.com, codexreset.org and codex-resets.com — including the three things they do better.">
 <meta name="theme-color" content="#12161a">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Quota Reset Index","url":"https://ledger.kingy.ai","description":"Probability of the next discretionary quota reset for Codex and Claude Code, from a self-exciting model and a renewal hazard. Uncalibrated and clearly labelled as such."}</script>
-<title>Quota reset forecast — Codex and Claude Code</title>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Quota Reset Index","url":"https://ledger.kingy.ai","description":"How the Quota Reset Index compares with willcodexquotareset.com, codexreset.org and codex-resets.com — including the three things they do better."}</script>
+<title>Codex reset trackers compared</title>
 <style>
   /* 112.5% root = 18px. One lever scales every rem-based size; individual
      floors are set below so nothing lands under ~14px on a dense table. */
@@ -132,7 +132,24 @@
     .hero-nums { gap:1.8rem } .hero-num b { font-size:2.9rem }
     .shell { padding:0 1.1rem 4rem }
   }
-</style>
+
+  .tracker { border-left:3px solid var(--rule); padding:.1rem 0 .1rem 1.1rem; margin:1.5rem 0 }
+  .tracker h3 { margin:0 0 .3rem; font-size:1.05rem }
+  .tracker ul { margin:.5rem 0 0; padding-left:1.1rem }
+  .tracker li { margin:.28rem 0 }
+  .table-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch }
+  table.compare { min-width:46rem }
+  table.compare th[scope=row] { text-align:left; font-weight:500 }
+  table.compare tr.em th[scope=row] { font-weight:700 }
+  table.compare td { text-align:center; vertical-align:top }
+  table.compare td.ours, table.compare th.ours { text-align:left; font-size:.9rem }
+  .c-yes { color:var(--good); font-weight:700 }
+  .c-no  { color:var(--faint) }
+  .c-part{ color:var(--warn); font-weight:700 }
+  .table-key { font-size:.84rem; color:var(--faint); margin-top:.5rem }
+  ol.ahead li { margin:.6rem 0 }
+  blockquote { border-left:3px solid var(--accent); margin:1.2rem 0; padding:.2rem 0 .2rem 1.1rem; font-size:1.05rem }
+  .fineprint { font-size:.84rem; color:var(--faint); margin-top:2rem }</style>
 
 <div class="shell">
 <header class="masthead">
@@ -140,9 +157,9 @@
       <a class="wordmark" href="/">Quota Reset<span>&nbsp;Index</span></a>
       <nav aria-label="Primary">
       <a href="/">Ledger</a>
-      <a href="/forecast" aria-current="page">Forecast</a>
+      <a href="/forecast">Forecast</a>
       <a href="/methodology">Methodology</a>
-      <a href="/compare">Compare</a>
+      <a href="/compare" aria-current="page">Compare</a>
       <a href="/ledger.json">JSON</a>
       <a href="/ledger.csv">CSV</a>
       </nav>
@@ -151,7 +168,6 @@
     forecasts built on it. Covers <strong>March–July 2026</strong>.
     Published by <a href="https://kingy.ai">Kingy AI</a>.</p>
   </header>
-
 
 
 <section class="hero" aria-label="Forecast summary" data-last-reset="2026-07-21T00:00:00Z" data-prior="7" data-window="48" data-resets="[&quot;2026-07-21T00:00:00Z&quot;,&quot;2026-07-18T03:00:00Z&quot;,&quot;2026-07-16T00:00:00Z&quot;,&quot;2026-07-15T00:00:00Z&quot;,&quot;2026-07-14T00:00:00Z&quot;,&quot;2026-07-13T00:00:00Z&quot;,&quot;2026-07-12T18:00:00Z&quot;]">
@@ -174,70 +190,138 @@
   its usage state. <a href="/forecast">How they are built</a> ·
   <a href="/methodology">why they may be wrong</a>.</p>
 </section>
-<h1>Forecast</h1>
-<p class="lede">Two vendors, two methodologies, because they expose different amounts of state.
-These are the less trustworthy half of this project — the <a href="/">ledger</a> is the asset.</p>
 
-<div class="banner" id="calibration-banner">
-  Uncalibrated. Weights are hand-set priors from the public event record, not fitted parameters.
-  <p>No number on this page has been checked against an outcome. There is no Brier score because
-  there is no labelled sample to compute one from. Do not put an alert behind these.</p>
+<h1>Compared with the other reset trackers</h1>
+<p class="lede">Three other sites track Codex quota resets. They are good, they are faster than this
+one, and two of them have been running longer. Here is what each does, checked by opening them
+on 2026-07-26 — and the one thing this project does that none of them offers.</p>
+
+<div class="banner">
+  <p class="banner-lead">Read this first, because it is the part most comparison pages leave out.</p>
+  <p>An earlier draft of this page said the other trackers had no event history and published no
+  forecast. <strong>Both were false</strong>, and both were disproved by opening their sites. Those
+  rows are gone. What is left is narrower and it is the only difference that actually held up.</p>
 </div>
 
-<h2>Probability of at least one discretionary reset</h2>
-<p class="lede">At the July 2026 baseline — Codex 38h since its last reset with
-6 resets in the trailing 14 days; Claude Code 25h since
-recycle at 62% weekly utilisation — with no live evidence signals.</p>
+<h2>What they do</h2>
+<div class="tracker">
+  <h3><a href="https://www.willcodexquotareset.com/" rel="nofollow noopener">willcodexquotareset.com</a></h3>
+  <p>Will Codex Reset? — a single-page verdict on the next 48 hours.</p>
+  <ul>
+    <li><strong>Forecast:</strong> A 48-hour verdict. Self-described as “a transparent heuristic, not a serious statistical model”.</li>
+    <li><strong>History:</strong> No past events are listed. The page shows the current call only.</li>
+    <li><strong>Sources:</strong> Nothing to link — there are no entries.</li>
+    <li><strong>Data:</strong> No JSON, CSV or API.</li>
+    <li><strong>Method:</strong> Names its four inputs — OpenAI status, @thsottiaux posts, product launches, cooldown timers — but publishes no weights.</li>
+  </ul>
+</div>
+<div class="tracker">
+  <h3><a href="https://codexreset.org" rel="nofollow noopener">codexreset.org</a></h3>
+  <p>Codex Reset Monitor — a timeline of confirmed resets plus 24h/48h estimates.</p>
+  <ul>
+    <li><strong>Forecast:</strong> Publishes both a 24-hour and a 48-hour figure, off a reset-cadence baseline.</li>
+    <li><strong>History:</strong> A rolling timeline; on the date checked it ran from 29 June to 25 July 2026.</li>
+    <li><strong>Sources:</strong> Says every public source stays linked from the timeline.</li>
+    <li><strong>Data:</strong> No JSON, CSV or API.</li>
+    <li><strong>Method:</strong> Describes its inputs — hourly X API over approved accounts, plus OpenAI Status — without publishing parameters.</li>
+  </ul>
+</div>
+<div class="tracker">
+  <h3><a href="https://codex-resets.com" rel="nofollow noopener">codex-resets.com</a></h3>
+  <p>Built by @wong2__ — the longest event list of the three, with interval statistics.</p>
+  <ul>
+    <li><strong>Forecast:</strong> Reports intervals rather than probabilities: average gap and longest wait.</li>
+    <li><strong>History:</strong> The longest run of the three. Its oldest entries predate this ledger’s March start.</li>
+    <li><strong>Sources:</strong> Each entry carries a “View on X →” link to the original post.</li>
+    <li><strong>Data:</strong> Web page and Telegram alerts; no JSON, CSV or API.</li>
+    <li><strong>Method:</strong> States its source — @thsottiaux’s posts, machine-classified — without publishing the classifier.</li>
+  </ul>
+</div>
 
-<table>
+<h2>Side by side</h2>
+<p>Entry counts are deliberately absent as a differentiator: they move daily, and on the date checked
+two reads of one tracker disagreed about its own total. The rows below are structural, so they stay
+true between checks.</p>
+
+<div class="table-scroll">
+<table class="compare">
   <thead>
-    <tr><th rowspan="2">regime</th><th class="num" colspan="4">Codex</th><th class="num" colspan="4">Claude Code</th></tr>
-    <tr><th class="num">12h</th><th class="num">24h</th><th class="num">48h</th><th class="num">72h</th><th class="num">12h</th><th class="num">24h</th><th class="num">48h</th><th class="num">72h</th></tr>
+    <tr><th scope="col">&nbsp;</th><th scope="col"><a href="https://www.willcodexquotareset.com/" rel="nofollow noopener">willcodexquotareset.com</a></th><th scope="col"><a href="https://codexreset.org" rel="nofollow noopener">codexreset.org</a></th><th scope="col"><a href="https://codex-resets.com" rel="nofollow noopener">codex-resets.com</a></th><th scope="col" class="ours">this project</th></tr>
   </thead>
-  <tbody><tr><td>quiet</td><td class="num">10%</td><td class="num">17%</td><td class="num">27%</td><td class="num">35%</td><td class="num">3%</td><td class="num">5%</td><td class="num">10%</td><td class="num">14%</td></tr>
-<tr><td>normal</td><td class="num">14%</td><td class="num">24%</td><td class="num">39%</td><td class="num">50%</td><td class="num">4%</td><td class="num">9%</td><td class="num">16%</td><td class="num">24%</td></tr>
-<tr><td>launch</td><td class="num">20%</td><td class="num">34%</td><td class="num">55%</td><td class="num">68%</td><td class="num">7%</td><td class="num">14%</td><td class="num">27%</td><td class="num">37%</td></tr></tbody>
-</table>
-
-<h2>Claude Code's scheduled track</h2>
-<p class="lede">Reported separately from the discretionary number, because the vendor gives two
-knowable things and they answer different questions. <strong>Do not add them.</strong> The scheduled
-recycle rides an observed ~72h cadence; at 25h elapsed the next one is due in
-~47h.</p>
-
-<table>
-  <thead><tr><th>window</th><th class="num">12h</th><th class="num">24h</th><th class="num">48h</th><th class="num">72h</th></tr></thead>
-  <tbody><tr><td>scheduled recycle</td><td class="num">0%</td><td class="num">0%</td><td class="num">95%</td><td class="num">100%</td></tr></tbody>
-</table>
-
-<h2>Instantaneous rates, launch regime</h2>
-<table>
-  <thead><tr><th>vendor</th><th class="num">λ (events/hour)</th><th class="num">mean wait</th></tr></thead>
   <tbody>
-    <tr><td><span class="pill codex">codex</span></td><td class="num">0.0192</td><td class="num">52h</td></tr>
-    <tr><td><span class="pill claude-code">claude-code</span></td><td class="num">0.0064</td><td class="num">156h</td></tr>
+  <tr>
+      <th scope="row">Forecasts the next reset</th>
+      <td><span class="c-yes" aria-label="yes">✓</span></td><td><span class="c-yes" aria-label="yes">✓</span></td><td><span class="c-no" aria-label="no">✗</span></td>
+      <td class="ours"><span class="c-yes" aria-label="yes">✓</span> two models, labelled uncalibrated</td>
+    </tr>
+<tr>
+      <th scope="row">Lists past events</th>
+      <td><span class="c-no" aria-label="no">✗</span></td><td><span class="c-yes" aria-label="yes">✓</span></td><td><span class="c-yes" aria-label="yes">✓</span></td>
+      <td class="ours"><span class="c-yes" aria-label="yes">✓</span> 28 current, 2026-03-13 → 2026-07-21</td>
+    </tr>
+<tr class="em">
+      <th scope="row">Covers Anthropic Claude Code</th>
+      <td><span class="c-no" aria-label="no">✗</span></td><td><span class="c-no" aria-label="no">✗</span></td><td><span class="c-no" aria-label="no">✗</span></td>
+      <td class="ours"><span class="c-yes" aria-label="yes">✓</span> 9 records</td>
+    </tr>
+<tr>
+      <th scope="row">Links a source per event</th>
+      <td><span class="c-no" aria-label="no">✗</span></td><td><span class="c-yes" aria-label="yes">✓</span></td><td><span class="c-yes" aria-label="yes">✓</span></td>
+      <td class="ours"><span class="c-yes" aria-label="yes">✓</span> 62 sources</td>
+    </tr>
+<tr class="em">
+      <th scope="row">Archived copies of those sources</th>
+      <td><span class="c-no" aria-label="no">✗</span></td><td><span class="c-no" aria-label="no">✗</span></td><td><span class="c-no" aria-label="no">✗</span></td>
+      <td class="ours"><span class="c-yes" aria-label="yes">✓</span> 61 of 62 (98.4%)</td>
+    </tr>
+<tr class="em">
+      <th scope="row">Confidence graded per event</th>
+      <td><span class="c-no" aria-label="no">✗</span></td><td><span class="c-no" aria-label="no">✗</span></td><td><span class="c-no" aria-label="no">✗</span></td>
+      <td class="ours"><span class="c-yes" aria-label="yes">✓</span> 3 confirmed, 14 probable, 11 reported</td>
+    </tr>
+<tr class="em">
+      <th scope="row">Corrections visible</th>
+      <td><span class="c-no" aria-label="no">✗</span></td><td><span class="c-no" aria-label="no">✗</span></td><td><span class="c-no" aria-label="no">✗</span></td>
+      <td class="ours"><span class="c-yes" aria-label="yes">✓</span> 19 superseded records, still on the page</td>
+    </tr>
+<tr class="em">
+      <th scope="row">Machine-readable download</th>
+      <td><span class="c-no" aria-label="no">✗</span></td><td><span class="c-no" aria-label="no">✗</span></td><td><span class="c-no" aria-label="no">✗</span></td>
+      <td class="ours"><span class="c-yes" aria-label="yes">✓</span> <a href="/ledger.json">JSON</a> and <a href="/ledger.csv">CSV</a>, CC BY 4.0</td>
+    </tr>
+<tr>
+      <th scope="row">Method published with its parameters</th>
+      <td><span class="c-part" aria-label="partial">◐</span></td><td><span class="c-part" aria-label="partial">◐</span></td><td><span class="c-part" aria-label="partial">◐</span></td>
+      <td class="ours"><span class="c-yes" aria-label="yes">✓</span> <a href="/methodology">every weight and half-life</a>, generated from the code</td>
+    </tr>
   </tbody>
 </table>
+</div>
+<p class="table-key">✓ offered · ◐ described but not published in full · ✗ not offered</p>
 
-<h2>What these numbers cannot do</h2>
-<p class="lede">Three limits, stated because a percentage sign invites more confidence than this
-deserves:</p>
-<ul class="lede">
-  <li><strong>The clock is pinned to 2026-07-07T12:00:00.000Z</strong> (ordinary weekday hour).
-  Claude Code's figures move with the day of week — the calendar term is the only clock-dependent
-  part of either model — so an unpinned page would show numbers nobody could reproduce.</li>
-  <li><strong>The evidence terms are inert.</strong> Both models carry a weight for a vendor-employee
-  social post. Scraping X is out of scope by decision, so those terms can never rise above zero.
-  Treat both models as having one fewer input than the formulas suggest.</li>
-  <li><strong>Claude Code's utilisation is hand-entered, not measured.</strong> The sentinel that
-  would have measured it was closed — no supported channel exposes subscription quota state, and none
-  distinguishes a vendor-wide grant from an ordinary rollover. See
-  <a href="/methodology#sentinel">Methodology</a>.</li>
-</ul>
+<h2 id="ahead">Where they beat us</h2>
+<p>Stated plainly, because a comparison with no losing rows is an advertisement.</p>
+<ol class="ahead">
+  <li><strong>All three react faster than we do.</strong> They poll automatically and update within the hour. This ledger is curated by hand, so a reset can be real for a day before it appears here. If you want to know what happened in the last hour, go to them.</li>
+  <li><strong>codex-resets.com covers a longer span.</strong> Its event list reaches back further than this ledger’s earliest record of 13 March 2026. More history is more history, and we do not have it yet.</li>
+  <li><strong>They are simpler.</strong> One page, one number, nothing to learn. A schema, a confidence grade and a supersede chain are overhead — worth it if you need to check a claim, pure friction if you just want the number.</li>
+</ol>
 
-<p class="lede">Full formulas, every weight and half-life, and the calibration path are on
-<a href="/methodology">Methodology</a>.</p>
+<h2>So what is the actual difference</h2>
+<p>Not speed, and not the number of events — we lose the first outright and do not clearly win the
+second. It is this:</p>
+<blockquote>Every record here can be checked, and when one of ours was wrong you can see that it was wrong and what replaced it.</blockquote>
+<p>None of the three grades its confidence, and none shows a correction history, so an error on those
+sites leaves no trace. Errors do happen — including here. This ledger carries
+<strong>19 superseded records</strong>, and both halves of every correction stay on the
+page precisely so you can see what we got wrong. That, plus two things nobody else offers at all:
+<strong>Claude Code coverage</strong> and <strong>a download</strong>.</p>
 
+<p class="fineprint">All three sites were fetched and read on 2026-07-26; the ledger figures in the
+right-hand column are computed from the records as at 2026-07-26. These are live products and their
+pages change — if a row here is wrong, it is wrong on our side, and
+<a href="https://github.com/curtis-KingyAI/quota-reset-index/issues">the correction belongs in the
+issue tracker</a>. Nothing on this page is affiliated with OpenAI or Anthropic.</p>
 
 <footer>
 <strong>Corrections welcome against the evidence, not against the conclusions.</strong>

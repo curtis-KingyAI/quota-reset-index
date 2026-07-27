@@ -12,7 +12,7 @@ import { CANONICAL_ORIGIN, NOINDEX } from './layout.ts';
 import { isMain } from '../lib/is-main.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
-const PATHS = ['/', '/forecast', '/methodology'];
+const PATHS = ['/', '/forecast', '/methodology', '/compare'];
 
 export const renderSitemap = (lastmod: string): string =>
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +

@@ -1,5 +1,27 @@
 # How this compares to the existing trackers
 
+> ### ⚠️ SUPERSEDED as the source for the published page — 2026-07-26
+>
+> **The live page is built from `site/compare-data.ts`, not from this file.** That file was written
+> against a fresh fetch of all three sites and its "our column" is computed from `ledger/` and
+> `archive/` at build time, so it cannot drift. Use it, not the tables below, for anything published.
+>
+> **Three figures in this document are wrong.** They are left in place rather than edited out,
+> because that is the rule this project applies to its own records:
+>
+> | claim here | verified 2026-07-26 | how |
+> |---|---|---|
+> | archive coverage "85 of 86 (98.8%)" | **61 of 62 (98.4%)** | counted from the `archive/` sidecars via `bestCapture()` |
+> | codexreset.org "11 confirmed resets" | **unpublishable** — two reads disagreed (8 vs 9 listed) | refetched; count is now omitted from the site by design |
+> | "Checked 2026-07-27" | that date had not happened yet | today is 2026-07-26 |
+>
+> **A fourth defect is an omission:** this document compares two trackers. It does not mention
+> **willcodexquotareset.com**, which is the site Curtis actually named as the one to beat. The
+> published page covers all three.
+>
+> Everything else here held up and was carried across — in particular the finding that three rows of
+> the original draft were false, and the "where they are ahead of us" section.
+
 **Checked 2026-07-27 by fetching both sites.** Re-check before republishing: these are live products and
 every row below is a claim about someone else's work, which means it has to be true on the day it is
 shown or it is exactly the kind of over-claim this project audits itself for.
@@ -42,7 +64,7 @@ claim and it is the one that survives contact with their sites.
 
 | | codexreset.org | codex-resets.com | this project |
 |---|---|---|---|
-| Codex events | ✓ 11, rolling 30d | ✓ 37, ~6 months | ✓ 38 records (19 current) |
+| Codex events | ✓ 11, rolling 30d | ✓ 37, ~6 months | ✓ 34 records (19 current) |
 | **Anthropic Claude Code** | **✗** | **✗** | **✓ 9 records, honestly labelled** |
 | Sources linked per entry | ✓ | ✓ | ✓ 86 on current records |
 | **Archived copies of sources** | **✗** | **✗** | **✓ 85 of 86 (98.8%) Wayback-captured** |

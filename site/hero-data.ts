@@ -14,7 +14,7 @@
 import { CODEX_BASELINE } from '../models/codex.ts';
 import { CLAUDE_BASELINE } from '../models/claudeCode.ts';
 import { claudeForecast, codexForecast, pct } from '../models/integrate.ts';
-import { codexLiveState, elapsedLabel } from './live-state.ts';
+import { codexLiveState, coverageSpan, elapsedLabel } from './live-state.ts';
 
 export const HERO_WINDOW = 48;
 
@@ -40,6 +40,11 @@ export function heroFigures() {
       asOfIso: live.asOfIso,
       prior: live.prior,
       sinceLabel: elapsedLabel(live.since),
+      // Shipped so the browser recomputes `prior` too. A frozen `prior` only
+      // ever over-states the probability as the anchor ages, because resets can
+      // age OUT of the fortnight but none can appear.
+      recentResetIsos: live.recentResetIsos,
+      coverage: coverageSpan(),
     },
   };
 }

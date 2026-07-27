@@ -27,10 +27,26 @@ export function heroScript(): string {
   var note = document.getElementById('cx-since');
   if (!out) return;
 
-  var since = (Date.now() - Date.parse(el.dataset.lastReset)) / 3600000;
+  var now = Date.now();
+  var since = (now - Date.parse(el.dataset.lastReset)) / 3600000;
   if (!isFinite(since) || since < 0) return;   // leave the server value alone
-  var prior = Number(el.dataset.prior) || 0;
   var W = Number(el.dataset.window) || 48;
+
+  // Recompute 'prior' against the real clock rather than trusting the build-time
+  // value. A frozen 'prior' drifts in ONE direction only: resets age OUT of the
+  // trailing fortnight and none can appear, so a stale count always OVER-states
+  // the probability. Fixing it is cheap; disclosing a known upward bias is not
+  // good enough when the list of dates is already sitting in the page.
+  // NOTE: no backticks in comments here — this whole block lives inside a
+  // template literal, and a backtick would close it. That is how this broke.
+  var prior;
+  try {
+    var isos = JSON.parse(el.dataset.resets || '[]');
+    var cutoff = now - 14 * 24 * 3600000;
+    prior = isos.filter(function (d) { return Date.parse(d) >= cutoff; }).length;
+  } catch (e) {
+    prior = Number(el.dataset.prior) || 0;   // fall back to the server value
+  }
 
   // Constants injected from models/config.ts at build time.
   var BASE=${BASE.launch.codex}, A=${ALPHA}, TAU=${TAU}, K=${REFR_K}, RT=${REFR_T}, STEP=${STEP_HOURS};

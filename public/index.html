@@ -82,6 +82,9 @@
   .hero-caveat { margin:1.35rem 0 0; padding-top:.9rem; border-top:1px solid var(--hair);
                  font-size:.9rem; color:var(--ink-2); max-width:52rem }
   .hero-caveat strong { color:var(--warn) }
+  .hero-asof { margin:1.1rem 0 .2rem; font-size:.85rem; line-height:1.55; color:var(--faint); max-width:56rem }
+  .hero-asof strong { color:var(--ink-2); font-weight:600 }
+  .hero-asof em { font-style:normal; color:var(--ink-2) }
 
   /* ---------- notices ---------- */
   .banner { border-left:3px solid var(--warn); background:var(--warn-bg); border-radius:0 2px 2px 0;
@@ -152,23 +155,30 @@
       <a href="/" aria-current="page">Ledger</a>
       <a href="/forecast">Forecast</a>
       <a href="/methodology">Methodology</a>
+      <a href="/compare">Compare</a>
       <a href="/ledger.json">JSON</a>
       <a href="/ledger.csv">CSV</a>
       </nav>
     </div>
     <p class="masthead-sub">A sourced, append-only record of discretionary AI quota resets — and two
-    forecasts built on it. Published by <a href="https://kingy.ai">Kingy AI</a>.</p>
+    forecasts built on it. Covers <strong>March–July 2026</strong>.
+    Published by <a href="https://kingy.ai">Kingy AI</a>.</p>
   </header>
 
 
 
-<section class="hero" aria-label="Forecast summary" data-last-reset="2026-07-21T00:00:00Z" data-prior="7" data-window="48">
+<section class="hero" aria-label="Forecast summary" data-last-reset="2026-07-21T00:00:00Z" data-prior="7" data-window="48" data-resets="[&quot;2026-07-21T00:00:00Z&quot;,&quot;2026-07-18T03:00:00Z&quot;,&quot;2026-07-16T00:00:00Z&quot;,&quot;2026-07-15T00:00:00Z&quot;,&quot;2026-07-14T00:00:00Z&quot;,&quot;2026-07-13T00:00:00Z&quot;,&quot;2026-07-12T18:00:00Z&quot;]">
   <div class="hero-head">Chance of a discretionary quota reset · next 48 hours</div>
   <div class="hero-nums">
     <div class="hero-num codex"><b id="cx-pct">51%</b><span>Codex<em id="cx-since">last reset 6 days ago · 7 in the past fortnight</em></span></div>
     <div class="hero-num claude"><b>27%</b><span>Claude Code<em>from a stated baseline — not measured</em></span></div>
     <div class="hero-num sched"><b>95%</b><span>Claude Code scheduled recycle<em>counted separately — do not add</em></span></div>
   </div>
+  <p class="hero-asof">Ledger covers <strong>March–July 2026</strong> ·
+  last updated <time datetime="2026-07-26T14:00:00Z">2026-07-26 14:00 UTC</time> ·
+  the Codex figure is re-reckoned against your clock on load, so it is never the frozen build-time
+  number. If a reset happened that this ledger has not recorded yet, the figure reads
+  <em>low</em>, not high.</p>
   <p class="hero-caveat"><strong>Uncalibrated.</strong> These are hand-set priors from the public
   event record, not fitted parameters, and none has been checked against an outcome. There is no
   accuracy score behind them yet. The Codex figure is derived from
@@ -1483,10 +1493,26 @@ that links back to the one it replaces. Data at <a href="/ledger.json">/ledger.j
   var note = document.getElementById('cx-since');
   if (!out) return;
 
-  var since = (Date.now() - Date.parse(el.dataset.lastReset)) / 3600000;
+  var now = Date.now();
+  var since = (now - Date.parse(el.dataset.lastReset)) / 3600000;
   if (!isFinite(since) || since < 0) return;   // leave the server value alone
-  var prior = Number(el.dataset.prior) || 0;
   var W = Number(el.dataset.window) || 48;
+
+  // Recompute 'prior' against the real clock rather than trusting the build-time
+  // value. A frozen 'prior' drifts in ONE direction only: resets age OUT of the
+  // trailing fortnight and none can appear, so a stale count always OVER-states
+  // the probability. Fixing it is cheap; disclosing a known upward bias is not
+  // good enough when the list of dates is already sitting in the page.
+  // NOTE: no backticks in comments here — this whole block lives inside a
+  // template literal, and a backtick would close it. That is how this broke.
+  var prior;
+  try {
+    var isos = JSON.parse(el.dataset.resets || '[]');
+    var cutoff = now - 14 * 24 * 3600000;
+    prior = isos.filter(function (d) { return Date.parse(d) >= cutoff; }).length;
+  } catch (e) {
+    prior = Number(el.dataset.prior) || 0;   // fall back to the server value
+  }
 
   // Constants injected from models/config.ts at build time.
   var BASE=0.01375, A=0.02, TAU=30, K=0.85, RT=8, STEP=0.25;

@@ -39,6 +39,7 @@ import {
 import { forecastHero, page } from './layout.ts';
 import { DESCRIPTIONS, seoHead } from './seo.ts';
 import { heroFigures } from './hero-data.ts';
+import { coverageSpan } from './live-state.ts';
 import { heroScript } from './hero-script.ts';
 import { isMain } from '../lib/is-main.mjs';
 
@@ -274,6 +275,7 @@ CORS-open. Corrections welcome against the evidence, not against the conclusions
     title: 'Methodology — how the Quota Reset Index works',
     path: '/methodology',
     current: 'methodology',
+    coverage: coverageSpan().label,
     body,
     script: heroScript(),
     head: seoHead({

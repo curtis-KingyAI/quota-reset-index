@@ -21,6 +21,7 @@ import { compareRecords } from '../lib/canonical.mjs';
 import { esc, forecastHero, page } from './layout.ts';
 import { DESCRIPTIONS, seoHead } from './seo.ts';
 import { heroFigures } from './hero-data.ts';
+import { coverageSpan } from './live-state.ts';
 import { heroScript } from './hero-script.ts';
 import { isMain } from '../lib/is-main.mjs';
 
@@ -210,7 +211,8 @@ ${rows}
   });
   return page({
     title: 'Quota Reset Index — every sourced AI quota reset',
-    path: '/', current: 'ledger', body, head, extraStyles, script: script + heroScript(),
+    path: '/', current: 'ledger',
+    coverage: coverageSpan().label, body, head, extraStyles, script: script + heroScript(),
   });
 }
 

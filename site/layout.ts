@@ -100,6 +100,9 @@ export const STYLES = `
   .hero-caveat { margin:1.35rem 0 0; padding-top:.9rem; border-top:1px solid var(--hair);
                  font-size:.9rem; color:var(--ink-2); max-width:52rem }
   .hero-caveat strong { color:var(--warn) }
+  .hero-asof { margin:1.1rem 0 .2rem; font-size:.85rem; line-height:1.55; color:var(--faint); max-width:56rem }
+  .hero-asof strong { color:var(--ink-2); font-weight:600 }
+  .hero-asof em { font-style:normal; color:var(--ink-2) }
 
   /* ---------- notices ---------- */
   .banner { border-left:3px solid var(--warn); background:var(--warn-bg); border-radius:0 2px 2px 0;
@@ -166,13 +169,21 @@ export function forecastHero(f: {
   claude: number;
   windowHours: number;
   scheduled: number;
-  live?: { lastResetIso: string; asOfIso: string; prior: number; sinceLabel: string };
+  live?: {
+    lastResetIso: string;
+    asOfIso: string;
+    prior: number;
+    sinceLabel: string;
+    recentResetIsos: string[];
+    coverage: { earliest: string; latest: string; label: string };
+  };
 }): string {
   const live = f.live;
   return `
 <section class="hero" aria-label="Forecast summary"${
     live
-      ? ` data-last-reset="${live.lastResetIso}" data-prior="${live.prior}" data-window="${f.windowHours}"`
+      ? ` data-last-reset="${live.lastResetIso}" data-prior="${live.prior}" data-window="${f.windowHours}"` +
+        ` data-resets="${esc(JSON.stringify(live.recentResetIsos))}"`
       : ''
   }>
   <div class="hero-head">Chance of a discretionary quota reset · next ${f.windowHours} hours</div>
@@ -183,6 +194,11 @@ export function forecastHero(f: {
     <div class="hero-num claude"><b>${f.claude}%</b><span>Claude Code<em>from a stated baseline — not measured</em></span></div>
     <div class="hero-num sched"><b>${f.scheduled}%</b><span>Claude Code scheduled recycle<em>counted separately — do not add</em></span></div>
   </div>
+  ${live ? `<p class="hero-asof">Ledger covers <strong>${live.coverage.label}</strong> ·
+  last updated <time datetime="${live.asOfIso}">${live.asOfIso.slice(0, 16).replace('T', ' ')} UTC</time> ·
+  the Codex figure is re-reckoned against your clock on load, so it is never the frozen build-time
+  number. If a reset happened that this ledger has not recorded yet, the figure reads
+  <em>low</em>, not high.</p>` : ''}
   <p class="hero-caveat"><strong>Uncalibrated.</strong> These are hand-set priors from the public
   event record, not fitted parameters, and none has been checked against an outcome. There is no
   accuracy score behind them yet. The Codex figure is derived from
@@ -196,7 +212,9 @@ export function forecastHero(f: {
 export interface PageOptions {
   title: string;
   path?: string;
-  current: 'ledger' | 'forecast' | 'methodology';
+  current: 'ledger' | 'forecast' | 'methodology' | 'compare';
+  /** Coverage span, e.g. "March–July 2026". Shown in the masthead. */
+  coverage?: string;
   body: string;
   /** Fully-formed <head> metadata from seo.ts. */
   head?: string;
@@ -211,9 +229,10 @@ const NAV = [
   { href: '/', label: 'Ledger', key: 'ledger' },
   { href: '/forecast', label: 'Forecast', key: 'forecast' },
   { href: '/methodology', label: 'Methodology', key: 'methodology' },
+  { href: '/compare', label: 'Compare', key: 'compare' },
 ];
 
-export function masthead(current: string): string {
+export function masthead(current: string, coverage?: string): string {
   const nav = NAV.map(
     (n) => `<a href="${n.href}"${n.key === current ? ' aria-current="page"' : ''}>${n.label}</a>`,
   ).join('\n      ');
@@ -227,7 +246,8 @@ export function masthead(current: string): string {
       </nav>
     </div>
     <p class="masthead-sub">A sourced, append-only record of discretionary AI quota resets — and two
-    forecasts built on it. Published by <a href="https://kingy.ai">Kingy AI</a>.</p>
+    forecasts built on it.${coverage ? ` Covers <strong>${coverage}</strong>.` : ''}
+    Published by <a href="https://kingy.ai">Kingy AI</a>.</p>
   </header>`;
 }
 
@@ -241,7 +261,7 @@ ${NOINDEX ? '<meta name="robots" content="noindex, nofollow">\n' : ''}${o.head ?
 <style>${STYLES}${o.extraStyles ?? ''}</style>
 
 <div class="shell">
-${masthead(o.current)}
+${masthead(o.current, o.coverage)}
 
 ${o.body}
 
