@@ -9,6 +9,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { CANONICAL_ORIGIN, NOINDEX } from './layout.ts';
+import { codexLiveState } from './live-state.ts';
 import { isMain } from '../lib/is-main.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -26,8 +27,21 @@ function main(): void {
   }
   const out = join(ROOT, 'public');
   mkdirSync(out, { recursive: true });
-  // Date only, and taken from the build, so the file stays deterministic within a day.
-  writeFileSync(join(out, 'sitemap.xml'), renderSitemap(new Date().toISOString().slice(0, 10)));
+
+  // ⚠️ `lastmod` COMES FROM THE LEDGER, NOT THE CLOCK. This used to be
+  // `new Date().toISOString().slice(0, 10)`, described as "deterministic within a
+  // day" — which is another way of saying NOT deterministic, and §4.4 requires
+  // byte-identical output from identical inputs.
+  //
+  // The practical cost was a scheduled false alarm: CI rebuilds and fails on any
+  // diff in public/, so the first push after every UTC midnight would fail on a
+  // sitemap nobody had touched. A CI job that cries wolf daily is a CI job people
+  // learn to re-run without reading, which is how a real failure gets waved past.
+  //
+  // The ledger's own AS_OF is also the semantically correct value: `lastmod` should
+  // say when the CONTENT last changed, and the content is the ledger. A build on a
+  // new day changes nothing a crawler cares about.
+  writeFileSync(join(out, 'sitemap.xml'), renderSitemap(codexLiveState().asOfIso.slice(0, 10)));
   console.log('built public/sitemap.xml');
 }
 
