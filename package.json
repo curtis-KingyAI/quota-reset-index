@@ -11,7 +11,7 @@
     "validate": "node scripts/validate.mjs",
     "build:ledger": "node scripts/build-ledger.mjs",
     "hooks:install": "git config core.hooksPath .githooks && chmod +x .githooks/pre-commit && echo 'hooks installed (core.hooksPath=.githooks)'",
-    "test": "node --test test/*.test.mjs status/__tests__/*.test.ts models/__tests__/*.test.ts usage/__tests__/*.test.ts site/__tests__/*.test.ts capture/__tests__/*.test.mjs social/__tests__/*.test.ts",
+    "test": "node --test test/*.test.mjs status/__tests__/*.test.ts models/__tests__/*.test.ts usage/__tests__/*.test.ts site/__tests__/*.test.ts capture/__tests__/*.test.mjs social/__tests__/*.test.ts lib/__tests__/*.test.mjs",
     "status:poll": "node status/ingest.ts",
     "build:site": "node site/build-methodology.ts && node site/build-ledger-page.ts && node site/build-forecast.ts && node site/build-compare.ts && node site/headers.ts && node site/robots.ts && node site/sitemap.ts",
     "build": "npm run build:ledger && npm run build:site",
@@ -19,7 +19,8 @@
     "check:history": "node scripts/check-history.mjs",
     "archive": "node scripts/archive.mjs",
     "capture:detect": "node capture/detect.mjs",
-    "social:poll": "node social/poll.ts"
+    "social:poll": "node social/poll.ts",
+    "sweep": "node scripts/sweep.mjs"
   },
   "dependencies": {
     "ajv": "8.17.1",

@@ -100,6 +100,12 @@ export const STYLES = `
   .hero-caveat { margin:1.35rem 0 0; padding-top:.9rem; border-top:1px solid var(--hair);
                  font-size:.9rem; color:var(--ink-2); max-width:52rem }
   .hero-caveat strong { color:var(--warn) }
+  /* Freshness. Escalated client-side against the reader's clock — see hero-script.ts.
+     The base state is deliberately quiet: a maintained ledger should not shout. */
+  .freshness { margin:.2rem 0 .2rem; font-size:.85rem; line-height:1.5; color:var(--faint); max-width:56rem }
+  .freshness.warn { color:var(--warn); font-weight:600 }
+  .freshness.bad { color:var(--warn); font-weight:650; background:var(--warn-bg);
+                   border-left:3px solid var(--warn); padding:.6rem .8rem; border-radius:0 2px 2px 0 }
   .hero-asof { margin:1.1rem 0 .2rem; font-size:.85rem; line-height:1.55; color:var(--faint); max-width:56rem }
   .hero-asof strong { color:var(--ink-2); font-weight:600 }
   .hero-asof em { font-style:normal; color:var(--ink-2) }
@@ -176,6 +182,10 @@ export function forecastHero(f: {
     sinceLabel: string;
     recentResetIsos: string[];
     coverage: { earliest: string; latest: string; label: string };
+    /** Later of the ledger's as-of and the last recorded sweep. See lib/sweeps.mjs. */
+    reviewedIso: string;
+    staleDays: number;
+    abandonedDays: number;
   };
 }): string {
   const live = f.live;
@@ -183,7 +193,9 @@ export function forecastHero(f: {
 <section class="hero" aria-label="Forecast summary"${
     live
       ? ` data-last-reset="${live.lastResetIso}" data-prior="${live.prior}" data-window="${f.windowHours}"` +
-        ` data-resets="${esc(JSON.stringify(live.recentResetIsos))}"`
+        ` data-resets="${esc(JSON.stringify(live.recentResetIsos))}"` +
+        ` data-reviewed="${live.reviewedIso}" data-stale-days="${live.staleDays}"` +
+        ` data-abandoned-days="${live.abandonedDays}"`
       : ''
   }>
   <div class="hero-head">Chance of a discretionary quota reset · next ${f.windowHours} hours</div>
@@ -198,7 +210,8 @@ export function forecastHero(f: {
   last updated <time datetime="${live.asOfIso}">${live.asOfIso.slice(0, 16).replace('T', ' ')} UTC</time> ·
   the Codex figure is re-reckoned against your clock on load, so it is never the frozen build-time
   number. If a reset happened that this ledger has not recorded yet, the figure reads
-  <em>low</em>, not high.</p>` : ''}
+  <em>low</em>, not high.</p>
+  <p class="freshness" id="freshness">Last reviewed <time datetime="${live.reviewedIso}">${live.reviewedIso.slice(0, 10)}</time>.</p>` : ''}
   <p class="hero-caveat"><strong>Uncalibrated.</strong> These are hand-set priors from the public
   event record, not fitted parameters, and none has been checked against an outcome. There is no
   accuracy score behind them yet. The Codex figure is derived from

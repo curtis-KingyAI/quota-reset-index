@@ -71,5 +71,47 @@ export function heroScript(): string {
               : Math.round(since / 24) + ' days ago';
     note.textContent = 'last reset ' + label + ' \\u00b7 ' + prior + ' in the past fortnight';
   }
+
+  // ---------------------------------------------------------------- freshness
+  //
+  // THE INSTRUMENT THAT MAKES THE "OPERATE IT" DECISION HONEST.
+  //
+  // The operator chose to operate this ledger rather than declare it a snapshot.
+  // The failure mode of that choice is decay in silence: a ledger nobody is
+  // maintaining still renders an as-of date, and a reader has no way to tell a
+  // genuinely quiet fortnight from an abandoned project. So the page says how long
+  // it has been, measured against the READER's clock rather than the build's, and
+  // escalates on its own without anyone having to remember to update it.
+  //
+  // Thresholds are MEASURED, not chosen: 21 days is just past the longest quiet
+  // period Codex has ever produced in this corpus (20 days), so it cannot fire on
+  // any gap the record actually contains. 45 exceeds both vendors' observed maxima,
+  // including Claude Code's 37.
+  //
+  // Fails silent, deliberately: with no JS the static "last reviewed" date still
+  // stands. It is simply less pointed, and it is never WRONG.
+  var fresh = document.getElementById('freshness');
+  if (fresh && el.dataset.reviewed) {
+    var days = (now - Date.parse(el.dataset.reviewed)) / 86400000;
+    if (isFinite(days) && days >= 0) {
+      var STALE = Number(el.dataset.staleDays) || 21;
+      var GONE = Number(el.dataset.abandonedDays) || 45;
+      var d = Math.floor(days);
+      var human = d === 0 ? 'today' : d === 1 ? 'yesterday' : d + ' days ago';
+      if (days >= GONE) {
+        fresh.className = 'freshness bad';
+        fresh.textContent = 'Last reviewed ' + human + '. That is longer than any quiet period either'
+          + ' vendor has produced in this record, so this ledger may no longer be maintained.'
+          + ' Treat it as a snapshot.';
+      } else if (days >= STALE) {
+        fresh.className = 'freshness warn';
+        fresh.textContent = 'Last reviewed ' + human + ', which is longer than the longest gap between'
+          + ' Codex resets on record (' + STALE + 'd). Either the pattern changed or nobody has looked.';
+      } else {
+        fresh.className = 'freshness ok';
+        fresh.textContent = 'Last reviewed ' + human + '.';
+      }
+    }
+  }
 })();`;
 }

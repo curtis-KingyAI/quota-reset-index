@@ -10,8 +10,8 @@ is seven hours behind, which has already produced one wrong correction — see `
 ## What changed since the previous revision of this file
 
 The previous revision said *"Everything in the spec is complete or explicitly deferred. No buildable
-work remains,"* and listed three open operator decisions. **Two of the three are now closed, and
-almost every figure in it was stale.** Recorded here rather than quietly overwritten, because a
+work remains,"* and listed three open operator decisions. **All three are now closed, and almost
+every figure in it was stale.** Recorded here rather than quietly overwritten, because a
 start-here document that is wrong is worse than none:
 
 | it said | actually |
@@ -23,19 +23,40 @@ start-here document that is wrong is worse than none:
 | decision 1 — host and subdomain "blocks publishing entirely" | **closed.** Cloudflare Pages, `ledger.kingy.ai` |
 | decision 2 — link rot, "0 of 86 have an archive_url" | **substantially closed.** 1 of 62 URLs uncaptured |
 
-The one decision still genuinely open is the third, and it is the strategic one.
+**All three are now closed** — the third was decided on 2026-07-27; see below.
 
 ---
 
-## The open decision: operate, or declare it a snapshot
+## ✅ DECIDED 2026-07-27: OPERATE IT
 
-**Owner: operator.** Leaving it open is itself a choice, and the bad one — the site silently becomes
-a snapshot while presenting as live.
+**The operator chose to operate rather than declare a snapshot.** All three decisions this file
+carried are now closed. The loop is written down in [`OPERATING.md`](OPERATING.md); §11.3 ownership
+follows from the decision and sits with the operator.
 
-The site now **labels itself honestly either way**, which it did not before: every page carries
-*"Covers March–July 2026"* in the masthead, the hero states the ledger's as-of instant, and the Codex
-figure is re-reckoned against the reader's clock on load rather than being a frozen build-time number.
-So the dishonest middle state has been closed off. The strategic question has not.
+**What was built to make the decision honest rather than aspirational**, because choosing to operate
+does not remove the "stale index that looks live" risk — it *creates* it:
+
+- **A freshness signal that escalates by itself.** Every page shows "Last reviewed …", computed in the
+  reader's browser against their own clock, warning at **21 days** and saying "may no longer be
+  maintained" at **45**. Both thresholds are *measured*: 21 sits just past the longest gap between
+  Codex resets in the record (20 d), so it cannot fire on a quiet period the vendors have actually
+  produced. Two tests hold it — one that the thresholds exceed the observed maxima, one that
+  re-derives those maxima from the ledger, so growth forces a re-justification instead of rot.
+- **A sweep log** (`operations/sweeps.jsonl`, `npm run sweep`). The schema could say "an event
+  happened" but had no way to say "we looked and found nothing admissible", so **"nobody checked" and
+  "nothing occurred" were indistinguishable** — which made the claim to be operated unfalsifiable. Its
+  four outcomes keep `blocked` (403, login wall) separate from `no-coverage`, because collapsing them
+  turns "we couldn't check" into "there was nothing".
+
+**The first sweep ran the same day and found a real gap it could not close.** A probable Codex reset on
+**2026-07-25** — post `2081096447718723984`, decoding to 19:17:12Z — is attested only by mirrors, so
+under §2 no record was written. Five non-mirror avenues failed, including OpenAI's own status page
+showing *no incident* in the 02:00–04:00 window the mirror describes. Logged with all five attempts so
+the next sweep does not repeat them; the lead is in `OPERATING.md`.
+
+That sweep also exposed a loose end worth generalising: migration 02 correctly **struck** that post
+from `cx-2026-07-21-02` for being four days mis-dated, and then nobody recorded the 07-25 event it
+belonged to. **A struck citation is a signal that an event exists somewhere else.**
 
 Phase 6 (calibration) needs roughly **40 labelled events per vendor**:
 
@@ -69,7 +90,7 @@ someone knowing to look for it, which is the actual bottleneck on growing the co
 | 3 — status ingestion | ✅ built, **not scheduled** | No scheduler. The 2026-07-12 automation freeze means wiring one is an explicit operator action. |
 | 4 — model port | ✅ complete | Verified identical to the prototype across 29 numbers. Found §7.2's Claude Code column to be wrong. |
 | 5 — public surface | ✅ **deployed and live** | Four pages, CORS verified, sitemap, canonical URLs, schema.org Dataset. |
-| 6 — calibration | ⏸ blocked on data | See the open decision above. |
+| 6 — calibration | ⏸ blocked on data | ~40 labelled events per vendor needed; claude-code has 4 reset-bearing. Now being operated toward — see OPERATING.md. |
 
 ## The ledger
 
@@ -83,8 +104,8 @@ someone knowing to look for it, which is the actual bottleneck on growing the co
 | Evidence | **86 items** on current records, across **62 unique URLs** |
 | Archived | **85 of 86 items (98.8%)** · **61 of 62 URLs (98.4%)** |
 | `field_support` | attested 19 · unestablished 13 · inferred 4 · **9 records carry none** (they predate the field) |
-| Tests | **175** |
-| Commits | 34 |
+| Tests | **190** |
+| Commits | 38 |
 
 ⚠️ **Two archive figures, both correct, and they are not interchangeable.** 24 evidence items cite a
 URL another record also cites, so "85 of 86" counts *items* and "61 of 62" counts *distinct URLs*.
@@ -118,7 +139,7 @@ session marked the other's number as an error over exactly this.
   on the answer.
 - **`cx-2026-07-21-01` is still the weakest date in the ledger.** Its only admissible source describes
   resets across the milestone *series*, not on that date. Flagged in-record.
-- **§11.3 ownership.** `docs/RUNBOOK.md` exists; who owns *running* it follows from the open decision.
+- **§11.3 ownership — CLOSED.** The operator owns running the loop; `docs/OPERATING.md` records it.
 
 ---
 

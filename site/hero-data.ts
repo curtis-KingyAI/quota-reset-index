@@ -15,6 +15,7 @@ import { CODEX_BASELINE } from '../models/codex.ts';
 import { CLAUDE_BASELINE } from '../models/claudeCode.ts';
 import { claudeForecast, codexForecast, pct } from '../models/integrate.ts';
 import { codexLiveState, coverageSpan, elapsedLabel } from './live-state.ts';
+import { ABANDONED_DAYS, STALE_DAYS, lastReviewedAt } from '../lib/sweeps.mjs';
 
 export const HERO_WINDOW = 48;
 
@@ -45,6 +46,13 @@ export function heroFigures() {
       // age OUT of the fortnight but none can appear.
       recentResetIsos: live.recentResetIsos,
       coverage: coverageSpan(),
+      // When this ledger last had human attention: the later of "we learned
+      // something" (a record's observed_at) and "we looked" (a sweep). Only the
+      // pair distinguishes a genuinely quiet period from an abandoned project,
+      // which is the risk the operate-it decision creates. See lib/sweeps.mjs.
+      reviewedIso: lastReviewedAt(live.asOfIso),
+      staleDays: STALE_DAYS,
+      abandonedDays: ABANDONED_DAYS,
     },
   };
 }

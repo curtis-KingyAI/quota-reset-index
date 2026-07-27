@@ -82,6 +82,12 @@
   .hero-caveat { margin:1.35rem 0 0; padding-top:.9rem; border-top:1px solid var(--hair);
                  font-size:.9rem; color:var(--ink-2); max-width:52rem }
   .hero-caveat strong { color:var(--warn) }
+  /* Freshness. Escalated client-side against the reader's clock — see hero-script.ts.
+     The base state is deliberately quiet: a maintained ledger should not shout. */
+  .freshness { margin:.2rem 0 .2rem; font-size:.85rem; line-height:1.5; color:var(--faint); max-width:56rem }
+  .freshness.warn { color:var(--warn); font-weight:600 }
+  .freshness.bad { color:var(--warn); font-weight:650; background:var(--warn-bg);
+                   border-left:3px solid var(--warn); padding:.6rem .8rem; border-radius:0 2px 2px 0 }
   .hero-asof { margin:1.1rem 0 .2rem; font-size:.85rem; line-height:1.55; color:var(--faint); max-width:56rem }
   .hero-asof strong { color:var(--ink-2); font-weight:600 }
   .hero-asof em { font-style:normal; color:var(--ink-2) }
@@ -170,7 +176,7 @@
   </header>
 
 
-<section class="hero" aria-label="Forecast summary" data-last-reset="2026-07-21T00:00:00Z" data-prior="7" data-window="48" data-resets="[&quot;2026-07-21T00:00:00Z&quot;,&quot;2026-07-18T03:00:00Z&quot;,&quot;2026-07-16T00:00:00Z&quot;,&quot;2026-07-15T00:00:00Z&quot;,&quot;2026-07-14T00:00:00Z&quot;,&quot;2026-07-13T00:00:00Z&quot;,&quot;2026-07-12T18:00:00Z&quot;]">
+<section class="hero" aria-label="Forecast summary" data-last-reset="2026-07-21T00:00:00Z" data-prior="7" data-window="48" data-resets="[&quot;2026-07-21T00:00:00Z&quot;,&quot;2026-07-18T03:00:00Z&quot;,&quot;2026-07-16T00:00:00Z&quot;,&quot;2026-07-15T00:00:00Z&quot;,&quot;2026-07-14T00:00:00Z&quot;,&quot;2026-07-13T00:00:00Z&quot;,&quot;2026-07-12T18:00:00Z&quot;]" data-reviewed="2026-07-27T03:05:00Z" data-stale-days="21" data-abandoned-days="45">
   <div class="hero-head">Chance of a discretionary quota reset · next 48 hours</div>
   <div class="hero-nums">
     <div class="hero-num codex"><b id="cx-pct">51%</b><span>Codex<em id="cx-since">last reset 6 days ago · 7 in the past fortnight</em></span></div>
@@ -182,6 +188,7 @@
   the Codex figure is re-reckoned against your clock on load, so it is never the frozen build-time
   number. If a reset happened that this ledger has not recorded yet, the figure reads
   <em>low</em>, not high.</p>
+  <p class="freshness" id="freshness">Last reviewed <time datetime="2026-07-27T03:05:00Z">2026-07-27</time>.</p>
   <p class="hero-caveat"><strong>Uncalibrated.</strong> These are hand-set priors from the public
   event record, not fitted parameters, and none has been checked against an outcome. There is no
   accuracy score behind them yet. The Codex figure is derived from
@@ -383,6 +390,48 @@ that links back to the one it replaces. Data at <a href="/ledger.json">/ledger.j
               : since < 48 ? Math.round(since) + ' hours ago'
               : Math.round(since / 24) + ' days ago';
     note.textContent = 'last reset ' + label + ' \u00b7 ' + prior + ' in the past fortnight';
+  }
+
+  // ---------------------------------------------------------------- freshness
+  //
+  // THE INSTRUMENT THAT MAKES THE "OPERATE IT" DECISION HONEST.
+  //
+  // The operator chose to operate this ledger rather than declare it a snapshot.
+  // The failure mode of that choice is decay in silence: a ledger nobody is
+  // maintaining still renders an as-of date, and a reader has no way to tell a
+  // genuinely quiet fortnight from an abandoned project. So the page says how long
+  // it has been, measured against the READER's clock rather than the build's, and
+  // escalates on its own without anyone having to remember to update it.
+  //
+  // Thresholds are MEASURED, not chosen: 21 days is just past the longest quiet
+  // period Codex has ever produced in this corpus (20 days), so it cannot fire on
+  // any gap the record actually contains. 45 exceeds both vendors' observed maxima,
+  // including Claude Code's 37.
+  //
+  // Fails silent, deliberately: with no JS the static "last reviewed" date still
+  // stands. It is simply less pointed, and it is never WRONG.
+  var fresh = document.getElementById('freshness');
+  if (fresh && el.dataset.reviewed) {
+    var days = (now - Date.parse(el.dataset.reviewed)) / 86400000;
+    if (isFinite(days) && days >= 0) {
+      var STALE = Number(el.dataset.staleDays) || 21;
+      var GONE = Number(el.dataset.abandonedDays) || 45;
+      var d = Math.floor(days);
+      var human = d === 0 ? 'today' : d === 1 ? 'yesterday' : d + ' days ago';
+      if (days >= GONE) {
+        fresh.className = 'freshness bad';
+        fresh.textContent = 'Last reviewed ' + human + '. That is longer than any quiet period either'
+          + ' vendor has produced in this record, so this ledger may no longer be maintained.'
+          + ' Treat it as a snapshot.';
+      } else if (days >= STALE) {
+        fresh.className = 'freshness warn';
+        fresh.textContent = 'Last reviewed ' + human + ', which is longer than the longest gap between'
+          + ' Codex resets on record (' + STALE + 'd). Either the pattern changed or nobody has looked.';
+      } else {
+        fresh.className = 'freshness ok';
+        fresh.textContent = 'Last reviewed ' + human + '.';
+      }
+    }
   }
 })();
 </script>
