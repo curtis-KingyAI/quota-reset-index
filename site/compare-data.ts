@@ -23,8 +23,24 @@
  * ────────────────────────────────────────────────────────────────────────────────────────────────
  */
 
-/** The date all three sites were last fetched and read. Bump ONLY after actually re-fetching. */
-export const CHECKED_ON = '2026-07-26';
+/**
+ * The date all three sites were last fetched and read. Bump ONLY after actually re-fetching.
+ *
+ * ⚠️ UTC, LIKE EVERY OTHER DATE IN THIS PROJECT. Corrected from 2026-07-26 on 2026-07-27.
+ *
+ * The fetches ran at ~02:2x–02:4x UTC, which is ~19:2x–19:4x the previous evening in US Pacific. The
+ * first value recorded the Pacific date, and the reasoning offered for it was that 2026-07-27 "had
+ * not happened yet" — true locally, false in UTC, where it was already 02:51 on the 27th.
+ *
+ * That is precisely the defect RUNBOOK §5 exists to prevent, and it has already cost this ledger
+ * real work: one event was recorded TWICE under the two conventions, and a separate pair was nearly
+ * merged wrongly. `minimaxir.com` dates in Pacific, `codexreset.org` dates in UTC, and every one of
+ * the ten cross-checked post ids maps at exactly UTC-7.
+ *
+ * A one-day error in the date stamp on a page that grades other people's accuracy is the worst place
+ * in the repository to have one. Keep this in UTC; check with `date -u +%F`, never the local clock.
+ */
+export const CHECKED_ON = '2026-07-27';
 
 /**
  * How far the comparison may drift behind the ledger before the build refuses to publish it.

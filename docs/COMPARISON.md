@@ -9,11 +9,54 @@
 > **Three figures in this document are wrong.** They are left in place rather than edited out,
 > because that is the rule this project applies to its own records:
 >
-> | claim here | verified 2026-07-26 | how |
+> | claim here | verified 2026-07-27 UTC | how |
 > |---|---|---|
 > | archive coverage "85 of 86 (98.8%)" | **61 of 62 (98.4%)** | counted from the `archive/` sidecars via `bestCapture()` |
 > | codexreset.org "11 confirmed resets" | **unpublishable** — two reads disagreed (8 vs 9 listed) | refetched; count is now omitted from the site by design |
-> | "Checked 2026-07-27" | that date had not happened yet | today is 2026-07-26 |
+>
+> ~~A third row claimed the "Checked 2026-07-27" stamp was a date that had not happened yet.~~
+> **That correction was itself wrong and is withdrawn.** It was reasoned from the local Pacific
+> clock, where it was still the evening of the 26th; in UTC it was already 02:51 on the **27th**, and
+> this project dates everything in UTC. The stamp was right. This is the same timezone defect
+> `RUNBOOK.md` §5 exists to prevent — the one that already caused an event to be recorded twice — and
+> it is left visible here rather than deleted, for the same reason the ledger supersedes instead of
+> editing.
+>
+> ### ⚠️ Audit of the three claims above — 2026-07-27. Only one of them holds.
+>
+> Left in place and answered underneath, same rule. Verified by recomputation, not by argument.
+>
+> **1. The archive figure was not wrong. Both numbers are right and they count different things.**
+>
+> | denominator | archived | |
+> |---|---|---|
+> | evidence **items** on current records | **85 of 86** | 98.8% — what this document said |
+> | **unique URLs** on current records | **61 of 62** | 98.4% — what the correction said |
+>
+> 24 evidence items cite a URL that another record also cites. `README.md` already publishes the
+> item-based figure ("86 cited sources on current records"), and commit `79c4ec8` already published
+> the URL-based one ("61 of 62"). Neither is a defect; the omission was not saying *which*. The
+> unique-URL figure is the better public claim — a reader asking "can I check the sources" cares about
+> distinct sources — so `site/compare-data.ts` computing it that way is right. Calling the other one
+> wrong is not.
+>
+> **2. The codexreset.org count: correction upheld, and its reasoning is the real finding.** Two reads
+> disagreeing is itself the result. Publishing any count off a source that cannot reproduce its own
+> total was the error, whether the number was 8, 9 or 11.
+>
+> **3. The date correction is itself the Pacific/UTC defect, and it inverted a value that was right.**
+>
+> `date -u` at the moment of the audit: **`2026-07-27 02:51:00`**. `date` locally: `2026-07-26 19:51
+> PDT`. 2026-07-27 had happened — six hours earlier, in the timezone this ledger keys on. "Checked
+> 2026-07-27" was correct, and `CHECKED_ON = '2026-07-26'` recorded the Pacific date.
+>
+> This is exactly what RUNBOOK §5 exists to prevent, on a page that grades other people's accuracy.
+> `CHECKED_ON` is now `2026-07-27`, with the reasoning in the code so it is not re-litigated.
+>
+> **4. The omission of willcodexquotareset.com: upheld.** This document covers two trackers; the
+> published page covers three, and the third is the one to beat. Its row was independently re-verified
+> on 2026-07-27 — 48h verdict, no event history, no download, Codex-only, and the self-description
+> *"a transparent heuristic, not a serious statistical model"* is verbatim.
 >
 > **A fourth defect is an omission:** this document compares two trackers. It does not mention
 > **willcodexquotareset.com**, which is the site Curtis actually named as the one to beat. The
