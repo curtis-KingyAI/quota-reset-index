@@ -150,14 +150,14 @@ ${rows}
 
   const extraStyles = `
   .filters { display:flex; gap:1rem; flex-wrap:wrap; align-items:center; margin:1.25rem 0;
-             padding:.75rem; background:var(--well); border:1px solid var(--rule); font-size:.85rem }
+             padding:.75rem; background:var(--well); border:1px solid var(--rule); font-size:.95rem }
   .filters label { display:flex; gap:.35rem; align-items:center; color:var(--soft) }
   .filters select { font:inherit; padding:.15rem }
   #count { margin-left:auto; color:var(--soft); font-variant-numeric:tabular-nums }
   tr.dead td { opacity:.55 }
-  ul.ev { margin:0; padding-left:1.1rem; font-size:.82rem }
+  ul.ev { margin:0; padding-left:1.1rem; font-size:.95rem }
   ul.ev li { margin-bottom:.15rem }
-  td.chain { font-size:.8rem; color:var(--soft) }
+  td.chain { font-size:.88rem; color:var(--soft) }
   #ledger td:first-child { white-space:nowrap }
   @media (max-width:900px) { table, thead, tbody, tr, td, th { display:block; width:auto }
     thead { display:none } tr.rec { border-bottom:2px solid var(--rule); padding:.75rem 0 } }

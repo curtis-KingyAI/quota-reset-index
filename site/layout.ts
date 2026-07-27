@@ -11,33 +11,37 @@ export const esc = (s: string): string =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 export const STYLES = `
+  /* 112.5% root = 18px base. One lever scales every rem-based size at
+     once; the individual floors below were also raised because a dense
+     table still read too small at 16px. Nothing is under ~14px now. */
+  html { font-size: 112.5% }
   :root { --ink:#16202a; --soft:#5d6c79; --faint:#8c99a4; --rule:#c7cfd5; --hair:#e6eaed;
           --well:#f6f8f9; --warn:#8a4a12; --warn-bg:#fdf6ee; --link:#2f5aa8;
           --codex:#b4431c; --claude:#3a4e86; --dead:#9aa6ae; }
   *{box-sizing:border-box}
   body { margin:0 auto; max-width:74rem; padding:2rem 1.25rem 5rem;
-         font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--ink); }
+         font:1rem/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--ink); }
   a { color:var(--link) }
   h1 { font-size:2rem; letter-spacing:-.02em; margin:0 0 .25rem }
-  h2 { font-size:1.15rem; margin:2.5rem 0 .75rem; padding-bottom:.4rem; border-bottom:1px solid var(--ink) }
+  h2 { font-size:1.2rem; margin:2.5rem 0 .75rem; padding-bottom:.4rem; border-bottom:1px solid var(--ink) }
   .lede { color:var(--soft); margin:0 0 1.5rem; max-width:60rem }
   nav { display:flex; gap:1.25rem; flex-wrap:wrap; padding:.75rem 0 1.25rem;
-        border-bottom:1px solid var(--rule); margin-bottom:1.5rem; font-size:.9rem }
+        border-bottom:1px solid var(--rule); margin-bottom:1.5rem; font-size:.95rem }
   nav a[aria-current] { font-weight:600; color:var(--ink); text-decoration:none }
   .banner { border:2px solid var(--warn); background:var(--warn-bg); color:var(--warn);
-            padding:.9rem 1.05rem; margin:1.25rem 0; font-weight:600; font-size:.92rem }
+            padding:.9rem 1.05rem; margin:1.25rem 0; font-weight:600; font-size:.95rem }
   .banner p { margin:.45rem 0 0; font-weight:400; color:var(--ink) }
-  code { background:var(--well); border:1px solid var(--hair); padding:.05rem .3rem; font-size:.88em }
+  code { background:var(--well); border:1px solid var(--hair); padding:.05rem .3rem; font-size:.92em }
   pre { background:var(--well); border:1px solid var(--rule); padding:.9rem 1rem;
-        overflow-x:auto; font-size:.85rem; line-height:1.5 }
-  table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.9rem }
-  th { text-align:left; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase;
+        overflow-x:auto; font-size:.95rem; line-height:1.5 }
+  table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem }
+  th { text-align:left; font-size:.95rem; letter-spacing:.08em; text-transform:uppercase;
        color:var(--soft); border-bottom:1px solid var(--rule); padding:0 .5rem .4rem 0 }
   td { padding:.5rem .5rem .5rem 0; border-bottom:1px solid var(--hair); vertical-align:top }
   td.num, th.num { text-align:right; font-variant-numeric:tabular-nums; padding-right:1.25rem }
   footer { margin-top:3rem; padding-top:1rem; border-top:1px solid var(--rule);
-           color:var(--soft); font-size:.85rem }
-  .pill { display:inline-block; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase;
+           color:var(--soft); font-size:.95rem }
+  .pill { display:inline-block; font-size:.8rem; letter-spacing:.06em; text-transform:uppercase;
           padding:.1rem .4rem; border:1px solid var(--rule); border-radius:2px; color:var(--soft);
           white-space:nowrap }
   .pill.codex { border-color:var(--codex); color:var(--codex) }
@@ -45,7 +49,7 @@ export const STYLES = `
   .pill.confirmed { border-color:#2b6b3f; color:#2b6b3f }
   .pill.superseded { border-color:var(--dead); color:var(--dead) }
   /* field_support markers — the whole point is that they are visually distinct */
-  .sup { font-size:.7rem; letter-spacing:.04em; text-transform:uppercase; margin-left:.35rem }
+  .sup { font-size:.8rem; letter-spacing:.04em; text-transform:uppercase; margin-left:.35rem }
   .sup-attested { color:#2b6b3f }
   .sup-inferred { color:var(--warn) }
   .sup-unestablished { color:var(--faint); font-style:italic }
