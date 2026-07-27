@@ -50,14 +50,24 @@ read the message — it names the file and the field.
 This will happen; several sources in this ledger 403 to a plain client while loading fine in a
 browser. Bot-blocking is not a dead link, but you must not cite what you have not read.
 
-- **Read it in a browser.** If it loads, it is live — quote it and cite it normally.
+- **Read it in a browser.** If it loads, it is live — quote it and cite it normally. **This works far
+  more often than it looks like it will, and it is the cheapest move available.** On 2026-07-27 it
+  rescued two sources in one day: `jawlah.co` (403) upgraded a record by supersession, and
+  `x.com/thsottiaux/status/…` (402) turned an unrecordable rumour into a `confirmed` record after
+  FOUR sweeps had logged it as blocked.
+- **A login wall is not necessarily a dead end.** x.com renders only a login prompt in the page body,
+  but serves the full post text in its own `<title>` and `og:description` to unauthenticated clients.
+  That is the platform publishing the text, so it is a read of the source. Check the page metadata
+  before concluding a walled source is unreadable.
 - **If it will not load anywhere, do not cite it.** A search-result snippet is not a source. This
   cost the ledger a real citation once: `memeburn.com` appeared to carry an event-specific claim for
   the 2026-07-21 reset, returned 403, and was therefore excluded — which is why that record is the
   weakest date in the ledger. That was the correct call and should be made the same way next time.
 - **Record the attempt** in `notes`, so the next person does not repeat the search.
-- If a source is important and fragile, put a Wayback copy in `archive_url`. **Nothing in this ledger
-  has one yet — 0 of 86 evidence items.** That is the single largest unaddressed fragility here.
+- If a source is important and fragile, archive it: `npm run archive -- --save`. **61 of 64 evidence
+  URLs now carry a capture** (the "0 of 86" that used to stand here is long superseded). Verify
+  periodically with `npm run archive:verify` — 1 capture in 62 has genuinely rotted, and a single
+  HTTP 404 from Wayback is NOT evidence of that; it takes two.
 
 ---
 
@@ -96,6 +106,27 @@ longer know what happened" — substance, prohibited.
 | `reported` | a single source. |
 
 A press article relaying an X post is **press**, not a vendor post. It never earns `confirmed`.
+
+> **RULED 2026-07-27 (operator): an identified vendor employee's own post IS a vendor post**, and
+> earns `confirmed`. Settled on `cx-2026-07-25-01`, the first record here to cite x.com — @thsottiaux,
+> OpenAI's named Codex engineering lead, announcing in the first person plural: *"We have reset usage
+> limits for all Codex and ChatGPT Work users."*
+>
+> The argument that decided it: the line above only means anything if the ORIGINAL post is a vendor
+> post — otherwise there is nothing for the relay to be distinguished from.
+>
+> **Three conditions, all required.** Miss any one and it is not a vendor post:
+> 1. **Read from the platform itself**, never from a tracker or an article. A mirror's copy of a
+>    vendor post is still a mirror.
+> 2. **The author is identified and speaks for the vendor** — a named employee using "we" about their
+>    employer's action. An anonymous account, or an employee speculating about their own company, is
+>    a `user_report`.
+> 3. **The post asserts the event**, not a plan. *"We will reset limits today"* is a promise; two
+>    candidate records were already refuted for exactly that.
+>
+> ⚠️ The counter-argument is recorded rather than dismissed: this is a personal account, not a
+> corporate one such as @OpenAI, and no corporate channel corroborated it. The operator weighed that
+> and ruled for `confirmed`. If a future case turns on the distinction, that is the axis to argue.
 
 > `telemetry` was struck from the confirming set on 2026-07-26. Telemetry can show that an account's
 > quota changed; it cannot show that the vendor *granted* anything. It would confirm a proposition
