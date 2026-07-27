@@ -90,7 +90,10 @@ Verified by pointing it at a nonexistent repo and watching it report.
 
 Verified end to end rather than assumed: run by hand ✅, run under `launchctl start` with launchd's own
 minimal environment ✅ (the classic trap is a job that works by hand and fails on schedule because
-`node` is not on launchd's PATH — the plist sets it explicitly), notification path ✅, failure path ✅.
+`node` is not on launchd's PATH — the plist sets it explicitly), notification path ✅ **— and confirmed RECEIVED by the operator, not merely sent.** That distinction is
+the whole reason the previous routine was scrapped: it dispatched reports successfully every week into
+a surface no human could open, and "the send succeeded" was mistaken for "the message arrived". A
+delivery mechanism is only verified when someone confirms they saw it. Failure path ✅.
 
 ⚠️ **It only fires while you are logged in**, and a Mac asleep at 09:00 Monday misses that week. The
 site's freshness signal is the backstop and is independent of all of this — see the top of this file.
