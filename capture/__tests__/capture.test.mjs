@@ -277,12 +277,50 @@ test('the published site does not depend on capture/', () => {
   // THE PERMISSION ARGUMENT, ENFORCED. statusline.mjs is defensible because
   // nothing served to anyone depends on a subscription's quota state. A comment
   // cannot hold that line; an import added later would silently invalidate it.
+  //
+  // Matches IMPORT SYNTAX, not any mention of the string. An earlier version
+  // grepped for "capture/" and failed on a prose cross-reference in a comment —
+  // a test that fires on documentation trains you to weaken it, which is how a
+  // real violation eventually gets waved through.
   const hits = spawnSync(
     'grep',
-    ['-rn', '--include=*.ts', '--include=*.mjs', 'capture/', 'site', 'models', 'scripts', 'lib', 'status', 'usage'],
+    [
+      '-rnE',
+      '--include=*.ts',
+      '--include=*.mjs',
+      String.raw`(from|import|require)\s*\(?\s*['"][^'"]*\.\./capture/|(from|import)\s+['"][^'"]*capture/`,
+      'site',
+      'models',
+      'scripts',
+      'lib',
+      'status',
+      'usage',
+    ],
     { cwd: ROOT, encoding: 'utf8' },
   );
   assert.equal(hits.stdout.trim(), '', `nothing outside capture/ may import it:\n${hits.stdout}`);
+});
+
+test('the isolation grep would actually catch a violation', () => {
+  // Guards against the vacuous-test failure this repo already hit once in CI: a
+  // check whose pattern silently matches nothing proves nothing. Asserted against
+  // the real regex, on strings shaped like the imports it must catch.
+  const pattern = new RegExp(
+    String.raw`(from|import|require)\s*\(?\s*['"][^'"]*\.\./capture/|(from|import)\s+['"][^'"]*capture/`,
+  );
+  for (const violation of [
+    `import { record } from '../capture/observations.mjs';`,
+    `const x = require('../capture/detect.mjs');`,
+    `import { renderStatus } from '../../capture/statusline.mjs';`,
+  ]) {
+    assert.ok(pattern.test(violation), `must catch: ${violation}`);
+  }
+  for (const innocent of [
+    ` * Extracted from capture/observations.mjs once a second caller needed it.`,
+    ` * See capture/README.md for the permission argument.`,
+  ]) {
+    assert.ok(!pattern.test(innocent), `must not fire on prose: ${innocent}`);
+  }
 });
 
 test('capture/ never writes to ledger/', () => {

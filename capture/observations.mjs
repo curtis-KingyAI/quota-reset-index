@@ -22,15 +22,17 @@
  * shared file, and it rules out a JSON array on disk — a cancelled process
  * mid-rewrite would truncate the file.
  *
- * Hence: one line, one `appendFileSync` in O_APPEND mode, kept far under
- * PIPE_BUF so concurrent appends cannot interleave. A killed process either wrote
- * its line or did not. There is no partial state to repair, and a reader that
- * meets a torn final line skips it rather than throwing.
+ * The append discipline that follows from this now lives in `lib/jsonl.mjs`, since
+ * the social-signal poller needs the identical guarantees. The reasoning is
+ * documented there.
  */
 
-import { appendFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { homedir } from 'node:os';
+import { MAX_LINE_BYTES, appendLine, readLines } from '../lib/jsonl.mjs';
+
+export { MAX_LINE_BYTES };
 
 /**
  * Default log location is OUTSIDE the repository, and that is a decision.
@@ -46,17 +48,6 @@ export const logPath = () => process.env.QRI_OBS_LOG || DEFAULT_LOG;
 /** Per-session sidecar holding the last line written, so the logger need not read the whole log. */
 export const statePath = (sessionId) =>
   join(dirname(logPath()), `last-${String(sessionId || 'unknown').replace(/[^A-Za-z0-9_-]/g, '')}.json`);
-
-/**
- * A line longer than this is not written.
- *
- * PIPE_BUF is 512 bytes on macOS and 4096 on Linux; a single write below the
- * smaller figure is atomic on both, which is what keeps concurrent sessions from
- * interleaving. A well-formed record is ~200 bytes, so hitting this cap means a
- * field arrived unexpectedly huge — dropping that line is better than corrupting
- * a neighbour's.
- */
-export const MAX_LINE_BYTES = 512;
 
 /** Only log when something material moved, or when this long has passed anyway. */
 export const MIN_INTERVAL_SECONDS = 300;
@@ -141,12 +132,7 @@ export function record(obs, { file = logPath() } = {}) {
     }
     if (!isMaterialChange(prev, obs)) return false;
 
-    const line = JSON.stringify(obs) + '\n';
-    if (Buffer.byteLength(line, 'utf8') > MAX_LINE_BYTES) return false;
-
-    mkdirSync(dirname(file), { recursive: true });
-    // O_APPEND: one syscall, no seek, safe against concurrent sessions.
-    appendFileSync(file, line, { encoding: 'utf8', flag: 'a' });
+    if (!appendLine(file, obs)) return false;
     // Sidecar written AFTER the log, so a crash between the two costs a duplicate
     // line rather than a lost observation. Duplicates are harmless to the
     // detector; a missed drop is not.
@@ -157,25 +143,7 @@ export function record(obs, { file = logPath() } = {}) {
   }
 }
 
-/**
- * Read the log, oldest first.
- *
- * Tolerates a torn final line — a cancelled writer is expected, not exceptional —
- * and sorts by `observed_at` because concurrent sessions append in wall-clock
- * order per process, not globally.
- */
+/** Read the log, oldest first. Torn-line and ordering handling live in lib/jsonl.mjs. */
 export function readObservations({ file = logPath() } = {}) {
-  if (!existsSync(file)) return [];
-  const out = [];
-  for (const line of readFileSync(file, 'utf8').split('\n')) {
-    const trimmed = line.trim();
-    if (!trimmed) continue;
-    try {
-      const o = JSON.parse(trimmed);
-      if (o && typeof o.observed_at === 'string') out.push(o);
-    } catch {
-      /* torn or truncated line — skip it rather than fail the whole read */
-    }
-  }
-  return out.sort((a, b) => Date.parse(a.observed_at) - Date.parse(b.observed_at));
+  return readLines(file, { sortKey: 'observed_at' });
 }
