@@ -111,6 +111,27 @@ you — correctly, since an unpushed sweep is not part of the public audit trail
 
 ⚠️ **It cannot delete itself and neither can an agent.** Disable or remove it at the link above.
 
+#### ⚠️ Its output is only readable in a browser — check it there
+
+**An agent cannot read a cloud session's output**, and this was established the hard way rather than
+assumed. All three routes fail: `RemoteTrigger` returns the trigger's configuration and `last_fired_at`
+but no run status or transcript; the local session tools return *"not found"*, because a cloud run is a
+different system from the desktop sessions they index; and the claude.ai session URL answers **403** to
+an unauthenticated fetch.
+
+So the only confirmation available from here is that a run **started and was not suspended**. Whether
+it produced a report, errored inside, or returned nothing is not visible. **Open
+<https://claude.ai/code> and read it.**
+
+`persist_session` was **`false`** on creation and was set to **`true`** on 2026-07-27 so that runs are
+retained and can be reviewed after the fact. ⚠️ **The first manual run (2026-07-27T04:30:01Z) fired
+before that change and its output is not recoverable.**
+
+This is the same shape as every other defect this project has fixed: a process whose failure is
+indistinguishable from its success. The freshness signal on the site is the backstop — it escalates in
+the reader's browser whether or not this reminder ever runs — but the reminder itself needs a human
+eye on its first few reports before it is trusted.
+
 ## Ownership — §11.3
 
 **The operator owns running this.** An agent may run a sweep when asked, and doing so is a good use of
