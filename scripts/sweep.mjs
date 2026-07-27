@@ -88,7 +88,14 @@ function record(path) {
   }
   appendSweep(sweep);
   console.log(`recorded sweep ${sweep.swept_at} (${sweep.sources.length} sources, +${sweep.records_added} records)`);
-  if (sweep.records_added > 0) console.log('Remember to run `npm run build` so the site reflects the new records.');
+
+  // ⚠️ ALWAYS, not only when records were added. This was conditional on
+  // `records_added > 0` and it was wrong: EVERY sweep moves `lastReviewed`, which
+  // is baked into `data-reviewed` on all four pages, so a zero-record sweep still
+  // makes public/ stale. Found the honest way — the deploy preflight refused a
+  // dirty tree straight after recording a sweep that added nothing.
+  console.log('\nNow run `npm run build` and commit public/ — recording a sweep moves the');
+  console.log('"last reviewed" date on every page, whether or not it added a record.');
 }
 
 function main() {
