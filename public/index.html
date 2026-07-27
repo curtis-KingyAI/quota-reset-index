@@ -173,19 +173,19 @@
 
 
 
-<section class="hero" aria-label="Forecast summary" data-last-reset="2026-07-21T00:00:00Z" data-prior="7" data-window="48" data-resets="[&quot;2026-07-21T00:00:00Z&quot;,&quot;2026-07-18T03:00:00Z&quot;,&quot;2026-07-16T00:00:00Z&quot;,&quot;2026-07-15T00:00:00Z&quot;,&quot;2026-07-14T00:00:00Z&quot;,&quot;2026-07-13T00:00:00Z&quot;,&quot;2026-07-12T18:00:00Z&quot;]" data-reviewed="2026-07-27T03:05:00Z" data-stale-days="21" data-abandoned-days="45">
+<section class="hero" aria-label="Forecast summary" data-last-reset="2026-07-21T00:00:00Z" data-prior="5" data-window="48" data-resets="[&quot;2026-07-21T00:00:00Z&quot;,&quot;2026-07-18T03:00:00Z&quot;,&quot;2026-07-16T00:00:00Z&quot;,&quot;2026-07-15T00:00:00Z&quot;,&quot;2026-07-14T00:00:00Z&quot;]" data-reviewed="2026-07-27T04:50:00Z" data-stale-days="21" data-abandoned-days="45">
   <div class="hero-head">Chance of a discretionary quota reset · next 48 hours</div>
   <div class="hero-nums">
-    <div class="hero-num codex"><b id="cx-pct">51%</b><span>Codex<em id="cx-since">last reset 6 days ago · 7 in the past fortnight</em></span></div>
+    <div class="hero-num codex"><b id="cx-pct">46%</b><span>Codex<em id="cx-since">last reset 6 days ago · 5 in the past fortnight</em></span></div>
     <div class="hero-num claude"><b>27%</b><span>Claude Code<em>from a stated baseline — not measured</em></span></div>
     <div class="hero-num sched"><b>95%</b><span>Claude Code scheduled recycle<em>counted separately — do not add</em></span></div>
   </div>
   <p class="hero-asof">Ledger covers <strong>March–July 2026</strong> ·
-  last updated <time datetime="2026-07-26T14:00:00Z">2026-07-26 14:00 UTC</time> ·
+  last updated <time datetime="2026-07-27T04:47:30Z">2026-07-27 04:47 UTC</time> ·
   the Codex figure is re-reckoned against your clock on load, so it is never the frozen build-time
   number. If a reset happened that this ledger has not recorded yet, the figure reads
   <em>low</em>, not high.</p>
-  <p class="freshness" id="freshness">Last reviewed <time datetime="2026-07-27T03:05:00Z">2026-07-27</time>.</p>
+  <p class="freshness" id="freshness">Last reviewed <time datetime="2026-07-27T04:50:00Z">2026-07-27</time>.</p>
   <p class="hero-caveat"><strong>Uncalibrated.</strong> These are hand-set priors from the public
   event record, not fitted parameters, and none has been checked against an outcome. There is no
   accuracy score behind them yet. The Codex figure is derived from
@@ -200,7 +200,7 @@
 predictions — the <a href="/forecast">forecast</a> does, and is the less trustworthy half.</p>
 
 <div class="banner">
-  <span class="banner-lead">28 current records · 19 superseded · 47 total</span>
+  <span class="banner-lead">28 current records · 20 superseded · 48 total</span>
   <p>Superseded records are <strong>shown, not hidden</strong>. Corrections are new records that
   reference the old one; nothing is ever edited in place or deleted. The chain is the audit trail,
   so removing it would defeat the point of keeping one.</p>
@@ -883,13 +883,39 @@ it recurring.</p>
     </td>
   </tr>
 <tr class="rec"
+        data-vendor="codex" data-kind="global_reset banked_reset"
+        data-trigger="incident_compensation" data-confidence="probable"
+        data-state="current">
+    <td>
+      <a id="cx-2026-06-28-03" href="#cx-2026-06-28-03"><code>cx-2026-06-28-03</code></a>
+      <div><span class="pill codex">codex</span>
+      </div>
+    </td>
+    <td>2026-06-28 00:00:00<br>
+        <span class="unset">±day</span></td>
+    <td><div>global_reset</div><div>banked_reset</div></td>
+    <td>incident_compensation<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></td>
+    <td><span class="pill probable">probable</span></td>
+    <td>
+      <div><b>windows</b> <span class="unset">not established</span><abbr class="sup sup-unestablished" title="Not established — no source addresses this">n/e</abbr></div>
+      <div><b>plans</b> all paid<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></div>
+      <div><b>partial</b> false<abbr class="sup sup-attested" title="Attested — a source states this of this specific event">att</abbr></div>
+    </td>
+    <td><ul class="ev"><li><a href="https://www.cryptopolitan.com/openai-traces-codex-credit-drain-to-faulty-anti-abuse-system/" rel="nofollow noopener">cryptopolitan.com</a> <span class="pill">press</span></li><li><a href="https://status.openai.com/incidents/01KW2E6W0503W4NXJNCVAG8V6T" rel="nofollow noopener">status.openai.com</a> <span class="pill">status_page</span></li><li><a href="https://yellow.com/news/openai-fixes-codex-developer-limits" rel="nofollow noopener">yellow.com</a> <span class="pill">press</span></li><li><a href="https://jawlah.co/en/59491" rel="nofollow noopener">jawlah.co</a> <span class="pill">press</span></li></ul></td>
+    <td class="chain">
+      
+      <div>← replaces <a href="#cx-2026-06-28-02"><code>cx-2026-06-28-02</code></a></div>
+      
+    </td>
+  </tr>
+<tr class="rec dead"
         data-vendor="codex" data-kind="global_reset"
         data-trigger="incident_compensation" data-confidence="reported"
-        data-state="current">
+        data-state="superseded">
     <td>
       <a id="cx-2026-06-28-02" href="#cx-2026-06-28-02"><code>cx-2026-06-28-02</code></a>
       <div><span class="pill codex">codex</span>
-      </div>
+      <span class="pill superseded">superseded</span></div>
     </td>
     <td>2026-06-28 00:00:00<br>
         <span class="unset">±day</span></td>
@@ -903,7 +929,7 @@ it recurring.</p>
     </td>
     <td><ul class="ev"><li><a href="https://www.cryptopolitan.com/openai-traces-codex-credit-drain-to-faulty-anti-abuse-system/" rel="nofollow noopener">cryptopolitan.com</a> <span class="pill">press</span></li><li><a href="https://status.openai.com/incidents/01KW2E6W0503W4NXJNCVAG8V6T" rel="nofollow noopener">status.openai.com</a> <span class="pill">status_page</span></li></ul></td>
     <td class="chain">
-      
+      → corrected by <a href="#cx-2026-06-28-03"><code>cx-2026-06-28-03</code></a>
       <div>← replaces <a href="#cx-2026-06-28-01"><code>cx-2026-06-28-01</code></a></div>
       
     </td>

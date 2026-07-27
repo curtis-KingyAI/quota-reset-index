@@ -17,13 +17,25 @@ import { renderComparePage, ourNumbers, daysBetween } from '../build-compare.ts'
 import { AHEAD_OF_US, CHECKED_ON, STALE_AFTER_DAYS, THE_CLAIM, TRACKERS } from '../compare-data.ts';
 import { renderSitemap } from '../sitemap.ts';
 import { codexLiveState } from '../live-state.ts';
+import { collectEntries } from '../../scripts/validate.mjs';
 
 const html = renderComparePage();
 
 test('our column is computed from the ledger, not transcribed', () => {
   const n = ourNumbers();
   assert.ok(n.current > 0 && n.superseded > 0, 'ledger must have both current and superseded records');
-  assert.equal(n.current + n.superseded, 47, 'record total must match the ledger on disk');
+
+  // ⚠️ COUNTED FROM DISK, NOT PINNED TO A LITERAL. This asserted `=== 47`, which is
+  // the exact anti-pattern the test is named for — it transcribed the very number it
+  // exists to prove was derived. Worse, it failed the moment the ledger grew: adding
+  // cx-2026-06-28-03 broke it, so the check punished the operating loop this project
+  // just committed to, and the obvious repair (bump 47 to 48) would have to be made
+  // on every future sweep until someone deleted the test.
+  //
+  // Counting the record files independently proves the page's figures are derived,
+  // which is the actual invariant, and it survives the ledger doing its job.
+  const onDisk = collectEntries().length;
+  assert.equal(n.current + n.superseded, onDisk, 'record total must match the record files on disk');
   assert.ok(html.includes(`${n.claudeCode} records`), 'Claude Code count must be the derived one');
   assert.ok(
     html.includes(`${n.archivedUrls} of ${n.evidenceUrls} (${n.archivedPct}%)`),

@@ -32,7 +32,7 @@
     }
   ],
   "recorded_by": "claude-code-agent",
-  "superseded_by": null,
+  "superseded_by": "cx-2026-06-28-03",
   "notes": "CORRECTION, migration 02 (2026-07-26), operator-signed. Supersedes cx-2026-06-28-01. The audit of 2026-07-26 found enrichment fields across the ledger that read as assertions while resting on class-level statements about how quota resets generally work. This record carries field_support so that provenance is explicit rather than inferable. scope.windows was inferred from the mechanism rather than asserted of this event. Prior notes: Confidence probable -> reported by adversarial verification. Seeded in Phase 1 from the completeness sweep; NOT yet reviewed by the operator. Verifier: SURVIVES, but the confidence grade is downgraded probable -> reported. I tried to refute this on five vectors and it held on four. 1. QUOTES ARE REAL, NOT PARAPHRASED. Both cited quotes appear verbatim. The status page contains the exact string \"abuse and fraud prevention systems incorrectly rate limiting certain accounts\". Cryptopolitan contains the exact string \"three full usage-limit resets between June 28 and Ju…",
   "field_support": {
     "scope_windows": "unestablished"

@@ -1,0 +1,61 @@
+{
+  "id": "cx-2026-06-28-03",
+  "vendor": "codex",
+  "kind": "global_reset",
+  "effects": [
+    "global_reset",
+    "banked_reset"
+  ],
+  "effective_at": "2026-06-28T00:00:00Z",
+  "effective_at_precision": "day",
+  "observed_at": "2026-07-27T04:47:30Z",
+  "scope": {
+    "windows": [],
+    "plans": [
+      "all paid"
+    ],
+    "partial": false,
+    "notes": "Compensation for the 'Codex Usage Limits Depleting Faster Than Expected' incident (status page: Jun 26 17:04 -> Jun 29 17:06). The run spans 06-28 to 06-29 and effective_at is the FIRST of the resets. ⚠️ THE STATUS PAGE RECORDS NO COMPENSATION AT ALL — no reset, no credit, no refund; the remediation is visible only in press, so a status-page-only sweep of either vendor systematically misses these events. That warning is carried forward from cx-2026-06-28-02 because it remains true and is the most useful thing this record teaches. ⚠️ ROOT CAUSE IS DISPUTED ACROSS SOURCES AND IS DELIBERATELY NOT RECONCILED HERE. The status page and Cryptopolitan attribute the drain to OpenAI's own abuse/fraud-prevention systems incorrectly rate-limiting accounts. Yellow and Jawlah instead report Sottiaux attributing it to auto-review and helper subagents running more often than intended, plus a dashboard displaying activity that was never charged. Both may describe parts of one fault; no source reconciles them, so neither is asserted as the cause. ⚠️ COVERAGE WORDING DIFFERS BETWEEN SOURCES. Cryptopolitan states 'all paid users' in its headline and is the basis for scope.plans. Jawlah says 'all Codex users' and Yellow says 'across the service', neither with a paid qualifier. The narrower, better-sourced value is kept rather than widened on a secondary outlet; the discrepancy is recorded rather than resolved."
+  },
+  "trigger": "incident_compensation",
+  "confidence": "probable",
+  "evidence": [
+    {
+      "type": "press",
+      "url": "https://www.cryptopolitan.com/openai-traces-codex-credit-drain-to-faulty-anti-abuse-system/",
+      "author": "Cryptopolitan, Micah Abiodun (published 2026-06-30T04:26:15Z)",
+      "captured_at": "2026-07-27T04:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "status_page",
+      "url": "https://status.openai.com/incidents/01KW2E6W0503W4NXJNCVAG8V6T",
+      "author": "OpenAI Status",
+      "captured_at": "2026-07-25T18:45:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://yellow.com/news/openai-fixes-codex-developer-limits",
+      "author": "Yellow (published 2026-06-30T18:58:12Z)",
+      "captured_at": "2026-07-27T04:40:00Z",
+      "archive_url": null
+    },
+    {
+      "type": "press",
+      "url": "https://jawlah.co/en/59491",
+      "author": "Jawlah, Editorial Team (published 2026-07-01T11:29:58Z)",
+      "captured_at": "2026-07-27T04:35:00Z",
+      "archive_url": null
+    }
+  ],
+  "recorded_by": "claude-code-agent",
+  "superseded_by": null,
+  "notes": "CORRECTION, 2026-07-27, operator-signed. Supersedes cx-2026-06-28-02. Produced by the first operating sweep after the 2026-07-27 decision to operate the ledger rather than declare it a snapshot. TWO CHANGES, BOTH ADDITIVE. (1) confidence reported -> probable. The grade was NOT reversed on a whim: migration 01's adversarial pass downgraded it and stated its reason precisely — 'the press source does make a genuine event-specific compensation claim... This is a ONE-SOURCE claim'. Two further non-mirror press outlets now carry that same event-specific claim, which is the exact deficiency the downgrade named. Yellow quotes Sottiaux verbatim ('All fixes are now deployed, and we've added more detailed monitoring...') and dates a Sunday warroom; Jawlah states the reset and an additional compensation reset. ⚠️ HONEST CAVEAT ON INDEPENDENCE: Yellow and Jawlah both trace to Sottiaux's X posts, so they are independent OUTLETS but share an upstream. Cryptopolitan is genuinely separate — it alone carries the count and the banked-reset detail. Three press outlets with distinct detail, consistent timing, none of them mirrors. (2) effects[] added: [global_reset, banked_reset]. This is not new evidence, it is the record catching up with its own source — cx-2026-06-28-02's scope.notes already said 'THREE full usage-limit resets across June 28-29 plus one extra banked reset usable within 24 hours', but `kind` can hold only one primitive and effects[] did not exist when that record was written. Cryptopolitan states 'a banked reset that could be used within 24 hours' and that the 06-28 reset 'also reset users' previously banked resets (maximum of three)'; Jawlah corroborates with 'granted them an additional reset as compensation'. WHAT WAS DELIBERATELY NOT CHANGED: effective_at, precision, scope.windows (still unestablished — migration 01 struck '5h' and 'weekly' as class-level), scope.plans, and scope.partial. Widening plans to Jawlah's 'all Codex users' was considered and REJECTED: Cryptopolitan's headline states 'all paid users' of this event, and 21 of 41 corrections proposed in the last audit were wrong, 11 of them by 'fixing' values that were already right. NOTED FOR A FUTURE PASS: cx-2026-06-28-02's own notes are TRUNCATED mid-sentence ('...between June 28 and Ju…'), so the adversarial reasoning behind its downgrade survives only in docs/MIGRATION-PLAN-01.md. A record whose justification is cut off is a record that cannot be re-audited from itself.",
+  "field_support": {
+    "trigger": "attested",
+    "scope_windows": "unestablished",
+    "scope_plans": "attested",
+    "scope_partial": "attested"
+  }
+}
