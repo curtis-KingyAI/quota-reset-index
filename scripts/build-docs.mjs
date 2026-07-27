@@ -21,7 +21,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { renderReadmeStats, renderStatusStats, stats } from '../lib/stats.mjs';
+import { renderReadmeStats, renderRunbookStats, renderStatusStats, stats } from '../lib/stats.mjs';
 import { isMain } from '../lib/is-main.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -30,6 +30,7 @@ const ROOT = fileURLToPath(new URL('..', import.meta.url));
 export const TARGETS = [
   { file: 'README.md', id: 'readme-stats', render: renderReadmeStats },
   { file: 'docs/STATUS.md', id: 'status-stats', render: renderStatusStats },
+  { file: 'docs/RUNBOOK.md', id: 'runbook-stats', render: renderRunbookStats },
 ];
 
 const open = (id) => `<!-- generated:${id} -->`;
