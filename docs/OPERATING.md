@@ -58,104 +58,56 @@ npm run sweep -- --check
 
 Exits non-zero when overdue, so it can back a reminder.
 
-### The scheduled reminder — registered, not rogue
+### ⛔ The scheduled reminder — BUILT, THEN DISABLED 2026-07-27. It was write-only.
 
-**Created 2026-07-27 on explicit operator instruction.** The 2026-07-12 automation freeze means wiring
-a timer is an operator decision, never an agent's own initiative; this one was asked for. Recorded here
-so a later audit can identify it rather than flag it as unexplained automation.
+**Do not re-enable it without first checking that its output can be read.** That is the whole lesson
+and it is why this section is long.
 
 | | |
 |---|---|
-| routine | **Quota Reset Index — weekly sweep** |
+| routine | Quota Reset Index — weekly sweep |
 | id | `trig_01NWrCc74W8qXJcimeDQtrb3` |
-| schedule | `0 16 * * 1` — Mondays 16:00 UTC = **09:00 America/Vancouver** |
-| runs | a **cloud** session, `claude-sonnet-5` |
-| repo checkout | **none.** No GitHub authorization is required or held |
-| reads | `https://ledger.kingy.ai/ledger.json` and `raw.githubusercontent.com/…/operations/sweeps.jsonl` |
-| tools | `Bash`, `WebFetch`, `WebSearch` |
-| manage | <https://claude.ai/code/routines/trig_01NWrCc74W8qXJcimeDQtrb3> |
+| status | **`enabled: false`** as of 2026-07-27 |
+| schedule (when enabled) | `0 16 * * 1` — Mondays 16:00 UTC = 09:00 America/Vancouver |
+| manage | <https://claude.ai/code/routines/trig_01NWrCc74W8qXJcimeDQtrb3> — ⚠️ this URL does not load, see below |
 
-It does the read-only research pass above and **reports**. It is forbidden from writing to `ledger/`,
-recording a sweep, or committing — it has no repository, no credentials, and no `Write` or `Edit` tool.
-A human rules on every candidate and runs `--record` themselves.
+**Why it was disabled.** Claude Code on the web is **disabled by this account's org admin**. Both
+`claude.ai/code` and the routines URL redirect to `/code/disabled` — *"Web · Preview · Disabled by org
+admin."* The routine fired correctly (`last_fired_at 2026-07-27T16:03:14Z`, a genuine scheduled run),
+did the research, and wrote its report into a surface **nobody can open — not the operator, not an
+agent.** It burned tokens weekly to produce nothing anyone could read.
 
-#### ⚠️ It cannot browse, and that is its most important limitation
+**How it survived three rounds of checking.** Worth recording, because the mistake is subtle and
+repeatable:
 
-Its tools are `Bash`, `WebFetch`, `WebSearch`. **No browser.** That gap is not cosmetic: on 2026-07-27
-the two most valuable sources of the day both returned HTTP errors to every plain fetch and rendered
-perfectly in a browser — `jawlah.co` (403), which upgraded a record by supersession, and the
-`@thsottiaux` post (402), which **four sweeps had logged as `blocked`** and which became a *confirmed*
-record once someone opened it.
+- An agent cannot read a cloud session — `RemoteTrigger` returns config only, the local session tools
+  answer *"not found"*, and the session URL 403s unauthenticated. All true, all verified.
+- From that I concluded "browser-only, therefore the operator's job" and told them four times to go
+  read it — **without ever checking that the surface was reachable by anyone.** I tested my own access
+  and generalised from it.
+- `persist_session` was flipped to `true` specifically so runs would be readable afterwards, and the
+  `persistent_session_id` duly appeared. It persists them into an inaccessible UI.
 
-The mechanism the agent cannot reach: x.com serves the full post text in its `<title>` and
-`og:description` to unauthenticated clients even when the timeline body is behind a login wall.
+It is the exact failure this project keeps finding — **a process whose failure is indistinguishable
+from its success** — built while documenting the pattern, and then written up here as if it worked.
 
-So the prompt was changed on 2026-07-27 to make `blocked` a **handoff rather than a conclusion**. Every
-report now opens with:
+**What would make it viable again**, in order of preference:
 
-```
-## ⚠️ OPEN THESE IN A BROWSER — I could not read them
-- <url> — HTTP <code>. Would settle: <what it decides>
-```
+1. **Enable Claude Code web** (kingy.ai is the operator's org, so this may be self-serve). Everything
+   already built then works, and the 16:03Z report becomes readable.
+2. **A local scheduled job** running `npm run sweep -- --check`, whose output lands in a terminal
+   someone actually sees. Less capable — no research pass — but not write-only.
+3. Nothing. See below; the loss is smaller than it looks.
 
-...and it must say what each would settle, so you can triage instead of opening all of them, and must
-state explicitly when nothing was blocked — an absent section reads as an oversight.
+**The cadence in the meantime is manual**, and this matters less than it might:
 
-**Read that section first.** It is where the agent's ceiling is, and on this evidence it is where the
-records are.
-
-#### ⚠️ It has NO checkout, and that was a deliberate correction
-
-The first version cloned the repo. Its very first run was rejected outright:
-
-```
-HTTP 400  github_repo_access_denied
-"GitHub repository access check failed — re-authorize GitHub in settings"
+```bash
+npm run sweep -- --check
 ```
 
-**Do not "fix" this by adding the git source back.** The account has no GitHub App installed and no
-OAuth app authorized, so the clone cannot succeed, and the failure happens *before the session starts*
-— meaning it would have failed silently every Monday with nothing to notice. Granting a GitHub App
-standing repository access purely to power a reminder is a poor trade when the same data is already
-public.
-
-So it reads the **published** endpoints instead, which needs no authorization at all. Both were
-verified unauthenticated before the switch. There is a pleasing consequence: the reminder now consumes
-this project's own CORS-open data endpoint exactly as any third party would, so if `/ledger.json` ever
-breaks, the reminder breaks too and you find out.
-
-**What that costs, and how it is compensated.** Without a checkout it cannot run
-`npm run sweep -- --check`, so it recomputes `lastReviewed` and the 21/45-day status itself. The prompt
-therefore requires it to **print all three values and the subtraction** rather than assert a verdict —
-the arithmetic is checkable in the report instead of trusted. The Snowflake decode is inlined in the
-prompt for the same reason, since `lib/snowflake.mjs` is not there and id-decoding is the discipline
-that catches the trackers mislabelling their own rows.
-
-⚠️ **It reads what is PUSHED, not your laptop.** Sweep locally without pushing and it will still nag
-you — correctly, since an unpushed sweep is not part of the public audit trail.
-
-⚠️ **It cannot delete itself and neither can an agent.** Disable or remove it at the link above.
-
-#### ⚠️ Its output is only readable in a browser — check it there
-
-**An agent cannot read a cloud session's output**, and this was established the hard way rather than
-assumed. All three routes fail: `RemoteTrigger` returns the trigger's configuration and `last_fired_at`
-but no run status or transcript; the local session tools return *"not found"*, because a cloud run is a
-different system from the desktop sessions they index; and the claude.ai session URL answers **403** to
-an unauthenticated fetch.
-
-So the only confirmation available from here is that a run **started and was not suspended**. Whether
-it produced a report, errored inside, or returned nothing is not visible. **Open
-<https://claude.ai/code> and read it.**
-
-`persist_session` was **`false`** on creation and was set to **`true`** on 2026-07-27 so that runs are
-retained and can be reviewed after the fact. ⚠️ **The first manual run (2026-07-27T04:30:01Z) fired
-before that change and its output is not recoverable.**
-
-This is the same shape as every other defect this project has fixed: a process whose failure is
-indistinguishable from its success. The freshness signal on the site is the backstop — it escalates in
-the reader's browser whether or not this reminder ever runs — but the reminder itself needs a human
-eye on its first few reports before it is trusted.
+⚠️ **The reminder was never what made the site honest.** The freshness signal is computed in the
+reader's browser and escalates on its own whether or not anything reminds anyone — see the top of this
+file. The routine saved the operator remembering; losing it costs convenience, not integrity.
 
 ## Ownership — §11.3
 
