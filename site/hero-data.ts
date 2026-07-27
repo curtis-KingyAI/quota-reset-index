@@ -29,25 +29,49 @@ export const CLAUDE_CLOCK = new Date('2026-07-07T12:00:00Z');
 /**
  * The regime the hero speaks in.
  *
- * ⚠️ HAND-SET, AND THE LARGEST UNDERIVED ASSUMPTION ON THE PAGE. `launch` is the
- * HIGHEST of the three base rates, so the hero shows the top of the range — at the
- * current ledger state that is 46% against 29% (normal) and 16% (quiet), nearly
- * three times the low end. Until 2026-07-27 the page showed that number with no
- * indication it was a choice at all.
+ * ── CHANGED 2026-07-27: `launch` → `normal`, ON EVIDENCE ────────────────────
  *
- * It is NOT derived, and deliberately so: the obvious proxy — recent event density
- * — is exactly what the trailing-fortnight term already measures, so deriving the
- * regime from it would count the same signal twice and silently double the effect
- * of a cluster. Changing it is an editorial claim about what environment we are in,
- * not a refactor.
+ * This was the largest undisclosed assumption on the site. `launch` is the HIGHEST
+ * of the three base rates, and the hero showed it with no indication that it was a
+ * choice at all — 46% where `normal` gave 29% and `quiet` 16%.
+ *
+ * The first walk-forward backtest (docs/CALIBRATION.md, `npm run backtest`) settled
+ * it against the 19 Codex events on record:
+ *
+ *   normal   Brier 0.1744   mean forecast 25.4%   observed 25.8%   ← best, and calibrated
+ *   quiet    Brier 0.1870   mean forecast 15.8%
+ *   launch   Brier 0.1895   mean forecast 38.9%   ← OVER-FORECAST BY ~14 POINTS
+ *
+ * `launch` also scored BELOW a constant-rate baseline on non-overlapping windows —
+ * worse than assuming nothing. `normal` ranked first under both window schemes.
+ *
+ * ⚠️ THIS IS REGIME SELECTION, NOT FITTING. Nothing in the model was tuned; three
+ * already-published configurations were scored and one matched the record. The
+ * weights remain hand-set priors and the §7.3 banner remains, because no
+ * configuration's skill interval excludes zero at 19 events.
+ *
+ * ⚠️ AND IT IS STILL NOT DERIVED AT RUN TIME, deliberately. The obvious proxy —
+ * recent event density — is exactly what the trailing-fortnight term already
+ * measures, so deriving the regime from it would count the same signal twice and
+ * silently double the effect of a cluster. It is an editorial claim, now an
+ * evidenced one, and it should be revisited when the corpus grows.
  *
  * Exported and threaded through to the hero so the LABEL cannot drift from the
- * VALUE. A test asserts the rendered page names whichever regime is set here.
+ * VALUE. Tests assert the rendered page names whichever regime is set here.
  */
-export const HERO_REGIME: Regime = 'launch';
+export const HERO_REGIME: Regime = 'normal';
 
-/** The other two regimes, so the hero can show the range rather than assert a point. */
-const OTHER_REGIMES: Regime[] = ['quiet', 'normal'];
+/**
+ * The regimes NOT shown, so the hero can present the range rather than assert a point.
+ *
+ * ⚠️ DERIVED from HERO_REGIME, never listed by hand. It was hardcoded to
+ * ['quiet','normal'] and the moment HERO_REGIME changed to `normal` the hero
+ * cheerfully offered "the other two give 16% (quiet) and 29% (normal)" — listing
+ * the shown regime as its own alternative. Same class of defect as every stale
+ * hand-maintained figure fixed today, introduced in the act of fixing them.
+ */
+const ALL_REGIMES: Regime[] = ['quiet', 'normal', 'launch'];
+const OTHER_REGIMES: Regime[] = ALL_REGIMES.filter((r) => r !== HERO_REGIME);
 
 export function heroFigures() {
   const live = codexLiveState();

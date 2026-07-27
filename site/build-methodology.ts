@@ -272,9 +272,9 @@ same record. The baselines are walk-forward too, or beating them would prove not
 
 <table>
   <tr><th>series</th><th class="num">Brier ↓</th><th class="num">skill</th><th class="num">mean forecast</th><th class="num">observed</th></tr>
-  <tr><td><strong>normal</strong></td><td class="num"><strong>0.1744</strong></td><td class="num">+0.134</td><td class="num">25.4%</td><td class="num">25.8%</td></tr>
+  <tr><td><strong>normal</strong> — now shown on this site</td><td class="num"><strong>0.1744</strong></td><td class="num">+0.134</td><td class="num">25.4%</td><td class="num">25.8%</td></tr>
   <tr><td>quiet</td><td class="num">0.1870</td><td class="num">+0.071</td><td class="num">15.8%</td><td class="num">25.8%</td></tr>
-  <tr><td><strong>launch</strong> — the one shown on this site</td><td class="num">0.1895</td><td class="num">+0.059</td><td class="num"><strong>38.9%</strong></td><td class="num">25.8%</td></tr>
+  <tr><td><strong>launch</strong> — shown here until 2026-07-27</td><td class="num">0.1895</td><td class="num">+0.059</td><td class="num"><strong>38.9%</strong></td><td class="num">25.8%</td></tr>
   <tr><td>baseline: constant rate</td><td class="num">0.1953</td><td class="num">+0.030</td><td class="num">16.5%</td><td class="num">25.8%</td></tr>
   <tr><td>baseline: historical frequency</td><td class="num">0.2013</td><td class="num">—</td><td class="num">16.3%</td><td class="num">25.8%</td></tr>
 </table>
@@ -287,16 +287,21 @@ historical base rate.</strong> That is a statement about the sample — 19 event
 on the model. But the banner has changed meaning: it no longer says "never checked". It says
 <em>checked, and not yet distinguishable from a constant rate</em>.</p>
 
-<p><strong>Finding 2 — the regime shown on this site is the wrong one.</strong> The figure at the top of
-every page uses the <code>launch</code> regime. It <strong>over-forecasts by about 14 points</strong> —
-38.9% predicted against 25.8% observed — and on non-overlapping windows it scores <em>below</em> the
-constant-rate baseline. <code>normal</code> is nearly perfectly calibrated in the large and ranks first
-under both schemes.</p>
+<p><strong>Finding 2 — the regime this site published was the wrong one, and has been changed.</strong>
+Every page used to show the <code>launch</code> figure. It <strong>over-forecast by about 14
+points</strong> — 38.9% predicted against 25.8% observed — and on non-overlapping windows it scored
+<em>below</em> the constant-rate baseline, which is to say worse than assuming nothing.
+<code>normal</code> is nearly perfectly calibrated in the large and ranks first under both schemes.</p>
 
-<p>That is published here before it is acted on, because a site that only reports measurements
-favourable to itself is not measuring. Note also what it does <em>not</em> establish: being calibrated
-in the large is a weak property — a flat 25.8% would achieve it too — so the self-exciting structure
-this model is built around remains unevidenced.</p>
+<p><strong>The site moved to <code>normal</code> on 2026-07-27</strong>, dropping the headline figure
+from 46% to 29%. The finding was published here before it was acted on, because a site that only
+reports measurements favourable to itself is not measuring — and the superseded figure stays named on
+this page rather than being quietly replaced.</p>
+
+<p>Note what this does <em>not</em> establish. Three already-published configurations were scored and
+one matched the record; nothing was fitted, so this is regime selection rather than calibration. Being
+calibrated in the large is also a weak property — a flat 25.8% would achieve it too — so the
+self-exciting structure this model is built around remains unevidenced, and the banner above stays.</p>
 </div>
 
 <h2>How this becomes citable rather than interesting</h2>

@@ -220,11 +220,13 @@ export function forecastHero(f: {
   </div>
   ${
     f.regime && f.alternatives?.length
-      ? `<p class="hero-range">Shown at the <strong>${esc(f.regime)}</strong> regime — the highest of the three
-  base rates this model carries. The same records give ${f.alternatives
+      ? `<p class="hero-range">Shown at the <strong>${esc(f.regime)}</strong> regime — the one that best
+  matches this ledger's own record. Scored against the 19 Codex resets on file it forecast 25.4% where
+  25.8% of windows contained an event; the other two give ${f.alternatives
     .map((a) => `<b>${a.codex}%</b> (${esc(a.regime)})`)
-    .join(' and ')} for Codex. <strong>Which regime applies is a hand-set judgement, not a derived one</strong>;
-  nothing in the ledger decides it. <a href="/forecast">All three, side by side</a>.</p>`
+    .join(' and ')}. <strong>This site showed <code>launch</code> until 2026-07-27, which over-forecast
+  by about 14 points.</strong> <a href="/methodology#calibration">How that was measured</a> ·
+  <a href="/forecast">all three, side by side</a>.</p>`
       : ''
   }
   ${live ? `<p class="hero-asof">Ledger covers <strong>${live.coverage.label}</strong> ·

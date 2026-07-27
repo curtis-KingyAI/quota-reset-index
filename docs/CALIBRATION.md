@@ -10,8 +10,9 @@ ever computed one. This is that number.
 
 1. **No configuration is distinguishable from simply predicting the historical base rate.** The banner
    stays.
-2. **The regime the site publishes — `launch` — is the wrong one.** It over-forecasts by ~14 points and
-   scores below a constant rate on non-overlapping windows. `normal` is nearly perfectly calibrated.
+2. **The regime the site published — `launch` — was the wrong one.** It over-forecast by ~14 points and
+   scored below a constant rate on non-overlapping windows. `normal` is nearly perfectly calibrated, and
+   the site was changed to it the same day.
 
 ---
 
@@ -41,7 +42,7 @@ the whole span would know the future, and beating a handicapped reference proves
 |---|---|---|---|---|---|
 | 1 | **normal** | **0.1744** | **+0.134** | 25.4% | 25.8% |
 | 2 | quiet | 0.1870 | +0.071 | 15.8% | 25.8% |
-| 3 | **launch** *(published)* | 0.1895 | +0.059 | **38.9%** | 25.8% |
+| 3 | **launch** *(published until 07-27)* | 0.1895 | +0.059 | **38.9%** | 25.8% |
 | 4 | baseline-constant | 0.1953 | +0.030 | 16.5% | 25.8% |
 | 5 | baseline-climatology | 0.2013 | — | 16.3% | 25.8% |
 
@@ -62,7 +63,7 @@ Robustness check on **non-overlapping** 48h windows (45 days, 11 positives) — 
 | regime | overlapping | non-overlapping |
 |---|---|---|
 | normal | +0.134 · **[−0.108, +0.265]** | +0.156 · **[−0.136, +0.237]** |
-| launch *(published)* | +0.059 · **[−0.485, +0.302]** | +0.056 · **[−0.519, +0.218]** |
+| launch *(published until 07-27)* | +0.059 · **[−0.485, +0.302]** | +0.056 · **[−0.519, +0.218]** |
 
 **Every interval includes zero.** Not one configuration is statistically distinguishable from
 predicting the historical base rate. The honest reading is that 19 events cannot establish skill,
@@ -76,12 +77,12 @@ interval. The bootstrap is seeded, so the published figure is reproducible.
 from *"never checked against an outcome"* to *"checked, and not yet distinguishable from a constant
 rate"*. That is a real improvement in honesty, achieved by measuring rather than by waiting.
 
-## Finding 2 — the published regime is the wrong one
+## Finding 2 — the regime we published was the wrong one
 
 This is the actionable half, and it settles a question that was previously an unresolved editorial
 judgement.
 
-The site shows the `launch` figure on every page. The backtest says:
+The site showed the `launch` figure on every page until 2026-07-27. The backtest says:
 
 - **`launch` over-forecasts by ~13–15 points.** It predicts 38.9% where 25.8% of windows contained an
   event.
@@ -89,6 +90,10 @@ The site shows the `launch` figure on every page. The backtest says:
   nothing.
 - **`normal` is nearly perfectly calibrated in the large**: 25.4% predicted against 25.8% observed, and
   25.9% against 24.4% on the robustness check. It ranks first under both schemes.
+
+**ACTED ON 2026-07-27 (operator decision): the site now publishes `normal`.** The headline figure fell
+from 46% to 29%. The superseded regime stays named on `/methodology` rather than being quietly
+replaced — the correction is part of the record, as it is for every superseded ledger entry.
 
 ⚠️ **This is a regime-selection finding, not a licence to refit.** Nothing in the model was tuned; three
 published configurations were scored and one fits the record. Choosing `normal` remains an editorial

@@ -243,9 +243,15 @@ test('the hero NAMES the regime it speaks in, on every page', () => {
     ['forecast', forecast],
     ['methodology', renderMethodology()],
   ] as [string, string][]) {
-    assert.ok(html.includes(`${HERO_REGIME} regime`), `${name} must name the regime in the hero head`);
-    assert.match(html, /highest of the three/, `${name} must say it is the top of the range`);
-    assert.match(html, /hand-set judgement, not a derived one/, `${name} must say nobody derived it`);
+    // ⚠️ Prose assertions run against WHITESPACE-COLLAPSED html. Source line breaks
+    // fall wherever the template wraps, and an assertion that fails because "best"
+    // and "matches" landed on different lines is testing the formatter, not the page.
+    const flat = html.replace(/\s+/g, ' ');
+    assert.ok(flat.includes(`${HERO_REGIME} regime`), `${name} must name the regime in the hero head`);
+    assert.match(flat, /best matches this ledger's own record/, `${name} must say why this regime`);
+    // The site published `launch` until the backtest showed it over-forecasting.
+    // Keeping that on the page is the correction being visible rather than quiet.
+    assert.match(flat, /over-forecast by about 14 points/, `${name} must keep the correction visible`);
   }
 });
 
@@ -263,8 +269,19 @@ test('the hero shows the OTHER regimes, so the spread behind one number is visib
   for (const a of f.alternatives) {
     assert.ok(ledger.includes(`<b>${a.codex}%</b> (${a.regime})`), `${a.regime} figure must render`);
   }
-  // And the headline must genuinely be the highest, or the disclosure is a lie.
-  for (const a of f.alternatives) {
-    assert.ok(f.codex >= a.codex, `${HERO_REGIME} must be >= ${a.regime}, else "highest of three" is false`);
-  }
+  // ⚠️ THE HEADLINE IS NO LONGER THE HIGHEST, and that is the point — it is the
+  // best-calibrated. Asserting "highest" here would re-enshrine the claim the
+  // backtest falsified. What must hold is that the alternatives are the OTHER two
+  // regimes, derived from HERO_REGIME rather than listed by hand: that bug shipped
+  // for one build and had the hero offering "the other two give 16% (quiet) and
+  // 29% (normal)" while showing normal.
+  assert.ok(
+    !f.alternatives.some((a) => a.regime === f.regime),
+    'the shown regime must not appear among its own alternatives',
+  );
+  assert.deepEqual(
+    [...f.alternatives.map((a) => a.regime), f.regime].sort(),
+    ['launch', 'normal', 'quiet'],
+    'the shown regime plus its alternatives must be exactly the three regimes',
+  );
 });
