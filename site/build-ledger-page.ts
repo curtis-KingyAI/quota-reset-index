@@ -193,7 +193,7 @@ ${rows}
 })();
 `;
 
-  return page({ title: 'Quota Reset Index', current: 'ledger', body, extraStyles, script });
+  return page({ title: 'Quota Reset Index', path: '/', current: 'ledger', body, extraStyles, script });
 }
 
 function main(): void {

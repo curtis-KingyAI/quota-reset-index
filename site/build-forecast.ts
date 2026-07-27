@@ -111,7 +111,7 @@ deserves:</p>
 <a href="/methodology">Methodology</a>.</p>
 `;
 
-  const html = page({ title: 'Forecast — Quota Reset Index', current: 'forecast', body });
+  const html = page({ title: 'Forecast — Quota Reset Index', path: '/forecast', current: 'forecast', body });
 
   // §7.3, enforced at build time rather than trusted: if a probability reaches the
   // page without the banner preceding it, fail the build rather than publish it.

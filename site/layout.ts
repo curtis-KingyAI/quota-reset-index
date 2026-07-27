@@ -81,18 +81,36 @@ export const STYLES = `
 `;
 
 /**
- * NOINDEX DEFAULTS TO ON, and is disabled only by an explicit opt-in.
+ * Indexability. DEFAULT FLIPPED 2026-07-27 — the reasoning that justified the
+ * old default expired, so the default had to change with it.
  *
- * The staging origin (<project>.pages.dev) must never be indexed: an indexed
- * staging URL is a stranded URL the moment the custom domain lands, and the
- * project doctrine is to 301 before changing status — which you cannot do for a
- * URL you did not mean to publish. Defaulting to indexable and remembering to
- * turn it off is the wrong way round; forgetting the flag would be the failure.
+ * It previously defaulted to NOINDEX because the only live origin was a staging
+ * hostname, and an indexed staging URL is stranded the moment the real domain
+ * lands. That argument was correct then and is spent now: ledger.kingy.ai is
+ * live, canonical, and linked from the kingy.ai main nav. Keeping the old
+ * default would mean the site's real home ships telling crawlers to ignore it —
+ * failing safe in the direction that makes the project pointless.
  *
- * To build an indexable site once the custom domain resolves:
- *   QRI_INDEXABLE=1 npm run build
+ * Opt OUT for a preview build:
+ *   QRI_NOINDEX=1 npm run build
+ *
+ * Note the pairing: whenever this is indexable, every page also emits a
+ * canonical link to CANONICAL_ORIGIN, because the same bytes are served from
+ * two hostnames and only one of them should win.
  */
-export const NOINDEX = process.env.QRI_INDEXABLE !== '1';
+export const NOINDEX = process.env.QRI_NOINDEX === '1';
+
+/**
+ * The canonical origin.
+ *
+ * ⚠️ REQUIRED ONCE THE SITE IS INDEXABLE. The same bytes are served from TWO
+ * hostnames — ledger.kingy.ai (canonical) and quota-reset-index.pages.dev (the
+ * Cloudflare Pages origin, which cannot be switched off). Without a canonical
+ * link every page exists twice to a crawler, splitting whatever authority it
+ * earns and letting the wrong hostname win. The tag is emitted on both origins
+ * and points at the canonical one from both, which is what resolves it.
+ */
+export const CANONICAL_ORIGIN = 'https://ledger.kingy.ai';
 
 
 /**
@@ -133,6 +151,8 @@ export function forecastHero(f: {
 
 export interface PageOptions {
   title: string;
+  /** Path this page is served at, for the canonical link. */
+  path?: string;
   current: 'ledger' | 'forecast' | 'methodology';
   body: string;
   extraStyles?: string;
@@ -157,7 +177,8 @@ export function page(o: PageOptions): string {
 <html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-${NOINDEX ? '<meta name="robots" content="noindex, nofollow">\n' : ''}<title>${esc(o.title)}</title>
+${NOINDEX ? '<meta name="robots" content="noindex, nofollow">\n' : ''}<link rel="canonical" href="${CANONICAL_ORIGIN}${o.path ?? '/'}">
+<title>${esc(o.title)}</title>
 <style>${STYLES}${o.extraStyles ?? ''}</style>
 
 <nav>

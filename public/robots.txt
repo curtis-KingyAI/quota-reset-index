@@ -1,5 +1,4 @@
-# Staging origin — not the canonical home for this project.
-# Disallowed so no URL here is indexed and later stranded when the custom
-# domain lands. Rebuild with QRI_INDEXABLE=1 to publish an indexable site.
 User-agent: *
-Disallow: /
+Allow: /
+
+Sitemap: https://ledger.kingy.ai/sitemap.xml

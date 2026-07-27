@@ -6,7 +6,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { NOINDEX } from './layout.ts';
+import { CANONICAL_ORIGIN, NOINDEX } from './layout.ts';
 import { isMain } from '../lib/is-main.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -21,6 +21,8 @@ Disallow: /
 `
     : `User-agent: *
 Allow: /
+
+Sitemap: ${CANONICAL_ORIGIN}/sitemap.xml
 `;
 
 function main(): void {

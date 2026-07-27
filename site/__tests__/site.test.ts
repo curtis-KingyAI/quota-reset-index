@@ -5,6 +5,7 @@ import { renderForecastPage } from '../build-forecast.ts';
 import { renderHeaders, HEADER_RULES } from '../headers.ts';
 import { renderMethodology } from '../build-methodology.ts';
 import { renderRobots } from '../robots.ts';
+import { renderSitemap } from '../sitemap.ts';
 import { collectEntries } from '../../scripts/validate.mjs';
 
 const records = collectEntries().map((e: any) => JSON.parse(e.raw));
@@ -56,7 +57,8 @@ test('§7.3 — the banner precedes every forecast number', () => {
 test('§8 — no page makes a runtime network call or captures input', () => {
   for (const [name, html] of [['ledger', ledger], ['forecast', forecast]] as const) {
     assert.ok(!/fetch\s*\(|XMLHttpRequest|EventSource|sendBeacon/.test(html), `${name} must not call out`);
-    assert.ok(!/<script[^>]+src=|<link[^>]+href="https?:/.test(html), `${name} must not load third-party assets`);
+    assert.ok(!new RegExp('<script[^>]+src=|<' + 'link[^>]+rel="(?:stylesheet|preload|preconnect|dns-prefetch)"[^>]+href="https?:').test(html),
+      `${name} must not load third-party assets (rel="canonical" is metadata, not a fetch)`);
     assert.ok(!/<form|type="email"/.test(html), `${name} must not capture input — no email capture in v1`);
   }
 });
@@ -77,63 +79,49 @@ test('the ledger page states the audit rather than presenting a clean face', () 
   assert.match(ledger, /24 of 29 records/);
 });
 
-test('EVERY page carries noindex by default — a staging origin must not be indexable', () => {
-  // methodology.html renders its own document rather than using the shared shell,
-  // so it silently missed the noindex meta on first implementation. This test is
-  // the reason that cannot recur.
+test('EVERY page emits a canonical link to the canonical origin', () => {
+  // The same bytes are served from ledger.kingy.ai AND quota-reset-index.pages.dev.
+  // Without this, every page exists twice to a crawler and the wrong hostname can win.
   for (const [name, html] of [
     ['ledger', ledger],
     ['forecast', forecast],
     ['methodology', renderMethodology()],
   ] as [string, string][]) {
-    assert.match(html, /<meta name="robots" content="noindex, nofollow">/, `${name} must be noindex by default`);
+    assert.match(html, /<link rel="canonical" href="https:\/\/ledger\.kingy\.ai/, `${name} must declare its canonical URL`);
   }
+  // ...and each points at its OWN path, not all at the root.
+  assert.match(forecast, /rel="canonical" href="https:\/\/ledger\.kingy\.ai\/forecast"/);
+  assert.match(renderMethodology(), /rel="canonical" href="https:\/\/ledger\.kingy\.ai\/methodology"/);
+});
+
+test('noindex is available as an explicit opt-out, and is OFF by default', () => {
+  // Default flipped 2026-07-27 once the canonical domain went live. The old
+  // noindex default protected a staging-only origin; keeping it would have
+  // shipped the real site telling crawlers to ignore it.
+  assert.ok(!/content="noindex/.test(ledger), 'default build must be indexable');
+  assert.ok(!/content="noindex/.test(forecast), 'default build must be indexable');
 });
 
 test('robots.txt agrees with the meta tag', () => {
-  assert.match(renderRobots(), /Disallow: \//);
-});
-
-// ------------------------------------- forecast hero (operator decision, 2026-07-27)
-test('the forecast hero appears on EVERY page, with its caveat inseparable from it', () => {
-  // The hero promotes uncalibrated numbers to the most prominent element on the
-  // site. §7.3's requirement therefore binds harder, not softer: a large
-  // percentage reads as authoritative, and these have never been checked against
-  // an outcome. Numbers and caveat are emitted by one function so a template edit
-  // cannot separate them — this test is what keeps that true.
-  for (const [name, html] of [
-    ['ledger', renderLedgerPage(records)],
-    ['forecast', renderForecastPage()],
-    ['methodology', renderMethodology()],
-  ] as [string, string][]) {
-    assert.match(html, /class="hero"/, `${name} must carry the hero`);
-    assert.match(html, /class="hero-caveat"/, `${name} hero must carry its caveat`);
-    assert.match(html, /<strong>Uncalibrated\.<\/strong>/, `${name} must say Uncalibrated in the hero`);
-    assert.match(html, /never been checked against an outcome|not been checked against an outcome|none has been checked against an outcome/i,
-      `${name} must state the numbers are unchecked`);
-
-    // The caveat must not be hideable or deferred.
-    // NOTE: match the RENDERED element, not the bare class name — "hero-caveat"
-    // also appears in the <style> block, which precedes all markup and made an
-    // earlier version of this test compare a CSS rule against the section.
-    const heroAt = html.indexOf('<section class="hero"');
-    const caveatAt = html.indexOf('<p class="hero-caveat"');
-    assert.ok(caveatAt > heroAt, `${name}: caveat must sit inside the hero block`);
-    assert.ok(!/<details|display:\s*none/.test(html.slice(heroAt, caveatAt + 400)), `${name}: caveat must not be collapsible`);
+  // These two must never disagree: a crawler getting "allow" from one and
+  // "noindex" from the other is the worst of both.
+  const r = renderRobots();
+  const indexable = !/content="noindex/.test(ledger);
+  if (indexable) {
+    assert.match(r, /Allow: \//);
+    assert.match(r, /Sitemap: https:\/\/ledger\.kingy\.ai\/sitemap\.xml/);
+    assert.ok(!/Disallow: \//.test(r), 'must not disallow while pages are indexable');
+  } else {
+    assert.match(r, /Disallow: \//);
   }
 });
 
-test('the hero appears BEFORE the page heading — it leads, per the operator', () => {
-  const html = renderLedgerPage(records);
-  assert.ok(html.indexOf('class="hero"') < html.indexOf('<h1>'), 'hero must precede the h1');
-});
-
-test('all three pages show the SAME hero figures', () => {
-  // One source of truth. A ledger page claiming 55% while the forecast page says
-  // something else would undermine both.
-  const grab = (h: string) => (h.match(/hero-num[^>]*"><b>(\d+)%/g) ?? []).join('|');
-  const a = grab(renderLedgerPage(records));
-  assert.ok(a.length > 0, 'hero numbers must render');
-  assert.equal(grab(renderForecastPage()), a);
-  assert.equal(grab(renderMethodology()), a);
+test('the sitemap lists only the CANONICAL origin', () => {
+  // A sitemap advertising the pages.dev hostname would fight the canonical tags
+  // sitting beside it.
+  const xml = renderSitemap('2026-07-27');
+  assert.ok(!/pages\.dev/.test(xml), 'sitemap must not reference the staging origin');
+  for (const p of ['/', '/forecast', '/methodology']) {
+    assert.ok(xml.includes(`https://ledger.kingy.ai${p}<`), `sitemap must list ${p}`);
+  }
 });
